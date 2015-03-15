@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+        <title></title>
+    </head>
+    <body>
+        <h2>Integration</h2>
+		<p>Integration of a function can be achieved in two different ways. Simpson's method is being used during integration. You can read more about other methods available <a href="http://mathosproject.com/wiki/mathos-core-library/calculus/integration/">here</a>.</p>
+		<h3>Integrate a string expression</h3>
+		Any string expression can be integrated as shown below:
+		<pre>
+	# integrate 3x^2 from 0 to 2
+	puts int("3x^2",0,2)
+		</pre>
+        <a href="integrating1.mcli.txt">See in action</a>
+		
+		<h3>Integrate a lambda expression</h3>
+		If you can express the expression (integrand) as a lambda expression, the <i>int</i> might execute faster than the method above.
+		<pre>
+	# integrate 3x^2 from 0 to 2
+	puts int(lambda {|x| 3*x**2},0,2)
+		</pre>
+		<a href="integrating2.mcli.txt">See in action</a>
+    </body>
+</html>

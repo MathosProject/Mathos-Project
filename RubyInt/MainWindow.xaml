@@ -1,0 +1,40 @@
+﻿<metro:MetroWindow x:Name="RubyInt" x:Class="RubyInt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Iron Ruby Based Mathos Core Library Interpreter" Width="640" Height="480" WindowStartupLocation="CenterScreen" Icon="Ruby.ico" ShowIconOnTitleBar="true">
+    <metro:MetroWindow.LeftWindowCommands>
+        <metro:WindowCommands>
+            <Menu IsMainMenu="True">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" Click="New_Executed"/>
+                    <MenuItem Header="_Open" Click="Open_Executed"/>
+                    <MenuItem Header="_Save" Click="Save_Executed"/>
+                    <MenuItem Header="_Save As" Click="SaveAs_Executed"/>
+                </MenuItem>
+                <MenuItem Header="_View">
+                    <MenuItem Header="_Style" Click="Style_Click" />
+                </MenuItem>
+                <MenuItem x:Name="Debug" Width="50" Header="_Run" Click="Debug_Click"/>
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_Help" Click="Help_Executed"/>
+                    <MenuItem Header="_About" Click="About_Executed"/>
+                </MenuItem>
+            </Menu>
+        </metro:WindowCommands>
+    </metro:MetroWindow.LeftWindowCommands>
+    <Grid>
+        <avalonEdit:TextEditor xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                               Name="TextEditor"
+                               FontFamily="Consolas"
+                               SyntaxHighlighting="Ruby"
+                               x:FieldModifier="public"
+                               FontSize="12pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextChanged="TextChanged" Margin="0,0,0,66" />
+
+        <RichTextBox x:Name="Results" HorizontalAlignment="Stretch" Height="66" VerticalAlignment="Bottom"  IsReadOnly="True" FontFamily="Consolas" FontSize="15" MouseDoubleClick="Results_OnMouseDoubleClick">
+            <FlowDocument>
+                <Paragraph/>
+            </FlowDocument>
+        </RichTextBox>
+    </Grid>
+</metro:MetroWindow>

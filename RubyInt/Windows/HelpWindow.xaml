@@ -1,0 +1,10 @@
+﻿<metro:MetroWindow x:Class="RubyInt.Windows.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        Title="Help Window" Height="463" Width="596">
+    <Grid>
+        <ListBox x:Name="LstPages" Margin="10,0,471,0" MouseLeftButtonUp="lstPages_MouseLeftButtonUp"/>
+        <WebBrowser x:Name="BrowserWin" Margin="117,0,0,0" Source="http://mathosproject.com/" Navigating="browserWin_Navigating" LoadCompleted="browserWin_LoadCompleted" />
+    </Grid>
+</metro:MetroWindow>

@@ -1,0 +1,2 @@
+﻿ * Fractions in fractions 3/4/ 2/8
+ * allow user to pass a complex coordinate , such as 2/3,5/4 to the coordinate struct

@@ -1,0 +1,43 @@
+﻿            parser.LocalFunctions.Add("table", x =>
+            {
+                //decimal m = 0; // y=mx+c
+                //decimal c = 0;
+
+                //if (x.Length == 1)
+                //{
+                //    m = x[0];
+                //}
+                //else if (x.Length == 2)
+                //{
+                //    m = x[0];
+                //    c = x[1];
+                //}
+
+                //if (parser.LocalVariables["table_min"] > 10000)
+                //{
+                //    if (MessageBox.Show("You 'table_min' is bigger than 10,000, which might take a while to calculate. Are you sure you want to continue?", "Huge value", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                //    {
+                //        return 0;
+                //    }
+                //}
+
+                //string expr = textBox1.Text;
+
+                //frmTable _form = new frmTable();
+
+                //long min = (long)parser.LocalVariables["table_min"];
+                //long max = (long)parser.LocalVariables["table_max"];
+                //long step = (long)parser.LocalVariables["table_step"];
+
+                
+                //Parallel.For(min, max+1, i =>
+                //    {
+                //        i += step;
+                //        _form._funcs.Add(i, m * i + c);
+
+                //    });
+                
+                //_form.Show();
+
+                return 0;
+            });

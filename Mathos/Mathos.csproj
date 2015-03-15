@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9D724A86-4423-47C6-AF5A-DFED352021D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mathos</RootNamespace>
+    <AssemblyName>Mathos</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Mathos.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algebra.cs" />
+    <Compile Include="Arithmetic\ComplexArithmetic.cs" />
+    <Compile Include="Arithmetic\ComplexNumberType.cs" />
+    <Compile Include="Arithmetic\DecimalArithmetic.cs" />
+    <Compile Include="Arithmetic\DoubleArithmetic.cs" />
+    <Compile Include="Arithmetic\FractionType.cs" />
+    <Compile Include="Arithmetic\IntegerArithmetic.cs" />
+    <Compile Include="Arithmetic\MathematicalConstants.cs" />
+    <Compile Include="Arithmetic\NumberOperations.cs" />
+    <Compile Include="Arithmetic\PhysicalConstants.cs" />
+    <Compile Include="Arithmetic\SingleArithmetic.cs" />
+    <Compile Include="BenchmarkUtil.cs" />
+    <Compile Include="Calculus\DifferentialCalculus.cs" />
+    <Compile Include="Calculus\Elementary.Complex.cs" />
+    <Compile Include="Calculus\Elementary.Double.cs" />
+    <Compile Include="Calculus\FiniteCalculus.cs" />
+    <Compile Include="Calculus\IntegralCalculus.cs" />
+    <Compile Include="Converter\AngleConverter.cs" />
+    <Compile Include="Converter\ConversionObjects.cs" />
+    <Compile Include="Converter\Converter.cs" />
+    <Compile Include="Converter\ConversionTypes.cs" />
+    <Compile Include="Converter\TemperatureConverter.cs" />
+    <Compile Include="Geometry\Shapes\Ellipse.cs" />
+    <Compile Include="Geometry\Shapes\Ring.cs" />
+    <Compile Include="Geometry\Shapes\Torus.cs" />
+    <Compile Include="Matrices.cs" />
+    <Compile Include="PreCalculus\Sequences.cs" />
+    <Compile Include="SpecialFunctions\Antiderivatives.cs" />
+    <Compile Include="SpecialFunctions\Bessel.cs" />
+    <Compile Include="SpecialFunctions\Elliptic.cs" />
+    <Compile Include="SpecialFunctions\Gamma.cs" />
+    <Compile Include="Statistics\DiceSimulator.cs" />
+    <Compile Include="Finance\Finance.cs" />
+    <Compile Include="Geometry\CoordinateGeometry.cs" />
+    <Compile Include="Geometry\Pythagorean.cs" />
+    <Compile Include="Geometry\Shapes\Cube.cs" />
+    <Compile Include="Geometry\Shapes\RightCircularCone.cs" />
+    <Compile Include="Geometry\Shapes\SquarePyramid.cs" />
+    <Compile Include="Geometry\Shapes\Sphere.cs" />
+    <Compile Include="Geometry\Shapes\RightCircularCylinder.cs" />
+    <Compile Include="Geometry\Shapes\IShape3D.cs" />
+    <Compile Include="Geometry\Shapes\RectangularPrism.cs" />
+    <Compile Include="Geometry\Shapes\IShape2D.cs" />
+    <Compile Include="Geometry\Shapes\Circle.cs" />
+    <Compile Include="Geometry\Shapes\RightTriangle.cs" />
+    <Compile Include="Geometry\Shapes\Trapezoid.cs" />
+    <Compile Include="Geometry\Shapes\Parallelogram.cs" />
+    <Compile Include="Geometry\Shapes\Rectangle.cs" />
+    <Compile Include="Geometry\Shapes\Square.cs" />
+    <Compile Include="Geometry\Shapes\Triangle.cs" />
+    <Compile Include="Geometry\Trigonometry.cs" />
+    <Compile Include="MathosExceptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statistics\Statistical Distributions\BinomialDistribution.cs" />
+    <Compile Include="Statistics\Statistical Distributions\HypergeometricDistribution.cs" />
+    <Compile Include="Statistics\Statistical Distributions\PoissonDistribution.cs" />
+    <Compile Include="Statistics\Statistics.cs" />
+    <Compile Include="Statistics\Uncertainty.cs" />
+    <Compile Include="Syntax.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
+    <Content Include="ToAdd.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

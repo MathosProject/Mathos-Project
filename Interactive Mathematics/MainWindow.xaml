@@ -1,0 +1,66 @@
+﻿<Window x:Class="Interactive_Mathematics.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Interactive Mathematics" Height="450" Width="781" FontFamily="Consolas" ResizeMode="NoResize">
+    <Grid>
+        <TreeView Height="239" HorizontalAlignment="Left" Name="TreeView1" VerticalAlignment="Top" Width="214" MouseUp="treeView1_MouseUp">
+            <TreeViewItem Header="Arithmetics" >
+                <TreeViewItem Header="Fractions" />
+                <TreeViewItem Header="Numbers">
+                    <TreeViewItem Header="Check">
+                        <TreeViewItem Header="IsEven" />
+                        <TreeViewItem Header="IsOdd" />
+                        <TreeViewItem Header="IsPrime" />
+                        <TreeViewItem Header="IsCoprime" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="Get">
+                        <TreeViewItem Header="lcm" />
+                        <TreeViewItem Header="gdc" />
+                        <TreeViewItem Header="mod" />
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeViewItem>
+
+            <TreeViewItem Header="Trigonometry" >
+                <TreeViewItem Header="sin" />
+                <TreeViewItem Header="cos" />
+                <TreeViewItem Header="tan" />
+                <TreeViewItem Header="arcsin" />
+                <TreeViewItem Header="arccos" />
+                <TreeViewItem Header="arctan" />
+            </TreeViewItem>
+            <TreeViewItem Header="Operations">
+                <TreeViewItem Header="Conditional">
+                    <TreeViewItem Header="if" />
+                    <TreeViewItem Header="or" />
+                    <TreeViewItem Header="and" />
+                    <TreeViewItem Header="isnot" />
+                    <TreeViewItem Header="" />
+                    <TreeViewItem Header=">" />
+                </TreeViewItem>
+            </TreeViewItem>
+            <TreeViewItem Header="Statistics" >
+                <TreeViewItem Header="mean" />
+            </TreeViewItem>
+            <TreeViewItem Header="Table" >
+                <TreeViewItem Header="table" />
+                <TreeViewItem Header="table_min" />
+                <TreeViewItem Header="table_max" />
+                <TreeViewItem Header="table_step" />
+                <TreeViewItem Header="newWindow" />
+            </TreeViewItem>
+        </TreeView>
+
+        <ListView HorizontalAlignment="Stretch" Margin="220,0,0,136" Name="ListView1" VerticalAlignment="Stretch" SelectionMode="Single" IsTextSearchEnabled="False" IsHitTestVisible="True" MouseDoubleClick="listView1_MouseDoubleClick" />
+        <TextBox HorizontalAlignment="Stretch" Margin="220,284,0,0" Name="TextBox1" VerticalAlignment="Stretch" KeyUp="textBox1_KeyUp" />
+        
+        <DataGrid AutoGenerateColumns="False" Height="168" HorizontalAlignment="Left" Margin="0,243,0,0" Name="DataGrid1" VerticalAlignment="Top" Width="214" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserResizeRows="False" Focusable="False" SelectionMode="Single" MouseDoubleClick="dataGrid1_MouseDoubleClick">
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Binding="{Binding}" Header="Name" IsReadOnly="True" />
+                <DataGridTextColumn Header="Value" IsReadOnly="True" />-->
+                <DataGridTextColumn Header="Name" Binding="{Binding Key}" IsReadOnly="True" MinWidth="75" />
+                <DataGridTextColumn Header="Value" Binding="{Binding Value}" IsReadOnly="True" MinWidth="131" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

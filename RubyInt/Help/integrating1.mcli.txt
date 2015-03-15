@@ -1,0 +1,2 @@
+# integrate 3x^2 from 0 to 2
+puts int("3x^2",0,2)

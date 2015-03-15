@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Finance">
+    <Position X="19.145" Y="0.5" Height="0.35" Width="1.084" />
+  </Comment>
+  <Comment CommentText="Statistics">
+    <Position X="19.162" Y="3.513" Height="0.35" Width="1.084" />
+  </Comment>
+  <Comment CommentText="Calculus">
+    <Position X="19.183" Y="8.036" Height="0.35" Width="1.084" />
+  </Comment>
+  <Comment CommentText="Geometry">
+    <Position X="19.2" Y="10.518" Height="0.35" Width="1.084" />
+  </Comment>
+  <Comment CommentText="Algebra">
+    <Position X="19.204" Y="17.785" Height="0.35" Width="1.084" />
+  </Comment>
+  <Comment CommentText="Arithmetic">
+    <Position X="19.213" Y="22.779" Height="0.35" Width="1.084" />
+  </Comment>
+  <Comment CommentText="Conversion">
+    <Position X="19.217" Y="29.536" Height="0.35" Width="1.084" />
+  </Comment>
+  <Comment CommentText="Cord Geometry">
+    <Position X="19.203" Y="32.543" Height="0.35" Width="1.084" />
+  </Comment>
+  <Class Name="Mathos.Algebra.EquationSolver">
+    <Position X="24" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algebra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Algebra.Vector">
+    <Position X="20.5" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAE6AUAAABAAAAAAIDAAAEACAAAAiA=</HashCode>
+      <FileName>Matrices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Algebra.Matrix">
+    <Position X="22.25" Y="17.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAIAAEaAEQAAAAAAAAACAAAAEAAAAAAiA=</HashCode>
+      <FileName>Matrices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Arithmetic.ComplexNumbers.ComplexOperation">
+    <Position X="29.25" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\ComplexNumberType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Arithmetic.Numbers.Check">
+    <Position X="25.75" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAAAAEAAAAAAAAQEAAAAQAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Arithmetic.Numbers.Get">
+    <Position X="24" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAIEQAAAAAIAAAABAABAAAAAAAAAAAAAIAIAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Arithmetic.Numbers.Convert">
+    <Position X="27.5" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Calculus.DifferentialCalculus">
+    <Position X="22.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Calculus\DifferentialCalculus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Calculus.IntegralCalculus">
+    <Position X="20.5" Y="8" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Mathos.Calculus.IntegralCalculus.IntegrationAlgorithm" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Calculus\IntegralCalculus.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Calculus\IntegralCalculus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Conversion.ConversionInfo">
+    <Position X="24" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Converter\ConversionObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Conversion.ConversionBase">
+    <Position X="22.25" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Converter\ConversionObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Conversion.Converter">
+    <Position X="20.5" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAABAAAAAAAAAAAAAAAQIAAAAEAIAQAAAAAA=</HashCode>
+      <FileName>Converter\Converter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.DiceSim.DiceSimulator">
+    <Position X="27.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAIAAAAIAAAAEDGAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DiceSimulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Finance.Finance">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAIAAIAgAAAAAAAAAAAAAEIAAAQAgAAAQAAA=</HashCode>
+      <FileName>Finance\Finance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Geometry.CoordinateGeometry.TwoDimensional.Calculate">
+    <Position X="22.25" Y="32.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBAAAAAAAAEAEA=</HashCode>
+      <FileName>Geometry\CoordinateGeometry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Geometry.Pythagorean">
+    <Position X="20.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAIAA=</HashCode>
+      <FileName>Geometry\Pythagorean.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Circle" BaseTypeListCollapsed="true">
+    <Position X="31" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAACQAAAAAAgAAAAAgAAAAAAIAAAAABAQAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\Circle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Cube" BaseTypeListCollapsed="true">
+    <Position X="36.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAgCAAAABAAAAAAIAAAAIAAAAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\Cube.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Parallelogram" BaseTypeListCollapsed="true">
+    <Position X="29.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABQAAAAQAgEAAAABAAAAAAIAAAAAAAQAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\Parallelogram.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Rectangle" BaseTypeListCollapsed="true">
+    <Position X="24" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAwEAAAEBAAAAAAIAAAAAAAQAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\Rectangle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.RectangularPrism" BaseTypeListCollapsed="true">
+    <Position X="41.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAgAAQAgAAAgEBAAAAAAIAAAAIAAAAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\RectangularPrism.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.RightCircularCone" BaseTypeListCollapsed="true">
+    <Position X="38" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAABAAgAAQAgAAAAAAAAAIAAIAAAAIBAAAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\RightCircularCone.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.RightCircularCylinder" BaseTypeListCollapsed="true">
+    <Position X="43.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAABAAgAAQAgAAAAAAAAAIAAIAAAAIBAAAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\RightCircularCylinder.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.RightTriangle" BaseTypeListCollapsed="true">
+    <Position X="32.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABQAAAAQAgEAAAABAAAAAAIAAAAAAAQAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\RightTriangle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Sphere" BaseTypeListCollapsed="true">
+    <Position X="34.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAACAAgAAAAgAAAAAAAAAAAAIAAAAIAAAAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\Sphere.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Square" BaseTypeListCollapsed="true">
+    <Position X="25.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAgEAAAABAAAAAAIAAAAAAAQAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\Square.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.SquarePyramid" BaseTypeListCollapsed="true">
+    <Position X="39.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAgAAQAgCAAAABAAAAAAIAAAAIAAAAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\SquarePyramid.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Trapezoid" BaseTypeListCollapsed="true">
+    <Position X="27.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAARAAQABQAEAAQAgAABAAAAAAAAAJAgAAAAIQAAAiA=</HashCode>
+      <FileName>Geometry\Shapes\Trapezoid.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Geometry.Shapes.Triangle" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADAAAAAAAQAAAAAAgCAAAIAAAACAAIBAAEAAQQBQAiA=</HashCode>
+      <FileName>Geometry\Shapes\Triangle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Mathos.Exceptions.DenominatorNullException" Collapsed="true">
+    <Position X="13.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MathosExceptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Exceptions.InvalidCoordinateFormat" Collapsed="true">
+    <Position X="13.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MathosExceptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Exceptions.InvalidFractionFormatException" Collapsed="true">
+    <Position X="13.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MathosExceptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Exceptions.InvalidTriangleException" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MathosExceptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Statistics.Statistical_Distributions.BinomialDistribution">
+    <Position X="24" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAIAAAAAAIAAEAAABAAAAAAEgAQAAAAAAAA=</HashCode>
+      <FileName>Statistics\Statistical Distributions\BinomialDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Statistics.Statistical_Distributions.HypergeometricDistribution">
+    <Position X="25.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAABAAAAAAEgAAAAAAAAAA=</HashCode>
+      <FileName>Statistics\Statistical Distributions\HypergeometricDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Statistics.Statistical_Distributions.PoissonDistribution">
+    <Position X="22.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAIAAAAAAIAAEAAABAAAAAAEgAQAAAAAAAA=</HashCode>
+      <FileName>Statistics\Statistical Distributions\PoissonDistribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Statistics.NumberList">
+    <Position X="29.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Statistics\Statistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Statistics.StatisticalProcedures">
+    <Position X="20.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAKAIAIAAGIAAAAAGAAQAJAAAAIAEgAAAAIAAAAQ=</HashCode>
+      <FileName>Statistics\Statistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mathos.Syntax.SyntaxExtension" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAAAAEAAAAAAAAQEAICAQAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Syntax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Mathos.Arithmetic.ComplexNumbers.ComplexNumber">
+    <Position X="22.25" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEQAAAG4BUAAAAAAAAAAAAACAAAAAAAAiA=</HashCode>
+      <FileName>Arithmetic\ComplexNumberType.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Mathos.Arithmetic.Fractions.Fraction" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="22.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAAIAAAgAAAgE4AeABgAAAAAAEIAAIAAAgAAAByA=</HashCode>
+      <FileName>Arithmetic\FractionType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Struct>
+  <Struct Name="Mathos.Geometry.CoordinateGeometry.TwoDimensional.Coordinate">
+    <Position X="20.5" Y="32.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAQAAAAEgAAAAAAAAAAAIIAAAAAAAAAAYiA=</HashCode>
+      <FileName>Geometry\CoordinateGeometry.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Mathos.Arithmetic.Numbers.INaturalNumber" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mathos.Arithmetic.Numbers.IInteger" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mathos.Arithmetic.Numbers.IRationalNumber" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mathos.Arithmetic.Numbers.IIRationalNumber" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mathos.Arithmetic.Numbers.IRealNumber" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mathos.Arithmetic.Numbers.IImaginary" Collapsed="true">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mathos.Arithmetic.Numbers.IComplex" Collapsed="true">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Arithmetic\NumberOperations.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Mathos.Geometry.Shapes.IShape2D">
+    <Position X="26.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAgABAAAAAAAIAAggAAAAAAAwAQAAAAA=</HashCode>
+      <FileName>Geometry\Shapes\IShape2D.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Triangle" />
+      <Property Name="Rectangle" />
+      <Property Name="Square" />
+      <Property Name="Trapezoid" />
+      <Property Name="Parallelogram" />
+      <Property Name="Circle" />
+      <Property Name="RightTriangle" />
+    </ShowAsAssociation>
+  </Interface>
+  <Interface Name="Mathos.Geometry.Shapes.IShape3D">
+    <Position X="39" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAgAAAAAAQAAAIAAAQAAAAAAAIACBAAAAA=</HashCode>
+      <FileName>Geometry\Shapes\IShape3D.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sphere" />
+      <Property Name="Cube" />
+      <Property Name="RightCircularCone" />
+      <Property Name="SquarePyramid" />
+      <Property Name="RectangularPrism" />
+      <Property Name="RightCircularCylinder" />
+    </ShowAsAssociation>
+  </Interface>
+  <Enum Name="Mathos.Conversion.Length" Collapsed="true">
+    <Position X="29.5" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAgAEAAAAAABEAAAAAAAAAAEAAgAAAACACAAA=</HashCode>
+      <FileName>Converter\ConversionTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mathos.Conversion.Speed" Collapsed="true">
+    <Position X="33" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAEIAAAAAAAAAgAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Converter\ConversionTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mathos.Conversion.Mass" Collapsed="true">
+    <Position X="31.25" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAQEAAAAQEAAAAAAAAQAAIAAAAAAFAAAAAAAAAA=</HashCode>
+      <FileName>Converter\ConversionTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mathos.Conversion.Volume" Collapsed="true">
+    <Position X="34.5" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAACAAEAAAEABAAAAAAAAAAwAAAEBAAAKAAAEQABgA=</HashCode>
+      <FileName>Converter\ConversionTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mathos.Conversion.Area" Collapsed="true">
+    <Position X="26" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAABAEQAAAQAAAAAAAAAAAAAIACIA=</HashCode>
+      <FileName>Converter\ConversionTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Mathos.Conversion.Base" Collapsed="true">
+    <Position X="27.75" Y="29.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAEAAAAAAgAAAACAgEAAAgABEAAAAAAAoFAAAACAA=</HashCode>
+      <FileName>Converter\ConversionTypes.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

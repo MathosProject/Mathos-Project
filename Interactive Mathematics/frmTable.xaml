@@ -1,0 +1,13 @@
+﻿<Window x:Class="Interactive_Mathematics.FrmTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Table" Height="229" Width="244" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" MaxWidth="244" MinWidth="244" MinHeight="229" MaxHeight="229">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" Focusable="False" Height="200" HorizontalAlignment="Left" IsReadOnly="True" Name="dataGrid1" SelectionMode="Single" VerticalAlignment="Top" Width="230">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Key}" Header="x" IsReadOnly="True" MinWidth="80" />
+                <DataGridTextColumn Binding="{Binding Value}" Header="y" IsReadOnly="True" MinWidth="125" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
