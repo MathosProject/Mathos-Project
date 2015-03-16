@@ -275,11 +275,6 @@ namespace Mathos.Geometry.Shapes
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-
             var other = obj as Triangle;
             
             if (other == null)

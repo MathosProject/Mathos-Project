@@ -1,7 +1,7 @@
 ﻿using System;
 using Mathos.Arithmetic.Numbers;
 
-namespace Mathos.Statistics
+namespace Mathos.Statistics.Statistical_Distributions
 {
     /// <summary>
     /// 

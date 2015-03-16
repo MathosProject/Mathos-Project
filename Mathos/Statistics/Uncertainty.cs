@@ -89,7 +89,7 @@ namespace Mathos.Statistics
         public UncertainNumber CustomFunction(Func<decimal, decimal> function)
         {
             //allow usage of mathos parser + lambda functions (write article on how to integrate mathos parser
-            return CustomFunction(x => function(x[0]), new[] { new UncertainNumber(Value, Uncertainty) });
+            return CustomFunction(x => function(x[0]), new UncertainNumber(Value, Uncertainty));
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Mathos.Statistics
                 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    var a = line.Split(new[] { (char)9 });
+                    var a = line.Split((char)9);
 
                     var temp = new UncertainNumber[a.Length/2];
                     

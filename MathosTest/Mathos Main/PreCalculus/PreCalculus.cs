@@ -1,9 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Mathos.PreCalculus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 
 namespace MathosTest
 {
@@ -13,13 +9,13 @@ namespace MathosTest
         [TestMethod]
         public void CalculateSum()
         {
-            int s = Mathos.PreCalculus.Sequences.Fibonacci.Sum(3, 5);
+            int s = Fibonacci.Sum(3, 5);
         }
 
         [TestMethod]
         public void ArithmeticProgression()
         {
-            Mathos.PreCalculus.Sequences.ArithmeticProgression ap = new Mathos.PreCalculus.Sequences.ArithmeticProgression();
+            ArithmeticProgression ap = new ArithmeticProgression();
             ap.CommonDifference = 4;
             ap.InitialTerm = 2;
 
@@ -29,7 +25,7 @@ namespace MathosTest
         [TestMethod]
         public void GeometricProgression()
         {
-            Mathos.PreCalculus.Sequences.GeometricProgression gp = new Mathos.PreCalculus.Sequences.GeometricProgression();
+            GeometricProgression gp = new GeometricProgression();
 
             gp.CommonRatio = 3;
             gp.InitialTerm = 2;

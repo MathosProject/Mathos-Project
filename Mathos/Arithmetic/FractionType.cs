@@ -530,9 +530,10 @@ namespace Mathos.Arithmetic
                 return (new Fraction(longA) - fractA);
             }
 
-            // This subtraction operator is recursive!
             /// <summary>
             /// Subtraction
+            /// 
+            /// NOTE: This operator is calling itself!
             /// </summary>
             /// <param name="longA"></param>
             /// <param name="fractA"></param>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Mathos.Converter
 {
@@ -30,13 +31,13 @@ namespace Mathos.Converter
             var decimalMinutesAndSeconds = angle - degrees;
             var minutes = Math.Truncate(decimalMinutesAndSeconds * 60);
             var seconds = Math.Round((((decimalMinutesAndSeconds * 60) - minutes) * 60), 0);
-            var stringDegrees = Convert.ToString(degrees);
-            var stringMinutes = Convert.ToString(minutes);
-            var stringSeconds = Convert.ToString(seconds);
+            var stringDegrees = Convert.ToString(degrees, CultureInfo.InvariantCulture);
+            var stringMinutes = Convert.ToString(minutes, CultureInfo.InvariantCulture);
+            var stringSeconds = Convert.ToString(seconds, CultureInfo.InvariantCulture);
             
             if (Convert.ToDouble(minutes) < 0)
             {
-                stringMinutes = Convert.ToString(Convert.ToDouble(stringMinutes) * (-1));
+                stringMinutes = Convert.ToString(Convert.ToDouble(stringMinutes) * (-1), CultureInfo.InvariantCulture);
             }
             if (Convert.ToDouble(minutes) < 10 && Convert.ToDouble(minutes) >= 0) //if minutes are less than then then before value of minutes add zero
             {
@@ -44,7 +45,7 @@ namespace Mathos.Converter
             }
             if (Convert.ToDouble(stringSeconds) < 0)
             {
-                stringSeconds = Convert.ToString(Convert.ToDouble(stringSeconds) * (-1));
+                stringSeconds = Convert.ToString(Convert.ToDouble(stringSeconds) * (-1), CultureInfo.InvariantCulture);
             }
             if (Convert.ToDouble(stringSeconds) < 10 && Convert.ToDouble(stringSeconds) >= 0) //if seconds are less than then then before value of seconds add zero
             {

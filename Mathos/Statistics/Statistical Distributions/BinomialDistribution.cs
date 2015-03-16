@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mathos.Statistics
+namespace Mathos.Statistics.Statistical_Distributions
 {
     /// <summary>
     /// 

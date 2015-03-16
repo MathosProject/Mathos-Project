@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
-
 using Mathos.Arithmetic.Fractions;
-using Mathos.Geometry.CoordinateGeometry.TwoDimensional;
+using Mathos.Geometry.TwoDimensional;
 using Mathos.Syntax;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest
 {

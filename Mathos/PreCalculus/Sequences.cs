@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mathos.PreCalculus.Sequences
+namespace Mathos.PreCalculus
 {
     /// <summary>
     /// 

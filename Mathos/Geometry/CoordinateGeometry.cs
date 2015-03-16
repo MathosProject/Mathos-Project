@@ -2,7 +2,7 @@
 using Mathos.Arithmetic.Fractions;
 using Mathos.Exceptions;
 
-namespace Mathos.Geometry.CoordinateGeometry // add these namespaces up to Mathos.Geometry.CoordinateGeomotry
+namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.CoordinateGeomotry
 {
     namespace TwoDimensional
     {

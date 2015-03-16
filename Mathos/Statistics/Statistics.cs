@@ -10,7 +10,7 @@ namespace Mathos.Statistics
     /// </summary>
     public class NumberList
     {
-        readonly List<decimal> _content = new List<decimal>();
+        private readonly List<decimal> _content = new List<decimal>();
 
         /// <summary>
         /// Add number to content

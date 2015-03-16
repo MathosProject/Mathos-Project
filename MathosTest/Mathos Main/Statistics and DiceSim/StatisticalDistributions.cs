@@ -1,4 +1,4 @@
-﻿using Mathos.Statistics;
+﻿using Mathos.Statistics.Statistical_Distributions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest.Mathos_Main
