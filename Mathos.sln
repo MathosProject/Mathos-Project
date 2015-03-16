@@ -23,44 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B_Geometry", "B_Geometry\B_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyInt", "RubyInt\RubyInt.csproj", "{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathosPlus", "MathosPlus\MathosPlus.vcxproj", "{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathosPlusTest", "MathosPlusTest\MathosPlusTest.vcxproj", "{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}"
-EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs18
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Interactive\u0020Mathematics\\Interactive\u0020Mathematics.csproj
-		SccProjectName1 = Interactive\u0020Mathematics
-		SccLocalPath1 = Interactive\u0020Mathematics
-		SccProjectUniqueName2 = ProjectWebsite\\ProjectWebsite.csproj
-		SccProjectName2 = ProjectWebsite
-		SccLocalPath2 = ProjectWebsite
-		SccProjectUniqueName3 = MathosTest\\MathosTest.csproj
-		SccProjectName3 = MathosTest
-		SccLocalPath3 = MathosTest
-		SccProjectUniqueName4 = Laboratory\\Laboratory.csproj
-		SccProjectName4 = Laboratory
-		SccLocalPath4 = Laboratory
-		SccProjectUniqueName5 = B_Geometry\\B_Geometry.csproj
-		SccProjectName5 = B_Geometry
-		SccLocalPath5 = B_Geometry
-		SccProjectUniqueName6 = RubyInt\\RubyInt.csproj
-		SccProjectName6 = RubyInt
-		SccLocalPath6 = RubyInt
-		SccProjectUniqueName7 = Mathos\\Mathos.csproj
-		SccProjectName7 = Mathos
-		SccLocalPath7 = Mathos
-		SccProjectUniqueName8 = MathosPlus\\MathosPlus.vcxproj
-		SccProjectName8 = MathosPlus
-		SccLocalPath8 = MathosPlus
-		SccProjectUniqueName9 = MathosPlusTest\\MathosPlusTest.vcxproj
-		SccProjectName9 = MathosPlusTest
-		SccLocalPath9 = MathosPlusTest
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -158,34 +121,6 @@ Global
 		{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}.Release|Win32.ActiveCfg = Release|Any CPU
 		{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}.Release|x86.ActiveCfg = Release|Any CPU
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Debug|Win32.Build.0 = Debug|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Debug|x86.ActiveCfg = Debug|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Debug|x86.Build.0 = Debug|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Release|Any CPU.ActiveCfg = Release|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Release|Win32.ActiveCfg = Release|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Release|Win32.Build.0 = Release|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Release|x86.ActiveCfg = Release|Win32
-		{6F29D0A2-C5AC-4DCC-81DF-4AF209560779}.Release|x86.Build.0 = Release|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Debug|Win32.Build.0 = Debug|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Debug|x86.ActiveCfg = Debug|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Debug|x86.Build.0 = Debug|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Release|Any CPU.ActiveCfg = Release|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Release|Win32.ActiveCfg = Release|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Release|Win32.Build.0 = Release|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Release|x86.ActiveCfg = Release|Win32
-		{09E55E4B-DE5F-4F26-AA06-347C1D9492DA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

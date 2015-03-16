@@ -6,11 +6,9 @@ using ICSharpCode.AvalonEdit.Editing;
 
 namespace RubyInt
 {
-    /// Implements AvalonEdit ICompletionData interface to provide the entries in the
-    /// completion drop down.
-    public class MyCompletionData : ICompletionData
+    public class CompletionData : ICompletionData
     {
-        public MyCompletionData(string text,string description)
+        public CompletionData(string text,string description)
         {
             Text = text;
             _Description = description;
@@ -25,7 +23,6 @@ namespace RubyInt
 
         public string _Description { get; private set; }
 
-        // Use this property if you want to show a fancy UIElement in the list.
         public object Content
         {
             get { return Text; }

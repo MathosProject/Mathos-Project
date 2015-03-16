@@ -110,10 +110,10 @@ namespace RubyInt
             _completionWindow = new CompletionWindow(TextEditor.TextArea);
             var data = _completionWindow.CompletionList.CompletionData;
 
-            data.Add(new MyCompletionData("fsb", "Convert a fraction represent in Stern-Brocot\nnumber system to a normal fraction.\nNote that this method is case sensetive.\nOnly L's and R's are allowed."));
-            data.Add(new MyCompletionData("new", "Creates a new instance of an object"));
-            data.Add(new MyCompletionData("save","Save a variable to disk.\nNeeds one parameter, name."));
-            data.Add(new MyCompletionData("tsb", "Convert a fraction string (i.e. 3/7)\nto a Stern-Brocot number system.\nThe output will be expressed in terms of L's and R's."));
+            data.Add(new CompletionData("fsb", "Convert a fraction represent in Stern-Brocot\nnumber system to a normal fraction.\nNote that this method is case sensetive.\nOnly L's and R's are allowed."));
+            data.Add(new CompletionData("new", "Creates a new instance of an object"));
+            data.Add(new CompletionData("save","Save a variable to disk.\nNeeds one parameter, name."));
+            data.Add(new CompletionData("tsb", "Convert a fraction string (i.e. 3/7)\nto a Stern-Brocot number system.\nThe output will be expressed in terms of L's and R's."));
 
                 
             _completionWindow.Show();
