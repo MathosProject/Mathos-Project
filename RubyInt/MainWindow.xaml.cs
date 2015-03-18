@@ -50,18 +50,18 @@ namespace RubyInt
         {
             InitializeComponent();
 
-            if(!File.Exists(Environment.CurrentDirectory + "/style.txt"))
-                File.WriteAllText(Environment.CurrentDirectory + "/style.txt", @"light");
+            if(!File.Exists(Settings.DataDirectory + "style.txt"))
+                File.WriteAllText(Settings.DataDirectory + "style.txt", @"light");
 
             try
             {
-                ColorStyle = File.ReadAllText(Environment.CurrentDirectory + "/style.txt").Trim().ToLower();
+                ColorStyle = File.ReadAllText(Settings.DataDirectory + "style.txt").Trim().ToLower();
 
                 ThemeManager.ChangeAppStyle(Application.Current,
                     ColorStyle == "dark" ? ThemeManager.Accents.ToArray()[0] : ThemeManager.Accents.ToArray()[2],
                     ColorStyle == "dark" ? ThemeManager.AppThemes.ToArray()[1] : ThemeManager.AppThemes.ToArray()[0]);
 
-                var reader = XmlReader.Create(ColorStyle == "dark" ? Environment.CurrentDirectory + "/RubyDark.xshd" : Environment.CurrentDirectory + "/RubyLight.xshd");
+                var reader = XmlReader.Create(ColorStyle == "dark" ? Settings.DataDirectory + "RubyDark.xshd" : Settings.DataDirectory + "RubyLight.xshd");
 
                 TextEditor.Foreground = (ColorStyle == "dark") ? new SolidColorBrush(Color.FromRgb(255, 255, 255)) : new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 TextEditor.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
@@ -77,7 +77,7 @@ namespace RubyInt
                 _scope.SetVariable("e", Math.E);
                 _scope.SetVariable("_", new Extension());
 
-                var source = _engine.CreateScriptSourceFromString("require 'RubyInt.exe'\nrequire 'Mathos.dll'\nrequire '" + Environment.CurrentDirectory + "/Std.rb'", SourceCodeKind.Statements);
+                var source = _engine.CreateScriptSourceFromString("require 'RubyInt.exe'\nrequire 'Mathos.dll'\nrequire '" + Settings.DataDirectory + "Std.rb'", SourceCodeKind.Statements);
                 
                 source.Execute(_scope);
             }
@@ -118,10 +118,7 @@ namespace RubyInt
                 
             _completionWindow.Show();
                 
-            _completionWindow.Closed += delegate
-            {
-                _completionWindow = null;
-            };
+            _completionWindow.Closed += (o, args) => _completionWindow = null;
         }
 
         void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
