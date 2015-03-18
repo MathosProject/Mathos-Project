@@ -1,6 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
+using Application = System.Windows.Forms.Application;
 
 namespace RubyInt.Windows
 {
@@ -15,9 +15,9 @@ namespace RubyInt.Windows
         {
             var style = StyleBox.SelectedItem.ToString().Trim().ToLower();
 
-            File.WriteAllText(Environment.CurrentDirectory + "/style.txt", style.Substring(style.IndexOf(':') + 1));
-            System.Windows.Forms.Application.Restart();
-            Application.Current.Shutdown(0);
+            File.WriteAllText(Settings.DataDirectory + "style.txt", style.Substring(style.IndexOf(':') + 1));
+            Application.Restart();
+            System.Windows.Application.Current.Shutdown(0);
         }
     }
 }
