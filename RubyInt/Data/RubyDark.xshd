@@ -55,7 +55,7 @@
     </Keywords>
 
     <!-- Digits -->
-    <Rule foreground="DarkBlue">
+    <Rule foreground="LightBlue">
       \b0[xX][0-9a-fA-F]+  # hex number
       |    \b
       (    \d+(\.[0-9]+)?   #number with optional floating point
