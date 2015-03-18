@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace B_Geometry
+﻿namespace B_Geometry.Util
 {
     /// <summary>
     /// Class encapsulating methods associated with tolerant data
     /// </summary>
     public class TolerantUtilities
     {
-        private double m_tolerance = 1.0e-11;
-
-        public TolerantUtilities()
-        {
-        }
+        private const double MTolerance = 1.0e-11;
 
         /// <summary>
         /// If a = b within pre-defined tolerance, return true
@@ -25,16 +15,13 @@ namespace B_Geometry
         /// <returns></returns>
         public static bool EqualWithinTol(double a, double b)
         {
-            /// If within tolerance, return true.
-            if (b - (1.0e-11) < a && a < b + (1.0e-11))
-                return true;
-            else
-                return false;
+            // If within tolerance, return true.
+            return b - (1.0e-11) < a && a < b + (1.0e-11);
         }
 
         public double GetTolerance()
         {
-            return this.m_tolerance;
+            return MTolerance;
         }
     }
 }
