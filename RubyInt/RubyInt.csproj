@@ -252,22 +252,30 @@
     <Content Include="Dependencies\Microsoft.Scripting.Debugging.dll" />
     <Content Include="Dependencies\Microsoft.Scripting.dll" />
     <Content Include="Dependencies\Microsoft.Scripting.ExtensionAttribute.dll" />
-    <Resource Include="Help\list.txt">
+    <Content Include="Help\list.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Help\code1.mcli.txt">
+    </Content>
+    <Content Include="Help\code1.mcli.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Help\Integrating.html" />
-    <Resource Include="Help\integrating1.mcli.txt" />
-    <Resource Include="Help\integrating2.mcli.txt" />
+    </Content>
+    <Content Include="Help\Integrating.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\integrating1.mcli.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Help\integrating2.mcli.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Help\Stern-Brocot system.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Help\sternbrocot.mcli.txt">
+    <Content Include="Help\sternbrocot.mcli.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Help\style.css" />
+    </Content>
+    <Content Include="Help\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Help\Welcome.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
