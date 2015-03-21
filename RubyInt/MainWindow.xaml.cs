@@ -1,32 +1,29 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml;
-using System.Windows.Input;
-
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
-using ICSharpCode.AvalonEdit.CodeCompletion;
-
+using IronRuby;
 using MahApps.Metro;
 using MahApps.Metro.Controls.Dialogs;
-
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
-
-using IronRuby;
+using Microsoft.Win32;
 using RubyInt.Windows;
-using Key = System.Windows.Input.Key;
 
 namespace RubyInt
 {
     public partial class MainWindow
     {
+        public EventHandler CodeChangedEvent;
+
         public readonly string ColorStyle;
 
         private readonly ScriptScope _scope;
@@ -38,13 +35,6 @@ namespace RubyInt
         private RichTextBox _currentOutputTextBox;
 
         private int _lastBit = 1;
-
-        private string _currentFile;
-
-        private bool _saved = true;
-        private bool _firstSave = true;
-
-        public  EventHandler CodeChangedEvent;
 
         public MainWindow()
         {
@@ -63,10 +53,11 @@ namespace RubyInt
 
                 var reader = XmlReader.Create(ColorStyle == "dark" ? Settings.DataDirectory + "RubyDark.xshd" : Settings.DataDirectory + "RubyLight.xshd");
 
-                TextEditor.Foreground = (ColorStyle == "dark") ? new SolidColorBrush(Color.FromRgb(255, 255, 255)) : new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                TextEditor.SyntaxHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
-                TextEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
-                TextEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
+                Settings.EditorForeground = (ColorStyle == "dark") ? new SolidColorBrush(Color.FromRgb(255, 255, 255)) : new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                Settings.EditorHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                
+                //TextEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
+                //TextEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
 
                 _currentOutputTextBox = Results;
 
@@ -83,56 +74,14 @@ namespace RubyInt
             }
             catch(Exception e)
             {
-                DoError("Startup Error", "An error occured while starting Ruby: " + e.Message);
+                DoError("Startup Error", "An error occured while initializing Ruby: " + e.Message);
             }
 
-            //TextEditor.Text = "print exec('2+3')\n";
+            EditorTabControl.Items.Add(new TabItem { Content = new EditorTab { MainWindow = this }, Header = "Untitled" });
 
-            TextEditor.KeyDown += (sender, e) =>
-            {
-                if (e.Key == Key.F5)
-                    Compile();
-            };
-
-                //_dataView = new DataViewWindow(this);
-                //_dataView.Show();
-                //_dataView.UpdateData(_engine);
-            
-        }
-
-        private CompletionWindow _completionWindow;
-
-        void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
-        {
-            if (e.Text != ".") return;
-            
-            // Open code completion after the user has pressed dot:
-            _completionWindow = new CompletionWindow(TextEditor.TextArea);
-            var data = _completionWindow.CompletionList.CompletionData;
-
-            data.Add(new CompletionData("fsb", "Convert a fraction represent in Stern-Brocot\nnumber system to a normal fraction.\nNote that this method is case sensetive.\nOnly L's and R's are allowed."));
-            data.Add(new CompletionData("new", "Creates a new instance of an object"));
-            data.Add(new CompletionData("save","Save a variable to disk.\nNeeds one parameter, name."));
-            data.Add(new CompletionData("tsb", "Convert a fraction string (i.e. 3/7)\nto a Stern-Brocot number system.\nThe output will be expressed in terms of L's and R's."));
-
-                
-            _completionWindow.Show();
-                
-            _completionWindow.Closed += (o, args) => _completionWindow = null;
-        }
-
-        void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
-        {
-            if (e.Text.Length <= 0 || _completionWindow == null) return;
-            
-            if (!char.IsLetterOrDigit(e.Text[0]))
-            {
-                // Whenever a non-letter is typed while the completion window is open,
-                // insert the currently selected element.
-                _completionWindow.CompletionList.RequestInsertion(e);
-            }
-            // Do not set e.Handled=true.
-            // We still want to insert the character that was typed.
+            //_dataView = new DataViewWindow(this);
+            //_dataView.Show();
+            //_dataView.UpdateData(_engine);            
         }
 
         private static string ReadFromStream(Stream ms, int start = 0)
@@ -146,17 +95,12 @@ namespace RubyInt
             return Encoding.GetEncoding("utf-8").GetString(bytes, start, (int)ms.Length - start);
         }
 
-        private void TextChanged(object sender, EventArgs e)
-        {
-            _saved = false;
-        }
-
         private void Results_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var originalMargin = TextEditor.Margin;
+            var originalMargin = EditorTabControl.Margin;
 
             Results.Visibility = Visibility.Hidden;
-            TextEditor.Margin = new Thickness(0, 0, 0, 0);
+            EditorTabControl.Margin = new Thickness(0, 0, 0, 0);
 
             var outWindow = new ResultsWindow();
 
@@ -167,7 +111,7 @@ namespace RubyInt
             outWindow.Closed += (o, args) =>
             {
                 Results.Visibility = Visibility.Visible;
-                TextEditor.Margin = originalMargin;
+                EditorTabControl.Margin = originalMargin;
 
                 _currentOutputTextBox = Results;
             };
@@ -178,14 +122,14 @@ namespace RubyInt
             await this.ShowMessageAsync(title, title + ": " + msg);
         }
 
-        private void Compile()
+        public void Compile()
         {
             _engine.Runtime.IO.SetOutput(_ms, Encoding.Unicode);
             _engine.Runtime.IO.SetErrorOutput(_er, Encoding.Unicode);
 
             try
             {
-                var source = _engine.CreateScriptSourceFromString(TextEditor.Text, SourceCodeKind.Statements);
+                var source = _engine.CreateScriptSourceFromString(Settings.GetCurrentEditor(EditorTabControl).TextEditor.Text, SourceCodeKind.Statements);
 
                 source.Execute(_scope);
             }
@@ -211,26 +155,17 @@ namespace RubyInt
 
         private void New_Executed(object sender, RoutedEventArgs e)
         {
-            if (!_saved)
-            {
-                var result = MessageBox.Show("Do you want to save the current file?", "Save", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                    Save_Executed(sender, e);
-            }
-
-            _firstSave = true;
-            _saved = true;
-            _currentFile = "";
-
-            TextEditor.Clear();
+            EditorTabControl.Items.Add(new TabItem { Content = new EditorTab { MainWindow = this }, Header = "Untitled" });
         }
 
         private void Save_Executed(object sender, RoutedEventArgs e)
         {
-            if(_firstSave)
+            var current = Settings.GetCurrentEditor(EditorTabControl);
+            var tab = EditorTabControl.SelectedItem as TabItem;
+
+            if(current.FirstSave)
             {
-                var saveFile = new Microsoft.Win32.SaveFileDialog
+                var saveFile = new SaveFileDialog
                 {
                     Filter = "IronRuby File (*.rb)|*.rb",
                     CheckPathExists = true
@@ -240,21 +175,26 @@ namespace RubyInt
                 
                 if (showDialog != null && ((bool)showDialog && saveFile.FileName.Length > 0))
                 {
-                    _firstSave = false;
-                    _saved = true;
-                    _currentFile = saveFile.FileName;
+                    current.FirstSave = false;
+                    current.Saved = true;
+                    current.Filepath = saveFile.FileName;
 
-                    File.WriteAllText(_currentFile, TextEditor.Text);
+                    if (tab != null)
+                        tab.Header = Path.GetFileNameWithoutExtension(saveFile.FileName);
+
+                    File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
                 }
             }
 
-            if(_currentFile != "")
-                File.WriteAllText(_currentFile, TextEditor.Text);
+            if(current.Filepath != "")
+                File.WriteAllText(current.Filepath, current.TextEditor.Text);
         }
 
         private void SaveAs_Executed(object sender, RoutedEventArgs e)
         {
-            var saveFile = new Microsoft.Win32.SaveFileDialog
+            var current = Settings.GetCurrentEditor(EditorTabControl);
+            var tab = EditorTabControl.SelectedItem as TabItem;
+            var saveFile = new SaveFileDialog
             {
                 Filter = "IronRuby Source File (*.rb)|*.rb",
                 CheckPathExists = true
@@ -262,18 +202,24 @@ namespace RubyInt
 
             var showDialog = saveFile.ShowDialog();
 
-            if (showDialog == null || (!(bool) showDialog || saveFile.FileName.Length <= 0)) return;
-            
-            _firstSave = false;
-            _saved = true;
-            _currentFile = saveFile.FileName;
+            if (showDialog == null || (!(bool) showDialog || saveFile.FileName.Length <= 0))
+                return;
 
-            File.WriteAllText(_currentFile, TextEditor.Text);
+            current.FirstSave = false;
+            current.Saved = true;
+            current.Filepath = saveFile.FileName;
+
+            if (tab != null)
+                tab.Header = Path.GetFileNameWithoutExtension(saveFile.FileName);
+
+            File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
         }
 
         private void Open_Executed(object sender, RoutedEventArgs e)
         {
-            var openFile = new Microsoft.Win32.OpenFileDialog
+            var current = new EditorTab();
+            var tab = new TabItem();
+            var openFile = new OpenFileDialog
             {
                 Filter = "IronRuby Source File (*.rb)|*.rb",
                 CheckFileExists = true
@@ -281,12 +227,19 @@ namespace RubyInt
 
             var showDialog = openFile.ShowDialog();
 
-            if (showDialog == null || (!(bool) showDialog || openFile.FileName.Length <= 0)) return;
-            
-            _firstSave = false;
-            _saved = true;
-            _currentFile = openFile.FileName;
-            TextEditor.Text = File.ReadAllText(openFile.FileName);
+            if (showDialog == null || (!(bool) showDialog || openFile.FileName.Length <= 0))
+                return;
+
+            current.FirstSave = false;
+            current.Saved = true;
+            current.Filepath = openFile.FileName;
+            current.MainWindow = this;
+            current.TextEditor.Text = File.ReadAllText(openFile.FileName);
+
+            tab.Header = Path.GetFileNameWithoutExtension(openFile.FileName);
+            tab.Content = current;
+
+            EditorTabControl.Items.Add(tab);
         }
 
         private void Style_Click(object sender, RoutedEventArgs e)
@@ -311,7 +264,7 @@ We are currently taking a part in the Microsoft BizSpark programme, and we would
 
             //System.Diagnostics.Process.Start("http://mathosproject.com/product/mcli/");
 
-            var frm = new HelpWindow();
+            var frm = new HelpWindow {MainWindow = this};
             frm.Show();
 
             //this.AddToEventRoute(TextEditor.TextChanged, utedEventArgs());
@@ -320,6 +273,11 @@ We are currently taking a part in the Microsoft BizSpark programme, and we would
             
             //TextEditor.Text = frm.CodeChange;
             //TextEditor.Text = ControlID.TextData;
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            EditorTabControl.Items.RemoveAt(EditorTabControl.SelectedIndex);
         }
     }
 }

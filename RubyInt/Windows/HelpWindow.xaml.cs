@@ -2,12 +2,15 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RubyInt.Windows
 {
     public partial class HelpWindow
     {
+        public MainWindow MainWindow;
+
         public string CodeChange { get; set; }
 
         private readonly string _helpPath = Environment.CurrentDirectory + "/Help/";
@@ -49,7 +52,13 @@ namespace RubyInt.Windows
             var mainWindow = (MainWindow)Application.Current.Windows[0];
 
             if (mainWindow != null)
-                mainWindow.TextEditor.Text = sr.ReadToEnd();
+            {
+                mainWindow.EditorTabControl.Items.Add(new TabItem
+                {
+                    Content = new EditorTab { MainWindow = MainWindow },
+                    Header = Path.GetFileNameWithoutExtension(e.Uri.LocalPath).Replace(".mcli", "")
+                });
+            }
 
             sr.Close();
 
