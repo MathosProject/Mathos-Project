@@ -15,14 +15,14 @@ namespace Mathos.Chemistry
         /// <summary>
         /// The set of compounds
         /// </summary>
-        public List<Compound> Compounds { get; set; }
+        public List<Compound> SetOfCompounds { get; set; }
 
         /// <summary>
         /// Creates a new instance of the compounds class.
         /// </summary>
         public Compounds()
         {
-            this.Compounds = new List<Compound>();
+            this.SetOfCompounds = new List<Compound>();
         }
         
         /// <summary>
@@ -34,7 +34,7 @@ namespace Mathos.Chemistry
             // this has to be optimized a lot. This will prorably be O(n^2) if not worse.
             var recordedElements = new List<Element>(); // maybe better with HashMap here.
 
-            foreach (var compound in Compounds)
+            foreach (var compound in this.SetOfCompounds)
             {
                 foreach (var element in compound.Elements)
                 {
