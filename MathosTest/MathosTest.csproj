@@ -64,6 +64,7 @@
     <Compile Include="Mathos Main\Arithmetic\DecimalArithmetic.cs" />
     <Compile Include="Mathos Main\Calculus\CalculusTest.cs" />
     <Compile Include="Mathos Main\Calculus\FiniteCalculusTest.cs" />
+    <Compile Include="Mathos Main\Chemistry\BasicChemistry.cs" />
     <Compile Include="Mathos Main\PreCalculus\PreCalculus.cs" />
     <Compile Include="Mathos Main\SpecialFunctions\ElementaryTests.cs" />
     <Compile Include="Mathos Main\SpecialFunctions\GammaTests.cs" />

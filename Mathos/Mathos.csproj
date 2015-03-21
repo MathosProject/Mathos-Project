@@ -63,6 +63,10 @@
     <Compile Include="Calculus\Elementary.Double.cs" />
     <Compile Include="Calculus\FiniteCalculus.cs" />
     <Compile Include="Calculus\IntegralCalculus.cs" />
+    <Compile Include="Chemistry\Compound.cs" />
+    <Compile Include="Chemistry\Compounds.cs" />
+    <Compile Include="Chemistry\Element.cs" />
+    <Compile Include="Chemistry\EquationBalancer.cs" />
     <Compile Include="Converter\AngleConverter.cs" />
     <Compile Include="Converter\ConversionObjects.cs" />
     <Compile Include="Converter\Converter.cs" />
