@@ -277,6 +277,9 @@ We are currently taking a part in the Microsoft BizSpark programme, and we would
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            if (EditorTabControl.SelectedItem == null)
+                return;
+
             EditorTabControl.Items.RemoveAt(EditorTabControl.SelectedIndex);
         }
     }
