@@ -24,34 +24,59 @@
     </Span>
 
     <Keywords fontWeight="bold" foreground="Red">
-      <Word>puts</Word>
-      <Word>print</Word>
-      <Word>while</Word>
-      <Word>if</Word>
+      <Word>alias</Word>
+      <Word>and</Word>
+      <Word>BEGIN</Word>
+      <Word>begin</Word>
+      <Word>break</Word>
+      <Word>case</Word>
+      <Word>class</Word>
+      <Word>def</Word>
+      <Word>defined?</Word>
+      <Word>do</Word>
       <Word>else</Word>
       <Word>true</Word>
-      <Word>false</Word>
-      <Word>lambda</Word>
-      <Word>def</Word>
-      <Word>class</Word>
       <Word>elsif</Word>
-      <Word>then</Word>
+      <Word>END</Word>
       <Word>end</Word>
-      <Word>and</Word>
+      <Word>ensure</Word>
+      <Word>for</Word>
+      <Word>if</Word>
+      <Word>in</Word>
+      <Word>module</Word>
+      <Word>next</Word>
       <Word>not</Word>
       <Word>or</Word>
-      <Word>is</Word>
+      <Word>redo</Word>
+      <Word>rescue</Word>
+      <Word>retry</Word>
+      <Word>return</Word>
+      <Word>super</Word>
+      <Word>then</Word>
+      <Word>undef</Word>
       <Word>unless</Word>
-      <Word>case</Word>
+      <Word>until</Word>
       <Word>when</Word>
+      <Word>while</Word>
+      <Word>yield</Word>
     </Keywords>
 
-    <Keywords fontWeight="bold" foreground="Red">
+    <Keywords fontWeight="bold" foreground="Pink">
       <Word>require</Word>
       <Word>include</Word>
       <Word>attr_reader</Word>
       <Word>attr_writer</Word>
       <Word>attr_accessor</Word>
+      <Word>require_relative</Word>
+    </Keywords>
+
+    <Keywords fontWeight="bold" foreground="Orange">
+      <Word>self</Word>
+      <Word>nil</Word>
+      <Word>true</Word>
+      <Word>false</Word>
+      <Word>__FILE__</Word>
+      <Word>__LINE__</Word>
     </Keywords>
 
     <!-- Digits -->
@@ -62,6 +87,10 @@
       |    \.[0-9]+         #or just starting with floating point
       )
       ([eE][+-]?[0-9]+)? # optional exponent
+    </Rule>
+
+    <Rule foreground="Pink">
+      ([@A-Z]\S+) # anything after a @ symbol
     </Rule>
   </RuleSet>
 </SyntaxDefinition>
