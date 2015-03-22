@@ -55,7 +55,7 @@ namespace RubyInt.Windows
             {
                 mainWindow.EditorTabControl.Items.Add(new TabItem
                 {
-                    Content = new EditorTab { MainWindow = MainWindow },
+                    Content = new EditorTab { MainWindow = MainWindow, TextEditor = {Text = sr.ReadToEnd()}},
                     Header = Path.GetFileNameWithoutExtension(e.Uri.LocalPath).Replace(".mcli", "")
                 });
             }
