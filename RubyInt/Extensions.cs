@@ -52,18 +52,15 @@ namespace RubyInt
 
         public Int64[] Fact(Int64 number)
         {
-            //using linq
             return Mathos.Arithmetic.Numbers.Get.Factors(number).ToArray();
         }
 
         public void Save(object objectToSave, string fileName)
         {
-            //would be good to make this an extension method for all objects eg.
-            //.save can be applied directly.
             if (Path.GetExtension(fileName) == "")
                 fileName += ".dat";
 
-            fileName = "Data/" + fileName;
+            fileName = "Saves/" + fileName;
 
             var sw = new StreamWriter(fileName);
 
@@ -76,7 +73,7 @@ namespace RubyInt
             if (Path.GetExtension(fileName) == "")
                 fileName += ".dat";
 
-            fileName = "Data/" + fileName;
+            fileName = "Saves/" + fileName;
 
             var sr = new StreamReader(fileName);
             var returnObject = MutableString.CreateMutable(sr.ReadToEnd(), RubyEncoding.Default);
@@ -94,11 +91,10 @@ namespace RubyInt
 
         public string ToSternBrocot(object fraction, bool continious =false, int b = 50)
         {
-            if (fraction.GetType() == typeof(MutableString) && ((MutableString)fraction).ConvertToString().Contains("/"))
-            {
-                return new Fraction(((MutableString)fraction).ConvertToString()).ToSternBrocotSystem();
-            }
-            
+            if (fraction.GetType() == typeof (MutableString) &&
+                ((MutableString) fraction).ConvertToString().Contains("/"))
+                return new Fraction(((MutableString) fraction).ConvertToString()).ToSternBrocotSystem();
+
             return Fraction.ToSternBrocotSystem(Convert.ToDecimal(fraction), continious, b);
         }
 
@@ -106,10 +102,11 @@ namespace RubyInt
         {
             var fract = new Fraction();
 
-            if (fraction.GetType() == typeof(MutableString) && (((MutableString)fraction).ConvertToString().ToUpper().Contains("L") || ((MutableString)fraction).ConvertToString().ToUpper().Contains("R")))
-            {
-                fract = Fraction.FromSternBrocotSystem(((MutableString)fraction).ConvertToString());
-            }
+            if (fraction.GetType() == typeof (MutableString) &&
+                (((MutableString) fraction).ConvertToString().ToUpper().Contains("L") ||
+                 ((MutableString) fraction).ConvertToString().ToUpper().Contains("R")))
+                fract = Fraction.FromSternBrocotSystem(((MutableString) fraction).ConvertToString());
+
             return fract.ToString();
         }
 

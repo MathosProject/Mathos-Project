@@ -5,7 +5,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ICSharpCode.AvalonEdit.CodeCompletion;
 using Microsoft.Scripting.Utils;
-using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
 namespace RubyInt
 {
@@ -34,6 +33,14 @@ namespace RubyInt
             TextEditor.TextChanged += (o, args) =>
             {
                 Saved = false;
+
+                var p = Parent as TabItem;
+
+                if (p == null)
+                    return;
+
+                if (!p.Header.ToString().EndsWith("*"))
+                    p.Header = p.Header + "*";
             };
 
             TextEditor.TextArea.TextEntering += (o, args) =>
@@ -68,7 +75,7 @@ namespace RubyInt
                 _completionWindow.Closed += (c, a) => _completionWindow = null;
             };
 
-            TextEditor.KeyDown += delegate(object o, KeyEventArgs args)
+            TextEditor.KeyDown += (o, args) =>
             {
                 if (args.Key == Key.F5)
                     MainWindow.Compile();

@@ -12,6 +12,7 @@ using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using IronRuby;
 using MahApps.Metro;
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
@@ -57,9 +58,6 @@ namespace RubyInt
                 Settings.EditorForeground = (ColorStyle == "dark") ? new SolidColorBrush(Color.FromRgb(255, 255, 255)) : new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 Settings.EditorHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
                 
-                //TextEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
-                //TextEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
-
                 _currentOutputTextBox = Results;
 
                 _engine = Ruby.CreateEngine();
@@ -180,13 +178,12 @@ namespace RubyInt
                     current.Saved = true;
                     current.Filepath = saveFile.FileName;
 
-                    if (tab != null)
-                        tab.Header = Path.GetFileNameWithoutExtension(saveFile.FileName);
-
                     File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
                 }
             }
 
+            if (tab != null && tab.Header.ToString().EndsWith("*"))
+                tab.Header = tab.Header.ToString().Substring(0, tab.Header.ToString().Length - 1);
             if(current.Filepath != "")
                 File.WriteAllText(current.Filepath, current.TextEditor.Text);
         }
@@ -210,8 +207,8 @@ namespace RubyInt
             current.Saved = true;
             current.Filepath = saveFile.FileName;
 
-            if (tab != null)
-                tab.Header = Path.GetFileNameWithoutExtension(saveFile.FileName);
+            if (tab != null && tab.Header.ToString().EndsWith("*"))
+                tab.Header = tab.Header.ToString().Substring(0, tab.Header.ToString().Length - 1);
 
             File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
         }
@@ -241,6 +238,16 @@ namespace RubyInt
             tab.Content = current;
 
             EditorTabControl.Items.Add(tab);
+
+            var old = EditorTabControl.SelectedItem as TabItem;
+
+            if (old == null || (old.Header.ToString() != "Untitled" && old.Header.ToString() != "Untitled*"))
+                return;
+
+            var oldEditor = old.GetChildObjects().ElementAt(0) as EditorTab;
+
+            if(oldEditor != null && oldEditor.TextEditor.Text.Trim() == "")
+                EditorTabControl.Items.RemoveAt(EditorTabControl.SelectedIndex);
         }
 
         private void Style_Click(object sender, RoutedEventArgs e)
