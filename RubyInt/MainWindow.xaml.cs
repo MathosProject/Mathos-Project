@@ -26,7 +26,8 @@ namespace RubyInt
 
         public readonly string ColorStyle;
 
-        private readonly ScriptScope _scope;
+        public readonly ScriptScope Scope;
+
         private readonly ScriptEngine _engine;
 
         private readonly MemoryStream _ms = new MemoryStream();
@@ -62,15 +63,15 @@ namespace RubyInt
                 _currentOutputTextBox = Results;
 
                 _engine = Ruby.CreateEngine();
-                _scope = Ruby.CreateRuntime().CreateScope();
+                Scope = Ruby.CreateRuntime().CreateScope();
 
-                _scope.SetVariable("pi", Math.PI);
-                _scope.SetVariable("e", Math.E);
-                _scope.SetVariable("_", new Extension());
+                Scope.SetVariable("pi", Math.PI);
+                Scope.SetVariable("e", Math.E);
+                Scope.SetVariable("_", new Extension());
 
                 var source = _engine.CreateScriptSourceFromString("require 'RubyInt.exe'\nrequire 'Mathos.dll'\nrequire '" + Settings.DataDirectory + "Std.rb'", SourceCodeKind.Statements);
                 
-                source.Execute(_scope);
+                source.Execute(Scope);
             }
             catch(Exception e)
             {
@@ -131,7 +132,7 @@ namespace RubyInt
             {
                 var source = _engine.CreateScriptSourceFromString(Settings.GetCurrentEditor(EditorTabControl).TextEditor.Text, SourceCodeKind.Statements);
 
-                source.Execute(_scope);
+                source.Execute(Scope);
             }
             catch(Exception e)
             {

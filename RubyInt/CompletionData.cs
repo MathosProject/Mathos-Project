@@ -11,26 +11,7 @@ namespace RubyInt
         public CompletionData(string text,string description)
         {
             Text = text;
-            _Description = description;
-        }
-
-        public System.Windows.Media.ImageSource Image
-        {
-            get { return null; }
-        }
-
-        public string Text { get; private set; }
-
-        public string _Description { get; private set; }
-
-        public object Content
-        {
-            get { return Text; }
-        }
-
-        public object Description
-        {
-            get { return _Description;}
+            Description = description;
         }
 
         public void Complete(TextArea textArea, ISegment completionSegment,
@@ -39,6 +20,20 @@ namespace RubyInt
             textArea.Document.Replace(completionSegment, Text);
         }
 
+        public System.Windows.Media.ImageSource Image
+        {
+            get { return null; }
+        }
+
+        public object Content
+        {
+            get { return Text; }
+        }
+
         public double Priority { get; set; }
+
+        public string Text { get; private set; }
+
+        public object Description { get; private set; }
     }
 }

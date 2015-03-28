@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using ICSharpCode.AvalonEdit.CodeCompletion;
+using Microsoft.Scripting.Utils;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
 namespace RubyInt
@@ -58,11 +60,9 @@ namespace RubyInt
 
                 var data = _completionWindow.CompletionList.CompletionData;
 
-                data.Add(new CompletionData("fsb", "Convert a fraction represent in Stern-Brocot\nnumber system to a normal fraction.\nNote that this method is case sensetive.\nOnly L's and R's are allowed."));
-                data.Add(new CompletionData("new", "Creates a new instance of an object"));
-                data.Add(new CompletionData("save", "Save a variable to disk.\nNeeds one parameter, name."));
-                data.Add(new CompletionData("tsb", "Convert a fraction string (i.e. 3/7)\nto a Stern-Brocot number system.\nThe output will be expressed in terms of L's and R's."));
-
+                data.AddRange(MainWindow.Scope.GetItems().Select(pair => new CompletionData(pair.Key, pair.Value.ToString())));
+                data.AddRange(Settings.CompletionList);
+                
                 _completionWindow.Show();
 
                 _completionWindow.Closed += (c, a) => _completionWindow = null;
