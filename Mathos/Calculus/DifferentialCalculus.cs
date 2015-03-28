@@ -14,9 +14,9 @@ namespace Mathos.Calculus
         /// <param name="function">The function</param>
         /// <param name="xPoint">The x coordinate</param>
         /// <returns>Returns the first derivative</returns>
-        public static decimal FirstDerivative(Func<decimal,decimal> function, decimal xPoint)
+        public static double FirstDerivative(Func<double,double> function, double xPoint, double h= 1e-14)
         {
-            const decimal h = 0.0000000000001M;
+            //const double h = 0.0000000000001M;
 
             return (function(xPoint + h) - function(xPoint)) / h;
 
