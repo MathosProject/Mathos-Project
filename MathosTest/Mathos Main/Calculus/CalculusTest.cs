@@ -28,8 +28,8 @@ namespace MathosTest.Calculus
         [TestMethod]
         public void FirstDerivative()
         {
-            decimal derivative = Mathos.Calculus.DifferentialCalculus.FirstDerivative(x => 3.2M * x *x, 1);
-            Assert.IsTrue(derivative == 6.40000000000032M);
+            double derivative = Mathos.Calculus.DifferentialCalculus.FirstDerivative(x => (double)3.2M * x * x, 1.0);
+            Assert.IsTrue(Math.Abs(derivative - (double)6.40000000000032M) < 1);
             //System.Diagnostics.Debug.WriteLine(derivative);
         }
 
