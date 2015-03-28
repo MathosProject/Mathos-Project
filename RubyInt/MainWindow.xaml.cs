@@ -269,12 +269,11 @@ We are currently taking a part in the Microsoft BizSpark programme, and we would
             // TODO: figure out how to make an event listener to detect changes to frm.CodeChange;
 
 
-
             //System.Diagnostics.Process.Start("http://mathosproject.com/product/mcli/");
 
             var frm = new HelpWindow {MainWindow = this};
             frm.Show();
-
+            
             //this.AddToEventRoute(TextEditor.TextChanged, utedEventArgs());
 
             //
