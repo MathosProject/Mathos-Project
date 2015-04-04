@@ -60,8 +60,10 @@ namespace RubyInt
                 
                 var reader = XmlReader.Create(Settings.StyleDirectory + ColorStyle + ".xshd");
 
-                Settings.EditorForeground = (ColorStyle == "dark") ? new SolidColorBrush(Color.FromRgb(255, 255, 255)) : new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 Settings.EditorHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                Settings.EditorForeground = (isDark)
+                    ? new SolidColorBrush(Color.FromRgb(255, 255, 255))
+                    : new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 
                 _currentOutputTextBox = Results;
 
