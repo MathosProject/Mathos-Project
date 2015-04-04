@@ -68,7 +68,7 @@ namespace RubyInt
                 var data = _completionWindow.CompletionList.CompletionData;
 
                 data.AddRange(MainWindow.Scope.GetItems().Select(pair => new CompletionData(pair.Key, pair.Value.ToString())));
-                data.AddRange(Settings.CompletionList);
+                data.AddRange(Settings.StaticCompletionList);
 
                 _completionWindow.Show();
 
