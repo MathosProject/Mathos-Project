@@ -14,6 +14,7 @@ namespace RubyInt
         public static IHighlightingDefinition EditorHighlighting;
 
         public static readonly string DataDirectory = Environment.CurrentDirectory + "/Data/";
+        public static readonly string StyleDirectory = Environment.CurrentDirectory + "/Styles/";
 
         public static readonly List<CompletionData> CompletionList = new List<CompletionData>
         {
