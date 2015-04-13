@@ -18,7 +18,7 @@ namespace Mathos.Calculus
         {
             //const double h = 0.0000000000001M;
 
-            return (function(xPoint + h) - function(xPoint)) / h;
+            return (function(xPoint + h) - function(xPoint -h)) / (2*h);
 
             //use parser to parse string expressions
         }
