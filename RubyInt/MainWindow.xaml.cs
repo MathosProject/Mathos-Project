@@ -49,14 +49,21 @@ namespace RubyInt
             {
                 ColorStyle = File.ReadAllText(Settings.DataDirectory + "style.txt").Trim().ToLower();
 
+                if (!File.Exists(Settings.StyleDirectory + ColorStyle + ".xshd"))
+                    ColorStyle = "RubyLight";
+
+                var isDark = ColorStyle.ToLower().Contains("dark");
+
                 ThemeManager.ChangeAppStyle(Application.Current,
-                    ColorStyle == "dark" ? ThemeManager.Accents.ToArray()[0] : ThemeManager.Accents.ToArray()[2],
-                    ColorStyle == "dark" ? ThemeManager.AppThemes.ToArray()[1] : ThemeManager.AppThemes.ToArray()[0]);
+                    (isDark) ? ThemeManager.Accents.ToArray()[0] : ThemeManager.Accents.ToArray()[2],
+                    (isDark) ? ThemeManager.AppThemes.ToArray()[1] : ThemeManager.AppThemes.ToArray()[0]);
+                
+                var reader = XmlReader.Create(Settings.StyleDirectory + ColorStyle + ".xshd");
 
-                var reader = XmlReader.Create(ColorStyle == "dark" ? Settings.DataDirectory + "RubyDark.xshd" : Settings.DataDirectory + "RubyLight.xshd");
-
-                Settings.EditorForeground = (ColorStyle == "dark") ? new SolidColorBrush(Color.FromRgb(255, 255, 255)) : new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 Settings.EditorHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
+                Settings.EditorForeground = (isDark)
+                    ? new SolidColorBrush(Color.FromRgb(255, 255, 255))
+                    : new SolidColorBrush(Color.FromRgb(0, 0, 0));
                 
                 _currentOutputTextBox = Results;
 

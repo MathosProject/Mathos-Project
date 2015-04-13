@@ -14,8 +14,9 @@ namespace RubyInt
         public static IHighlightingDefinition EditorHighlighting;
 
         public static readonly string DataDirectory = Environment.CurrentDirectory + "/Data/";
+        public static readonly string StyleDirectory = Environment.CurrentDirectory + "/Styles/";
 
-        public static readonly List<CompletionData> CompletionList = new List<CompletionData>
+        public static readonly List<CompletionData> StaticCompletionList = new List<CompletionData>
         {
             new CompletionData("fsb", "Convert a fraction represent in Stern-Brocot\nnumber system to a normal fraction.\nNote that this method is case sensetive.\nOnly L's and R's are allowed."),
             new CompletionData("new", "Creates a new instance of an object"),
@@ -27,10 +28,7 @@ namespace RubyInt
         {
             var tab = control.SelectedItem as TabItem;
 
-            if (tab == null)
-                return null;
-
-            return ((TabItem)control.SelectedItem).GetChildObjects().ToArray()[0] as EditorTab;
+            return (tab == null) ? null : tab.GetChildObjects().ToArray()[0] as EditorTab;
         }
     }
 }

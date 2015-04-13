@@ -18,7 +18,7 @@ namespace RubyInt
 {
     public class Extension
     {
-        readonly MathParser _parser = new MathParser();
+        private readonly MathParser _parser = new MathParser();
 
         public string Exec(string expr = "")
         {

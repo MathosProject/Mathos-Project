@@ -1,18 +1,16 @@
 ﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RubyInt")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Mathos Core Library Interpreter")]
+[assembly: AssemblyDescription("http://mathosproject.com/product/mcli/")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RubyInt")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("Mathos Project")]
+[assembly: AssemblyProduct("Mathos Core Library Interpreter (RubyInt)")]
+[assembly: AssemblyCopyright("Copyright © 2014-2015 Mathos Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

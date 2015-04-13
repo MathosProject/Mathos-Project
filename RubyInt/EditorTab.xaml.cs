@@ -23,7 +23,7 @@ namespace RubyInt
             InitializeComponent();
         }
 
-        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        private void EditorTab_OnLoaded(object sender, RoutedEventArgs e)
         {
             TextEditor.FontFamily = new FontFamily("Consolas");
             TextEditor.FontSize = 15;
@@ -68,8 +68,8 @@ namespace RubyInt
                 var data = _completionWindow.CompletionList.CompletionData;
 
                 data.AddRange(MainWindow.Scope.GetItems().Select(pair => new CompletionData(pair.Key, pair.Value.ToString())));
-                data.AddRange(Settings.CompletionList);
-                
+                data.AddRange(Settings.StaticCompletionList);
+
                 _completionWindow.Show();
 
                 _completionWindow.Closed += (c, a) => _completionWindow = null;

@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Loaded="FrameworkElement_OnLoaded">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="EditorTab_OnLoaded">
+    <Grid>
         <avalon:TextEditor x:Name="TextEditor" />
     </Grid>
 </UserControl>

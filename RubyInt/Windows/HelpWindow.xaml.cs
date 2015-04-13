@@ -32,16 +32,8 @@ namespace RubyInt.Windows
             BrowserWin.Source = new Uri(_helpPath + filePath + ".html");
         }
 
-/*
-        private void Button_MouseEnter(object sender, MouseEventArgs e)
-        {
-            
-        }
-*/
-
         private void browserWin_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-            //var a = e.Uri.PathAndQuery;
             var a = e.Uri.Segments.Last();
 
             if (!a.Contains(".mcli.txt"))
@@ -55,28 +47,14 @@ namespace RubyInt.Windows
             {
                 mainWindow.EditorTabControl.Items.Add(new TabItem
                 {
-                    Content = new EditorTab { MainWindow = MainWindow, TextEditor = {Text = sr.ReadToEnd()}},
+                    Content = new EditorTab {MainWindow = MainWindow, TextEditor = {Text = sr.ReadToEnd()}},
                     Header = Path.GetFileNameWithoutExtension(e.Uri.LocalPath).Replace(".mcli", "")
                 });
+
+                mainWindow.EditorTabControl.SelectedIndex++;
             }
 
             sr.Close();
-
-            //foreach (var window in App.Current.Windows)
-            //{
-            //    if(typeof(window) == MainWindow)
-            //    mn.TextEditor.Text = "bye";
-            //}
-            ////m.ShowDialog();
-            //browserWin.GoBack();
-
-
-            //CodeChange = "hello";
-
-            //ControlID.TextData = "helloo";
-                
-            //= m;
-            //MainWindow.TextEditor.Text = "";
         }
 
         private void browserWin_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -85,8 +63,9 @@ namespace RubyInt.Windows
 
             if (a.Contains(".mcli.txt"))
                 BrowserWin.GoBack();
+            else
+                BrowserWin.Navigate(a);
 
-            //if(browserWin
             var window = Application.Current.Windows[0];
 
             if (window != null)
