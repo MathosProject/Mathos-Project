@@ -64,7 +64,7 @@ namespace RubyInt
                 Settings.EditorForeground = (isDark)
                     ? new SolidColorBrush(Color.FromRgb(255, 255, 255))
                     : new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                
+
                 _currentOutputTextBox = Results;
 
                 _engine = Ruby.CreateEngine();
@@ -261,7 +261,12 @@ namespace RubyInt
             await this.ShowMessageAsync("About",
 @"Mathos Project was launched Jun 21, 2012, and is currently under active development. The project is based on contributions by users world wide, and is therefore entirely free to use unlimited amount of times, without any restrictions. You can also contribute in any ways!
 
-We are currently taking a part in the Microsoft BizSpark programme, and we would like to extend a very special thanks to Microsoft BizSpark program for providing us with development tools, and other benefits of the programme! You can find out more about Microsoft BizSpark at http://bizspark.com/!");
+We are currently taking a part in the Microsoft BizSpark programme, and we would like to extend a very special thanks to Microsoft BizSpark program for providing us with development tools, and other benefits of the programme! You can find out more about Microsoft BizSpark at http://bizspark.com/!", MessageDialogStyle.Affirmative, new MetroDialogSettings
+            {
+                AnimateShow = true,
+                AnimateHide = true,
+                ColorScheme = MetroDialogColorScheme.Accented
+            });
         }
 
         private void Help_Executed(object sender, RoutedEventArgs e)

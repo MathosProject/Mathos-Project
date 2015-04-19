@@ -255,6 +255,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\Icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Dependencies\IronRuby.dll" />
     <Content Include="Dependencies\IronRuby.Libraries.dll" />
     <Content Include="Dependencies\IronRuby.Libraries.Yaml.dll" />
@@ -293,7 +296,6 @@
     <Resource Include="Resources\Entypo-license.txt" />
     <Resource Include="Resources\WindowsIcons-license.txt" />
     <None Include="Data\style.txt" />
-    <Resource Include="Data\Ruby.ico" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

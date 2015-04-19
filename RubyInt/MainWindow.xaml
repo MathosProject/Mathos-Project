@@ -2,12 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Iron Ruby Based Mathos Core Library Interpreter" Width="640" Height="480" WindowStartupLocation="CenterScreen" Icon="Data\Ruby.ico" ShowIconOnTitleBar="true">
+        Title="Iron Ruby Based Mathos Core Library Interpreter" Width="640" Height="480" Icon="Data/Icon.ico" WindowStartupLocation="CenterScreen" ShowIconOnTitleBar="true">
     <metro:MetroWindow.CommandBindings>
         <CommandBinding Command="New" Executed="New_Executed" />
         <CommandBinding Command="Save" Executed="Save_Executed" />
         <CommandBinding Command="SaveAs" Executed="SaveAs_Executed" />
         <CommandBinding Command="Open" Executed="Open_Executed" />
+        <CommandBinding Command="Help" Executed="Help_Executed" />
     </metro:MetroWindow.CommandBindings>
     <metro:MetroWindow.LeftWindowCommands>
         <metro:WindowCommands>
