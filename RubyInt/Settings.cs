@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ICSharpCode.AvalonEdit.Highlighting;
@@ -29,6 +31,17 @@ namespace RubyInt
             var tab = control.SelectedItem as TabItem;
 
             return (tab == null) ? null : tab.GetChildObjects().ToArray()[0] as EditorTab;
+        }
+
+        public static string ReadFromStream(Stream ms, int start = 0)
+        {
+            var length = (int)ms.Length;
+            var bytes = new Byte[length];
+
+            ms.Seek(start, SeekOrigin.Begin);
+            ms.Read(bytes, start, (int)ms.Length - start);
+
+            return Encoding.GetEncoding("utf-8").GetString(bytes, start, (int)ms.Length - start);
         }
     }
 }

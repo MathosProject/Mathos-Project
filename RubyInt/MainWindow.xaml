@@ -22,7 +22,10 @@
                 <MenuItem Header="_View">
                     <MenuItem Header="_Style" Click="Style_Click" Icon="{StaticResource appbar_page_image}" />
                 </MenuItem>
-                <MenuItem x:Name="Debug" Width="50" Header="_Run" Click="Debug_Click"/>
+                <MenuItem Header="_Debug">
+                    <MenuItem Header="_Run" Click="Debug_Click" Icon="{StaticResource appbar_debug_step_into}" />
+                    <MenuItem Header="_REPL" Click="Repl_OnClick" Icon="{StaticResource appbar_debug_restart}" />
+                </MenuItem>
                 <MenuItem Header="_Help">
                     <MenuItem Header="_Help" Click="Help_Executed" Icon="{StaticResource appbar_question}"/>
                     <MenuItem Header="_About" Click="About_Executed"/>

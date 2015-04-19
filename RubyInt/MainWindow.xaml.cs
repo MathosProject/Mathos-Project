@@ -86,17 +86,6 @@ namespace RubyInt
             EditorTabControl.Items.Add(new TabItem { Content = new EditorTab { MainWindow = this }, Header = "Untitled" });    
         }
 
-        private static string ReadFromStream(Stream ms, int start = 0)
-        {
-            var length = (int)ms.Length;
-            var bytes = new Byte[length];
-
-            ms.Seek(start, SeekOrigin.Begin);
-            ms.Read(bytes, start, (int)ms.Length - start);
-
-            return Encoding.GetEncoding("utf-8").GetString(bytes, start, (int)ms.Length - start);
-        }
-
         private void Results_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var originalMargin = EditorTabControl.Margin;
@@ -140,7 +129,7 @@ namespace RubyInt
                 DoError("Interpreter Error", e.Message);
             }
 
-            var content = ReadFromStream(_ms, _lastBit - 1);
+            var content = Settings.ReadFromStream(_ms, _lastBit - 1);
 
             _lastBit = Convert.ToInt32(_ms.Length) + 1;
 
@@ -280,6 +269,11 @@ We are currently taking a part in the Microsoft BizSpark programme, and we would
                 return;
 
             EditorTabControl.Items.RemoveAt(EditorTabControl.SelectedIndex);
+        }
+
+        private void Repl_OnClick(object sender, RoutedEventArgs e)
+        {
+            new ReplWindow().Show();
         }
     }
 }
