@@ -83,11 +83,7 @@ namespace RubyInt
                 DoError("Startup Error", "An error occured while initializing Ruby: " + e.Message);
             }
 
-            EditorTabControl.Items.Add(new TabItem { Content = new EditorTab { MainWindow = this }, Header = "Untitled" });
-
-            //_dataView = new DataViewWindow(this);
-            //_dataView.Show();
-            //_dataView.UpdateData(_engine);            
+            EditorTabControl.Items.Add(new TabItem { Content = new EditorTab { MainWindow = this }, Header = "Untitled" });    
         }
 
         private static string ReadFromStream(Stream ms, int start = 0)
@@ -147,8 +143,6 @@ namespace RubyInt
             var content = ReadFromStream(_ms, _lastBit - 1);
 
             _lastBit = Convert.ToInt32(_ms.Length) + 1;
-
-            //_dataView.UpdateData(_engine); CAUSES AN ERROR because the window is currently deactivated.
 
             _currentOutputTextBox.Document.Blocks.Clear();
             _currentOutputTextBox.Document.Blocks.Add(new Paragraph(new Run(content)));
@@ -272,21 +266,7 @@ We are currently taking a part in the Microsoft BizSpark programme, and we would
 
         private void Help_Executed(object sender, RoutedEventArgs e)
         {
-
-            // TODO: figure out how to make an event listener to detect changes to frm.CodeChange;
-
-
-            //System.Diagnostics.Process.Start("http://mathosproject.com/product/mcli/");
-
-            var frm = new HelpWindow {MainWindow = this};
-            frm.Show();
-            
-            //this.AddToEventRoute(TextEditor.TextChanged, utedEventArgs());
-
-            //
-            
-            //TextEditor.Text = frm.CodeChange;
-            //TextEditor.Text = ControlID.TextData;
+            new HelpWindow {MainWindow = this}.Show();
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

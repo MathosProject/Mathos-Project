@@ -1,7 +1,7 @@
 module Addons
 
 	def exec a
-		_.Exec(a)
+		_.Exec a
 	end
 
 	def int(a, b, c)
@@ -13,11 +13,7 @@ module Addons
 	end
 
 	def save(a, b, c = true)
-		if c
-			_.Save(Marshal.dump(a), b)
-		else
-			_.Save(a, b)
-		end
+		_.Save((c) ? Marshal.dump(a) : a, b)
 	end
 
 	def load(a, b = true)
@@ -28,7 +24,7 @@ module Addons
 		end
 	end
 
-	def fact(a)
+	def fact a
 		_.Fact a
 	end
 
@@ -38,53 +34,49 @@ module Addons
 		_.ToSternBrocot(a, c, b)
 	end
 
-	def fsb(a)
-		_.FromSternBrocot(a)
+	def fsb a
+		_.FromSternBrocot a
 	end
 
-	def csb(a)
-		_.ToCondensedSternBrocot(a)
+	def csb a
+		_.ToCondensedSternBrocot a
 	end
 
 
 	# for testing
 	def time(a, b = 1000)
-		_.Time(a,b)
+		_.Time(a, b)
 	end
-
 end
 
 #Extension methods
-
 class Object
 
 	def save (p, c = true)
 		a = RubyInt::Extension.new
 	
-		if c
-			a.Save(Marshal.dump(self),p)
-		else
-			a.Save(self,p)
-		end
+		a.Save((c) ? Marshal.dump(self) : self, p)
 	end
 
 	# data manipulation
 
 	def tsb(c = false, b = 50)
 		a = RubyInt::Extension.new
-		a.ToSternBrocot(self,c, b)
+
+		a.ToSternBrocot(self, c, b)
 	end
 
 	def fsb
 		a = RubyInt::Extension.new
-		a.FromSternBrocot(self)
+
+		a.FromSternBrocot self
 	end
 
 	def csb
 		a = RubyInt::Extension.new
-		a.ToCondensedSternBrocot(self)
+
+		a.ToCondensedSternBrocot self
 	end
-	
 end
 
 self.extend Addons

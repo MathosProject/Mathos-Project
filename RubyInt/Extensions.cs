@@ -28,7 +28,6 @@ namespace RubyInt
         public double Int(string expr, double lowerLimit, double upperLimit)
         {
             var expression = _parser.GetTokens(expr);
-            //parser.LocalVariables.Add("x", 0);
 
             return IntegralCalculus.Integrate(x => Eval(expression, x), lowerLimit, upperLimit);
         }
