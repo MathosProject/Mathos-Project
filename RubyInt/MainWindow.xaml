@@ -13,17 +13,17 @@
         <metro:WindowCommands>
             <Menu IsMainMenu="True">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New" Click="New_Executed"/>
-                    <MenuItem Header="_Open" Click="Open_Executed"/>
-                    <MenuItem Header="_Save" Click="Save_Executed"/>
+                    <MenuItem Header="_New" Click="New_Executed" Icon="{StaticResource appbar_new}"/>
+                    <MenuItem Header="_Open" Click="Open_Executed" Icon="{StaticResource appbar_folder_open}"/>
+                    <MenuItem Header="_Save" Click="Save_Executed" Icon="{StaticResource appbar_save}"/>
                     <MenuItem Header="_Save As" Click="SaveAs_Executed"/>
                 </MenuItem>
                 <MenuItem Header="_View">
-                    <MenuItem Header="_Style" Click="Style_Click" />
+                    <MenuItem Header="_Style" Click="Style_Click" Icon="{StaticResource appbar_page_image}" />
                 </MenuItem>
                 <MenuItem x:Name="Debug" Width="50" Header="_Run" Click="Debug_Click"/>
                 <MenuItem Header="_Help">
-                    <MenuItem Header="_Help" Click="Help_Executed"/>
+                    <MenuItem Header="_Help" Click="Help_Executed" Icon="{StaticResource appbar_question}"/>
                     <MenuItem Header="_About" Click="About_Executed"/>
                 </MenuItem>
             </Menu>
