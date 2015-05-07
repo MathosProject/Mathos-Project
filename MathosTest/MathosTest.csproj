@@ -79,6 +79,7 @@
     <Compile Include="Mathos Main\syntaxTest.cs" />
     <Compile Include="Mathos Main\Geometry\Geometry.cs" />
     <Compile Include="Mathos Main\Converter\ConverterTest.cs" />
+    <Compile Include="Mathos Main\Theory\SetTest.cs" />
     <Compile Include="Mathos Main\Uncertainty\Uncertainty.cs" />
     <Compile Include="Mathos Main\VectorsAndMatrices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -109,6 +109,7 @@
     <Compile Include="Statistics\Statistics.cs" />
     <Compile Include="Statistics\Uncertainty.cs" />
     <Compile Include="Syntax.cs" />
+    <Compile Include="Theory\Set.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt" />
