@@ -75,7 +75,7 @@ namespace Mathos.Theory
         /// Add the contents of another set into this one.
         /// </summary>
         /// <param name="b">The base set.</param>
-        /// <returns>This set alongside set b combined.</returns>
+        /// <returns>This set combined with b.</returns>
         public Set<T> Add(Set<T> b)
         {
             foreach(var element in b.Elements)
@@ -100,7 +100,7 @@ namespace Mathos.Theory
         /// Remove the item that matches the given expression.
         /// </summary>
         /// <param name="match">The expression to match to.</param>
-        /// <returns>This set with the item at "i" removed.</returns>
+        /// <returns>This set with the matched item removed.</returns>
         public Set<T> RemoveMatch(Predicate<T> match)
         {
             Elements.RemoveWhere(match);
