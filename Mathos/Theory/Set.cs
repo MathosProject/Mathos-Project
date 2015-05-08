@@ -160,7 +160,6 @@ namespace Mathos.Theory
         /// <returns>Either (this △ b) or (this ⊖ b).</returns>
         public Set<T> Symmetric(Set<T> b)
         {
-            var ret = new Set<T>();
             var union = Union(b);
             var inter = Intersection(b);
 
