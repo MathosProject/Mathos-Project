@@ -3,7 +3,7 @@
 namespace Mathos.Statistics
 {
     /// <summary>
-    /// 
+    /// Simulate dice rolls.
     /// </summary>
     public class DiceSimulator
     {
@@ -11,7 +11,7 @@ namespace Mathos.Statistics
         private readonly int[] _nRolledValue; //= new int[6];
         private readonly int _seed = (int)(DateTime.Now.Ticks);
         
-        readonly Random _rnd;
+        private readonly Random _rnd;
 
         /// <summary>
         /// Constructor that takes "nDice" as the number of dice and goes upto 6 dice
@@ -24,19 +24,19 @@ namespace Mathos.Statistics
             _rnd = new Random(_seed);
 
             for (var i = 0; i < _numDice; i++)
-            {
                 Roll(i);
-            }
         }
 
+        /// <summary>
+        /// Convert the dice simulation into a string.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var dceInfo = "";
 
             for (var i = 0; i < _numDice; i++)
-            {
                 dceInfo += " Dice " + i + ":" + _nRolledValue[i];
-            }
 
             return dceInfo;
         }
@@ -65,10 +65,9 @@ namespace Mathos.Statistics
         public int SumDiceRoll()
         {
             var nSum = 0;
+
             for (var i = 0; i < _numDice; i++)
-            {
                 nSum += _nRolledValue[i];
-            }
 
             return nSum;
         }
@@ -82,9 +81,7 @@ namespace Mathos.Statistics
             var nMax = 0;
 
             for (var i = 0; i < _numDice; i++)
-            {
                 nMax = Math.Max(nMax, _nRolledValue[i]);
-            }
 
             return nMax;
         }
@@ -96,10 +93,9 @@ namespace Mathos.Statistics
         public int DiffDiceRoll()
         {
             var nSub = 0;
+
             for (var i = 0; i < _numDice; i++)
-            {
                 nSub = Math.Abs(nSub - _nRolledValue[i]);
-            }
 
             return nSub;
         }

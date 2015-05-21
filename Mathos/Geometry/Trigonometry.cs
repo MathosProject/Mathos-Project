@@ -1,4 +1,5 @@
-﻿/*namespace Mathos.Geometry.Trigonometry
+﻿// TODO: Needs implementation
+/*namespace Mathos.Geometry.Trigonometry
 {
     public static class Get
     {

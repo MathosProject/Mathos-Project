@@ -88,6 +88,11 @@ namespace Mathos.Geometry.Shapes
 
         #region Override Equals
 
+        /// <summary>
+        /// Checks whether the rectangular prism is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -120,6 +125,10 @@ namespace Mathos.Geometry.Shapes
             return _rectangleBase == other._rectangleBase && Math.Abs(_height - other._height) < 1;
         }
 
+        /// <summary>
+        /// Gets the hashcode of the rectangular prism.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _rectangleBase.GetHashCode() ^ _height.GetHashCode();

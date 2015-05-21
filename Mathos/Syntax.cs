@@ -1,33 +1,33 @@
-﻿/* 
- * The purpose of this class is to provide the users with some basic
- * functions that are available for instance in Arithmetics.Numbers.
- * This means that instead of writing out the namespace.class.method,
- * we can simply focus on the variable, e.g. int32, and type less code
- * EX: int a = 3; Assert.IsTrue(a.IsPrime()); instead of
- * EX: Mathos.Arithmetics.Numbers.Check.IsPrime(a);
- * 
- * Do not forget to add Mathos.Syntax as a reference, before you continue
- * using this amazing feature of Mathos Project!
- */
-using System;
-using Mathos.Arithmetic.Numbers;
+﻿using Mathos.Arithmetic.Numbers;
 
 namespace Mathos
 {
     namespace Syntax
     {
         /// <summary>
-        /// EXTEND THIS METHOD!!!
+        /// The purpose of this class is to provide the users with some basic
+        /// functions that are available for instance in Arithmetics.Numbers.
+        /// This means that instead of writing out the namespace.class.method,
+        /// we can simply focus on the variable, e.g. int32, and type less code
+        /// 
+        /// EXAMPLE:
+        ///     int a = 3;
+        ///     Assert.IsTrue(a.IsPrime());
+        /// 
+        ///     instead of
+        ///     
+        ///     Mathos.Arithmetics.Numbers.Check.IsPrime(a);
         /// </summary>
         public static class SyntaxExtension
         {
-            // IsPositive
+            #region IsPositive
+
             /// <summary>
             /// Check if "num" is positive
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsPositive(this Int16 num)
+            public static bool IsPositive(this short num)
             {
                 return Check.IsPositive(num);
             }
@@ -37,7 +37,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsPositive(this Int32 num)
+            public static bool IsPositive(this int num)
             {
                 return Check.IsPositive(num);
             }
@@ -47,18 +47,21 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsPositive(this Int64 num)
+            public static bool IsPositive(this long num)
             {
                 return Check.IsPositive(num);
             }
 
-            // IsNegative
+            #endregion
+
+            #region IsNegative
+
             /// <summary>
             /// Check if "num" is negative
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsNegative(this Int16 num)
+            public static bool IsNegative(this short num)
             {
                 return Check.IsNegative(num);
             }
@@ -68,7 +71,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsNegative(this Int32 num)
+            public static bool IsNegative(this int num)
             {
                 return Check.IsNegative(num);
             }
@@ -78,19 +81,22 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsNegative(this Int64 num)
+            public static bool IsNegative(this long num)
             {
                 return Check.IsNegative(num);
             }
 
-            //IsDivisible
+            #endregion
+
+            #region IsDivisible
+
             /// <summary>
             /// Check if "num" is divisible by "divisibleBy"
             /// </summary>
             /// <param name="num"></param>
             /// <param name="divisibleBy"></param>
             /// <returns></returns>
-            public static bool IsDivisible(this Int16 num, Int16 divisibleBy)
+            public static bool IsDivisible(this short num, short divisibleBy)
             {
                 return Check.IsDivisible(num, divisibleBy);
             }
@@ -101,7 +107,7 @@ namespace Mathos
             /// <param name="num"></param>
             /// <param name="divisibleBy"></param>
             /// <returns></returns>
-            public static bool IsDivisible(this Int32 num, Int32 divisibleBy)
+            public static bool IsDivisible(this int num, int divisibleBy)
             {
                 return Check.IsDivisible(num, divisibleBy);
             }
@@ -112,18 +118,21 @@ namespace Mathos
             /// <param name="num"></param>
             /// <param name="divisibleBy"></param>
             /// <returns></returns>
-            public static bool IsDivisible(this Int64 num, Int64 divisibleBy)
+            public static bool IsDivisible(this long num, long divisibleBy)
             {
                 return Check.IsDivisible(num, divisibleBy);
             }
 
-            //IsEven
+            #endregion
+
+            #region IsEven
+
             /// <summary>
             /// Check if "num" is even
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsEven(this Int16 num)
+            public static bool IsEven(this short num)
             {
                 return Check.IsEven(num);
             }
@@ -133,7 +142,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsEven(this Int32 num)
+            public static bool IsEven(this int num)
             {
                 return Check.IsEven(num);
             }
@@ -143,18 +152,21 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsEven(this Int64 num)
+            public static bool IsEven(this long num)
             {
                 return Check.IsEven(num);
             }
 
-            //IsOdd
+            #endregion
+
+            #region IsOdd
+            
             /// <summary>
             /// Check if "num" is odd
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsOdd(this Int16 num)
+            public static bool IsOdd(this short num)
             {
                 return Check.IsOdd(num);
             }
@@ -164,7 +176,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsOdd(this Int32 num)
+            public static bool IsOdd(this int num)
             {
                 return Check.IsOdd(num);
             }
@@ -174,18 +186,21 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsOdd(this Int64 num)
+            public static bool IsOdd(this long num)
             {
                 return Check.IsOdd(num);
             }
 
-            //prime checking
+            #endregion
+
+            #region Prime Checking
+            
             /// <summary>
             /// Check if "num" is a prime
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsPrime(this Int16 num)
+            public static bool IsPrime(this short num)
             {
                 return Check.IsPrime(num);
             }
@@ -195,7 +210,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsPrime(this Int32 num)
+            public static bool IsPrime(this int num)
             {
                 return Check.IsPrime(num);
             }
@@ -205,19 +220,22 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static bool IsPrime(this Int64 num)
+            public static bool IsPrime(this long num)
             {
                 return Check.IsPrime(num);
             }
 
-            //IsCoprime
+            #endregion
+
+            #region IsCoprime
+
             /// <summary>
             /// Check if "num" is a coprime
             /// </summary>
             /// <param name="num"></param>
             /// <param name="divisibleBy"></param>
             /// <returns></returns>
-            public static bool IsCoprime(this Int16 num, Int16 divisibleBy)
+            public static bool IsCoprime(this short num, short divisibleBy)
             {
                 return Check.IsCoprime(num, divisibleBy);
             }
@@ -228,7 +246,7 @@ namespace Mathos
             /// <param name="num"></param>
             /// <param name="divisibleBy"></param>
             /// <returns></returns>
-            public static bool IsCoprime(this Int32 num, Int32 divisibleBy)
+            public static bool IsCoprime(this int num, int divisibleBy)
             {
                 return Check.IsCoprime(num, divisibleBy);
             }
@@ -239,18 +257,21 @@ namespace Mathos
             /// <param name="num"></param>
             /// <param name="divisibleBy"></param>
             /// <returns></returns>
-            public static bool IsCoprime(this Int64 num, Int64 divisibleBy)
+            public static bool IsCoprime(this long num, long divisibleBy)
             {
                 return Check.IsCoprime(num, divisibleBy);
             }
 
-            //ToPositive
+            #endregion
+
+            #region ToPositive
+
             /// <summary>
             /// Convert "num" to a positive number
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static long ToPositive(this Int16 num)
+            public static long ToPositive(this short num)
             {
                 return Arithmetic.Numbers.Convert.ToPositive(num);
             }
@@ -260,7 +281,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static long ToPositive(this Int32 num)
+            public static long ToPositive(this int num)
             {
                 return Arithmetic.Numbers.Convert.ToPositive(num);
             }
@@ -270,18 +291,21 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static long ToPositive(this Int64 num)
+            public static long ToPositive(this long num)
             {
                 return Arithmetic.Numbers.Convert.ToPositive(num);
             }
 
-            //ToNegative
+            #endregion ToPositive
+
+            #region ToNegative
+
             /// <summary>
             /// Convert "num" to a negative number
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static long ToNegative(this Int16 num)
+            public static long ToNegative(this short num)
             {
                 return Arithmetic.Numbers.Convert.ToNegative(num);
             }
@@ -291,7 +315,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static long ToNegative(this Int32 num)
+            public static long ToNegative(this int num)
             {
                 return Arithmetic.Numbers.Convert.ToNegative(num);
             }
@@ -301,10 +325,12 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static long ToNegative(this Int64 num)
+            public static long ToNegative(this long num)
             {
                 return Arithmetic.Numbers.Convert.ToNegative(num);
             }
+
+            #endregion
         }
     }
 }

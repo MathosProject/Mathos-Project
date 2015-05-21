@@ -13,8 +13,9 @@ namespace Mathos.Calculus
         /// </summary>
         /// <param name="function">The function</param>
         /// <param name="xPoint">The x coordinate</param>
+        /// <param name="h"></param>
         /// <returns>Returns the first derivative</returns>
-        public static double FirstDerivative(Func<double,double> function, double xPoint, double h= 1e-14)
+        public static double FirstDerivative(Func<double,double> function, double xPoint, double h = 1e-14)
         {
             //const double h = 0.0000000000001M;
 
@@ -27,7 +28,7 @@ namespace Mathos.Calculus
         /// Calculates the first derivative given a multivariable function and a specific set of variables (input parameters).
         /// </summary>
         /// <param name="function">The function</param>
-        ///         /// <param name="withRespectTo">The index of the point in "points" variable that the derivative should be differenetiated with resepect to.</param>
+        /// <param name="withRespectTo">The index of the point in "points" variable that the derivative should be differenetiated with resepect to.</param>
         /// <param name="points">The input parameters of the multivariable function.</param>
         /// <returns>Returns the first derivative</returns>
         public static decimal FirstDerivative(Func<decimal[], decimal> function, int withRespectTo ,  params decimal[] points)

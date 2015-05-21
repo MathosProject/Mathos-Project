@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Mathos.Testing
+namespace Mathos
 {
     /// <summary>
     /// 

@@ -112,6 +112,11 @@ namespace Mathos.Geometry.Shapes
 
         #region Override Equals
 
+        /// <summary>
+        /// Checks whether the trapezoid is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -138,6 +143,10 @@ namespace Mathos.Geometry.Shapes
             return Math.Abs(_baseOne - other._baseOne) < 1 && Math.Abs(_baseTwo - other._baseTwo) < 1 && Math.Abs(_height - other._height) < 1;
         }
 
+        /// <summary>
+        /// Gets the hashcode of the trapezoid.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _baseOne.GetHashCode() ^ _baseTwo.GetHashCode() ^ _height.GetHashCode();

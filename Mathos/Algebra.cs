@@ -57,9 +57,7 @@ namespace Mathos
         /// <param name="b"></param>
         /// <param name="c"></param>
         /// <returns></returns>
-#pragma warning disable 612
         public static ComplexNumber[] QuadraticEquation(ComplexNumber a, ComplexNumber b, ComplexNumber c)
-#pragma warning restore 612
         {
             var discriminant = b * b - 4 * a * c;
             var x1 = (b * -1 + ComplexOperation.Sqrt(discriminant)) / (2 * a);

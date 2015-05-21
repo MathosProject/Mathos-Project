@@ -72,6 +72,11 @@ namespace Mathos.Geometry.Shapes
 
         #region Override Equals
 
+        /// <summary>
+        /// Checks whether the rectangle is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -104,6 +109,10 @@ namespace Mathos.Geometry.Shapes
             return Math.Abs(_length - other._length) < 1 && Math.Abs(_width - other._width) < 1;
         }
 
+        /// <summary>
+        /// Gets the hashcode of the rectangle.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _length.GetHashCode() ^ _width.GetHashCode();

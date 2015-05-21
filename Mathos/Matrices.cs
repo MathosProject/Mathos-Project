@@ -3,8 +3,8 @@ using System.Linq;
 
 namespace Mathos
 {
-    //should support complex numbers, surds, etc.
-    // we probably need a struct - "Number"
+    // TODO: should support complex numbers, surds, etc.
+    //       - we probably need a struct - "Number"
     /// <summary>
     /// 
     /// </summary>
@@ -63,8 +63,11 @@ namespace Mathos
                 _vectorContent[index] = value;
             }
         }
-
-        //overriding ToString, Equals, GetHashCode
+        
+        /// <summary>
+        /// Gets the string version of the vector.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var output = "";
@@ -78,6 +81,11 @@ namespace Mathos
             return output;
         }
         
+        /// <summary>
+        /// Checks whether the vector is equal to the given object.
+        /// </summary>
+        /// <param name="obj">The object to compare to.</param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if ((obj == null) || (obj.GetType() != GetType()))
@@ -88,6 +96,10 @@ namespace Mathos
             return (this == vector);
         }
 
+        /// <summary>
+        /// The hashcode the the vector.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _vectorContent.GetHashCode();
@@ -99,15 +111,13 @@ namespace Mathos
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static implicit operator Vector(Int16[] input)
+        public static implicit operator Vector(short[] input)
         {
             var vector = new Vector(input.Length);
-            
+
             for (var i = 0; i < input.Length; i++)
-            {
                 vector[i] = input[i];
-            }
-            
+
             return vector;
         }
 
@@ -116,15 +126,13 @@ namespace Mathos
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static implicit operator Vector(Int32[] input)
+        public static implicit operator Vector(int[] input)
         {
             var vector = new Vector(input.Length);
-            
+
             for (var i = 0; i < input.Length; i++)
-            {
                 vector[i] = input[i];
-            }
-            
+
             return vector;
         }
 
@@ -133,15 +141,13 @@ namespace Mathos
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static implicit operator Vector(Int64[] input)
+        public static implicit operator Vector(long[] input)
         {
             var vector = new Vector();
-            
+
             for (var i = 0; i < input.Length; i++)
-            {
                 vector[i] = input[i];
-            }
-            
+
             return vector;
         }
 
@@ -153,11 +159,9 @@ namespace Mathos
         public static implicit operator Vector(double[] input)
         {
             var vector = new Vector();
-            
+
             for (var i = 0; i < input.Length; i++)
-            {
                 vector[i] = input[i];
-            }
 
             return vector;
         }
@@ -214,7 +218,7 @@ namespace Mathos
         /// <param name="vec1"></param>
         /// <param name="vec2"></param>
         /// <returns></returns>
-        public static Boolean operator ==(Vector vec1, Vector vec2)
+        public static bool operator ==(Vector vec1, Vector vec2)
         {
             return ComparsionOperation(vec1, vec2, (x, y) => Math.Abs(x - y) < 1);
         }
@@ -225,7 +229,7 @@ namespace Mathos
         /// <param name="vec1"></param>
         /// <param name="vec2"></param>
         /// <returns></returns>
-        public static Boolean operator !=(Vector vec1, Vector vec2)
+        public static bool operator !=(Vector vec1, Vector vec2)
         {
             return !(vec1 == vec2);
         }
@@ -264,7 +268,7 @@ namespace Mathos
             return result;
         }
 
-        private static Boolean ComparsionOperation(Vector vec1, Vector vec2, Func<double, double, bool> comparsionOperation)
+        private static bool ComparsionOperation(Vector vec1, Vector vec2, Func<double, double, bool> comparsionOperation)
         {
             Vector maxLengthVector;
             Vector minLengthVector;
@@ -625,6 +629,10 @@ namespace Mathos
             return result;
         }
 
+        /// <summary>
+        /// Gets the string version of the matrix.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             var output = "";
@@ -639,6 +647,7 @@ namespace Mathos
 
                 output += i < _matrixContent.Length - 1 ? Environment.NewLine : "";
             }
+
             return output;
         }
 
@@ -886,6 +895,11 @@ namespace Mathos
             return Equals(_matrixContent, other._matrixContent);
         }
 
+        /// <summary>
+        /// Checks whether the matrix is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -894,6 +908,10 @@ namespace Mathos
             return obj.GetType() == GetType() && Equals((Matrix)obj);
         }
 
+        /// <summary>
+        /// Get the hashcode of the matrix.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return (_matrixContent != null ? _matrixContent.GetHashCode() : 0);

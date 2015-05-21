@@ -72,9 +72,9 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="dimension"></param>
             /// <param name="coordinates"></param>
             /// <returns></returns>
-            public static UInt64[,] VisualRepresentation(Coordinate dimension, Coordinate[] coordinates)
+            public static ulong[,] VisualRepresentation(Coordinate dimension, Coordinate[] coordinates)
             {
-                var system = new UInt64[dimension.Y.ToInt64 (), dimension.X.ToInt64()];
+                var system = new ulong[dimension.Y.ToInt64 (), dimension.X.ToInt64()];
 
                 foreach (var t in coordinates)
                 {
@@ -171,6 +171,11 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                 return "(" + _x.ToString() + "," + _y.ToString() + ")";
             }
 
+            /// <summary>
+            /// Checks whether the coordinate is equal to the given object.
+            /// </summary>
+            /// <param name="obj"></param>
+            /// <returns></returns>
             public override bool Equals(object obj)
             {
                 if ((obj == null) || (obj.GetType() != GetType()))
@@ -181,6 +186,10 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                 return (this == coordinate);
             }
 
+            /// <summary>
+            /// Gets the hashcode of the coordinate.
+            /// </summary>
+            /// <returns></returns>
             public override int GetHashCode()
             {
                 return X.GetHashCode() ^ Y.GetHashCode();
@@ -224,7 +233,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="coordinate1"></param>
             /// <param name="coordinate2"></param>
             /// <returns></returns>
-            public static Boolean operator ==(Coordinate coordinate1, Coordinate coordinate2)
+            public static bool operator ==(Coordinate coordinate1, Coordinate coordinate2)
             {
                 return ((coordinate1.X == coordinate2.X) && (coordinate1.Y == coordinate2.Y));
             }
@@ -235,7 +244,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="coordinate1"></param>
             /// <param name="coordinate2"></param>
             /// <returns></returns>
-            public static Boolean operator !=(Coordinate coordinate1, Coordinate coordinate2)
+            public static bool operator !=(Coordinate coordinate1, Coordinate coordinate2)
             {
                 return !(coordinate1 == coordinate2);
             }

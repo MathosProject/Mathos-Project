@@ -62,6 +62,11 @@ namespace Mathos.Geometry.Shapes
 
         #region Override Equals
 
+        /// <summary>
+        /// Checks whether the cube is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             var other = obj as Cube;
@@ -87,6 +92,10 @@ namespace Mathos.Geometry.Shapes
             return Math.Abs(_squareBase.Length - other._squareBase.Length) < 1;
         }
 
+        /// <summary>
+        /// Gets the hashcode of the cube.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _squareBase.Length.GetHashCode();

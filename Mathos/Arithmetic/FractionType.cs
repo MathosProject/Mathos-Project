@@ -56,7 +56,8 @@ namespace Mathos.Arithmetic
             {
                 // fractionCheker is designed to avoid fractions like 2/-3 (better: -2/3)
                 // and -2/-3 (better: 2/3)
-                if (_denominator >= 0) return;
+                if (_denominator >= 0)
+                    return;
                 
                 _numerator = _numerator * -1;
                 _denominator = _denominator * -1;
@@ -124,8 +125,10 @@ namespace Mathos.Arithmetic
                 FractionChecker(); // checking
             }
 
-
-            /* overriding, etc ...*/
+            /// <summary>
+            /// Gets the in-line version of the fraction.
+            /// </summary>
+            /// <returns></returns>
             public override string ToString()
             {
                 if (_denominator == 1)
@@ -141,6 +144,11 @@ namespace Mathos.Arithmetic
                 return (_numerator + "/" + _denominator);
             }
 
+            /// <summary>
+            /// Checks whether the fraction is equal to a given object.
+            /// </summary>
+            /// <param name="obj"></param>
+            /// <returns></returns>
             public override bool Equals(object obj)
             {
                 if (obj == null || obj.GetType() != GetType())
@@ -151,6 +159,10 @@ namespace Mathos.Arithmetic
                 return (this == f);
             }
 
+            /// <summary>
+            /// Gets the hashcode of the fraction.
+            /// </summary>
+            /// <returns></returns>
             public override int GetHashCode()
             {
                 return Numerator.GetHashCode() ^ Denominator.GetHashCode();
@@ -169,7 +181,7 @@ namespace Mathos.Arithmetic
             /// 
             /// </summary>
             /// <returns></returns>
-            public Int64 ToInt64()
+            public long ToInt64()
             {
                 return _numerator / _denominator;
             }
@@ -382,7 +394,7 @@ namespace Mathos.Arithmetic
             /// <param name="fractA"></param>
             /// <param name="fractB"></param>
             /// <returns></returns>
-            public static Boolean operator ==(Fraction fractA, Fraction fractB)
+            public static bool operator ==(Fraction fractA, Fraction fractB)
             {
                 fractA = fractA.Simplify(); // simplifying, e.g. if a is 4/2, and b 2/1, return true
                 fractB = fractB.Simplify();
@@ -396,7 +408,7 @@ namespace Mathos.Arithmetic
             /// <param name="fractA"></param>
             /// <param name="fractB"></param>
             /// <returns></returns>
-            public static Boolean operator !=(Fraction fractA, Fraction fractB)
+            public static bool operator !=(Fraction fractA, Fraction fractB)
             {
                 return !(fractA == fractB);
             }
@@ -681,7 +693,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static implicit operator Fraction(Int64 num)
+            public static implicit operator Fraction(long num)
             {
                 return new Fraction(num);
             }

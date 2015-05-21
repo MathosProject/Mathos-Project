@@ -443,6 +443,10 @@ namespace Mathos.Statistics
                 R2 = r * r;
             }
 
+            /// <summary>
+            /// Gets the results as a string.
+            /// </summary>
+            /// <returns></returns>
             public override string ToString()
             {
                 return string.Format("y={0}+{1}x", Intercept, B);

@@ -112,7 +112,7 @@ namespace Mathos.Statistics
 
                 if(derivative < 0)
                 {
-                    derivative = Decimal.Negate(derivative);
+                    derivative = decimal.Negate(derivative);
                 }
 
                 absoluteUncertainty += derivative * points[i].Uncertainty;
@@ -227,7 +227,7 @@ namespace Mathos.Statistics
                     var zero = uncertaintySigFig-temp.ToString(CultureInfo.InvariantCulture).Length; // unsure about this step, although it is good when avoiding cases like 0.001500 (the extra zeroes at the end)
                     var num = PowD(10, zero);
                     
-                    uncertainty = Decimal.Ceiling(uncertainty * num) / (num * 1.0M);
+                    uncertainty = decimal.Ceiling(uncertainty * num) / (num * 1.0M);
                 }
 
                 value = Convert.ToDecimal(string.Format("{{0:F" + (uncertainty.ToString(CultureInfo.InvariantCulture).Length-2) + "}}", value - decimal.Floor(value))) + decimal.Floor(value) ;
@@ -241,10 +241,10 @@ namespace Mathos.Statistics
                     {
                         var num = 1 / PowD(10, uncertainty.ToString(CultureInfo.InvariantCulture).Length - 2) * 0.1M; // important that y is an uint.
                         
-                        uncertainty = Decimal.Ceiling(uncertainty * num) / (num);
+                        uncertainty = decimal.Ceiling(uncertainty * num) / (num);
                     }
                 }
-                value = Convert.ToDecimal( Convert.ToDouble(String.Format("{{0:G" + (decimal.Floor(value).ToString(CultureInfo.InvariantCulture).Length- uncertainty.ToString(CultureInfo.InvariantCulture).Length+1) + "}}", decimal.Floor( value))));//Decimal.Round(Decimal.Floor(value), uncertaintySigFig);
+                value = Convert.ToDecimal( Convert.ToDouble(string.Format("{{0:G" + (decimal.Floor(value).ToString(CultureInfo.InvariantCulture).Length- uncertainty.ToString(CultureInfo.InvariantCulture).Length+1) + "}}", decimal.Floor( value))));//Decimal.Round(Decimal.Floor(value), uncertaintySigFig);
             }
 
             return new UncertainNumber(value, uncertainty);
@@ -428,6 +428,11 @@ namespace Mathos.Statistics
             return !(n1 != null) || Math.Abs(n1.Value - n2) > n1.Uncertainty;
         }
 
+        /// <summary>
+        /// Checks whether the uncertain number is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -474,7 +479,7 @@ namespace Mathos.Statistics
         }
 
         /// <summary>
-        /// 
+        /// Checks whether the uncertain type is equal to another.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -483,6 +488,10 @@ namespace Mathos.Statistics
             return Value == other.Value && Uncertainty == other.Uncertainty;
         }
 
+        /// <summary>
+        /// Gets the hashcode of the uncertain type.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             unchecked

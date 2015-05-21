@@ -49,7 +49,7 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Gets N-th term of Arithmetic Progression
         /// </summary>
-        public double NTerm(Int32 n)
+        public double NTerm(int n)
         {
             return _initialTerm + (n - 1) * _commonDifference;
         }
@@ -57,7 +57,7 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Gets Sum of n-members (Seria)
         /// </summary>
-        public double Sum(Int32 n)
+        public double Sum(int n)
         {
             var tmpLeft = ((double) n/2);
 
@@ -119,7 +119,7 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Gets N-th term of Geometric Progression
         /// </summary>
-        public double NTerm(Int32 n)
+        public double NTerm(int n)
         {
             return _initialTerm * (Math.Pow(_commonRatio, n));
         }
@@ -127,7 +127,7 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Gets Sum of n-members (n-Seria)
         /// </summary>
-        public double Sum(Int32 n)
+        public double Sum(int n)
         {
             return _initialTerm * (1 - Math.Pow(_commonRatio, n + 1)) / (1 - _commonRatio);
         }
@@ -176,7 +176,7 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Gets N-th Fibonacci number
         /// </summary>
-        public int NTerm(Int32 n)
+        public int NTerm(int n)
         {
             var fk = 0;
 
@@ -203,7 +203,7 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Binet's Formula, Gets N-th Fibonacci number
         /// </summary>
-        public static double BinetFormula(Int32 n)
+        public static double BinetFormula(int n)
         {
           return
           (Math.Pow((1 + Math.Sqrt(5)) / 2, n) - Math.Pow((1 - Math.Sqrt(5)) / 2, n)) / Math.Sqrt(5); 

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Mathos.Chemistry
 {
@@ -22,7 +20,7 @@ namespace Mathos.Chemistry
         /// </summary>
         public Compounds()
         {
-            this.SetOfCompounds = new List<Compound>();
+            SetOfCompounds = new List<Compound>();
         }
         
         /// <summary>
@@ -34,13 +32,12 @@ namespace Mathos.Chemistry
             // this has to be optimized a lot. This will prorably be O(n^2) if not worse.
             var recordedElements = new List<Element>(); // maybe better with HashMap here.
 
-            foreach (var compound in this.SetOfCompounds)
+            foreach (var element in from compound in SetOfCompounds
+                from element in compound.Elements
+                where !recordedElements.Contains(element)
+                select element)
             {
-                foreach (var element in compound.Elements)
-                {
-                    if (!recordedElements.Contains(element))
-                        recordedElements.Add(element);
-                }
+                recordedElements.Add(element);
             }
 
             return recordedElements.Count();

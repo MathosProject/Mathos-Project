@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-using Mathos.Chemistry;
+﻿using System.Collections.Generic;
 
 namespace Mathos.Chemistry
 {
@@ -30,12 +24,12 @@ namespace Mathos.Chemistry
 
         /// <summary>
         /// Creates a new instance of the compound class.
-        /// <param name="Amount">The coefficient that should be in front of the compound, eg. 2H_2O for 2 water molecules.</param>
+        /// <param name="amount">The coefficient that should be in front of the compound, eg. 2H_2O for 2 water molecules.</param>
         /// </summary>
-        public Compound(int Amount)
+        public Compound(int amount)
         {
-            this.Elements = new List<Element>();
-            this.Amount = Amount;
+            Elements = new List<Element>();
+            Amount = amount;
         }
     }
 }

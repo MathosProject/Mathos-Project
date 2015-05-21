@@ -78,7 +78,7 @@ namespace Mathos.Arithmetic
                 if ((num % 2) == 0) //even numbers>2 are not prime (2 is included in the common prime numbers)
                     return false; 
 
-                var sqrtNum = (Int64)Math.Sqrt(num); // optimizing so that we do not 
+                var sqrtNum = (long)Math.Sqrt(num); // optimizing so that we do not 
                 
                 for (long i = 2; i <= sqrtNum; i++) //   need to calculate the sqrt on each iteration
                 {
@@ -113,7 +113,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="rule">You custom rule that the numbers should follow. (e.g. Check.IsPrime)</param>
             /// <returns></returns>
-            public static IEnumerable<Int64> CustomList(Func<long, bool> rule)
+            public static IEnumerable<long> CustomList(Func<long, bool> rule)
             {
                 return CustomList(0, long.MaxValue, rule);
             }
@@ -123,7 +123,7 @@ namespace Mathos.Arithmetic
             /// <param name="to">The number to end with</param>
             /// <param name="rule">You custom rule that the numbers should follow. (e.g. Check.IsPrime)</param>
             /// <returns></returns>
-            public static IEnumerable<Int64> CustomList(long to, Func<long, bool> rule)
+            public static IEnumerable<long> CustomList(long to, Func<long, bool> rule)
             {
                 return CustomList(0, to, rule);
             }
@@ -134,7 +134,7 @@ namespace Mathos.Arithmetic
             /// <param name="to">The number to end with</param>
             /// <param name="rule">You custom rule that the numbers should follow</param>
             /// <returns></returns>
-            public static IEnumerable<Int64> CustomList(long from, long to, Func<long, bool> rule)
+            public static IEnumerable<long> CustomList(long from, long to, Func<long, bool> rule)
             {
                 //var numbers = Enumerable.Range(start, end - start).ToList();
                 //return numbers.Where(rule).ToList();
@@ -153,7 +153,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="n">Enter the number to calculate the factorial of.</param>
             /// <returns></returns>
-            public static Int64 Factorial(long n)
+            public static long Factorial(long n)
             {
                 if (n == 1 || n == 0)
                     return 1;
@@ -260,7 +260,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="numbers">The numbers to sum the factorials.</param>
             /// <returns></returns>
-            public static Int64 Factorial(List<long> numbers)
+            public static long Factorial(List<long> numbers)
             {
                 return numbers.Sum(num => Factorial(num));
             }
@@ -323,7 +323,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            public static IEnumerable<Int64> Factors(long num)
+            public static IEnumerable<long> Factors(long num)
             {
                 var max = (long)Math.Sqrt(num);
                 
@@ -354,8 +354,13 @@ namespace Mathos.Arithmetic
             public static long IntPower(int x, short power)
             {
                 // from http://stackoverflow.com/questions/383587/how-do-you-do-integer-exponentiation-in-c
-                if (power == 0) return 1;
-                if (power == 1) return x;
+                switch (power)
+                {
+                    case 0:
+                        return 1;
+                    case 1:
+                        return x;
+                }
                 // ----------------------
                 var n = 15;
                 

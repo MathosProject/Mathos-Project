@@ -60,6 +60,11 @@ namespace Mathos.Geometry.Shapes
 
         #region Override Equals
 
+        /// <summary>
+        /// Checks whether the square is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -88,6 +93,10 @@ namespace Mathos.Geometry.Shapes
             return Math.Abs(_length - other._length) < 1;
         }
 
+        /// <summary>
+        /// Gets the hashcode of the square.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _length.GetHashCode();

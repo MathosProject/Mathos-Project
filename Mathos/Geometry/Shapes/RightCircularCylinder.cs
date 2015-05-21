@@ -84,6 +84,11 @@ namespace Mathos.Geometry.Shapes
 
         #region Override Equals
 
+        /// <summary>
+        /// Checks whether the cylinder is equal to the given object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null)
@@ -110,6 +115,10 @@ namespace Mathos.Geometry.Shapes
             return _circleBase == other._circleBase && Math.Abs(_height - other._height) < 1;
         }
 
+        /// <summary>
+        /// Gets the hashcode of the cylinder.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _circleBase.GetHashCode() ^ _height.GetHashCode();
