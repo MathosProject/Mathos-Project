@@ -18,7 +18,7 @@ namespace RubyInt.Windows
         public HelpWindow()
         {
             InitializeComponent();
-
+            
             foreach(var line in File.ReadAllLines(_helpPath + "list.txt"))
                 LstPages.Items.Add(line);
 
@@ -63,9 +63,7 @@ namespace RubyInt.Windows
 
             if (a.Contains(".mcli.txt"))
                 BrowserWin.GoBack();
-            else
-                BrowserWin.Navigate(a);
-
+            
             var window = Application.Current.Windows[0];
 
             if (window != null)
