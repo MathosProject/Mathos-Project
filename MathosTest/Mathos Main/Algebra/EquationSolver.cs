@@ -1,12 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mathos.Arithmetic;
+﻿using System.Numerics;
 using Mathos;
-using Mathos.Arithmetic.ComplexNumbers;
-using System.Numerics;
+using Mathos.Arithmetic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest
 {
@@ -31,13 +26,13 @@ namespace MathosTest
         {
             //equation 2x^2+3x-1
 
-            ComplexNumber[] result = EquationSolver.QuadraticEquation(2, 3, -1);
+            Complex[] result = EquationSolver.QuadraticEquation(2, 3, -1);
 
-            Assert.IsTrue(result[0].RealPart.ApproximatelyEquals(-1.78077640640442, 1e1 - 0));
-            Assert.IsTrue(result[0].ImaginaryPart.ApproximatelyEquals(0, 1e1 - 0));
+            Assert.IsTrue(result[0].Real.ApproximatelyEquals(-1.78077640640442, 1e1 - 0));
+            Assert.IsTrue(result[0].Imaginary.ApproximatelyEquals(0, 1e1 - 0));
 
-            Assert.IsTrue(result[1].RealPart.ApproximatelyEquals(0.280776406404415, 1e-10));
-            Assert.IsTrue(result[1].ImaginaryPart.ApproximatelyEquals(0, 1e1 - 0));
+            Assert.IsTrue(result[1].Real.ApproximatelyEquals(0.280776406404415, 1e-10));
+            Assert.IsTrue(result[1].Imaginary.ApproximatelyEquals(0, 1e1 - 0));
 
         }
 

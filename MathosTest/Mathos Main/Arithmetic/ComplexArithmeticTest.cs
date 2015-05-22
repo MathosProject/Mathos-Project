@@ -1,9 +1,7 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
+using Mathos;
 using Mathos.Arithmetic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using Mathos.Testing;
 
 namespace MathosTest.Mathos_Main.Arithmetic
 {

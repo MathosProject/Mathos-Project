@@ -200,10 +200,10 @@ namespace MathosTest.Mathos_Main.Arithmetic
         public void TestCompareTo()
         {
             Assert.AreEqual((2.0).CompareTo(1.0, 0.5), 1);
-
+            
             Assert.AreEqual((-2.0).CompareTo(1.0, 0.001), -1);
-
-            Assert.AreEqual((1.0).CompareTo(1.2, 0.4), 0);
+            
+            Assert.AreEqual((1.0).CompareTo(1.2, 0.4), -1);
         }
 
         private static double NaivePower(double x, int n)

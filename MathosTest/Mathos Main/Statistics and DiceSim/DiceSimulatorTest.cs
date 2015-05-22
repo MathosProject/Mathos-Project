@@ -1,7 +1,6 @@
-﻿using Mathos.Statistics;
+﻿using Mathos;
+using Mathos.Statistics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using Mathos.Testing;
 
 namespace MathosTest
 {
@@ -34,7 +33,7 @@ namespace MathosTest
 
             double averageTime = BenchmarkUtil.Benchmark(() => d.DiffDiceRoll(), iter);
 
-            System.Diagnostics.Debug.WriteLine("DiceDiffExecution time: " +averageTime.ToString() + "ms");
+            System.Diagnostics.Debug.WriteLine("DiceDiffExecution time: " +averageTime + "ms");
             
             
 

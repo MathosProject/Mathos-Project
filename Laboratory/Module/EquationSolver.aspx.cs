@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Numerics;
 using System.Web.UI;
 using Mathos;
-using Mathos.Arithmetic.ComplexNumbers;
 
 namespace Laboratory.Module
 {
@@ -70,7 +70,7 @@ namespace Laboratory.Module
         var watch = new Stopwatch();
         watch.Start();
 
-        ComplexNumber[] result = Mathos.EquationSolver.QuadraticEquation(Convert.ToDouble(TextBox7.Text),
+        Complex[] result = Mathos.EquationSolver.QuadraticEquation(Convert.ToDouble(TextBox7.Text),
           Convert.ToDouble(TextBox8.Text),
           Convert.ToDouble(TextBox9.Text));
 
@@ -79,8 +79,8 @@ namespace Laboratory.Module
 
         QuadraticEquationResultLabel.Text = string.Format(
           "Result: x2 = {0}; x2 = {1}",
-          result[0].RealPart,
-          result[1].ImaginaryPart);
+          result[0].Real,
+          result[1].Imaginary);
       }
       catch
       {

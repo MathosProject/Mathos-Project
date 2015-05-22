@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Numerics;
 
 namespace Mathos.Arithmetic
@@ -218,11 +219,112 @@ namespace Mathos.Arithmetic
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="z1"></param>
-        /// <param name="z2"></param>
-        /// <param name="delta"></param>
+        /// <param name="strcomplex"></param>
         /// <returns></returns>
-        public static bool ApproximatelyEquals(this Complex z1,
+        public static Complex FromString(string strcomplex)
+        {
+            var factor = 1;
+
+            double realPart = 0;
+            double imaginaryPart = 0;
+            char[] seperator = { };
+
+            if (strcomplex.IndexOf('+') > 0)
+            {
+                char[] seperator1 = {'+', 'i'};
+
+                seperator = seperator1;
+            }
+            else if (strcomplex.IndexOf('-') > 0)
+            {
+                char[] seperator2 = {'-', 'i'};
+
+                seperator = seperator2;
+                factor = -1;
+            }
+
+            var outStr = strcomplex.Split(seperator);
+            var isImaginaryPart = strcomplex.Contains("i");
+
+            outStr[0] = outStr[0].Replace("i", "");
+
+            if ((outStr.Length == 1) && !isImaginaryPart || outStr.Length > 2)
+                double.TryParse(outStr[0], out realPart);
+            if (isImaginaryPart)
+                double.TryParse(outStr[(outStr.Length == 1) ? 0 : 1], out imaginaryPart);
+
+            imaginaryPart *= factor;
+
+            return new Complex(realPart, imaginaryPart);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static double Modulus(this Complex c)
+        {
+            if (Math.Abs(c.Real) >= Math.Abs(c.Imaginary))
+                return Math.Abs(c.Real)*Math.Sqrt(1 + Math.Pow(c.Imaginary/c.Real, 2));
+
+            return Math.Abs(c.Imaginary)*Math.Sqrt(1 + Math.Pow(c.Real/c.Imaginary, 2));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static double Argument(this Complex c)
+        {
+            if (Math.Abs(c.Real) < 1 && Math.Abs(c.Imaginary) < 1)
+                return 0;
+
+            return Math.Atan2(c.Imaginary, c.Real);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strcomplex"></param>
+        /// <returns></returns>
+        public static Complex ToComplex(this string strcomplex)
+        {
+            return FromString(strcomplex);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static string Abi(this Complex c)
+        {
+            var outString = "";
+
+            if (c.Real > 0)
+            {
+                outString = c.Real.ToString(CultureInfo.InvariantCulture);
+
+                if (c.Imaginary > 0)
+                    outString += "+";
+            }
+
+            if (Math.Abs(c.Imaginary) > 0)
+                outString += c.Imaginary + "i";
+
+            return outString;
+        }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="z1"></param>
+    /// <param name="z2"></param>
+    /// <param name="delta"></param>
+    /// <returns></returns>
+    public static bool ApproximatelyEquals(this Complex z1,
             Complex z2, double delta = 0.0)
         {
             var r = z1.Real.ApproximatelyEquals(z2.Real, delta);

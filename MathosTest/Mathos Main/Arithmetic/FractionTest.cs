@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using Mathos;
-using Mathos.Arithmetic;
 using Mathos.Arithmetic.Fractions;
-using Mathos.Arithmetic.ComplexNumbers;
-using Mathos.Arithmetic.Numbers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest
 {
@@ -188,7 +181,7 @@ namespace MathosTest
         {
             string output = "";
 
-            var fract = new Mathos.Arithmetic.Fractions.Fraction(3, 2);
+            var fract = new Fraction(3, 2);
 
             output = fract.ToSternBrocotSystem();
 
@@ -201,16 +194,16 @@ namespace MathosTest
         {
             string output = "LRRL";
 
-            var fract = Mathos.Arithmetic.Fractions.Fraction.FromSternBrocotSystem(output);
+            var fract = Fraction.FromSternBrocotSystem(output);
 
-            Assert.AreEqual(fract, new Mathos.Arithmetic.Fractions.Fraction("5/7"));
+            Assert.AreEqual(fract, new Fraction("5/7"));
             //var fract = new Mathos.Arithmetic.Fractions.Fraction(3, 2);
         }
 
         [TestMethod]
         public void ApproximateFraction()
         {
-            var approx = Mathos.Arithmetic.Fractions.Fraction.ToSternBrocotSystem(3.5M,false, 50);
+            var approx = Fraction.ToSternBrocotSystem(3.5M,false, 50);
             Assert.AreEqual(approx, "RRRLRLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
         }

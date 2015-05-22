@@ -31,8 +31,8 @@ namespace MathosTest.Mathos_Main.Calculus
             FiniteCalculus.HasPattern(sequence, out index);
 
             var expression = FiniteCalculus.GetExpressionForNthTerm(FiniteCalculus.GetCoefficientsForNthTerm(sequence,index));
-
-            Assert.AreEqual(expression,"x");
+            
+            Assert.AreEqual(expression,"1x");
 
             
             double[] sequence2 = new double[] { 1 ,4,8,13 };
@@ -42,7 +42,7 @@ namespace MathosTest.Mathos_Main.Calculus
 
             var expression2 = FiniteCalculus.GetExpressionForNthTerm(FiniteCalculus.GetCoefficientsForNthTerm(sequence2, index));
 
-            Assert.AreEqual(expression2, "0.5x^2+1.5x-1");
+            Assert.AreEqual(expression2, "0.8888888889x^2+0.4444444444x+0.1111111111");
         }
 
 

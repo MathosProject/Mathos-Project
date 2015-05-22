@@ -8,10 +8,10 @@ using System;
 using System.IO;
 using IronRuby.Builtins;
 
-using Mathos.Testing;
 using System.Collections.ObjectModel;
 
 using System.Linq;
+using Mathos;
 
 [assembly: CLSCompliant(true)]
 namespace RubyInt
