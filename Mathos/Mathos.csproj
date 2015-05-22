@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Algebra.cs" />
     <Compile Include="Arithmetic\ComplexArithmetic.cs" />
+    <Compile Include="Arithmetic\ComplexNumberType.cs" />
     <Compile Include="Arithmetic\DecimalArithmetic.cs" />
     <Compile Include="Arithmetic\DoubleArithmetic.cs" />
     <Compile Include="Arithmetic\FractionType.cs" />
