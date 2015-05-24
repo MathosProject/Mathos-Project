@@ -20,8 +20,8 @@ namespace Mathos.Arithmetic
         {
             var absX = Math.Abs(x);
             var absY = Math.Abs(y);
-            var min = absX <= absY ? absX : absY;
-            var max = absX >= absY ? absX : absY;
+            var min = Math.Min(x, y); // absX <= absY ? absX : absY;
+            var max = Math.Max(x, y); // absX >= absY ? absX : absY;
             
             if (Math.Abs(min) < 1)
                 return max;
