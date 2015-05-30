@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Mathos Ruby Interpreter" Width="640" Height="480" Icon="Data/Icon.ico" WindowStartupLocation="CenterScreen" ShowIconOnTitleBar="true">
+        Title="Mathos Ruby Interpreter" Width="640" Height="480" Icon="Data/Icon.ico" WindowStartupLocation="CenterScreen" ShowIconOnTitleBar="true" Loaded="MainWindow_OnLoaded">
     <metro:MetroWindow.CommandBindings>
         <CommandBinding Command="New" Executed="New_Executed" />
         <CommandBinding Command="Save" Executed="Save_Executed" />

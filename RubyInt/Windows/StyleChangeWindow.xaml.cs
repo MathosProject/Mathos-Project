@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Windows;
 using Application = System.Windows.Forms.Application;
@@ -41,6 +40,7 @@ namespace RubyInt.Windows
 
             Properties.Settings.Default.ColorStyle = Settings.StyleDirectory + StyleBox.Text + ".xshd";
             Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
             Application.Restart();
             System.Windows.Application.Current.Shutdown(0);
         }

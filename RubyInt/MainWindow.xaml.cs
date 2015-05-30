@@ -24,9 +24,9 @@ namespace RubyInt
     {
         public EventHandler CodeChangedEvent;
         
-        public readonly ScriptScope Scope;
+        public ScriptScope Scope;
 
-        private readonly ScriptEngine _engine;
+        private ScriptEngine _engine;
 
         private readonly MemoryStream _ms = new MemoryStream();
         private readonly MemoryStream _er = new MemoryStream();
@@ -36,10 +36,7 @@ namespace RubyInt
         public MainWindow()
         {
             InitializeComponent();
-
-            if(!File.Exists(Settings.DataDirectory + "style.txt"))
-                File.WriteAllText(Settings.DataDirectory + "style.txt", @"light");
-
+            
             try
             {
                 var style = Properties.Settings.Default.ColorStyle;
@@ -75,7 +72,19 @@ namespace RubyInt
 
                 Properties.Settings.Default.ColorStyle = style;
                 Properties.Settings.Default.Save();
+            }
+            catch(Exception e)
+            {
+                DoError("Startup Error", "An error occured while initializing styles: " + e.Message);
+            }
+            
+            Settings.AddEditorToPane(EditorPane, new EditorTab {MainWindow = this});
+        }
 
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
                 _engine = Ruby.CreateEngine();
                 Scope = Ruby.CreateRuntime().CreateScope();
 
@@ -84,17 +93,15 @@ namespace RubyInt
                 Scope.SetVariable("_", new Extension());
 
                 var source = _engine.CreateScriptSourceFromString("require 'RubyInt.exe'\nrequire 'Mathos.dll'\nrequire '" + Settings.DataDirectory + "Std.rb'", SourceCodeKind.Statements);
-                
+
                 source.Execute(Scope);
             }
-            catch(Exception e)
+            catch (Exception ee)
             {
-                DoError("Startup Error", "An error occured while initializing Ruby: " + e.Message);
+                DoError("Startup Error", "An error occured while initializing Ruby: " + ee.Message);
             }
-            
-            Settings.AddEditorToPane(EditorPane, new EditorTab {MainWindow = this});
         }
-        
+
         private async void DoError(string title, string msg)
         {
             await this.ShowMessageAsync(title, title + ": " + msg);
