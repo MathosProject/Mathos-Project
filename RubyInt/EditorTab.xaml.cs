@@ -25,6 +25,7 @@ namespace RubyInt
 
         private void EditorTab_OnLoaded(object sender, RoutedEventArgs e)
         {
+            TextEditor.WordWrap = false;
             TextEditor.Foreground = Settings.EditorForeground;
             TextEditor.SyntaxHighlighting = Settings.EditorHighlighting;
             TextEditor.ShowLineNumbers = Properties.Settings.Default.LineNumbers;
@@ -45,7 +46,8 @@ namespace RubyInt
 
             TextEditor.TextArea.TextEntering += (o, args) =>
             {
-                if (args.Text.Length <= 0 || _completionWindow == null) return;
+                if (args.Text.Length <= 0 || _completionWindow == null)
+                    return;
 
                 if (!char.IsLetterOrDigit(args.Text[0]))
                     _completionWindow.CompletionList.RequestInsertion(e);
@@ -60,7 +62,8 @@ namespace RubyInt
 
                 var data = _completionWindow.CompletionList.CompletionData;
 
-                data.AddRange(MainWindow.Scope.GetItems().Select(pair => new CompletionData(pair.Key, pair.Value.ToString())));
+                data.AddRange(
+                    MainWindow.Scope.GetItems().Select(pair => new CompletionData(pair.Key, pair.Value.ToString())));
                 data.AddRange(Settings.StaticCompletionList);
 
                 _completionWindow.Show();

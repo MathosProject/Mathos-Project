@@ -40,6 +40,7 @@ namespace RubyInt
             
             try
             {
+                Properties.Settings.Default.Reload();
                 var style = Properties.Settings.Default.ColorStyle;
 
                 if (style == "")
@@ -80,8 +81,6 @@ namespace RubyInt
             {
                 DoError("Startup Error", "An error occured while initializing styles: " + e.Message);
             }
-            
-            Settings.AddEditorToPane(EditorPane, new EditorTab {MainWindow = this});
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
@@ -103,6 +102,8 @@ namespace RubyInt
             {
                 DoError("Startup Error", "An error occured while initializing Ruby: " + ee.Message);
             }
+            
+            Settings.AddEditorToPane(EditorPane, new EditorTab { MainWindow = this });
         }
 
         private async void DoError(string title, string msg)
@@ -112,6 +113,7 @@ namespace RubyInt
 
         public void Compile()
         {
+            Results.Document.Blocks.Clear();
             _engine.Runtime.IO.SetOutput(_ms, Encoding.Unicode);
             _engine.Runtime.IO.SetErrorOutput(_er, Encoding.Unicode);
 
@@ -123,14 +125,16 @@ namespace RubyInt
             }
             catch(Exception e)
             {
-                DoError("Interpreter Error", e.Message);
+                Results.Document.Blocks.Add(new Paragraph(new Run("[Error]: " + e.Message)
+                {
+                    Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0))
+                }));
             }
 
             var content = Settings.ReadFromStream(_ms, _lastBit - 1);
 
             _lastBit = Convert.ToInt32(_ms.Length) + 1;
-
-            Results.Document.Blocks.Clear();
+            
             Results.Document.Blocks.Add(new Paragraph(new Run(content)));
         }
 
@@ -146,6 +150,9 @@ namespace RubyInt
 
         private void Save_Executed(object sender, RoutedEventArgs e)
         {
+            if (EditorPane.ChildrenCount == 0)
+                return;
+
             var current = Settings.GetCurrentEditor(EditorPane);
             var tab = EditorPane.SelectedContent;
 
@@ -179,6 +186,9 @@ namespace RubyInt
 
         private void SaveAs_Executed(object sender, RoutedEventArgs e)
         {
+            if (EditorPane.ChildrenCount == 0)
+                return;
+
             var current = Settings.GetCurrentEditor(EditorPane);
             var tab = EditorPane.SelectedContent;
 
@@ -223,7 +233,7 @@ namespace RubyInt
 
             var oldEditor = Settings.GetCurrentEditor(EditorPane);
 
-            if(EditorPane.SelectedContent.Title == "Untitled" && !oldEditor.Saved)
+            if(EditorPane.SelectedContent != null && EditorPane.SelectedContent.Title == "Untitled" && !oldEditor.Saved)
                 EditorPane.RemoveChildAt(EditorPane.SelectedContentIndex);
         }
 

@@ -35,7 +35,7 @@ namespace RubyInt.Windows
         {
             var a = e.Uri.Segments.Last();
 
-            if (!a.Contains(".mcli.txt"))
+            if (!a.Contains(".mcli.txt") || (MainWindow == null || MainWindow.IsVisible == false))
                 return;
             
             var sr = new StreamReader(e.Uri.LocalPath);

@@ -42,17 +42,19 @@
                     <avalonDock:LayoutDocumentPane x:Name="EditorPane">
                     </avalonDock:LayoutDocumentPane>
                 </avalonDock:LayoutDocumentPaneGroup>
-                <avalonDock:LayoutAnchorablePaneGroup>
-                    <avalonDock:LayoutAnchorablePane DockHeight="20">
-                        <avalonDock:LayoutAnchorable>
-                            <RichTextBox x:Name="Results" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Consolas" FontSize="15">
-                                <FlowDocument>
-                                    <Paragraph/>
-                                </FlowDocument>
-                            </RichTextBox>
-                        </avalonDock:LayoutAnchorable>
-                    </avalonDock:LayoutAnchorablePane>
-                </avalonDock:LayoutAnchorablePaneGroup>
+                <avalonDock:LayoutDocumentPaneGroup>
+                    <avalonDock:LayoutDocumentPaneGroup>
+                        <avalonDock:LayoutDocumentPane>
+                            <avalonDock:LayoutDocument Title="Results" CanClose="False">
+                                <RichTextBox x:Name="Results" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" FontFamily="Consolas" FontSize="15">
+                                    <FlowDocument>
+                                        <Paragraph/>
+                                    </FlowDocument>
+                                </RichTextBox>
+                            </avalonDock:LayoutDocument>
+                        </avalonDock:LayoutDocumentPane>
+                    </avalonDock:LayoutDocumentPaneGroup>
+                </avalonDock:LayoutDocumentPaneGroup>
             </avalonDock:LayoutPanel>
         </avalonDock:LayoutRoot>
     </avalonDock:DockingManager>

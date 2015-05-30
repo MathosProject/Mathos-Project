@@ -13,7 +13,7 @@ namespace RubyInt
             Text = text;
             Description = description;
         }
-
+        
         public void Complete(TextArea textArea, ISegment completionSegment,
             EventArgs insertionRequestEventArgs)
         {
@@ -32,8 +32,8 @@ namespace RubyInt
 
         public double Priority { get; set; }
 
-        public string Text { get; private set; }
+        public string Text { get; }
 
-        public object Description { get; private set; }
+        public object Description { get; }
     }
 }
