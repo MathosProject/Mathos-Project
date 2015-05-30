@@ -49,7 +49,7 @@ namespace RubyInt
             return Convert.ToDouble(_parser.Parse(function));
         }
 
-        public Int64[] Fact(Int64 number)
+        public long[] Fact(long number)
         {
             return Mathos.Arithmetic.Numbers.Get.Factors(number).ToArray();
         }

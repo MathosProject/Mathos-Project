@@ -1,7 +1,12 @@
 ﻿<SyntaxDefinition name="Ruby"
         xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
-  <Color name="Comment" foreground="Green" />
-  <Color name="String" foreground="Gray" />
+  <Color name="Comment" foreground="#969896" />
+  <Color name="String" foreground="#E7DB75" />
+  <Color name="Reserved-Standard" foreground="#F92672" />
+  <Color name="Reserved-Special" foreground="#FF80F4" />
+  <Color name="Reserved-Unique" foreground="#FD971F" />
+  <Color name="Numbers" foreground="#FD971F" />
+  <Color name="Public" foreground="#2CA9D9" />
 
   <RuleSet>
     <Span color="Comment" begin="#" />
@@ -23,7 +28,7 @@
       </RuleSet>
     </Span>
 
-    <Keywords fontWeight="bold" foreground="Red">
+    <Keywords color="Reserved-Standard">
       <Word>alias</Word>
       <Word>and</Word>
       <Word>BEGIN</Word>
@@ -59,9 +64,12 @@
       <Word>when</Word>
       <Word>while</Word>
       <Word>yield</Word>
+      <Word>public</Word>
+      <Word>private</Word>
+      <Word>raise</Word>
     </Keywords>
 
-    <Keywords fontWeight="bold" foreground="Pink">
+    <Keywords color="Reserved-Special">
       <Word>require</Word>
       <Word>include</Word>
       <Word>attr_reader</Word>
@@ -70,7 +78,7 @@
       <Word>require_relative</Word>
     </Keywords>
 
-    <Keywords fontWeight="bold" foreground="Orange">
+    <Keywords color="Reserved-Unique">
       <Word>self</Word>
       <Word>nil</Word>
       <Word>true</Word>
@@ -79,8 +87,7 @@
       <Word>__LINE__</Word>
     </Keywords>
 
-    <!-- Digits -->
-    <Rule foreground="LightBlue">
+    <Rule color="Numbers">
       \b0[xX][0-9a-fA-F]+  # hex number
       |    \b
       (    \d+(\.[0-9]+)?   #number with optional floating point
@@ -89,8 +96,12 @@
       ([eE][+-]?[0-9]+)? # optional exponent
     </Rule>
 
-    <Rule foreground="Pink">
-      ([@A-Z]\S+) # anything after a @ symbol
+    <Rule color="Public">
+      ([@A-Z][^\s,.;'"./\\\[\]{}*^%~`()]+) # anything after a @ symbol
+    </Rule>
+
+    <Rule color="Public">
+      ([$A-Z][^\s,.;'"./\\\[\]{}*^%~`()]+) # anything after a $ symbol
     </Rule>
   </RuleSet>
 </SyntaxDefinition>

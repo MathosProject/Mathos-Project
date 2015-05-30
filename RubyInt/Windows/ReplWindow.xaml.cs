@@ -1,14 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using IronRuby;
-using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
-using Microsoft.Scripting.Utils;
 
 namespace RubyInt.Windows
 {

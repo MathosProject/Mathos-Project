@@ -3,39 +3,34 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Input;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Xml;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using IronRuby;
 using MahApps.Metro;
-using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
-using Microsoft.Win32;
 using RubyInt.Windows;
+using Application = System.Windows.Application;
+using MessageBox = System.Windows.MessageBox;
 
 namespace RubyInt
 {
     public partial class MainWindow
     {
         public EventHandler CodeChangedEvent;
-
-        public readonly string ColorStyle;
-
+        
         public readonly ScriptScope Scope;
 
         private readonly ScriptEngine _engine;
 
         private readonly MemoryStream _ms = new MemoryStream();
         private readonly MemoryStream _er = new MemoryStream();
-
-        private RichTextBox _currentOutputTextBox;
-
+        
         private int _lastBit = 1;
 
         public MainWindow()
@@ -47,25 +42,39 @@ namespace RubyInt
 
             try
             {
-                ColorStyle = File.ReadAllText(Settings.DataDirectory + "style.txt").Trim().ToLower();
+                var style = Properties.Settings.Default.ColorStyle;
 
-                if (!File.Exists(Settings.StyleDirectory + ColorStyle + ".xshd"))
-                    ColorStyle = "RubyLight";
+                if (style == "")
+                {
+                    style =
+                        Properties.Settings.Default.ColorStyle =
+                            File.ReadAllText(Settings.DataDirectory + "style.txt").Trim().ToLower();
+                }
 
-                var isDark = ColorStyle.ToLower().Contains("dark");
+                if (!File.Exists(style))
+                {
+                    MessageBox.Show("Could not find current style: " + style, "Style Missing", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+
+                    style = Settings.StyleDirectory + "RubyLight.xshd";
+                }
+
+                var ext = Path.GetFileNameWithoutExtension(style);
+                var isDark = (ext != null) && ext.ToLower().Contains("dark");
 
                 ThemeManager.ChangeAppStyle(Application.Current,
                     (isDark) ? ThemeManager.Accents.ToArray()[0] : ThemeManager.Accents.ToArray()[2],
                     (isDark) ? ThemeManager.AppThemes.ToArray()[1] : ThemeManager.AppThemes.ToArray()[0]);
                 
-                var reader = XmlReader.Create(Settings.StyleDirectory + ColorStyle + ".xshd");
+                var reader = XmlReader.Create(style);
 
                 Settings.EditorHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
                 Settings.EditorForeground = (isDark)
                     ? new SolidColorBrush(Color.FromRgb(255, 255, 255))
                     : new SolidColorBrush(Color.FromRgb(0, 0, 0));
 
-                _currentOutputTextBox = Results;
+                Properties.Settings.Default.ColorStyle = style;
+                Properties.Settings.Default.Save();
 
                 _engine = Ruby.CreateEngine();
                 Scope = Ruby.CreateRuntime().CreateScope();
@@ -82,32 +91,10 @@ namespace RubyInt
             {
                 DoError("Startup Error", "An error occured while initializing Ruby: " + e.Message);
             }
-
-            EditorTabControl.Items.Add(new TabItem { Content = new EditorTab { MainWindow = this }, Header = "Untitled" });    
+            
+            Settings.AddEditorToPane(EditorPane, new EditorTab {MainWindow = this});
         }
-
-        private void Results_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var originalMargin = EditorTabControl.Margin;
-
-            Results.Visibility = Visibility.Hidden;
-            EditorTabControl.Margin = new Thickness(0, 0, 0, 0);
-
-            var outWindow = new ResultsWindow();
-
-            _currentOutputTextBox = outWindow.OutputTextBox;
-
-            outWindow.Show();
-
-            outWindow.Closed += (o, args) =>
-            {
-                Results.Visibility = Visibility.Visible;
-                EditorTabControl.Margin = originalMargin;
-
-                _currentOutputTextBox = Results;
-            };
-        }
-
+        
         private async void DoError(string title, string msg)
         {
             await this.ShowMessageAsync(title, title + ": " + msg);
@@ -120,7 +107,7 @@ namespace RubyInt
 
             try
             {
-                var source = _engine.CreateScriptSourceFromString(Settings.GetCurrentEditor(EditorTabControl).TextEditor.Text, SourceCodeKind.Statements);
+                var source = _engine.CreateScriptSourceFromString(Settings.GetCurrentEditor(EditorPane).TextEditor.Text, SourceCodeKind.Statements);
 
                 source.Execute(Scope);
             }
@@ -133,8 +120,8 @@ namespace RubyInt
 
             _lastBit = Convert.ToInt32(_ms.Length) + 1;
 
-            _currentOutputTextBox.Document.Blocks.Clear();
-            _currentOutputTextBox.Document.Blocks.Add(new Paragraph(new Run(content)));
+            Results.Document.Blocks.Clear();
+            Results.Document.Blocks.Add(new Paragraph(new Run(content)));
         }
 
         private void Debug_Click(object sender, RoutedEventArgs e)
@@ -144,100 +131,90 @@ namespace RubyInt
 
         private void New_Executed(object sender, RoutedEventArgs e)
         {
-            EditorTabControl.Items.Add(new TabItem { Content = new EditorTab { MainWindow = this }, Header = "Untitled" });
+            Settings.AddEditorToPane(EditorPane, new EditorTab { MainWindow = this });
         }
 
         private void Save_Executed(object sender, RoutedEventArgs e)
         {
-            var current = Settings.GetCurrentEditor(EditorTabControl);
-            var tab = EditorTabControl.SelectedItem as TabItem;
+            var current = Settings.GetCurrentEditor(EditorPane);
+            var tab = EditorPane.SelectedContent;
 
             if(current.FirstSave)
             {
                 var saveFile = new SaveFileDialog
                 {
-                    Filter = "IronRuby File (*.rb)|*.rb",
+                    Filter = Properties.Resources.RubyFileFilter,
                     CheckPathExists = true
                 };
 
-                var showDialog = saveFile.ShowDialog();
-                
-                if (showDialog != null && ((bool)showDialog && saveFile.FileName.Length > 0))
-                {
-                    current.FirstSave = false;
-                    current.Saved = true;
-                    current.Filepath = saveFile.FileName;
+                if (saveFile.ShowDialog() != System.Windows.Forms.DialogResult.OK || saveFile.FileName.Length <= 0)
+                    return;
 
-                    File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
-                }
+                current.FirstSave = false;
+                current.Saved = true;
+                current.Filepath = saveFile.FileName;
+
+                tab.Title = Path.GetFileNameWithoutExtension(saveFile.FileName);
+
+                File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
+
+                var oldEditor = Settings.GetCurrentEditor(EditorPane);
+
+                if (EditorPane.SelectedContent.Title == "Untitled" && !oldEditor.Saved)
+                    EditorPane.RemoveChildAt(EditorPane.SelectedContentIndex);
             }
-
-            if (tab != null && tab.Header.ToString().EndsWith("*"))
-                tab.Header = tab.Header.ToString().Substring(0, tab.Header.ToString().Length - 1);
-            if(current.Filepath != "")
+            else if(current.Filepath != "")
                 File.WriteAllText(current.Filepath, current.TextEditor.Text);
         }
 
         private void SaveAs_Executed(object sender, RoutedEventArgs e)
         {
-            var current = Settings.GetCurrentEditor(EditorTabControl);
-            var tab = EditorTabControl.SelectedItem as TabItem;
+            var current = Settings.GetCurrentEditor(EditorPane);
+            var tab = EditorPane.SelectedContent;
+
             var saveFile = new SaveFileDialog
             {
-                Filter = "IronRuby Source File (*.rb)|*.rb",
+                Filter = Properties.Resources.RubyFileFilter,
                 CheckPathExists = true
             };
 
-            var showDialog = saveFile.ShowDialog();
-
-            if (showDialog == null || (!(bool) showDialog || saveFile.FileName.Length <= 0))
+            if (saveFile.ShowDialog() != System.Windows.Forms.DialogResult.OK || saveFile.FileName.Length <= 0)
                 return;
 
             current.FirstSave = false;
             current.Saved = true;
             current.Filepath = saveFile.FileName;
 
-            if (tab != null && tab.Header.ToString().EndsWith("*"))
-                tab.Header = tab.Header.ToString().Substring(0, tab.Header.ToString().Length - 1);
-
+            tab.Title = Path.GetFileNameWithoutExtension(saveFile.FileName);
+            
             File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
         }
 
         private void Open_Executed(object sender, RoutedEventArgs e)
         {
-            var current = new EditorTab();
-            var tab = new TabItem();
+            var newEditor = new EditorTab();
+
             var openFile = new OpenFileDialog
             {
-                Filter = "IronRuby Source File (*.rb)|*.rb",
+                Filter = Properties.Resources.RubyFileFilter,
                 CheckFileExists = true
             };
-
-            var showDialog = openFile.ShowDialog();
-
-            if (showDialog == null || (!(bool) showDialog || openFile.FileName.Length <= 0))
+            
+            if (openFile.ShowDialog() != System.Windows.Forms.DialogResult.OK || openFile.FileName.Length <= 0)
                 return;
 
-            current.FirstSave = false;
-            current.Saved = true;
-            current.Filepath = openFile.FileName;
-            current.MainWindow = this;
-            current.TextEditor.Text = File.ReadAllText(openFile.FileName);
+            newEditor.FirstSave = false;
+            newEditor.Saved = true;
+            newEditor.Filepath = openFile.FileName;
+            newEditor.MainWindow = this;
+            newEditor.TextEditor.Text = File.ReadAllText(openFile.FileName);
 
-            tab.Header = Path.GetFileNameWithoutExtension(openFile.FileName);
-            tab.Content = current;
+            Settings.AddEditorToPane(EditorPane, newEditor, Path.GetFileNameWithoutExtension(openFile.FileName));
 
-            EditorTabControl.Items.Add(tab);
+            var oldEditor = Settings.GetCurrentEditor(EditorPane);
 
-            var old = EditorTabControl.SelectedItem as TabItem;
-
-            if (old == null || (old.Header.ToString() != "Untitled" && old.Header.ToString() != "Untitled*"))
-                return;
-
-            var oldEditor = old.GetChildObjects().ElementAt(0) as EditorTab;
-
-            if(oldEditor != null && oldEditor.TextEditor.Text.Trim() == "")
-                EditorTabControl.Items.RemoveAt(EditorTabControl.SelectedIndex);
+            if(EditorPane.SelectedContent.Title == "Untitled" && !oldEditor.Saved)
+                EditorPane.RemoveChildAt(EditorPane.SelectedContentIndex);
         }
 
         private void Style_Click(object sender, RoutedEventArgs e)
@@ -261,14 +238,6 @@ We are currently taking a part in the Microsoft BizSpark programme, and we would
         private void Help_Executed(object sender, RoutedEventArgs e)
         {
             new HelpWindow {MainWindow = this}.Show();
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (EditorTabControl.SelectedItem == null)
-                return;
-
-            EditorTabControl.Items.RemoveAt(EditorTabControl.SelectedIndex);
         }
 
         private void Repl_OnClick(object sender, RoutedEventArgs e)

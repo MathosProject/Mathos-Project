@@ -13,8 +13,8 @@ namespace RubyInt
         public string Filepath;
         public MainWindow MainWindow;
 
+        public bool Saved;
         public bool FirstSave = true;
-        public bool Saved = true;
 
         private CompletionWindow _completionWindow;
 
@@ -25,8 +25,6 @@ namespace RubyInt
 
         private void EditorTab_OnLoaded(object sender, RoutedEventArgs e)
         {
-            TextEditor.FontFamily = new FontFamily("Consolas");
-            TextEditor.FontSize = 15;
             TextEditor.Foreground = Settings.EditorForeground;
             TextEditor.SyntaxHighlighting = Settings.EditorHighlighting;
 
@@ -48,14 +46,7 @@ namespace RubyInt
                 if (args.Text.Length <= 0 || _completionWindow == null) return;
 
                 if (!char.IsLetterOrDigit(args.Text[0]))
-                {
-                    // Whenever a non-letter is typed while the completion window is open,
-                    // insert the currently selected element.
                     _completionWindow.CompletionList.RequestInsertion(e);
-                }
-
-                // Do not set e.Handled=true.
-                // We still want to insert the character that was typed.
             };
 
             TextEditor.TextArea.TextEntered += (o, args) =>

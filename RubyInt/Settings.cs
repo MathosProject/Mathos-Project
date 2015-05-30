@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Windows.Controls;
 using System.Windows.Media;
 using ICSharpCode.AvalonEdit.Highlighting;
-using MahApps.Metro.Controls;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace RubyInt
 {
@@ -26,17 +24,24 @@ namespace RubyInt
             new CompletionData("tsb", "Convert a fraction string (i.e. 3/7)\nto a Stern-Brocot number system.\nThe output will be expressed in terms of L's and R's.")
         };
 
-        public static EditorTab GetCurrentEditor(TabControl control)
+        public static void AddEditorToPane(LayoutDocumentPane control, EditorTab editor, string title = "Untitled")
         {
-            var tab = control.SelectedItem as TabItem;
+            control.Children.Add(new LayoutDocument
+            {
+                Title = title,
+                Content = editor
+            });
+        }
 
-            return (tab == null) ? null : tab.GetChildObjects().ToArray()[0] as EditorTab;
+        public static EditorTab GetCurrentEditor(LayoutDocumentPane control)
+        {
+            return control.SelectedContent.Content as EditorTab;
         }
 
         public static string ReadFromStream(Stream ms, int start = 0)
         {
             var length = (int)ms.Length;
-            var bytes = new Byte[length];
+            var bytes = new byte[length];
 
             ms.Seek(start, SeekOrigin.Begin);
             ms.Read(bytes, start, (int)ms.Length - start);

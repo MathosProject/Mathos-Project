@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RubyInt.Windows
@@ -45,13 +44,9 @@ namespace RubyInt.Windows
 
             if (mainWindow != null)
             {
-                mainWindow.EditorTabControl.Items.Add(new TabItem
-                {
-                    Content = new EditorTab {MainWindow = MainWindow, TextEditor = {Text = sr.ReadToEnd()}},
-                    Header = Path.GetFileNameWithoutExtension(e.Uri.LocalPath).Replace(".mcli", "")
-                });
-
-                mainWindow.EditorTabControl.SelectedIndex++;
+                Settings.AddEditorToPane(mainWindow.EditorPane,
+                    new EditorTab {MainWindow = MainWindow, TextEditor = {Text = sr.ReadToEnd()}},
+                    Path.GetFileNameWithoutExtension(e.Uri.LocalPath).Replace(".mcli", ""));
             }
 
             sr.Close();

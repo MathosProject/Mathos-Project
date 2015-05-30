@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using Application = System.Windows.Forms.Application;
@@ -29,9 +30,17 @@ namespace RubyInt.Windows
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var style = StyleBox.SelectedItem.ToString().Trim().ToLower();
+            var style = Settings.StyleDirectory + StyleBox.Text + ".xshd";
 
-            File.WriteAllText(Settings.DataDirectory + "style.txt", style.Substring(style.IndexOf(':') + 1));
+            if (!File.Exists(style))
+            {
+                MessageBox.Show("Could not find style at: " + style, "Style Missing");
+
+                return;
+            }
+
+            Properties.Settings.Default.ColorStyle = Settings.StyleDirectory + StyleBox.Text + ".xshd";
+            Properties.Settings.Default.Save();
             Application.Restart();
             System.Windows.Application.Current.Shutdown(0);
         }
