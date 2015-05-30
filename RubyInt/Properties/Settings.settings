@@ -5,5 +5,8 @@
     <Setting Name="ColorStyle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Styles/RubyLight.xshd</Value>
     </Setting>
+    <Setting Name="LineNumbers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

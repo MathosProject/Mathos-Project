@@ -22,6 +22,7 @@
                 </MenuItem>
                 <MenuItem Header="_View">
                     <MenuItem Header="_Style" Click="Style_Click" Icon="{StaticResource appbar_page_image}" />
+                    <MenuItem Header="_Settings" Click="Settings_Click" Icon="{StaticResource appbar_settings}" />
                 </MenuItem>
                 <MenuItem Header="_Debug">
                     <MenuItem Header="_Run" Click="Debug_Click" Icon="{StaticResource appbar_debug_step_into}" />
@@ -34,7 +35,7 @@
             </Menu>
         </metro:WindowCommands>
     </metro:MetroWindow.LeftWindowCommands>
-    <avalonDock:DockingManager>
+    <avalonDock:DockingManager x:Name="DockingManager">
         <avalonDock:LayoutRoot>
             <avalonDock:LayoutPanel Orientation="Vertical">
                 <avalonDock:LayoutDocumentPaneGroup>

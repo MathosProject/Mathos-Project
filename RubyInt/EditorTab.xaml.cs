@@ -27,6 +27,8 @@ namespace RubyInt
         {
             TextEditor.Foreground = Settings.EditorForeground;
             TextEditor.SyntaxHighlighting = Settings.EditorHighlighting;
+            TextEditor.ShowLineNumbers = Properties.Settings.Default.LineNumbers;
+            TextEditor.LineNumbersForeground = new SolidColorBrush(Color.FromRgb(101, 98, 88));
 
             TextEditor.TextChanged += (o, args) =>
             {

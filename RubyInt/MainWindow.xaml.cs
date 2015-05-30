@@ -15,6 +15,7 @@ using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 using RubyInt.Windows;
+using Xceed.Wpf.AvalonDock.Themes;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 
@@ -62,16 +63,18 @@ namespace RubyInt
                 ThemeManager.ChangeAppStyle(Application.Current,
                     (isDark) ? ThemeManager.Accents.ToArray()[0] : ThemeManager.Accents.ToArray()[2],
                     (isDark) ? ThemeManager.AppThemes.ToArray()[1] : ThemeManager.AppThemes.ToArray()[0]);
-                
+
+                DockingManager.Theme = new MetroTheme();
+                DockingManager.Background = (isDark)
+                    ? new SolidColorBrush(Color.FromRgb(28, 31, 38))
+                    : new SolidColorBrush(Color.FromRgb(255, 255, 255));
+
                 var reader = XmlReader.Create(style);
 
                 Settings.EditorHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
                 Settings.EditorForeground = (isDark)
                     ? new SolidColorBrush(Color.FromRgb(255, 255, 255))
                     : new SolidColorBrush(Color.FromRgb(0, 0, 0));
-
-                Properties.Settings.Default.ColorStyle = style;
-                Properties.Settings.Default.Save();
             }
             catch(Exception e)
             {
@@ -227,6 +230,11 @@ namespace RubyInt
         private void Style_Click(object sender, RoutedEventArgs e)
         {
             new StyleChangeWindow().Show();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            new SettingsWindow().Show();
         }
 
         private async void About_Executed(object sender, RoutedEventArgs e)

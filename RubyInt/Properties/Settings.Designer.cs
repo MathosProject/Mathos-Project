@@ -34,5 +34,17 @@ namespace RubyInt.Properties {
                 this["ColorStyle"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LineNumbers {
+            get {
+                return ((bool)(this["LineNumbers"]));
+            }
+            set {
+                this["LineNumbers"] = value;
+            }
+        }
     }
 }
