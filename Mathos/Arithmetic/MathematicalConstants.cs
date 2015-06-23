@@ -49,9 +49,14 @@
         /// 
         /// </summary>
         public const double SqrtOfOneThird = 0.577350269189626;
-        
-        
+
+
         // PI
+        /// <summary>
+        /// 
+        /// </summary>
+        public const double Tau = 6.283185307179586;
+
         /// <summary>
         /// 
         /// </summary>
