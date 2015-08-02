@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Mathos
 {
@@ -28,16 +29,15 @@ namespace Mathos
             /// <param name="message"></param>
             /// <param name="inner"></param>
             public DenominatorNullException(string message, Exception inner) : base(message, inner) { }
-            
+
             /// <summary>
             /// A protected constructor that takes serialization "info" alongside a streaming "context"
             /// </summary>
             /// <param name="info"></param>
             /// <param name="context"></param>
-            protected DenominatorNullException(
-              System.Runtime.Serialization.SerializationInfo info,
-              System.Runtime.Serialization.StreamingContext context)
-                : base(info, context) { }
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+            protected DenominatorNullException(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
 
         /// <summary>
@@ -69,10 +69,9 @@ namespace Mathos
             /// </summary>
             /// <param name="info"></param>
             /// <param name="context"></param>
-            protected InvalidCoordinateFormat(
-              System.Runtime.Serialization.SerializationInfo info,
-              System.Runtime.Serialization.StreamingContext context)
-                : base(info, context) { }
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+            protected InvalidCoordinateFormat(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
 
         /// <summary>
@@ -98,16 +97,15 @@ namespace Mathos
             /// <param name="message"></param>
             /// <param name="inner"></param>
             public InvalidFractionFormatException(string message, Exception inner) : base(message, inner) { }
-            
+
             /// <summary>
             /// A protected constructor that takes serialization "info" alongside a streaming "context"
             /// </summary>
             /// <param name="info"></param>
             /// <param name="context"></param>
-            protected InvalidFractionFormatException(
-              System.Runtime.Serialization.SerializationInfo info,
-              System.Runtime.Serialization.StreamingContext context)
-                : base(info, context) { }
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+            protected InvalidFractionFormatException(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
 
         /// <summary>
@@ -133,16 +131,15 @@ namespace Mathos
             /// <param name="message"></param>
             /// <param name="inner"></param>
             public InvalidTriangleException(string message, Exception inner) : base(message, inner) { }
-            
+
             /// <summary>
             /// A protected constructor that takes serialization "info" alongside a streaming "context"
             /// </summary>
             /// <param name="info"></param>
             /// <param name="context"></param>
-            protected InvalidTriangleException(
-              System.Runtime.Serialization.SerializationInfo info,
-              System.Runtime.Serialization.StreamingContext context)
-                : base(info, context) { }
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null. </exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0). </exception>
+            protected InvalidTriangleException(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
     }
 }

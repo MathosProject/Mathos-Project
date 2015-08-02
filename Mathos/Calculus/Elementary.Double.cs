@@ -70,6 +70,7 @@ namespace Mathos.Calculus
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
+        /// <exception cref="OverflowException"></exception>
         public static double Decompose(double x, out int n)
         {
             if (Math.Abs(x) < 1)
@@ -81,6 +82,7 @@ namespace Mathos.Calculus
             
             var ex = Math.Ceiling(Math.Log(Math.Abs(x)) / MathematicalConstants.LnOfTwo);
             var ei = Convert.ToInt32(ex);
+
             var f = TimesTwoTo(x, -ei);
 
             while (Math.Abs(f) >= 1.0)

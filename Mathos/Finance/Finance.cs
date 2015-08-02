@@ -17,6 +17,8 @@ namespace Mathos.Finance
         /// <param name="numberOfPeriods">Number of periods</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns>Future value</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
         public static decimal FutureValue(decimal presentValue, decimal rateOfReturn, int numberOfPeriods, bool round = true)
         {
             var futureValue = presentValue * DecimalPower((1 + rateOfReturn / 100), numberOfPeriods);
@@ -32,6 +34,8 @@ namespace Mathos.Finance
         /// <param name="numberOfPeriods">Number of periods</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns>Present value</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
         public static decimal PresentValue(decimal futureValue, decimal rateOfReturn, int numberOfPeriods, bool round = true)
         {
             var presentValue = futureValue / DecimalPower((1 + rateOfReturn / 100), numberOfPeriods);
@@ -47,6 +51,9 @@ namespace Mathos.Finance
         /// <param name="rateOfReturn">Expected rate of return (ex 5 for 5%)</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns>Net present value</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
+        /// <exception cref="ArgumentNullException"></exception>
         public static decimal NetPresentValue(decimal initialInvestment, IList<decimal> cashFlow, decimal rateOfReturn, bool round = true)
         {
             var netPresentValue = initialInvestment*-1 + cashFlow.Select((t, i) => t/DecimalPower(1 + rateOfReturn/100, i + 1)).Sum(temp => round ? Math.Round(temp, 2) : temp);
@@ -62,6 +69,8 @@ namespace Mathos.Finance
         /// <param name="numberOfPeriods">Number of periods</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns>Present value of annuity</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
         public static decimal PresentValueOfAnnuity(decimal periodicPayment, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
             var presentValueOfAnnuity = periodicPayment * ((1 - DecimalPower((1 + ratePerPeriod / 100), numberOfPeriods * -1)) / (ratePerPeriod / 100));
@@ -77,6 +86,8 @@ namespace Mathos.Finance
         /// <param name="numberOfPeriods">Number of periods</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns>Future value of annuity</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
         public static decimal FutureValueOfAnnuity(decimal periodicPayment, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
             var futureValueOfAnnuity = periodicPayment * ((DecimalPower((1 + ratePerPeriod / 100), numberOfPeriods) - 1) / (ratePerPeriod / 100));
@@ -92,6 +103,8 @@ namespace Mathos.Finance
         /// <param name="numberOfPeriods">Number of periods</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
         public static decimal AnnuityPaymentPresentValue(decimal presentValue, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
             var annuityPayment = (presentValue * ratePerPeriod / 100) / (1 - DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods * -1));
@@ -107,6 +120,8 @@ namespace Mathos.Finance
         /// <param name="numberOfPeriods">Number of periods</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
         public static decimal AnnuityPaymentFutureValue(decimal futureValue, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
             var annuityPayment = (futureValue * ratePerPeriod / 100) / (DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods) - 1);
@@ -123,6 +138,8 @@ namespace Mathos.Finance
         /// <param name="numberOfPeriods">Number of periods</param>
         /// <param name="round">Determines whether the result is rounded to 2 decimal places</param>
         /// <returns>Remaining balance of an annuity</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="OverflowException">The result is outside the range of a <see cref="T:System.Decimal" />.</exception>
         public static decimal RemainingBalanceOfAnnuity(decimal originalValue, decimal payment, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
             var remaining = FutureValue(originalValue, ratePerPeriod, numberOfPeriods, false) - FutureValueOfAnnuity(payment, ratePerPeriod, numberOfPeriods, false);

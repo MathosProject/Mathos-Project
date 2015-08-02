@@ -83,9 +83,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static float Hypotenuse(float x, float y, float z)
         {
-            return Hypotenuse(
-                Hypotenuse(x, y),
-                z);
+            return Hypotenuse(Hypotenuse(x, y), z);
         }
 
         /// <summary>
@@ -214,15 +212,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static int CompareTo(this float x, float y, float epsilon)
         {
-            if (Math.Abs(epsilon) < 1)
-                return x.CompareTo(y);
-
-            if (x - y > epsilon)
-                return 1;
-            if (x - y < epsilon)
-                return -1;
-
-            return 0;
+            return Math.Abs(epsilon) < 1 ? x.CompareTo(y) : (x - y > epsilon ? 1 : (x - y < epsilon ? -1 : 0));
         }
 
         /// <summary>
@@ -307,8 +297,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static float RelativeError(float exact, float approximation)
         {
-            return AbsoluteError(exact, approximation) /
-                Math.Abs(exact);
+            return AbsoluteError(exact, approximation) / Math.Abs(exact);
         }
     }
 }

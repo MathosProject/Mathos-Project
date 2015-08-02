@@ -119,15 +119,11 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return false;
-
             var other = obj as Trapezoid;
 
-            if (other == null)
-                return false;
-
-            return Math.Abs(_baseOne - other._baseOne) < 1 && Math.Abs(_baseTwo - other._baseTwo) < 1 && Math.Abs(_height - other._height) < 1;
+            return other != null &&
+                   (Math.Abs(_baseOne - other._baseOne) < 1 && Math.Abs(_baseTwo - other._baseTwo) < 1 &&
+                    Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -137,10 +133,9 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(Trapezoid other)
         {
-            if (other == null)
-                return false;
-
-            return Math.Abs(_baseOne - other._baseOne) < 1 && Math.Abs(_baseTwo - other._baseTwo) < 1 && Math.Abs(_height - other._height) < 1;
+            return other != null &&
+                   (Math.Abs(_baseOne - other._baseOne) < 1 && Math.Abs(_baseTwo - other._baseTwo) < 1 &&
+                    Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -161,15 +156,10 @@ namespace Mathos.Geometry.Shapes
         public static bool operator ==(Trapezoid a, Trapezoid b)
         {
             // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(a, b))
-                return true;
-
             // If one is null, but not both, return false.
-            if (((object) a == null) || ((object) b == null))
-                return false;
-
-            return Math.Abs(a._baseOne - b._baseOne) < 1 && Math.Abs(a._baseTwo - b._baseTwo) < 1 &&
-                   Math.Abs(a._height - b._height) < 1;
+            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
+                   (Math.Abs(a._baseOne - b._baseOne) < 1 && Math.Abs(a._baseTwo - b._baseTwo) < 1 &&
+                    Math.Abs(a._height - b._height) < 1);
         }
 
         /// <summary>

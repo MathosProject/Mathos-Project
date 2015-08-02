@@ -16,23 +16,19 @@ namespace Mathos.Arithmetic
         {
             var res = 0;
             var bit = 1 << 14;
-            
-            while (bit > number)
-            {
-                bit >>= 2;
-            }
 
-            while (bit!=0)
+            while (bit > number)
+                bit >>= 2;
+
+            while (bit != 0)
             {
-                if (number>=res+bit)
+                if (number >= res + bit)
                 {
                     number -= res + bit;
                     res = (res >> 1) + bit;
                 }
                 else
-                {
                     res >>= 1;
-                }
 
                 bit >>= 2;
             }
@@ -47,10 +43,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static long Sqr(this int x)
         {
-            if (x <= MathematicalConstants.MaxIntSqrt)
-                return x * x;
-            
-            return Math.BigMul(x, x);
+            return x <= MathematicalConstants.MaxIntSqrt ? x*x : Math.BigMul(x, x);
         }
 
         /// <summary>
@@ -92,11 +85,11 @@ namespace Mathos.Arithmetic
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
+        /// <exception cref="OverflowException"><paramref name="n" /> is less than zero.</exception>
         public static double Pow(this int x, int n)
         {
             return n < 0 ? (Convert.ToDouble(x)).Pow(n) : x.Pow(Convert.ToUInt32(n));
@@ -127,11 +120,11 @@ namespace Mathos.Arithmetic
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
+        /// <exception cref="OverflowException"><paramref name="n" /> is less than zero.</exception>
         public static double Pow(this long x, int n)
         {
             return n < 0 ? (Convert.ToDouble(x)).Pow(n) : x.Pow(Convert.ToUInt32(n));

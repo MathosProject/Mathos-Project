@@ -34,12 +34,12 @@ namespace Mathos
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <param name="c"></param>
         /// <returns></returns>
+        /// <exception cref="ArithmeticException"><paramref name="b" /> is equal to <see cref="F:System.Double.NaN" />. </exception>
         public static Complex[] QuadraticEquationEx(double a, double b, double c)
         {
             var discriminant = Math.Pow(b, 2) - 4 * a * c;
@@ -47,8 +47,7 @@ namespace Mathos
 
             return new[] { q / a, c / q };
         }
-
-        // ComplexNumber is obsolete!!
+        
         /// <summary>
         /// 
         /// </summary>

@@ -10,11 +10,11 @@ namespace Mathos.Arithmetic
     public static class ComplexArithmetic
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="z"></param>
         /// <param name="n"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Complex[] RootsOf(Complex z, int n)
         {
             var roots = new Complex[n];
@@ -62,23 +62,23 @@ namespace Mathos.Arithmetic
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="z"></param>
         /// <param name="n"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Complex[] Roots(this Complex z, int n)
         {
             return RootsOf(z, n);
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="z"></param>
         /// <param name="n"></param>
         /// <param name="index"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Complex Root(this Complex z, int n, int index)
         {
             return RootOf(z, n, index);
@@ -123,16 +123,11 @@ namespace Mathos.Arithmetic
             }
 
             if (Math.Abs(w) < 1)
-            {
                 return Complex.Zero;
-            }
-            
             if (x >= 0)
-            {
-                return new Complex(w, y / (2 * w));
-            }
+                return new Complex(w, y/(2*w));
 
-            return y >= 0 ? new Complex(yAbs / (2 * w), w) : new Complex(yAbs / (2 * w), -w);
+            return y >= 0 ? new Complex(yAbs/(2*w), w) : new Complex(yAbs/(2*w), -w);
         }
 
         /// <summary>
@@ -197,6 +192,7 @@ namespace Mathos.Arithmetic
             {
                 if ((n & 1) != 0)
                     result = Multiply(result, z);
+
                 n >>= 1;
                 z *= z;
             } while (n > 0);
@@ -210,14 +206,12 @@ namespace Mathos.Arithmetic
         /// <param name="z"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        public static Complex Pow(this Complex z,
-            int n)
+        public static Complex Pow(this Complex z, int n)
         {
             return PowInt(z, n);
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="strcomplex"></param>
         /// <returns></returns>
@@ -265,10 +259,9 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static double Modulus(this Complex c)
         {
-            if (Math.Abs(c.Real) >= Math.Abs(c.Imaginary))
-                return Math.Abs(c.Real)*Math.Sqrt(1 + Math.Pow(c.Imaginary/c.Real, 2));
-
-            return Math.Abs(c.Imaginary)*Math.Sqrt(1 + Math.Pow(c.Real/c.Imaginary, 2));
+            return Math.Abs(c.Real) >= Math.Abs(c.Imaginary)
+                ? Math.Abs(c.Real)*Math.Sqrt(1 + Math.Pow(c.Imaginary/c.Real, 2))
+                : Math.Abs(c.Imaginary)*Math.Sqrt(1 + Math.Pow(c.Real/c.Imaginary, 2));
         }
 
         /// <summary>
@@ -278,10 +271,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static double Argument(this Complex c)
         {
-            if (Math.Abs(c.Real) < 1 && Math.Abs(c.Imaginary) < 1)
-                return 0;
-
-            return Math.Atan2(c.Imaginary, c.Real);
+            return Math.Abs(c.Real) < 1 && Math.Abs(c.Imaginary) < 1 ? 0 : Math.Atan2(c.Imaginary, c.Real);
         }
 
         /// <summary>
@@ -317,19 +307,18 @@ namespace Mathos.Arithmetic
             return outString;
         }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="z1"></param>
-    /// <param name="z2"></param>
-    /// <param name="delta"></param>
-    /// <returns></returns>
-    public static bool ApproximatelyEquals(this Complex z1,
-            Complex z2, double delta = 0.0)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="z1"></param>
+        /// <param name="z2"></param>
+        /// <param name="delta"></param>
+        /// <returns></returns>
+        public static bool ApproximatelyEquals(this Complex z1, Complex z2, double delta = 0.0)
         {
             var r = z1.Real.ApproximatelyEquals(z2.Real, delta);
             var i = z1.Imaginary.ApproximatelyEquals(z2.Imaginary, delta);
-            
+
             return r && i;
         }
     }

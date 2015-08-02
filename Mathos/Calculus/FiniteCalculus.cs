@@ -17,16 +17,15 @@ namespace Mathos.Calculus
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
+        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public static double SumWithRule(Func<double,double> function,Func<double,bool> rule, int min, int max)
         {
             double result = 0;
 
             for (var i = min; i < max; i++)
             {
-                if(rule(i))
-                {
+                if (rule(i))
                     result += function(i);
-                }
             }
 
             return result;
@@ -37,6 +36,7 @@ namespace Mathos.Calculus
         /// </summary>
         /// <param name="coeff">The coefficients for the nth sum. You can obtain them with GetCoefficientsForNthSum.</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static string GetExpressionForNthSum(double[] coeff)
         {
             return GetExpressionForNthTerm(coeff);
@@ -53,11 +53,9 @@ namespace Mathos.Calculus
             var partialSums = new double[sequence.Length];
 
             partialSums[0] = sequence[0];
-            
+
             for (var i = 1; i < sequence.Length; i++)
-            {
                 partialSums[i] = partialSums[i - 1] + sequence[i];
-            }
 
             return GetCoefficientsForNthTerm(partialSums, degree + 1);
         }
@@ -69,6 +67,7 @@ namespace Mathos.Calculus
         /// <param name="variable">The variable we should you when expressing the nth term.</param>
         /// <param name="round">The number of digits we should round to in the fractional part of the number.</param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static string GetExpressionForNthTerm(double[] coeff, char variable = 'x', int round = 10)
         {
             //double[] coeff = GetCoefficientsForNthTerm(sequence,index);
@@ -81,40 +80,27 @@ namespace Mathos.Calculus
 
                 if (Math.Abs(coeff[i]) > 0 && i < coeff.Length-1)
                 {
-
                     if (Math.Abs(coeff[i] - 1) > 1 || Math.Abs(Math.Abs(coeff[i] - 1)) < 1)
-                    {
                         expr += (coeff[i]).ToString(CultureInfo.InvariantCulture) + variable;
-                    }
                     else
-                    {
-                        expr +=  variable;
-                    }
+                        expr += variable;
 
-
-                    if(i < coeff.Length-2)
-                    {
-                        expr +=  "^" + (coeff.Length - i-1);
-                    }
+                    if (i < coeff.Length - 2)
+                        expr += "^" + (coeff.Length - i - 1);
                 }
                 else
                 {
                     if (Math.Abs(coeff[i]) > 0)
-                    {
                         expr += (coeff[i]).ToString(CultureInfo.InvariantCulture);
-                    }
-
                 }
 
 			    if (i >= coeff.Length - 1)
                     continue;
 			    
                 coeff[i + 1] = Math.Round(coeff[i + 1], round);
-			    
-                if (coeff[i +1] > 0)
-			    {
+
+			    if (coeff[i + 1] > 0)
 			        expr += "+";
-			    }
 			}
 
             return expr;
@@ -133,26 +119,15 @@ namespace Mathos.Calculus
             for (var i = 0; i < degree; i++)
             {
                 for (var j = 0; j <= degree; j++)
-                {
-                    if (j == degree)
-                    {
-                        mat[i, j] = sequence[i];
-                    }
-                    else
-                    {
-                        mat[i, j] = Get.IntPower(i + 1, (short)(degree - j - 1));
-                    }
-                }
+                    mat[i, j] = j == degree ? sequence[i] : Get.IntPower(i + 1, (short) (degree - j - 1));
             }
 
             mat.RREF();
 
             var output  = new double[degree];
 
-            for (var i = 0; i <  degree ; i++)
-            {
+            for (var i = 0; i < degree; i++)
                 output[i] = mat[i, degree];
-            }
 
             return output;
             
@@ -182,7 +157,6 @@ namespace Mathos.Calculus
             }
 
             return result;
-
         }
 
 
@@ -192,6 +166,7 @@ namespace Mathos.Calculus
         /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
         /// <param name="term">If term=-1, the next term in the sequence is going to be found. By default, you don't need to change this variable.</param>
         /// <returns></returns>
+        /// <exception cref="Exception">The sequence does not contain a recognized pattern.</exception>
         public static double GetNextTerm(double[] sequence, int term = -1)
         {
             int constantIndex;
@@ -263,12 +238,7 @@ namespace Mathos.Calculus
 
         private static double Pascal(int x, int y)
         {
-            if ((x + 1) == 1 || (y + 1) == 1 || x == y)
-            {
-                return 1;
-            }
-            
-            return Pascal(x - 1, y - 1) + Pascal(x - 1, y);
+            return (x + 1) == 1 || (y + 1) == 1 || x == y ? 1 : Pascal(x - 1, y - 1) + Pascal(x - 1, y);
         }
     }
 }

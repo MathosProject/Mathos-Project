@@ -194,12 +194,13 @@ namespace Mathos
             #endregion
 
             #region Prime Checking
-            
+
             /// <summary>
             /// Check if "num" is a prime
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
+            /// <exception cref="System.ArgumentNullException"><paramref name="num" /> is null.</exception>
             public static bool IsPrime(this short num)
             {
                 return Check.IsPrime(num);
@@ -210,6 +211,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
+            /// <exception cref="System.ArgumentNullException"><paramref name="num" /> is null.</exception>
             public static bool IsPrime(this int num)
             {
                 return Check.IsPrime(num);
@@ -220,6 +222,7 @@ namespace Mathos
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
+            /// <exception cref="System.ArgumentNullException"><paramref name="num" /> is null.</exception>
             public static bool IsPrime(this long num)
             {
                 return Check.IsPrime(num);
@@ -273,7 +276,7 @@ namespace Mathos
             /// <returns></returns>
             public static long ToPositive(this short num)
             {
-                return Arithmetic.Numbers.Convert.ToPositive(num);
+                return Convert.ToPositive(num);
             }
 
             /// <summary>
@@ -283,7 +286,7 @@ namespace Mathos
             /// <returns></returns>
             public static long ToPositive(this int num)
             {
-                return Arithmetic.Numbers.Convert.ToPositive(num);
+                return Convert.ToPositive(num);
             }
 
             /// <summary>
@@ -293,7 +296,7 @@ namespace Mathos
             /// <returns></returns>
             public static long ToPositive(this long num)
             {
-                return Arithmetic.Numbers.Convert.ToPositive(num);
+                return Convert.ToPositive(num);
             }
 
             #endregion ToPositive
@@ -307,7 +310,7 @@ namespace Mathos
             /// <returns></returns>
             public static long ToNegative(this short num)
             {
-                return Arithmetic.Numbers.Convert.ToNegative(num);
+                return Convert.ToNegative(num);
             }
             
             /// <summary>
@@ -317,7 +320,7 @@ namespace Mathos
             /// <returns></returns>
             public static long ToNegative(this int num)
             {
-                return Arithmetic.Numbers.Convert.ToNegative(num);
+                return Convert.ToNegative(num);
             }
 
             /// <summary>
@@ -327,7 +330,7 @@ namespace Mathos
             /// <returns></returns>
             public static long ToNegative(this long num)
             {
-                return Arithmetic.Numbers.Convert.ToNegative(num);
+                return Convert.ToNegative(num);
             }
 
             #endregion

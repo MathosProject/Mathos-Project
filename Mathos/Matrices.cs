@@ -33,6 +33,7 @@ namespace Mathos
         /// Constructor that takes a double number
         /// </summary>
         /// <param name="number"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void Add(double number)
         {
             Array.Resize(ref _vectorContent, _vectorContent.Length+1);
@@ -765,32 +766,35 @@ namespace Mathos
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public Matrix Cofactor()
         {
             if (Length != this[0].Length)
                 throw new Exception("A square matrix is required to calculate the cofactor");
             
             var cf = new Matrix(Length, Length);
-            
+
             for (var i = 0; i < Length; i++)
+            {
                 for (var j = 0; j < Length; j++)
                 {
                     var minor = new Matrix(this, i, j);
-                    cf[i, j] = minor.Determinant() * (int)Math.Pow(-1, i + j) * this[i, j];
+
+                    cf[i, j] = minor.Determinant()*(int) Math.Pow(-1, i + j)*this[i, j];
                 }
+            }
 
             return cf;
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public Matrix Adjugate()
         {
             if (Length != this[0].Length)
@@ -802,10 +806,10 @@ namespace Mathos
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public Matrix Inverse()
         {
             if (Length != this[0].Length)

@@ -118,11 +118,13 @@ namespace Mathos.Converter
 
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="value"></param>
         /// <param name="unit"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"><paramref name="value" /> is null.</exception>
+        /// <exception cref="FormatException"><paramref name="value" /> does not represent a number in a valid format. </exception>
+        /// <exception cref="OverflowException"><paramref name="value" /> represents a number that is less than <see cref="F:System.Double.MinValue" /> or greater than <see cref="F:System.Double.MaxValue" />. </exception>
         public static ConversionInfo From(this object value, Enum unit)
         {
             return From(unit, double.Parse(value.ToString()));
@@ -162,27 +164,25 @@ namespace Mathos.Converter
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="conversionInfo"></param>
         /// <param name="unit"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="KeyNotFoundException"></exception>
         public static double To(this ConversionInfo conversionInfo, Enum unit)
         {
             if (conversionInfo.Unit.GetType() != unit.GetType())
                 throw new ArgumentException("You must convert to the same type of unit");
-
             if (!UnitConversions.Keys.Contains(conversionInfo.Unit))
                 throw new ArgumentException("Invalid conversion unit");
-
             if (!UnitConversions.Keys.Contains(unit))
                 throw new ArgumentException("Invalid conversion unit");
 
-            if (conversionInfo.Unit.GetType() == typeof (Temperature))
-                return TemperatureConversion.ConvertTemperature(conversionInfo, unit);
-
-            return conversionInfo.Value / UnitConversions[conversionInfo.Unit] * UnitConversions[unit];
+            return conversionInfo.Unit.GetType() == typeof (Temperature)
+                ? TemperatureConversion.ConvertTemperature(conversionInfo, unit)
+                : conversionInfo.Value/UnitConversions[conversionInfo.Unit]*UnitConversions[unit];
         }
 
         //private static double ConvertTempurature(ConversionInfo conversionInfo, Enum unit)
@@ -234,8 +234,7 @@ namespace Mathos.Converter
             if (fromBase < 2 || fromBase > 36)
                 throw new ArgumentOutOfRangeException("fromBase", "Value must be between 2 and 36");
 
-            value = value.Trim();
-            value = value.ToLower();
+            value = value.Trim().ToLower();
 
             long decoded = 0;
             var charArray = value.ToCharArray();
@@ -245,8 +244,10 @@ namespace Mathos.Converter
             for (var i = 0; i < charArray.Length; i++)
             {
                 if (Array.IndexOf(BaseArray, charArray[i]) >= fromBase)
+                {
                     throw new ArgumentOutOfRangeException("value",
                         "Input contains characters that are not in the base set");
+                }
 
                 // find the index in the array that the char resides
                 var valueindex = Array.IndexOf(BaseArray, charArray[i]);

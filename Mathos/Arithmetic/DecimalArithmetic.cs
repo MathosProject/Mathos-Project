@@ -1,4 +1,6 @@
-﻿namespace Mathos.Arithmetic
+﻿using System;
+
+namespace Mathos.Arithmetic
 {
     /// <summary>
     /// 
@@ -11,6 +13,7 @@
         /// <param name="x">The x value</param>
         /// <param name="degreeOfTaylorPolynomial">The degree of accuracy</param>
         /// <returns></returns>
+        /// <exception cref="OverflowException">The return value (that is, the quotient) is less than <see cref="F:System.Decimal.MinValue" /> or greater than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal Ln(decimal x, int degreeOfTaylorPolynomial = 1000)
         {
             decimal val = 0;
@@ -25,15 +28,11 @@
 
                     val += vec;
                 }
-
             }
             else
             {
                 for (var i = 1; i < degreeOfTaylorPolynomial; i++)
-                {
-
-                    val += decimal.Divide(1, i) * Pow((x - 1) / x, i);
-                }
+                    val += decimal.Divide(1, i)*Pow((x - 1)/x, i);
             }
 
             return val;
@@ -58,9 +57,7 @@
                     decimal val = 1;
 
                     for (var i = 0; i < exp; i++)
-                    {
                         val *= x;
-                    }
 
                     return val;
                 }

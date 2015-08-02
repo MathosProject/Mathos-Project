@@ -17,6 +17,7 @@ namespace Mathos.Statistics
         /// Constructor that takes "nDice" as the number of dice and goes upto 6 dice
         /// </summary>
         /// <param name="nDice"></param>
+        /// <exception cref="DivideByZeroException"></exception>
         public DiceSimulator(int nDice)
         {
             _numDice = nDice;
@@ -46,6 +47,7 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="nDiceIndex"></param>
         /// <returns></returns>
+        /// <exception cref="DivideByZeroException"></exception>
         public int Roll(int nDiceIndex)
         {
             System.Diagnostics.Trace.TraceInformation("  Seedval: " + _seed);
@@ -90,6 +92,7 @@ namespace Mathos.Statistics
         /// Rolls the "nDice" and then subtracts them (using sequency ABS diff)
         /// </summary>
         /// <returns></returns>
+        /// <exception cref="OverflowException"></exception>
         public int DiffDiceRoll()
         {
             var nSub = 0;

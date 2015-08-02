@@ -101,6 +101,7 @@ namespace Mathos.Theory
         /// </summary>
         /// <param name="match">The expression to match to.</param>
         /// <returns>This set with the matched item removed.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="match" /> is null.</exception>
         public Set<T> RemoveMatch(Predicate<T> match)
         {
             Elements.RemoveWhere(match);
@@ -113,6 +114,7 @@ namespace Mathos.Theory
         /// </summary>
         /// <param name="b">The second set.</param>
         /// <returns>this ∪ b.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="b" /> is null.</exception>
         public Set<T> Union(Set<T> b)
         {
             var ret = new Set<T>();
@@ -128,6 +130,7 @@ namespace Mathos.Theory
         /// </summary>
         /// <param name="b">The second set.</param>
         /// <returns>this ∩ b.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="b" /> is null.</exception>
         public Set<T> Intersection(Set<T> b)
         {
             var ret = new Set<T>();
@@ -143,6 +146,7 @@ namespace Mathos.Theory
         /// </summary>
         /// <param name="b">The second set.</param>
         /// <returns>this \ b.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="b" /> is null.</exception>
         public Set<T> Difference(Set<T> b)
         {
             var ret = new Set<T>();
@@ -158,19 +162,21 @@ namespace Mathos.Theory
         /// </summary>
         /// <param name="b">The second set.</param>
         /// <returns>Either (this △ b) or (this ⊖ b).</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="b" /> is null.</exception>
         public Set<T> Symmetric(Set<T> b)
         {
             var union = Union(b);
             var inter = Intersection(b);
 
             return union.Difference(inter);
-        }    
+        }
 
         /// <summary>
         /// Is this set a subset of b?
         /// </summary>
         /// <param name="b">The base set.</param>
         /// <returns>this ⊆ b.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="b" /> is null.</exception>
         public bool IsSubset(Set<T> b)
         {
             return Elements.IsSubsetOf(b.Elements);
@@ -181,6 +187,7 @@ namespace Mathos.Theory
         /// </summary>
         /// <param name="b">The base set.</param>
         /// <returns>this ⊂ b.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="b" /> is null.</exception>
         public bool IsProperSubset(Set<T> b)
         {
             return Elements.IsProperSubsetOf(b.Elements);
@@ -200,6 +207,14 @@ namespace Mathos.Theory
             return Elements.GetEnumerator();
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+        /// </summary>
+        /// <returns>
+        /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+        /// </returns>
+        /// <param name="obj">The object to compare with the current object. </param><filterpriority>2</filterpriority>
+        /// <exception cref="ArgumentNullException">Either <paramref name="obj" /> or the set to compare to is null.</exception>
         public override bool Equals(object obj)
         {
             if (!(obj is Set<T>))
@@ -208,11 +223,27 @@ namespace Mathos.Theory
             return ((Set<T>) obj).Elements.All(arg => Elements.Contains(arg));
         }
 
+        /// <summary>
+        /// Serves as a hash function for a particular type. 
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
         public override int GetHashCode()
         {
-            return (Elements != null ? Elements.GetHashCode() : 0);
+            return Elements != null ? Elements.GetHashCode() : 0;
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A string that represents the current object.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public override string ToString()
         {
             var str = Elements.Aggregate("{", (current, element) => current + (element.ToString() + ","));

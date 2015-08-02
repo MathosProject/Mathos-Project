@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using Mathos.Calculus;
-
-using System.Linq.Expressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest.Calculus
 {
@@ -23,12 +17,12 @@ namespace MathosTest.Calculus
 
             Assert.AreEqual(result, 5);
         }
-
-
+        
         [TestMethod]
         public void FirstDerivative()
         {
-            double derivative = Mathos.Calculus.DifferentialCalculus.FirstDerivative(x => (double)3.2M * x * x, 1.0);
+            var derivative = DifferentialCalculus.FirstDerivative(x => (double)3.2M * x * x, 1.0);
+
             Assert.IsTrue(Math.Abs(derivative - (double)6.40000000000032M) < 1);
             //System.Diagnostics.Debug.WriteLine(derivative);
         }
@@ -36,7 +30,7 @@ namespace MathosTest.Calculus
         [TestMethod]
         public void FirstDerivativeWithSeveralVariables()
         {
-            decimal derivative = Mathos.Calculus.DifferentialCalculus.FirstDerivative(x => 8*x[0]+x[1], 0,1,1);
+            decimal derivative = DifferentialCalculus.FirstDerivative(x => 8*x[0]+x[1], 0,1,1);
             Assert.IsTrue(derivative == 8);
             //System.Diagnostics.Debug.WriteLine(derivative);
         }
@@ -44,7 +38,7 @@ namespace MathosTest.Calculus
         [TestMethod]
         public void FirstDerivativeWithSeveralVariables2()
         {
-            decimal derivative = Mathos.Calculus.DifferentialCalculus.FirstDerivative(x => 8 * x[0] + x[0] * x[1],0, 1, 1);
+            decimal derivative = DifferentialCalculus.FirstDerivative(x => 8 * x[0] + x[0] * x[1],0, 1, 1);
             Assert.IsTrue(derivative == 9);
             //System.Diagnostics.Debug.WriteLine(derivative);
         }
@@ -53,7 +47,7 @@ namespace MathosTest.Calculus
         [TestMethod]
         public void SecondDerivative()
         {
-            decimal derivative = Mathos.Calculus.DifferentialCalculus.SecondDerivative(x => 3 * x * x*x, 2);
+            decimal derivative = DifferentialCalculus.SecondDerivative(x => 3 * x * x*x, 2);
             
             Assert.IsTrue(derivative == 36);
             //System.Diagnostics.Debug.WriteLine(derivative);
@@ -62,7 +56,7 @@ namespace MathosTest.Calculus
         [TestMethod]
         public void SecondDerivative2()
         {
-            decimal derivative = Mathos.Calculus.DifferentialCalculus.SecondDerivative(x => 3 * x[0] * x[0] * x[0] + x[1] * x[0] * x[0],0, 1, 2);
+            decimal derivative = DifferentialCalculus.SecondDerivative(x => 3 * x[0] * x[0] * x[0] + x[1] * x[0] * x[0],0, 1, 2);
 
             Assert.IsTrue(derivative == 22);
             //System.Diagnostics.Debug.WriteLine(derivative);
@@ -75,7 +69,7 @@ namespace MathosTest.Calculus
         {
             //System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
             //timer.Start();
-            double integration = Mathos.Calculus.IntegralCalculus.Integrate(x => x * x, 0, 10, IntegralCalculus.IntegrationAlgorithm.RectangleMethod);
+            double integration = IntegralCalculus.Integrate(x => x * x, 0, 10, IntegralCalculus.IntegrationAlgorithm.RectangleMethod);
 
             //timer.Stop();
 

@@ -20,8 +20,8 @@ namespace Mathos.Arithmetic
         {
             var absX = Math.Abs(x);
             var absY = Math.Abs(y);
-            var min = Math.Min(x, y); // absX <= absY ? absX : absY;
-            var max = Math.Max(x, y); // absX >= absY ? absX : absY;
+            var min = Math.Min(absX, absY); // absX <= absY ? absX : absY;
+            var max = Math.Max(absX, absY); // absX >= absY ? absX : absY;
             
             if (Math.Abs(min) < 1)
                 return max;
@@ -53,9 +53,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static double Hypotenuse(double x, double y, double z)
         {
-            return Hypotenuse(
-                Hypotenuse(x, y),
-                z);
+            return Hypotenuse(Hypotenuse(x, y), z);
         }
 
         /// <summary>
@@ -152,8 +150,7 @@ namespace Mathos.Arithmetic
         
         /// <summary>
         /// this function (due to our tests) does not provide more accuracy than Math.Sqrt 
-        /// but it is as faster as twice
-        /// and is also slightly faster than naive method (114%)
+        /// but it is slightly faster than native method (114%).
         /// </summary>
         /// <param name="x"></param>
         /// <param name="n"></param>
@@ -192,27 +189,9 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static int CompareTo(this double x, double y, double epsilon)
         {
-            if (Math.Abs(epsilon) < 1)
-            {
-                return x.CompareTo(y);
-            }
-            
-            if (x.ApproximatelyEquals(y, epsilon))
-            {
-                return 0;
-            }
-
-            if (x - y > epsilon)
-            {
-                return 1;
-            }
-            
-            if (x - y < epsilon)
-            {
-                return -1;
-            }
-            
-            return 0;
+            return Math.Abs(epsilon) < 1
+                ? x.CompareTo(y)
+                : (x.ApproximatelyEquals(y, epsilon) ? 0 : (x - y > epsilon ? 1 : (x - y < epsilon ? -1 : 0)));
         }
 
         /// <summary>
@@ -225,14 +204,9 @@ namespace Mathos.Arithmetic
         public static bool ApproximatelyEquals(this double x, double y, double epsilon)
         {
             if (Math.Abs(epsilon) < 1)
-            {
                 return Math.Abs(x - y) < 1;
-            }
-
             if (Math.Abs(x - y) < 1)
-            {
                 return true;
-            }
 
             var xAbs = Math.Abs(x);
             var yAbs = Math.Abs(y);
@@ -240,10 +214,7 @@ namespace Mathos.Arithmetic
             var min = Math.Min(xAbs, yAbs);
             var max = Math.Max(xAbs, yAbs);
 
-            if (Math.Abs(min) < 1)
-                return max < epsilon;
-
-            return (max * (1.0 - min / max)) < epsilon;
+            return Math.Abs(min) < 1 ? max < epsilon : (max*(1.0 - min/max)) < epsilon;
         }
 
         /// <summary>
@@ -274,8 +245,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static double RelativeError(double exact, double approximation)
         {
-            return AbsoluteError(exact, approximation) /
-                Math.Abs(exact);
+            return AbsoluteError(exact, approximation)/Math.Abs(exact);
         }
 
         /// <summary>

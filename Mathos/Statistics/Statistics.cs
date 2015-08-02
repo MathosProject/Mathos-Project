@@ -53,24 +53,16 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns a list of modes</returns>
+        /// <exception cref="ArgumentNullException">An item in <paramref name="list" /> is null.</exception>
+        /// <exception cref="InvalidOperationException">The default comparer <see cref="P:System.Collections.Generic.Comparer`1.Default" /> cannot find an implementation of the <see cref="T:System.IComparable`1" /> generic interface or the <see cref="T:System.IComparable" /> interface for type <see cref="decimal" />.</exception>
         public static List<decimal> Mode(this List<decimal> list)
         {
             var dicList = new Dictionary<decimal, int>();
 
-            foreach (var d in list)
-            {
-                int value;
+            int value;
 
-                if (dicList.TryGetValue(d, out value))
-                {
-                    // TODO: Change redundant increment
-                    value++;
-                }
-                else
-                {
-                    dicList[d] = 1;
-                }
-            }
+            foreach (var d in list.Where(d => !dicList.TryGetValue(d, out value)))
+                dicList[d] = 1;
 
             var listOfModes = new List<decimal>();
             decimal currentRepeatCount = 0;
@@ -84,9 +76,7 @@ namespace Mathos.Statistics
                     currentRepeatCount = k.Value;
                 }
                 else if (k.Value == currentRepeatCount)
-                {
                     listOfModes.Add(k.Key);
-                }
             }
 
             return SortList(listOfModes);
@@ -97,17 +87,18 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the median</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="InvalidOperationException">The default comparer <see cref="P:System.Collections.Generic.Comparer`1.Default" /> cannot find an implementation of the <see cref="T:System.IComparable`1" /> generic interface or the <see cref="T:System.IComparable" /> interface for type <see cref="decimal" />.</exception>
         public static decimal Median(this List<decimal> list)
         {
             var listSorted = SortList(list);
             var listLength = listSorted.Count;
 
-            if (0 == listLength)
-            {
+            if (listLength == 0)
                 return 0;
-            }
 
-            if (0 != listLength%2) return listSorted[((listLength + 1)/2) - 1];
+            if (0 != listLength%2)
+                return listSorted[((listLength + 1)/2) - 1];
             
             var leftMedian = listSorted[(listLength / 2) - 1]; //subtracting 1 accomdates 0-based index
             var rightMedian = listSorted[(listLength / 2)];
@@ -120,6 +111,8 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the variance</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal Variance(this List<decimal> list)
         {
             var meanOfList = Mean(list);
@@ -129,10 +122,11 @@ namespace Mathos.Statistics
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal StandardDeviation(this List<decimal> list)
         {
             var variance = Variance(list);
@@ -145,12 +139,11 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list"></param>
         /// <returns>Returns the standard error of a mean</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="OverflowException">The number of elements in <paramref name="list" /> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         public static decimal StandardError(this List<decimal> list)
         {
-            if (list.Any())
-                return (decimal)(Math.Sqrt((double)Variance(list)) / Math.Sqrt(list.Count()));
-            
-            return 0;
+            return list.Any() ? (decimal) (Math.Sqrt((double) Variance(list))/Math.Sqrt(list.Count())) : 0;
         }
 
         /// <summary>
@@ -158,14 +151,10 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the geometric mean</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
         public static decimal GeometricMean(this List<decimal> list)
         {
-            if (list.Count > 0)
-            {
-                return (decimal)Math.Pow((double)ProductOfListElements(list), 1 / (double)list.Count);
-            }
-            
-            return 0;
+            return list.Count > 0 ? (decimal) Math.Pow((double) ProductOfListElements(list), 1/(double) list.Count) : 0;
         }
 
         /// <summary>
@@ -173,14 +162,11 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the harmonic mean</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
+        /// <exception cref="OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal HarmonicMean(this List<decimal> list)
         {
-            if (list.Count > 0)
-            {
-                return list.Count / SumOfReciprocalsOfListElements(list);
-            }
-            
-            return 0;
+            return list.Count > 0 ? list.Count/SumOfReciprocalsOfListElements(list) : 0;
         }
 
         /// <summary>
@@ -225,6 +211,11 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="InvalidOperationException"><paramref name="list" /> contains no elements.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
+        /// <exception cref="OverflowException">The number of elements in <paramref name="list" /> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         public static decimal InterQuartileRange(this List<decimal> list)
         {
             return UpperQuartile(list) - LowerQuartile(list);
@@ -269,9 +260,11 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns a sorted list</returns>
+        /// <exception cref="InvalidOperationException">The default comparer <see cref="P:System.Collections.Generic.Comparer`1.Default" /> cannot find an implementation of the <see cref="T:System.IComparable`1" /> generic interface or the <see cref="T:System.IComparable" /> interface for type <see cref="decimal" />.</exception>
         public static List<decimal> SortList(this List<decimal> list)
         {
             list.Sort();
+
             return list;
         }
 
@@ -280,6 +273,8 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the sum of list elements</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
+        /// <exception cref="OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal SumOfListElements(this List<decimal> list)
         {
             return list.Sum();
@@ -290,14 +285,10 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the product of list items</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
         public static decimal ProductOfListElements(this List<decimal> list)
         {
-            if (list.Count > 0)
-            {
-                return list.Aggregate<decimal, decimal>(1, (current, d) => current*d);
-            }
-            
-            return 0;
+            return list.Count > 0 ? list.Aggregate<decimal, decimal>(1, (current, d) => current*d) : 0;
         }
 
         /// <summary>
@@ -305,14 +296,11 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the sum of reciprocals of list elements</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
+        /// <exception cref="OverflowException">The sum is larger than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal SumOfReciprocalsOfListElements(this List<decimal> list)
         {
-            if (list.Count > 0)
-            {
-                return list.Sum(d => 1/d);
-            }
-            
-            return 0;
+            return list.Count > 0 ? list.Sum(d => 1/d) : 0;
         }
 
         /// <summary>
@@ -321,6 +309,11 @@ namespace Mathos.Statistics
         /// <param name="list">List of numbers to calculate the percentile from</param>
         /// <param name="p">Percentile to calculate, ranging from zero to one</param>
         /// <returns>Percentile if the list has elements and p is between 0 and 1, otherwise returns zero</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
+        /// <exception cref="InvalidOperationException"><paramref name="list" /> contains no elements.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="OverflowException">The number of elements in <paramref name="list" /> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         public static decimal Percentile(this List<decimal> list, double p)
         {
             if (p < 0 || p > 1 || !list.Any())
@@ -343,6 +336,11 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the 25th percentile</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
+        /// <exception cref="InvalidOperationException"><paramref name="list" /> contains no elements.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="OverflowException">The number of elements in <paramref name="list" /> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         public static decimal LowerQuartile(this List<decimal> list)
         {
             return Percentile(list, 0.25);
@@ -353,6 +351,11 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="list">A list of numbers</param>
         /// <returns>Returns the 75th percentile</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="list" /> is null.</exception>
+        /// <exception cref="InvalidOperationException"><paramref name="list" /> contains no elements.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="OverflowException">The number of elements in <paramref name="list" /> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
         public static decimal UpperQuartile(this List<decimal> list)
         {
             return Percentile(list, 0.75);
@@ -365,6 +368,11 @@ namespace Mathos.Statistics
         /// <param name="y">A list of numbers</param>
         /// <returns>Returns the Pearson product-mean correlation coefficient of a sample</returns>
         /// <remarks>An ArgumentException will be thrown if x and y are of different size</remarks>
+        /// <exception cref="ArgumentNullException">Either <paramref name="x" /> or <paramref name="y"/> is null.</exception>
+        /// <exception cref="OverflowException">Either the number of elements in <paramref name="x" /> or <paramref name="y" /> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
+        /// <exception cref="ArgumentException">This method expects the x and y lists to be of equal size</exception>
+        /// <exception cref="InvalidOperationException">Either <paramref name="x" /> or <paramref name="y"/> contains no elements.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static decimal PearsonR(this List<decimal> x, List<decimal> y)
         {
             if (x.Count() != y.Count())
@@ -447,6 +455,8 @@ namespace Mathos.Statistics
             /// Gets the results as a string.
             /// </summary>
             /// <returns></returns>
+            /// <exception cref="ArgumentNullException"></exception>
+            /// <exception cref="FormatException">The index of a format item is not zero or one.</exception>
             public override string ToString()
             {
                 return string.Format("y={0}+{1}x", Intercept, B);
@@ -467,6 +477,9 @@ namespace Mathos.Statistics
             /// </summary>
             /// <param name="x"></param>
             /// <returns></returns>
+            /// <exception cref="ArgumentOutOfRangeException"></exception>
+            /// <exception cref="ArgumentNullException"><paramref name="x" /> is null.</exception>
+            /// <exception cref="OverflowException">The number of elements in <paramref name="x" /> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
             public List<decimal> Predict(List<decimal> x)
             {
                 var predictedValues = new List<decimal>(x.Count());
@@ -502,6 +515,11 @@ namespace Mathos.Statistics
         /// <param name="y">dependent variable</param>
         /// <returns>regression results if x and y have elements, otherwise returns null</returns>
         /// <remarks>An ArgumentException will be thrown if x and y are of different size</remarks>
+        /// <exception cref="ArgumentNullException">Either <paramref name="x" /> or <paramref name="y"/> is null.</exception>
+        /// <exception cref="OverflowException">The number of elements in either <paramref name="x" /> or <paramref name="y"/> is larger than <see cref="F:System.Int32.MaxValue" />.</exception>
+        /// <exception cref="ArgumentException">This method expects the x and y lists to be of equal size</exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="InvalidOperationException">Either <paramref name="x" /> or <paramref name="y" /> contains no elements.</exception>
         public static LinearRegressionResults LinearRegression(List<decimal> x, List<decimal> y)
         {
             if (x.Count() != y.Count())

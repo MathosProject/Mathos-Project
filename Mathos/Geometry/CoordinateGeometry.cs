@@ -17,6 +17,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="coordinateA">The first coordinate</param>
             /// <param name="coordinateB">The second coordinate</param>
             /// <returns></returns>
+            /// <exception cref="ArgumentException"></exception>
             public static Fraction Slope(Coordinate coordinateA, Coordinate coordinateB)
             {
                 try
@@ -25,7 +26,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                 }
                 catch (Exception e)
                 {
-                    throw new ArgumentException(e.Message);
+                    throw new ArgumentException(e.Message, e);
                 }
             }
 
@@ -35,15 +36,16 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="coordinateA">The first coordinate</param>
             /// <param name="coordinateB">The second coordinate</param>
             /// <returns></returns>
+            /// <exception cref="ArgumentException">Error when calculating the distance.</exception>
             public static decimal Distance(Coordinate coordinateA, Coordinate coordinateB)
             {
                 try
                 {
                     return Convert.ToDecimal(Math.Sqrt(Math.Pow((double)coordinateA.X.ToDecimal() - (double)coordinateB.X.ToDecimal(), 2) + Math.Pow((double)coordinateA.Y.ToDecimal() - (double)coordinateB.Y.ToDecimal(), 2)));
                 }
-                catch
+                catch (Exception e)
                 {
-                    throw new ArgumentException("Error when calculating the distance.");
+                    throw new ArgumentException("Error when calculating the distance.", e);
                 }
             }
 
@@ -53,6 +55,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="coordinateA">The first coordinate</param>
             /// <param name="coordinateB">The second coordinate</param>
             /// <returns></returns>
+            /// <exception cref="ArgumentException">Error when calculating the MidPoint</exception>
             public static Coordinate MidPoint(Coordinate coordinateA, Coordinate coordinateB)
             {
                 try
@@ -60,9 +63,9 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                     return new Coordinate((coordinateA.X + coordinateB.X) / 2,
                                           (coordinateA.Y + coordinateB.Y) / 2);
                 }
-                catch
+                catch (Exception e)
                 {
-                    throw new ArgumentException("Error when calculating the MidPoint");
+                    throw new ArgumentException("Error when calculating the MidPoint", e);
                 }
             }
 
@@ -77,9 +80,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                 var system = new ulong[dimension.Y.ToInt64 (), dimension.X.ToInt64()];
 
                 foreach (var t in coordinates)
-                {
                     system[t.Y.ToInt64(), t.X.ToInt64()] = 1;
-                }
 
                 return system;
             }
@@ -90,26 +91,17 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
         /// </summary>
         public struct Coordinate
         {
-            /* Proporties */
-            private Fraction _x; // the hidden x coordinate
+            /* Properties */
+            
             /// <summary>
             /// The X coordinate
             /// </summary>
-            public Fraction X
-            {
-                get { return _x; }
-                set { _x = value; }
-            }
+            public Fraction X { get; set; }
 
-            private Fraction _y; // the hidden y coordinate
             /// <summary>
             /// The Y coordinate
             /// </summary>
-            public Fraction Y
-            {
-                get { return _y; }
-                set { _y = value; }
-            }
+            public Fraction Y { get; set; }
 
 
             /* Constructors, etc */
@@ -121,8 +113,8 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="y">The Y coordinate</param>
             public Coordinate(long x, long y) // our constructor
             {
-                _x = new Fraction(x);
-                _y = new Fraction(y);
+                X = new Fraction(x);
+                Y = new Fraction(y);
             }
             /// <summary>
             /// Declaring a new coordinate.
@@ -131,13 +123,16 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <param name="y">The Y coordinate</param>
             public Coordinate(Fraction x, Fraction y)
             {
-                _x = x;
-                _y = y;
+                X = x;
+                Y = y;
             }
+
             /// <summary>
             /// Declaring a new coordinate.
             /// </summary>
             /// <param name="coordinateInStringForm">The coordinate in a string</param>
+            /// <exception cref="ArgumentNullException"></exception>
+            /// <exception cref="InvalidCoordinateFormat"></exception>
             public Coordinate(string coordinateInStringForm) // overloading constructor
             {
                 if (coordinateInStringForm.Contains(",")) //checking if the separator exists
@@ -145,12 +140,12 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                     try
                     {
                         coordinateInStringForm = coordinateInStringForm.Trim(' ', '(', ')'); // trim away unnessesary stuff
-                        _x = new Fraction(Convert.ToInt64(coordinateInStringForm.Substring(0, coordinateInStringForm.IndexOf(','))));
-                        _y = new Fraction(Convert.ToInt64(coordinateInStringForm.Substring(coordinateInStringForm.IndexOf(',') + 1)));
+                        X = new Fraction(Convert.ToInt64(coordinateInStringForm.Substring(0, coordinateInStringForm.IndexOf(','))));
+                        Y = new Fraction(Convert.ToInt64(coordinateInStringForm.Substring(coordinateInStringForm.IndexOf(',') + 1)));
                     }
-                    catch
+                    catch (Exception e)
                     {
-                        throw new InvalidCoordinateFormat();
+                        throw new InvalidCoordinateFormat("See the inner exception for details.", e);
                     }
                 }
                 else
@@ -159,8 +154,8 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                 }
             }
 
+            /* Overrides */
 
-            /* overriding ...*/
             /// <summary>
             /// Convert a coordinate into a string
             /// </summary>
@@ -168,7 +163,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             public override string ToString()
             {
                 //Returing the coordinate in a string form
-                return "(" + _x.ToString() + "," + _y.ToString() + ")";
+                return "(" + X.ToString() + "," + Y.ToString() + ")";
             }
 
             /// <summary>
@@ -190,6 +185,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// Gets the hashcode of the coordinate.
             /// </summary>
             /// <returns></returns>
+            /// <exception cref="DenominatorNullException">Thrown if the denominator is null.</exception>
             public override int GetHashCode()
             {
                 return X.GetHashCode() ^ Y.GetHashCode();
@@ -197,6 +193,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
 
 
             /* Struct converters */
+
             /// <summary>
             /// 
             /// </summary>
@@ -205,9 +202,11 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <exception cref="InvalidCoordinateFormat"></exception>
             public static implicit operator Coordinate(string value)
             {
-                if (!value.Contains(",")) throw new InvalidCoordinateFormat();
+                if (!value.Contains(","))
+                    throw new InvalidCoordinateFormat();
                 
                 // if it is a string input
+
                 try
                 {
                     value = value.Trim(' ', '(', ')'); // trim away unnessesary stuff
@@ -227,6 +226,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             }
 
             /* Struct operators */
+
             /// <summary>
             /// The equalto operator
             /// </summary>
@@ -235,7 +235,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <returns></returns>
             public static bool operator ==(Coordinate coordinate1, Coordinate coordinate2)
             {
-                return ((coordinate1.X == coordinate2.X) && (coordinate1.Y == coordinate2.Y));
+                return (coordinate1.X == coordinate2.X) && (coordinate1.Y == coordinate2.Y);
             }
 
             /// <summary>

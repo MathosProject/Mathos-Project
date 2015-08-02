@@ -91,19 +91,9 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-
             var other = obj as RightCircularCone;
-            
-            if (other == null)
-            {
-                return false;
-            }
 
-            return _circleBase == other._circleBase && Math.Abs(_height - other._height) < 1;
+            return other != null && (_circleBase == other._circleBase && Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -113,12 +103,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(RightCircularCone other)
         {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return _circleBase == other._circleBase && Math.Abs(_height - other._height) < 1;
+            return other != null && (_circleBase == other._circleBase && Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -139,14 +124,9 @@ namespace Mathos.Geometry.Shapes
         public static bool operator ==(RightCircularCone a, RightCircularCone b)
         {
             // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(a, b))
-                return true;
-
             // If one is null, but not both, return false.
-            if (((object)a == null) || ((object)b == null))
-                return false;
-
-            return a._circleBase == b._circleBase && Math.Abs(a._height - b._height) < 1;
+            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
+                   (a._circleBase == b._circleBase && Math.Abs(a._height - b._height) < 1);
         }
 
         /// <summary>

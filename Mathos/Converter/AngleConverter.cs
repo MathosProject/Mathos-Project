@@ -11,6 +11,7 @@ namespace Mathos.Converter
         /// <summary>
         /// Static method that returns angle imputed as "degrees.minutesseconds" in to decimal degree
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static double AngleToDecimalAngle(double angle = 0.0000)
         {
             var degrees = Math.Truncate(angle);
@@ -25,6 +26,9 @@ namespace Mathos.Converter
         /// <summary>
         /// Static method that returns angle imputed as decimal degree in to degree ("degree.minutesseconds")
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <exception cref="FormatException"></exception>
+        /// <exception cref="OverflowException"></exception>
         public static double DecimalAngleToAngle(double angle = 0.000000)
         {
             var degrees = Math.Truncate(angle);
@@ -34,23 +38,15 @@ namespace Mathos.Converter
             var stringDegrees = Convert.ToString(degrees, CultureInfo.InvariantCulture);
             var stringMinutes = Convert.ToString(minutes, CultureInfo.InvariantCulture);
             var stringSeconds = Convert.ToString(seconds, CultureInfo.InvariantCulture);
-            
+
             if (Convert.ToDouble(minutes) < 0)
-            {
-                stringMinutes = Convert.ToString(Convert.ToDouble(stringMinutes) * (-1), CultureInfo.InvariantCulture);
-            }
+                stringMinutes = Convert.ToString(Convert.ToDouble(stringMinutes)*(-1), CultureInfo.InvariantCulture);
             if (Convert.ToDouble(minutes) < 10 && Convert.ToDouble(minutes) >= 0) //if minutes are less than then then before value of minutes add zero
-            {
                 stringMinutes = "0" + stringMinutes;
-            }
             if (Convert.ToDouble(stringSeconds) < 0)
-            {
-                stringSeconds = Convert.ToString(Convert.ToDouble(stringSeconds) * (-1), CultureInfo.InvariantCulture);
-            }
+                stringSeconds = Convert.ToString(Convert.ToDouble(stringSeconds)*(-1), CultureInfo.InvariantCulture);
             if (Convert.ToDouble(stringSeconds) < 10 && Convert.ToDouble(stringSeconds) >= 0) //if seconds are less than then then before value of seconds add zero
-            {
                 stringSeconds = "0" + stringSeconds;
-            }
 
             var ugaoB = Convert.ToString(stringDegrees) + "." + Convert.ToString(stringMinutes) + Convert.ToString(stringSeconds);
             
@@ -58,15 +54,18 @@ namespace Mathos.Converter
             
             return angle;
         }
+
         /// <summary>
         /// Static method that returns angle imputed as "degrees.minutesseconds" in to radians
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="angle"/> is out of range.</exception>
         public static double AngleToRadians(double angle = 0.0000)
         {
             angle = AngleToDecimalAngle(angle);
 
             return ((angle * Math.PI / 180));
         }
+
         /// <summary>
         /// Static method that returns angle imputed as radians in to decimal degrees
         /// </summary>
@@ -74,9 +73,13 @@ namespace Mathos.Converter
         {
             return angle * 180 / Math.PI;
         }
+
         /// <summary>
         /// Static method that returns angle imputed as radians in to decimal degrees
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="angle"/> is out of range.</exception>
+        /// <exception cref="FormatException"></exception>
+        /// <exception cref="OverflowException"></exception>
         public static double RadiansToAngle(double angle = 0.000000)
         {
             angle = angle * 180 / Math.PI;

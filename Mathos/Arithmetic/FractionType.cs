@@ -12,19 +12,12 @@ namespace Mathos.Arithmetic
         /// </summary>
         public struct Fraction : Numbers.IRationalNumber
         {
-            /* Proporties */
-            private long _numerator; // the hidden x coordinate
+            /* Properties */
 
             /// <summary>
             /// Gets or sets the "_numerator"
             /// </summary>
-            public long Numerator
-            {
-                get { return _numerator; }
-                set { _numerator = value; }
-            }
-
-            private long _denominator; // the hidden y coordinate
+            public long Numerator { get; set; }
 
             /// <summary>
             /// Gets or sets the "_denominator"
@@ -40,7 +33,7 @@ namespace Mathos.Arithmetic
                         if (_denominator < 0) // read more at void fractionChecker
                         {
                             _denominator = value * -1;
-                            _numerator = _numerator * -1;
+                            Numerator = Numerator * -1;
                         }
                         else
                         {
@@ -52,6 +45,8 @@ namespace Mathos.Arithmetic
                 }
             }
 
+            private long _denominator; // the hidden y coordinate
+
             void FractionChecker()
             {
                 // fractionCheker is designed to avoid fractions like 2/-3 (better: -2/3)
@@ -59,26 +54,33 @@ namespace Mathos.Arithmetic
                 if (_denominator >= 0)
                     return;
                 
-                _numerator = _numerator * -1;
+                Numerator = Numerator * -1;
                 _denominator = _denominator * -1;
             }
+            
+            /// <exception cref="DenominatorNullException">Thrown if the given fraction's denominator is null.</exception>
+            public Fraction(Fraction f) : this()
+            {
+                Numerator = f.Numerator;
+                Denominator = f.Denominator;
+            }
 
             /// <summary>
             /// 
             /// </summary>
-            /// <param name="nominator"></param>
-            public Fraction(long nominator) : this(nominator, 1) // our constructor
+            /// <param name="numerator"></param>
+            public Fraction(long numerator) : this(numerator, 1) // our constructor
             {
             }
 
             /// <summary>
             /// 
             /// </summary>
-            /// <param name="nominator"></param>
+            /// <param name="numerator"></param>
             /// <param name="denominator"></param>
-            public Fraction(long nominator, long denominator) // our constructor
+            public Fraction(long numerator, long denominator) // our constructor
             {
-                _numerator = nominator;
+                Numerator = numerator;
                 _denominator = denominator;
 
                 FractionChecker(); //cheking
@@ -96,10 +98,12 @@ namespace Mathos.Arithmetic
             }
 
             /// <summary>
-            /// 
             /// </summary>
             /// <param name="fractionInStringForm"></param>
             /// <exception cref="InvalidFractionFormatException"></exception>
+            /// <exception cref="OverflowException"><paramref name="fractionInStringForm" /> represents a number that is less than <see cref="F:System.Int64.MinValue" /> or greater than <see cref="F:System.Int64.MaxValue" />, and does not contain a "/".</exception>
+            /// <exception cref="FormatException"><paramref name="fractionInStringForm" /> does not consist of an optional sign followed by a sequence of digits (0 through 9), and does not contain "/".</exception>
+            /// <exception cref="ArgumentNullException"></exception>
             public Fraction(string fractionInStringForm) // overloading constructor
             {
                 if (fractionInStringForm.Contains("/")) //checking if the separator exists
@@ -107,18 +111,17 @@ namespace Mathos.Arithmetic
                     try
                     {
                         fractionInStringForm = fractionInStringForm.Trim(' '); // trim away unnessesary stuff
-                        _numerator = Convert.ToInt64(fractionInStringForm.Substring(0, fractionInStringForm.IndexOf('/')));
+                        Numerator = Convert.ToInt64(fractionInStringForm.Substring(0, fractionInStringForm.IndexOf('/')));
                         _denominator = Convert.ToInt64(fractionInStringForm.Substring(fractionInStringForm.IndexOf('/') + 1));
                     }
-                    catch
+                    catch (Exception e)
                     {
-                        throw new InvalidFractionFormatException();
+                        throw new InvalidFractionFormatException("See the inner exception for details.", e);
                     }
                 }
                 else
                 {
-                    fractionInStringForm = fractionInStringForm.Trim(' '); // trim away unnessesary stuff
-                    _numerator = Convert.ToInt64(fractionInStringForm.Substring(0, fractionInStringForm.Length));
+                    Numerator = Convert.ToInt64(fractionInStringForm.Trim());
                     _denominator = 1;
                 }
 
@@ -131,17 +134,9 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public override string ToString()
             {
-                if (_denominator == 1)
-                {
-                    return (_numerator.ToString(CultureInfo.InvariantCulture));
-                }
-                
-                if (_numerator == 0 || _denominator == 0)
-                {
-                    return "0";
-                }
-                
-                return (_numerator + "/" + _denominator);
+                return _denominator == 1
+                    ? Numerator.ToString(CultureInfo.InvariantCulture)
+                    : (Numerator == 0 || _denominator == 0 ? "0" : Numerator + "/" + _denominator);
             }
 
             /// <summary>
@@ -151,18 +146,14 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public override bool Equals(object obj)
             {
-                if (obj == null || obj.GetType() != GetType())
-                    return false;
-                
-                var f = (Fraction)obj;
-                
-                return (this == f);
+                return obj != null && obj.GetType() == GetType() && this == ((Fraction) obj);
             }
 
             /// <summary>
             /// Gets the hashcode of the fraction.
             /// </summary>
             /// <returns></returns>
+            /// <exception cref="DenominatorNullException">Thrown if the denominator is null.</exception>
             public override int GetHashCode()
             {
                 return Numerator.GetHashCode() ^ Denominator.GetHashCode();
@@ -174,7 +165,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public decimal ToDecimal()
             {
-                return (decimal)_numerator / _denominator;
+                return (decimal)Numerator / _denominator;
             }
 
             /// <summary>
@@ -183,7 +174,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public long ToInt64()
             {
-                return _numerator / _denominator;
+                return Numerator / _denominator;
             }
 
             /// <summary>
@@ -192,7 +183,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public double ToDouble()
             {
-                return ((double)_numerator / _denominator);
+                return ((double)Numerator / _denominator);
             }
 
             /// <summary>
@@ -204,7 +195,7 @@ namespace Mathos.Arithmetic
             public string ToSternBrocotSystem()
             {
                 var output = "";
-                var m = _numerator;
+                var m = Numerator;
                 var n = _denominator;
 
                 while (n != m)
@@ -232,11 +223,13 @@ namespace Mathos.Arithmetic
             /// <remarks>Only works for upper case L and R. This method is case sensetive.</remarks>
             /// <example>LRRL will be 5/7</example>
             /// <returns></returns>
+            /// <exception cref="OverflowException"></exception>
             public static Fraction FromSternBrocotSystem(string sternBrocotRepresentation)
             {
                 sternBrocotRepresentation = sternBrocotRepresentation.ToUpper();
-                var matArray = new Matrix[sternBrocotRepresentation.Length];
+
                 var j = 0;
+                var matArray = new Matrix[sternBrocotRepresentation.Length];
                 
                 foreach (var letter in sternBrocotRepresentation)
                 {
@@ -257,9 +250,7 @@ namespace Mathos.Arithmetic
 
 
                 for (var i = matArray.Length - 2; i >= 0; i--)
-                {
                     matArray[i] *= matArray[i + 1];
-                }
 
                 return new Fraction(Convert.ToInt64(matArray[0][1][0] + matArray[0][1][1]), Convert.ToInt64(matArray[0][0][0] + matArray[0][0][1]));
             }
@@ -271,6 +262,11 @@ namespace Mathos.Arithmetic
             /// <param name="continious">If set to true, the decimal part of the number will be treated as continious. That is, 0.9 would be the same as 1.</param>
             /// <param name="iterations">The number of times the conversion should be performed. The more, the more accurate.</param>
             /// <returns></returns>
+            /// <exception cref="OverflowException">decimal.Floor(<paramref name="realNumber" />) is greater than <see cref="F:System.Int64.MaxValue" /> or less than <see cref="F:System.Int64.MinValue" />. </exception>
+            /// <exception cref="FormatException"><paramref name="realNumber" /> does not consist of an optional sign followed by a sequence of digits (0 through 9). </exception>
+            /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="realNumber"/> does not contain a "."</exception>
+            /// <exception cref="ArgumentNullException">Thrown if <paramref name="realNumber"/> does not contain a "."</exception>
+            /// <exception cref="ArgumentException"></exception>
             public static string ToSternBrocotSystem(decimal realNumber, bool continious = false, int iterations = 50)
             {
                 var output = "";
@@ -285,9 +281,12 @@ namespace Mathos.Arithmetic
                                 .Substring(
                                     realNumber.ToString(CultureInfo.InvariantCulture)
                                         .IndexOf(".", StringComparison.Ordinal) + 1));
-                    var outputFraction = integerPart + new Fraction(fractionalPart, Convert.ToInt64(Math.Pow(10, fractionalPart.ToString(CultureInfo.InvariantCulture).Length))-1);
 
-                    output = outputFraction.ToSternBrocotSystem();
+                    output =
+                        (integerPart +
+                         new Fraction(fractionalPart,
+                             Convert.ToInt64(Math.Pow(10, fractionalPart.ToString(CultureInfo.InvariantCulture).Length)) -
+                             1)).ToSternBrocotSystem();
                 }
                 else
                 {
@@ -314,21 +313,21 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="sternBrocotRepresentation">Enter a string that contains L's and R's. It can be generated from a fraction by ToSternBrocotSystem method.</param>
             /// <returns>For example, LLRRRL will return L(2)R(3)L(1)</returns>
+            /// <exception cref="IndexOutOfRangeException">Thrown if <paramref name="sternBrocotRepresentation"/> is an empty string.</exception>
             public static string ToCondensedSternBrocotSystem(string sternBrocotRepresentation)
             {
                 sternBrocotRepresentation = sternBrocotRepresentation.ToUpper();
-                var type = sternBrocotRepresentation[0] != 'L' ; // true for R's and false for L's
+
                 var count = 0;
                 var output = "";
+                var type = sternBrocotRepresentation[0] != 'L' ; // true for R's and false for L's
 
                 foreach (var item in sternBrocotRepresentation)
                 {
                     if(item == 'L')
                     {
                         if (!type)
-                        {
                             count++;
-                        }
                         else
                         {
                             output += "R(" + count + ")";
@@ -339,9 +338,7 @@ namespace Mathos.Arithmetic
                     else
                     {
                         if (type)
-                        {
                             count++;
-                        }
                         else
                         {
                             output += "L(" + count + ")";
@@ -351,17 +348,9 @@ namespace Mathos.Arithmetic
                     }
                 }
 
-                if(type)
-                {
-                    output += "R(" + count + ")";
-                }
-                else
-                {
-                    output += "L(" + count + ")";
-                }
+                output += type ? "R(" + count + ")" : "L(" + count + ")";
 
                 return output;
-
             }
 
             /* Functions, etc... */
@@ -371,16 +360,17 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public Fraction Simplify()
             {
-                var gdc = Numbers.Get.Gdc(Numbers.Convert.ToPositive(_numerator),
-                                           Numbers.Convert.ToPositive(_denominator));
-                
-                return new Fraction(_numerator / gdc, _denominator / gdc);
+                var gdc = Numbers.Get.Gdc(Numbers.Convert.ToPositive(Numerator),
+                    Numbers.Convert.ToPositive(_denominator));
+
+                return new Fraction(Numerator/gdc, _denominator/gdc);
             }
 
             /// <summary>
             /// Find the invers
             /// </summary>
             /// <returns></returns>
+            /// <exception cref="DenominatorNullException">Thrown if the denominator is null.</exception>
             public Fraction Inverse()
             {
                 return new Fraction(Denominator, Numerator);
@@ -443,7 +433,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static bool operator >=(Fraction fractA, Fraction fractB)
             {
-                return (!(fractA < fractB));
+                return !(fractA < fractB);
             }
 
             /// <summary>
@@ -454,7 +444,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static bool operator <=(Fraction fractA, Fraction fractB)
             {
-                return (!(fractA > fractB));
+                return !(fractA > fractB);
             }
 
 
@@ -468,7 +458,7 @@ namespace Mathos.Arithmetic
             public static Fraction operator +(long longA, Fraction fractA)
             {
                 //addition
-                return (new Fraction(longA) + fractA);
+                return new Fraction(longA) + fractA;
             }
 
             /// <summary>
@@ -528,32 +518,6 @@ namespace Mathos.Arithmetic
 
                     return fraction.Simplify();
                 }
-            }
-
-            /// <summary>
-            /// Subtraction
-            /// </summary>
-            /// <param name="fractA"></param>
-            /// <param name="longA"></param>
-            /// <returns></returns>
-            public static Fraction operator -(Fraction fractA, long longA)
-            {
-                //addition
-                return (new Fraction(longA) - fractA);
-            }
-
-            /// <summary>
-            /// Subtraction
-            /// 
-            /// NOTE: This operator is calling itself!
-            /// </summary>
-            /// <param name="longA"></param>
-            /// <param name="fractA"></param>
-            /// <returns></returns>
-            public static Fraction operator -(long longA, Fraction fractA)
-            {
-                //addition
-                return (longA - new Fraction(longA));
             }
 
             /// <summary>
@@ -687,7 +651,7 @@ namespace Mathos.Arithmetic
                 
                 return fraction;
             }
-
+            
             /// <summary>
             /// 
             /// </summary>

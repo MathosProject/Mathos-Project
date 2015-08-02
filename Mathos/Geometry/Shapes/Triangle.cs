@@ -31,10 +31,10 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="length"></param>
         /// <param name="height"></param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when invalid side lengths are input</exception>
         public Triangle(double length, double height)
         {
             _sideA = length;
@@ -46,9 +46,9 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="rightTriangle"></param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when invalid side lengths are input</exception>
         public Triangle(RightTriangle rightTriangle)
         {
             _sideA = rightTriangle.Length;
@@ -182,6 +182,7 @@ namespace Mathos.Geometry.Shapes
                                     2.0*_sideB*_sideA*Math.Cos((Math.PI/180)*_angleC))
                         : _sideC;
                 }
+
                 if (c == 3) //did not get time to test out if while loop is required here or to find the optimum c
                     throw new InvalidTriangleException("Given information do not form a triangle");
             }
@@ -273,18 +274,18 @@ namespace Mathos.Geometry.Shapes
 
         #region Override Equals
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             var other = obj as Triangle;
-            
-            if (other == null)
-            {
-                return false;
-            }
 
-            return Math.Abs(_sideA - other._sideA) < 1 && Math.Abs(_sideB - other._sideB) < 1 &&
-                   Math.Abs(_sideC - other._sideC) < 1 && Math.Abs(_angleA - other._angleA) < 1 &&
-                   Math.Abs(_angleB - other._angleB) < 1 && Math.Abs(_angleC - other._angleC) < 1;
+            return other != null && (Math.Abs(_sideA - other._sideA) < 1 && Math.Abs(_sideB - other._sideB) < 1 &&
+                                     Math.Abs(_sideC - other._sideC) < 1 && Math.Abs(_angleA - other._angleA) < 1 &&
+                                     Math.Abs(_angleB - other._angleB) < 1 && Math.Abs(_angleC - other._angleC) < 1);
         }
 
         /// <summary>
@@ -294,16 +295,15 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(Triangle other)
         {
-            if (other == null)
-            {
-                return false;
-            }
-
-            return Math.Abs(_sideA - other._sideA) < 1 && Math.Abs(_sideB - other._sideB) < 1 &&
-                   Math.Abs(_sideC - other._sideC) < 1 && Math.Abs(_angleA - other._angleA) < 1 &&
-                   Math.Abs(_angleB - other._angleB) < 1 && Math.Abs(_angleC - other._angleC) < 1;
+            return other != null && (Math.Abs(_sideA - other._sideA) < 1 && Math.Abs(_sideB - other._sideB) < 1 &&
+                                     Math.Abs(_sideC - other._sideC) < 1 && Math.Abs(_angleA - other._angleA) < 1 &&
+                                     Math.Abs(_angleB - other._angleB) < 1 && Math.Abs(_angleC - other._angleC) < 1);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return _sideA.GetHashCode() ^ _sideB.GetHashCode() ^ _sideC.GetHashCode() ^ _angleA.GetHashCode() ^ _angleB.GetHashCode() ^ _angleC.GetHashCode();
@@ -318,20 +318,11 @@ namespace Mathos.Geometry.Shapes
         public static bool operator ==(Triangle a, Triangle b)
         {
             // If both are null, or both are same instance, return true.
-            if (ReferenceEquals(a, b))
-            {
-                return true;
-            }
-
             // If one is null, but not both, return false.
-            if (((object)a == null) || ((object)b == null))
-            {
-                return false;
-            }
-
-            return Math.Abs(a._sideA - b._sideA) < 1 && Math.Abs(a._sideB - b._sideA) < 1 &&
-                   Math.Abs(a._sideC - b._sideC) < 1 && Math.Abs(a._angleA - b._angleA) < 1 &&
-                   Math.Abs(a._angleB - b._angleB) < 1 && Math.Abs(a._angleC - b._angleC) < 1;
+            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
+                   (Math.Abs(a._sideA - b._sideA) < 1 && Math.Abs(a._sideB - b._sideA) < 1 &&
+                    Math.Abs(a._sideC - b._sideC) < 1 && Math.Abs(a._angleA - b._angleA) < 1 &&
+                    Math.Abs(a._angleB - b._angleB) < 1 && Math.Abs(a._angleC - b._angleC) < 1);
         }
 
         /// <summary>

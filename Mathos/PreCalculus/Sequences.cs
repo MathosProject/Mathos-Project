@@ -7,9 +7,6 @@ namespace Mathos.PreCalculus
     /// </summary>
     public class ArithmeticProgression
     {
-        private double _initialTerm;
-        private double _commonDifference;
-
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -24,34 +21,26 @@ namespace Mathos.PreCalculus
         /// <param name="commondifference"></param>
         public ArithmeticProgression(double initialterm, double commondifference)
         {
-            _initialTerm = initialterm;
-            _commonDifference = commondifference;
+            InitialTerm = initialterm;
+            CommonDifference = commondifference;
         }
 
         /// <summary>
         /// Gets or sets the the "_initialTerm"
         /// </summary>
-        public double InitialTerm
-        {
-            get { return _initialTerm; }
-            set { _initialTerm = value; }
-        }
+        public double InitialTerm { get; set; }
 
         /// <summary>
         /// Gets or sets the the "_commonDifference"
         /// </summary>
-        public double CommonDifference
-        {
-            get { return _commonDifference; }
-            set { _commonDifference = value; }
-        }
+        public double CommonDifference { get; set; }
 
         /// <summary>
         /// Gets N-th term of Arithmetic Progression
         /// </summary>
         public double NTerm(int n)
         {
-            return _initialTerm + (n - 1) * _commonDifference;
+            return InitialTerm + (n - 1) * CommonDifference;
         }
 
         /// <summary>
@@ -61,9 +50,8 @@ namespace Mathos.PreCalculus
         {
             var tmpLeft = ((double) n/2);
 
-            return tmpLeft * (2 * _initialTerm + (n - 1) * _commonDifference);
+            return tmpLeft * (2 * InitialTerm + (n - 1) * CommonDifference);
         }
-
     }
      
     /// <summary>
@@ -71,12 +59,10 @@ namespace Mathos.PreCalculus
     /// </summary>
     public class GeometricProgression
     {
-        private double _initialTerm;
-        private double _commonRatio;
-
         /// <summary>
         /// Default constructor
         /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public GeometricProgression() : this(1, 1)
         {
         }
@@ -91,8 +77,8 @@ namespace Mathos.PreCalculus
         {
             if (Math.Abs(initialterm) > 0 & Math.Abs(commonratio) > 0)
             {
-                _initialTerm = initialterm;
-                _commonRatio = commonratio;
+                InitialTerm = initialterm;
+                CommonRatio = commonratio;
             }
             else
                 throw new ArgumentException("Initial Term or Common Ratio can not be 0");
@@ -101,27 +87,19 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Gets or sets the the "_initialTerm" and Common Difference
         /// </summary>
-        public double InitialTerm
-        {
-            get { return _initialTerm; }
-            set { _initialTerm = value; }
-        }
+        public double InitialTerm { get; set; }
 
         /// <summary>
         /// Gets or sets the the "_commonRatio"
         /// </summary>
-        public double CommonRatio
-        {
-            get { return _commonRatio; }
-            set { _commonRatio = value; }
-        }
+        public double CommonRatio { get; set; }
 
         /// <summary>
         /// Gets N-th term of Geometric Progression
         /// </summary>
         public double NTerm(int n)
         {
-            return _initialTerm * (Math.Pow(_commonRatio, n));
+            return InitialTerm * (Math.Pow(CommonRatio, n));
         }
 
         /// <summary>
@@ -129,20 +107,22 @@ namespace Mathos.PreCalculus
         /// </summary>
         public double Sum(int n)
         {
-            return _initialTerm * (1 - Math.Pow(_commonRatio, n + 1)) / (1 - _commonRatio);
+            return InitialTerm * (1 - Math.Pow(CommonRatio, n + 1)) / (1 - CommonRatio);
         }
 
         /// <summary>
         /// Gets Infinite Sum 
         /// </summary>
+        /// <exception cref="ArgumentException">Absolute value of Common Ratio must be less 1</exception>
         public double InfiniteSum()
         {
-            if ((Math.Abs(_commonRatio)) < 1)
-                return _initialTerm / (1 - _commonRatio);
+            if ((Math.Abs(CommonRatio)) < 1)
+                return InitialTerm / (1 - CommonRatio);
             
             throw new ArgumentException("Absolute value of Common Ratio must be less 1");
         }
     }
+
     /// <summary>
     /// Fibonacci numbers
     /// Enclidean algorithm (greatest common divisor)
@@ -152,26 +132,15 @@ namespace Mathos.PreCalculus
     /// </summary>
     public class Fibonacci
     {
-        private int _initialTerm;
-        private int _firstTerm = 1;
-
         /// <summary>
         /// Gets or sets the the "_initialTerm"
         /// </summary>
-        public int InitialTerm
-        {
-            get { return _initialTerm; }
-            set { _initialTerm = value; }
-        }
+        public int InitialTerm { get; set; }
 
         /// <summary>
         /// Gets or sets the the "_firstTerm"
         /// </summary>
-        public int FirstTerm
-        {
-            get { return _firstTerm; }
-            set { _firstTerm = value; }
-        }
+        public int FirstTerm { get; set; } = 1;
 
         /// <summary>
         /// Gets N-th Fibonacci number
@@ -180,14 +149,21 @@ namespace Mathos.PreCalculus
         {
             var fk = 0;
 
-            if (n == 0) return _initialTerm;
-            if (n == 1) return _firstTerm;
-            if (n <= 1) return 0;
+            switch (n)
+            {
+                case 0:
+                    return InitialTerm;
+                case 1:
+                    return FirstTerm;
+            }
+
+            if (n <= 1)
+                return 0;
             
             //Fk = Fk_1 + Fk_2 & k>=2
             var k = 2;
-            var fk2 = _initialTerm;
-            var fk1 = _firstTerm;
+            var fk2 = InitialTerm;
+            var fk1 = FirstTerm;
            
             while (k <= n)
             {
@@ -205,8 +181,7 @@ namespace Mathos.PreCalculus
         /// </summary>
         public static double BinetFormula(int n)
         {
-          return
-          (Math.Pow((1 + Math.Sqrt(5)) / 2, n) - Math.Pow((1 - Math.Sqrt(5)) / 2, n)) / Math.Sqrt(5); 
+          return (Math.Pow((1 + Math.Sqrt(5)) / 2, n) - Math.Pow((1 - Math.Sqrt(5)) / 2, n)) / Math.Sqrt(5); 
         }
 
         /// <summary>
@@ -220,7 +195,7 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// If we know F is a Fibonacci number we can find its index
         /// </summary>
-        /// 
+        /// <exception cref="OverflowException"></exception>
         public int Index(int f)
         {
             var phi = GoldenRatio();

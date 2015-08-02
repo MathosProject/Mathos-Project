@@ -51,7 +51,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static bool IsEven(long num)
             {
-                return (Get.Mod(num, 2) == 0);
+                return Get.Mod(num, 2) == 0;
             }
 
             /// <summary>
@@ -61,31 +61,29 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static bool IsOdd(long num)
             {
-                return (Get.Mod(num, 2) == 1);
+                return Get.Mod(num, 2) == 1;
             }
 
             /// <summary>
-            /// 
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
+            /// <exception cref="ArgumentNullException"><paramref name="num" /> is null.</exception>
             public static bool IsPrime(long num)
             {
                 if (Get.ListOfCommonPrimeNumbers.Contains((int)num)) // first of all, we check
                     return true;                                     // if the prime is already
-                // in the list
+                                                                     // in the list
 
                 if ((num % 2) == 0) //even numbers>2 are not prime (2 is included in the common prime numbers)
                     return false; 
 
                 var sqrtNum = (long)Math.Sqrt(num); // optimizing so that we do not 
-                
-                for (long i = 2; i <= sqrtNum; i++) //   need to calculate the sqrt on each iteration
+                                                    // need to calculate the sqrt on each iteration
+                for (long i = 2; i <= sqrtNum; i++)
                 {
-                    if ((num % i) == 0)
-                    {
+                    if ((num%i) == 0)
                         return false; // not a prime
-                    }
                 }
 
                 return true; // a prime
@@ -99,7 +97,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static bool IsCoprime(long numA, long numB)
             {
-                return (Get.Gdc(numA, numB) == 1);
+                return Get.Gdc(numA, numB) == 1;
             }
         }
 
@@ -117,6 +115,7 @@ namespace Mathos.Arithmetic
             {
                 return CustomList(0, long.MaxValue, rule);
             }
+
             /// <summary>
             /// Generates a custom list, which contains numbers that follow the custom rule.
             /// </summary>
@@ -127,6 +126,7 @@ namespace Mathos.Arithmetic
             {
                 return CustomList(0, to, rule);
             }
+
             /// <summary>
             /// Generates a custom list, which contains numbers that follow the custom rule.
             /// </summary>
@@ -134,6 +134,7 @@ namespace Mathos.Arithmetic
             /// <param name="to">The number to end with</param>
             /// <param name="rule">You custom rule that the numbers should follow</param>
             /// <returns></returns>
+            /// <exception cref="Exception">A delegate callback throws an exception.</exception>
             public static IEnumerable<long> CustomList(long from, long to, Func<long, bool> rule)
             {
                 //var numbers = Enumerable.Range(start, end - start).ToList();
@@ -142,9 +143,7 @@ namespace Mathos.Arithmetic
                 for (var i = from; i < to; i++)
                 {
                     if (rule(i))
-                    {
                         yield return i;
-                    }
                 }
             }
 
@@ -155,35 +154,35 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static long Factorial(long n)
             {
-                if (n == 1 || n == 0)
-                    return 1;
-                
-                return n * Factorial(n - 1);
+                return n == 1 || n == 0 ? 1 : n*Factorial(n - 1);
             }
 
             ///<summary>
-            ///Calculates factorials for big numbers
+            /// Calculates factorials for big numbers
+            /// 
+            /// TODO: Could use some more optimization.
             ///</summary>
             ///<param name="n">Enter the number to calculate the factorial of.</param>
             ///<returns>Returns Single dimentional array containing the result</returns>
             public static int[] FactorialBig(long n)
             {
                 const int maxsize = 6000;
-                var numArr = new int[maxsize];			// Approximately , size of array depends on size of factorial.
-                int rem = 0, count;		//rem use to save remainder of division(Carry Number).
+
+                var numArr = new int[maxsize];			        // Approximately , size of array depends on size of factorial.
+                int rem = 0, count;		                        //rem use to save remainder of division(Carry Number).
                 int i;
 
                 for (i = 0; i < maxsize; i++)
-                    numArr[i] = 0;		//set all array on NULL.
+                    numArr[i] = 0;		                        //set all array on NULL.
 
-                i = maxsize - 1;				//start from end of array.
+                i = maxsize - 1;				                //start from end of array.
                 numArr[maxsize - 1] = 1;
 
-                for (count = 2; count <= n; count++)//calculates the large number resulting from the factorial operation
+                for (count = 2; count <= n; count++)            //calculates the large number resulting from the factorial operation
                 {
                     while (i > 0)
                     {
-                        var total = numArr[i] * count + rem;		//rem use to save remainder of division(Carry Number).
+                        var total = numArr[i] * count + rem;    //rem use to save remainder of division(Carry Number).
                         
                         rem = 0;
                         
@@ -194,13 +193,16 @@ namespace Mathos.Arithmetic
                         }
                         else
                             numArr[i] = total;
+
                         i--;
                     }
+
                     rem = 0;
                     i = maxsize - 1;
                 }
 
                 i = -1;
+
                 /*
                  * array generated from this algorithm will have the units-place-digit in the last index of the array,
                  * the tens-place-digit in the second last index of the array and so on.
@@ -260,6 +262,8 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="numbers">The numbers to sum the factorials.</param>
             /// <returns></returns>
+            /// <exception cref="ArgumentNullException"><paramref name="numbers" /> is null.</exception>
+            /// <exception cref="OverflowException">The sum is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
             public static long Factorial(List<long> numbers)
             {
                 return numbers.Sum(num => Factorial(num));
@@ -307,6 +311,7 @@ namespace Mathos.Arithmetic
             {
                 return Convert.ToPositive(numA * numB) / Gdc(numA, numB);
             }
+
             /// <summary>
             /// Calculates modulo
             /// </summary>
@@ -319,17 +324,18 @@ namespace Mathos.Arithmetic
             }
 
             /// <summary>
-            /// 
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
+            /// <exception cref="ArgumentNullException"></exception>
             public static IEnumerable<long> Factors(long num)
             {
                 var max = (long)Math.Sqrt(num);
                 
                 for (long i = 2; i <= max; i++)
                 {
-                    if ((num%i) != 0) continue;
+                    if ((num%i) != 0)
+                        continue;
                     
                     if (Check.IsPrime(i))
                         yield return i;
@@ -338,15 +344,13 @@ namespace Mathos.Arithmetic
                         var tmpI = i;
 
                         foreach (var factor in Factors(i).Where(factor => Check.IsPrime(tmpI)))
-                        {
                             yield return i;
-                        }
                     }
                 }
             }
 
             /// <summary>
-            /// 
+            /// TODO: Could use some more optimization.
             /// </summary>
             /// <param name="x"></param>
             /// <param name="power"></param>
@@ -361,15 +365,19 @@ namespace Mathos.Arithmetic
                     case 1:
                         return x;
                 }
+
                 // ----------------------
+
                 var n = 15;
                 
-                while ((power <<= 1) >= 0) n--;
+                while ((power <<= 1) >= 0)
+                    n--;
 
                 long tmp = x;
+
                 while (--n > 0)
-                    tmp = tmp * tmp *
-                         (((power <<= 1) < 0) ? x : 1);
+                    tmp = tmp * tmp * (((power <<= 1) < 0) ? x : 1);
+
                 return tmp;
             }
         }
@@ -386,10 +394,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static long ToPositive(long num)
             {
-                if (Check.IsNegative(num))
-                    return num*-1;
-
-                return num;
+                return Check.IsNegative(num) ? num*-1 : num;
             }
 
             /// <summary>
@@ -399,10 +404,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static long ToNegative(long num)
             {
-                if (Check.IsPositive(num))
-                    return num*-1;
-
-                return num;
+                return Check.IsPositive(num) ? num*-1 : num;
             }
         }
 
