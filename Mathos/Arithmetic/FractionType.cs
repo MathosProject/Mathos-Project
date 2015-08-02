@@ -129,9 +129,12 @@ namespace Mathos.Arithmetic
             }
 
             /// <summary>
-            /// Gets the in-line version of the fraction.
+            /// Returns the fully qualified type name of this instance.
             /// </summary>
-            /// <returns></returns>
+            /// <returns>
+            /// A <see cref="T:System.String"/> containing a fully qualified type name.
+            /// </returns>
+            /// <filterpriority>2</filterpriority>
             public override string ToString()
             {
                 return _denominator == 1
@@ -140,19 +143,24 @@ namespace Mathos.Arithmetic
             }
 
             /// <summary>
-            /// Checks whether the fraction is equal to a given object.
+            /// Indicates whether this instance and a specified object are equal.
             /// </summary>
-            /// <param name="obj"></param>
-            /// <returns></returns>
+            /// <returns>
+            /// true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
+            /// </returns>
+            /// <param name="obj">Another object to compare to. </param><filterpriority>2</filterpriority>
             public override bool Equals(object obj)
             {
                 return obj != null && obj.GetType() == GetType() && this == ((Fraction) obj);
             }
 
             /// <summary>
-            /// Gets the hashcode of the fraction.
+            /// Returns the hash code for this instance.
             /// </summary>
-            /// <returns></returns>
+            /// <returns>
+            /// A 32-bit signed integer that is the hash code for this instance.
+            /// </returns>
+            /// <filterpriority>2</filterpriority>
             /// <exception cref="DenominatorNullException">Thrown if the denominator is null.</exception>
             public override int GetHashCode()
             {

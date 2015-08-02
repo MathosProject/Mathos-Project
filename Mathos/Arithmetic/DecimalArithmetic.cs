@@ -14,6 +14,7 @@ namespace Mathos.Arithmetic
         /// <param name="degreeOfTaylorPolynomial">The degree of accuracy</param>
         /// <returns></returns>
         /// <exception cref="OverflowException">The return value (that is, the quotient) is less than <see cref="F:System.Decimal.MinValue" /> or greater than <see cref="F:System.Decimal.MaxValue" />.</exception>
+        /// <exception cref="DivideByZeroException"></exception>
         public static decimal Ln(decimal x, int degreeOfTaylorPolynomial = 1000)
         {
             decimal val = 0;

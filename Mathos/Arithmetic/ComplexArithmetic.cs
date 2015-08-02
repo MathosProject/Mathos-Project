@@ -215,6 +215,8 @@ namespace Mathos.Arithmetic
         /// </summary>
         /// <param name="strcomplex"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static Complex FromString(string strcomplex)
         {
             var factor = 1;
@@ -275,10 +277,11 @@ namespace Mathos.Arithmetic
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="strcomplex"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static Complex ToComplex(this string strcomplex)
         {
             return FromString(strcomplex);

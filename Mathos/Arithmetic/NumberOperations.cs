@@ -111,6 +111,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="rule">You custom rule that the numbers should follow. (e.g. Check.IsPrime)</param>
             /// <returns></returns>
+            /// <exception cref="Exception">A delegate callback throws an exception.</exception>
             public static IEnumerable<long> CustomList(Func<long, bool> rule)
             {
                 return CustomList(0, long.MaxValue, rule);
@@ -122,6 +123,7 @@ namespace Mathos.Arithmetic
             /// <param name="to">The number to end with</param>
             /// <param name="rule">You custom rule that the numbers should follow. (e.g. Check.IsPrime)</param>
             /// <returns></returns>
+            /// <exception cref="Exception">A delegate callback throws an exception.</exception>
             public static IEnumerable<long> CustomList(long to, Func<long, bool> rule)
             {
                 return CustomList(0, to, rule);
