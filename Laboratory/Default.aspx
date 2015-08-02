@@ -3,7 +3,6 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-
   <div class="pageTitle">
     Welcome to Mathos Laboratory
   </div>
@@ -21,8 +20,8 @@
 
   <p class="highlights" >
     Mathos is an open source project, which consists of a core library with many 
-    great features to facilitate mathematical calculations. It can be downloaded 
-    here: <a href="http://mathos.codeplex.com/">http://mathos.codeplex.com/</a>
+    great features to facilitate mathematical calculations. It can be downloaded
+    <a href="https://github.com/MathosProject/Mathos-Project">here</a>.
   </p>
 
   <p>
@@ -34,8 +33,8 @@
       News
     </div>
     <ul>
-        <li><a href="Module/DataAnalysis/LinearRegression.aspx">The linear relationship betwen two sets of data</a></li>
-        <li><a href="http://labs.mathosproject.com/Module/DataAnalysis/PolynomSeq.aspx">Expression of the nth term and closed form for the sum (polynomial)</a></li>
+      <li><a href="Module/DataAnalysis/LinearRegression.aspx">The linear relationship betwen two sets of data</a></li>
+      <li><a href="http://labs.mathosproject.com/Module/DataAnalysis/PolynomSeq.aspx">Expression of the nth term and closed form for the sum (polynomial)</a></li>
       <li><a href="http://labs.mathosproject.com/Module/Finance/FinancePresentValue.aspx">Present value - Finance package</a></li>
       <li><a href="http://support.mathosproject.com/tutorials/uncertainty-calculator/">Tutorial about Uncertainty module</a></li>
       <li><a href="http://mathosproject.com/updates/making-features-of-the-library-available-online/">The role of Manager of Mathos Laboratory is available</a></li>
