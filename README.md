@@ -7,4 +7,4 @@ Mathos is a collection of tools for any kinds of mathematical calculations. It a
 
 *Mathos is single library that contains different functions in areas like: Arithmetic, Coordinate Geometry, Fractions. For the moment, it's not quite finished, and more features will be added.*
 
-**Documentation: http://api.mathosproject.com/mathos-core-library/**
+**Documentation: http://mpapidocs.azurewebsites.net/mathos-core-library/**
