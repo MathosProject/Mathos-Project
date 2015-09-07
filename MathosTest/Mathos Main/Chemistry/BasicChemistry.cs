@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Mathos.Chemistry;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using Mathos.Chemistry;
-using System.Collections.Generic;
 
 namespace MathosTest.Mathos_Main.Chemistry
 {
@@ -10,9 +7,9 @@ namespace MathosTest.Mathos_Main.Chemistry
     public class BasicChemistry
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ElementTest()
         {
-
+            var hydrogen = new Element();
         }
 
         [TestMethod]
