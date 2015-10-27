@@ -11,12 +11,10 @@ namespace Laboratory.Module.DataAnalysis
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-
             if (TextBox1.Text != "" && TextBox2.Text != "")
             {
                 var xIn = TextBox1.Text.Split(',');

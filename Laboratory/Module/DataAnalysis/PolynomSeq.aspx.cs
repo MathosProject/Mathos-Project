@@ -8,12 +8,11 @@ namespace Laboratory.Module.DataAnalysis
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void FindNthTerm_Click(object sender, EventArgs e)
         {
-            if(TextBox1.Text!= "")
+            if (TextBox1.Text != "")
             {
                 var tokens = TextBox1.Text.Split(',');
 
@@ -31,7 +30,7 @@ namespace Laboratory.Module.DataAnalysis
 
                 int degree;
 
-                if(FiniteCalculus.HasPattern(seq, out degree))
+                if (FiniteCalculus.HasPattern(seq, out degree))
                 {
                     var coeff = FiniteCalculus.GetCoefficientsForNthTerm(seq, degree);
                     var output = FiniteCalculus.GetExpressionForNthTerm(coeff);

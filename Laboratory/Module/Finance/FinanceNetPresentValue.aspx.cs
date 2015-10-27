@@ -5,66 +5,62 @@ using System.Web.UI;
 
 namespace Laboratory.Module.Finance
 {
-  public partial class FinanceNetPresentValue : Page
-  {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class FinanceNetPresentValue : Page
     {
-    }
-
-    protected void CalculateButton_Click(object sender, EventArgs e)
-    {
-      Calculate();
-    }
-
-    private void Calculate()
-    {
-      decimal initialInvestmentValue;
-      if (
-        !Decimal.TryParse(InitialInvestmentValueText.Text, NumberStyles.Any, CultureInfo.CurrentCulture,
-          out initialInvestmentValue))
-      {
-        initialInvestmentValue = 0;
-      }
-
-      IList<decimal> cashFlow = new List<decimal>();
-
-      var values = CashFlowValueText.Text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-
-      foreach (var value in values)
-      {
-        decimal cashFlowItem;
-        if (!Decimal.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out cashFlowItem))
+        protected void Page_Load(object sender, EventArgs e)
         {
-          cashFlowItem = 0;
         }
 
-        cashFlow.Add(cashFlowItem);
-      }
+        protected void CalculateButton_Click(object sender, EventArgs e)
+        {
+            Calculate();
+        }
 
-      decimal rateOfReturn;
-      if (!Decimal.TryParse(RateOfReturnText.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out rateOfReturn))
-      {
-        rateOfReturn = 0;
-      }
+        private void Calculate()
+        {
+            decimal initialInvestmentValue;
 
-      var roundToTwoDecimalPlaces = RoundCheck.Checked;
+            if (
+                !decimal.TryParse(InitialInvestmentValueText.Text, NumberStyles.Any, CultureInfo.CurrentCulture,
+                    out initialInvestmentValue))
+                initialInvestmentValue = 0;
 
-      try
-      {
-        var result = Mathos.Finance.Finance.NetPresentValue(
-          initialInvestmentValue,
-          cashFlow,
-          rateOfReturn,
-          roundToTwoDecimalPlaces);
+            var cashFlow = new List<decimal>();
+            var values = CashFlowValueText.Text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
 
-        ResultLabel.Text = string.Format(
-          "Net Present value: {0}",
-          result.ToString(CultureInfo.CurrentCulture));
-      }
-      catch
-      {
-        ErrorLabel.Text = "Error!";
-      }
+            foreach (var value in values)
+            {
+                decimal cashFlowItem;
+
+                if (!decimal.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out cashFlowItem))
+                    cashFlowItem = 0;
+
+                cashFlow.Add(cashFlowItem);
+            }
+
+            decimal rateOfReturn;
+
+            if (!decimal.TryParse(RateOfReturnText.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out rateOfReturn))
+                rateOfReturn = 0;
+
+            var roundToTwoDecimalPlaces = RoundCheck.Checked;
+
+            try
+            {
+                var result = Mathos.Finance.Finance.NetPresentValue(
+                    initialInvestmentValue,
+                    cashFlow,
+                    rateOfReturn,
+                    roundToTwoDecimalPlaces);
+
+                ResultLabel.Text = string.Format(
+                    "Net Present value: {0}",
+                    result.ToString(CultureInfo.CurrentCulture));
+            }
+            catch
+            {
+                ErrorLabel.Text = "Error!";
+            }
+        }
     }
-  }
 }

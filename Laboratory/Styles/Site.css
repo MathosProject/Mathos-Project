@@ -6,36 +6,41 @@
 
 body {
   color: #333;
-  font-family: Verdana, sans-serif;
-  font-size: 14px;
+  background-color: #eeeefb;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .header {
-  color: orange;
-  margin: 8px 8px 8px 8px;
+  color: darkblue;
 }
 
 .titleAndPowerOf {
-  margin-bottom: 2px;
   width: 100%;
 }
 
 .titleAndPowerOf td {
-  
   vertical-align: bottom;
-  /*white-space: nowrap; */
 }
 
 .titleAndPowerOf .title {
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 60px;
   text-align: left;
+  padding-left: 20px;
+}
+
+.titleAndPowerOf .title a {
+    font-weight: normal;
+}
+
+.titleAndPowerOf .title a:hover {
+    text-decoration: underline;
 }
 
 .titleAndPowerOf .powerOf {
   font-size: 18px;
   font-style: italic;
   padding-bottom: 5px;
+  padding-right: 10px;
   text-align: right;
 }
 
@@ -76,8 +81,6 @@ table.modules .groupRow {
 table.modules .groupRow td { padding-top: 10px; }
 
 table .groupSeparatorRow { height: 5px }
-
-table .dataRow { }
 
 table .alternateDataRow { background-color: #fff6e6; }
 
@@ -129,7 +132,7 @@ table .dataRow td {
 .main {
   margin: 12px 8px 8px 8px;
   min-height: 420px;
-  padding: 0px 12px;
+  padding: 0 12px;
 }
 
 .pageTitle {
@@ -144,8 +147,8 @@ table .dataRow td {
   color: #00f;
   font-size: 10px;
   line-height: normal;
-  margin: 40px 8px 0px 8px;
-  padding: 5px 0px;
+  margin: 40px 8px 0 8px;
+  padding: 5px 0;
   text-align: center;
 }
 
@@ -164,15 +167,13 @@ table .dataRow td {
     MODULE FORM
     ----------------------------------------------------------*/
 
-.moduleForm { }
-
 .moduleForm td {
   padding-bottom: 8px;
   padding-right: 8px;
 }
 
 .button {
-  /* Rounded corners */
+    /* Rounded corners */
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   /*background: #99ffcc;*/
@@ -182,6 +183,7 @@ table .dataRow td {
   background: #e6e6ff;
 
   border: 1px solid blue;
+  -ms-border-radius: 8px;
   border-radius: 8px;
   color: blue;
   font-weight: bold;
@@ -203,8 +205,6 @@ textarea.result {
   width: 500px;
 }
 
-.resultTable { }
-
 .resultTable th {
   padding-bottom: 8px;
   padding-right: 8px;
@@ -220,7 +220,5 @@ textarea.result {
 .resultTable .result { text-align: center; }
 
 .resultTable .elapsedTime { text-align: right; }
-
-.elapsedTime { }
 
 .index { font-weight: bold; }

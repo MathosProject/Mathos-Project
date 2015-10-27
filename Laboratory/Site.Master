@@ -2,22 +2,23 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-  <head runat="server">
+<head runat="server">
     <title></title>
+
     <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
 
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
-  </head>
-  <body>
+</head>
+<body>
     <div id="fb-root"></div>
     <script type="text/javascript">
       (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
+        var fjs = d.getElementsByTagName(s)[0];
 
         if (d.getElementById(id)) return;
 
-        js = d.createElement(s);
+        var js = d.createElement(s);
         js.id = id;
         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=642804455766108";
         fjs.parentNode.insertBefore(js, fjs);
@@ -26,11 +27,10 @@
     
     <form runat="server">
       <div class="page">
-
         <div class="header">
           <table class="titleAndPowerOf">
             <tr>
-              <td class="title">Mathos Laboratory</td>
+              <td class="title"><a href="Default.aspx">Mathos Laboratory</a></td>
               <td class="powerOf">Explore the computational power of <a href="http://mathosproject.com/product/mathos-core-library/">Mathos Core Library</a></td>
             </tr>
           </table>
@@ -68,13 +68,12 @@
         </div>
 
         <div class="footer">
-          Copyright &copy 2012-2014 Mathos Project
+          Copyright &copy; 2012-2014 Mathos Project
           <br />
           (Hosted on Mathos Project&#39;s VM1 North Europe)
           <br /><br />
           <div class="fb-like" data-href="https://www.facebook.com/mathosproject" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
         </div>
-
       </div>
     </form>
   </body>
