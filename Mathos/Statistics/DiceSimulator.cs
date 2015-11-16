@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Mathos.Statistics
 {
@@ -17,7 +18,6 @@ namespace Mathos.Statistics
         /// Constructor that takes "nDice" as the number of dice and goes upto 6 dice
         /// </summary>
         /// <param name="nDice"></param>
-        /// <exception cref="DivideByZeroException"></exception>
         public DiceSimulator(int nDice)
         {
             _numDice = nDice;
@@ -34,12 +34,12 @@ namespace Mathos.Statistics
         /// <returns></returns>
         public override string ToString()
         {
-            var dceInfo = "";
+            var dceInfo = new StringBuilder();
 
             for (var i = 0; i < _numDice; i++)
-                dceInfo += " Dice " + i + ":" + _nRolledValue[i];
+                dceInfo.Append(" Dice " + i + ":" + _nRolledValue[i]);
 
-            return dceInfo;
+            return dceInfo.ToString();
         }
 
         /// <summary>
@@ -47,7 +47,6 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="nDiceIndex"></param>
         /// <returns></returns>
-        /// <exception cref="DivideByZeroException"></exception>
         public int Roll(int nDiceIndex)
         {
             System.Diagnostics.Trace.TraceInformation("  Seedval: " + _seed);

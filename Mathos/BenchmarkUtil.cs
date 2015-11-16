@@ -4,16 +4,16 @@ using System.Diagnostics;
 namespace Mathos
 {
     /// <summary>
-    /// 
+    /// A utility class for benchmarking.
     /// </summary>
     public class BenchmarkUtil
     {
         /// <summary>
+        /// Perform an <paramref name="action"/> benchmark with <paramref name="iterations"/>.
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="iterations"></param>
-        /// <returns></returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
+        /// <param name="action">The action to perform.</param>
+        /// <param name="iterations">The amount of iterations.</param>
+        /// <returns>The amount of time taken.</returns>
         public static double Benchmark(Action action, int iterations)
         {
             double time = 0;

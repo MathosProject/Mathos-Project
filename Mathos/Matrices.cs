@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace Mathos
 {
-    // TODO: should support complex numbers, surds, etc.
-    //       - we probably need a struct - "Number"
     /// <summary>
-    /// 
+    /// Implementation of vectors.
     /// </summary>
+    // TODO: should support complex numbers, surds, etc.
+    //  - we probably need a struct - "Number"
     public class Vector
     {
-        double[] _vectorContent;
+        private double[] _vectorContent;
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public Vector()
-            : this(new double[] { })
+            : this(new double[0])
         { 
         }
 
@@ -30,10 +31,9 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Constructor that takes a double number
+        /// Add a <paramref name="number"/>.
         /// </summary>
-        /// <param name="number"></param>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <param name="number">The number to add.</param>
         public void Add(double number)
         {
             Array.Resize(ref _vectorContent, _vectorContent.Length+1);
@@ -41,7 +41,7 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Gets the size of "_vectorContent"
+        /// Get the size of <see cref="_vectorContent"/>.
         /// </summary>
         public int Length
         {
@@ -52,7 +52,7 @@ namespace Mathos
         /// <summary>
         /// The indexer
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">The index.</param>
         public double this[int index]
         {
             get
@@ -66,27 +66,27 @@ namespace Mathos
         }
         
         /// <summary>
-        /// Gets the string version of the vector.
+        /// Get the vector as a string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The vector as a string.</returns>
         public override string ToString()
         {
-            var output = "";
+            var output = new StringBuilder();
             
             for (var i = 0; i < _vectorContent.Length; i++)
             {
-                output += _vectorContent[i].ToString(System.Globalization.CultureInfo.InvariantCulture);
-                output += i < _vectorContent.Length - 1 ? " " : "";
+                output.Append(_vectorContent[i].ToString(System.Globalization.CultureInfo.InvariantCulture));
+                output.Append((i < _vectorContent.Length - 1) ? " " : "");
             }
             
-            return output;
+            return output.ToString();
         }
         
         /// <summary>
-        /// Checks whether the vector is equal to the given object.
+        /// Check if the vector is equal to the given object, <paramref name="obj"/>.
         /// </summary>
         /// <param name="obj">The object to compare to.</param>
-        /// <returns></returns>
+        /// <returns>True if the vector is equal to the given object.</returns>
         public override bool Equals(object obj)
         {
             if ((obj == null) || (obj.GetType() != GetType()))
@@ -107,11 +107,12 @@ namespace Mathos
         }
 
         // implicit coversion operators
+
         /// <summary>
-        /// Vector initialization form an array of Int16
+        /// Vector initialization form an array of int16.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The array.</param>
+        /// <returns>A vector from the array.</returns>
         public static implicit operator Vector(short[] input)
         {
             var vector = new Vector(input.Length);
@@ -123,10 +124,10 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Vector initialization form an array of Int32
+        /// Vector initialization form an array of ints.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The array.</param>
+        /// <returns>A vector from the array.</returns>
         public static implicit operator Vector(int[] input)
         {
             var vector = new Vector(input.Length);
@@ -138,10 +139,10 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Vector initialization form an array of Int64
+        /// Vector initialization form an array of int64.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The array.</param>
+        /// <returns>A vector from the array.</returns>
         public static implicit operator Vector(long[] input)
         {
             var vector = new Vector();
@@ -153,10 +154,10 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Vector initialization form an array of doubles
+        /// Vector initialization form an array of doubles.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The array.</param>
+        /// <returns>A vector from the array.</returns>
         public static implicit operator Vector(double[] input)
         {
             var vector = new Vector();
@@ -168,45 +169,46 @@ namespace Mathos
         }
 
         // overrding existing operators
+
         /// <summary>
-        /// The plus operator
+        /// Add two vectors together.
         /// </summary>
-        /// <param name="vec1"></param>
-        /// <param name="vec2"></param>
-        /// <returns></returns>
+        /// <param name="vec1">The first vector.</param>
+        /// <param name="vec2">The second vector.</param>
+        /// <returns>The two vectors added together.</returns>
         public static Vector operator +(Vector vec1, Vector vec2)
         {
             return Operation(vec1, vec2, (x, y) => x + y);
         }
 
         /// <summary>
-        /// The minus operator
+        /// Minus two vectors.
         /// </summary>
-        /// <param name="vec1"></param>
-        /// <param name="vec2"></param>
-        /// <returns></returns>
+        /// <param name="vec1">The first vector.</param>
+        /// <param name="vec2">The second vector.</param>
+        /// <returns><paramref name="vec2"/> substracted from <paramref name="vec1"/>.</returns>
         public static Vector operator -(Vector vec1, Vector vec2)
         {
             return Operation(vec1, vec2, (x, y) => x - y);
         }
 
         /// <summary>
-        /// The multiplication operator
+        /// Multiply two vectors together.
         /// </summary>
-        /// <param name="vec1"></param>
-        /// <param name="vec2"></param>
-        /// <returns></returns>
+        /// <param name="vec1">The first vector.</param>
+        /// <param name="vec2">The second vector.</param>
+        /// <returns>The two vectors multiplied together.</returns>
         public static Vector operator *(Vector vec1, Vector vec2)
         {
             return Operation(vec1, vec2, (x, y) => x * y);
         }
 
         /// <summary>
-        /// The division operator
+        /// Divide two vectors.
         /// </summary>
-        /// <param name="vec1"></param>
-        /// <param name="vec2"></param>
-        /// <returns></returns>
+        /// <param name="vec1">The first vector.</param>
+        /// <param name="vec2">The second vector.</param>
+        /// <returns><paramref name="vec1"/> divided by <paramref name="vec2"/>.</returns>
         public static Vector operator /(Vector vec1, Vector vec2)
         {
             return Operation(vec1, vec2, (x, y) => x / y);
@@ -214,28 +216,29 @@ namespace Mathos
 
         //comparsion
         /// <summary>
-        /// The comparsion operator
+        /// Check if two vectors are equal.
         /// </summary>
-        /// <param name="vec1"></param>
-        /// <param name="vec2"></param>
-        /// <returns></returns>
+        /// <param name="vec1">The first vector.</param>
+        /// <param name="vec2">The second vector.</param>
+        /// <returns>True if the two vectors are equal.</returns>
         public static bool operator ==(Vector vec1, Vector vec2)
         {
             return ComparsionOperation(vec1, vec2, (x, y) => Math.Abs(x - y) < 1);
         }
 
         /// <summary>
-        /// The not-comparsion operator
+        /// Check if two vectors are not equal.
         /// </summary>
-        /// <param name="vec1"></param>
-        /// <param name="vec2"></param>
-        /// <returns></returns>
+        /// <param name="vec1">The first vector.</param>
+        /// <param name="vec2">The second vector.</param>
+        /// <returns>True if the two vectors are not equal.</returns>
         public static bool operator !=(Vector vec1, Vector vec2)
         {
             return !(vec1 == vec2);
         }
 
         //other functions
+        
         private static Vector Operation(Vector vec1, Vector vec2, Func<double,double,double> operation)
         {
             Vector maxLengthVector;
@@ -257,13 +260,9 @@ namespace Mathos
             for (var i = 0; i < maxLengthVector.Length; i++)
             {
                 if (i < minLengthVector.Length)
-                {
                     result[i] = operation(vec1[i], vec2[i]);
-                }
                 else
-                {
                     result[i] = maxLengthVector[i];
-                }
             }
 
             return result;
@@ -289,16 +288,14 @@ namespace Mathos
             {
                 for (var i = 0; i < maxLengthVector.Length; i++)
                 {
-                    if (i >= minLengthVector.Length) continue;
-                    
+                    if (i >= minLengthVector.Length)
+                        continue;
                     if (!comparsionOperation(vec1[i], vec2[i]))
                         return false;
                 }
             }
             else
-            {
                 return false;
-            }
 
             return true;
         }
@@ -310,11 +307,11 @@ namespace Mathos
      * 
      */
     /// <summary>
-    /// 
+    /// Implementation of matrixes.
     /// </summary>
     public class Matrix
     {
-        readonly Vector[] _matrixContent;
+        private readonly Vector[] _matrixContent;
 
         /// <summary>
         /// Default contructor
@@ -325,33 +322,31 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Contructor for defining the "rows" and "colls"
+        /// Contructor for defining the <paramref name="rows"/> and columns, <paramref name="colls"/>.
         /// </summary>
-        /// <param name="rows"></param>
-        /// <param name="colls"></param>
+        /// <param name="rows">The numbers of rows.</param>
+        /// <param name="colls">The number of columns.</param>
         public Matrix(int rows, int colls)
         {
             _matrixContent = new Vector[rows];
-            
+
             for (var i = 0; i < rows; i++)
-            {
-                _matrixContent[i] = new Vector { Length = colls };
-            }
+                _matrixContent[i] = new Vector {Length = colls};
         }
        
         /// <summary>
-        /// Contructor that takes a number of Vectors
+        /// Contructor that takes a number of Vectors.
         /// </summary>
-        /// <param name="matrix"></param>
-        public Matrix(params Vector[] matrix)
+        /// <param name="vectors">The vectors to use.</param>
+        public Matrix(params Vector[] vectors)
         {
-            _matrixContent = matrix;
+            _matrixContent = vectors;
         }
 
         /// <summary>
         /// The indexer
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">The index.</param>
         public Vector this[int index]
         {
             get
@@ -365,10 +360,10 @@ namespace Mathos
         }
 
         /// <summary>
-        /// The double indexer
+        /// The double indexer.
         /// </summary>
-        /// <param name="row"></param>
-        /// <param name="coll"></param>
+        /// <param name="row">The row.</param>
+        /// <param name="coll">The column.</param>
         public double this[int row, int coll]
         {
             get
@@ -382,15 +377,15 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Gets the length of "_matrixContent"
+        /// Get the length of <see cref="_matrixContent"/>.
         /// </summary>
         public int Length { get { return _matrixContent.Length; } }
 
         /// <summary>
-        /// The Matrix initialization of a jagged array of doubles
+        /// The matrix initialization of a jagged array of doubles.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">The jagged array.</param>
+        /// <returns>A matrix from the jagged array.</returns>
         public static implicit operator Matrix(double[][] input)
         {
             var vector = new Matrix(input.Length,input[0].Length);
@@ -398,21 +393,18 @@ namespace Mathos
             for (var i = 0; i < input.Length; i++)
             {
                 for (var j = 0; j < input[i].Length; j++)
-                {
                     vector[i, j] = input[i][j];
-                }   
             }
 
             return vector;
         }
 
         /// <summary>
-        /// The comparsion operator
+        /// Check if two matrixes are equal.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="add1">The first matrix.</param>
+        /// <param name="add2">The second matrix.</param>
+        /// <returns>True if the two matrixes are equal.</returns>
         public static bool operator==(Matrix add1, Matrix add2)
         {
             if (add1 != null && (add2 != null && add1._matrixContent.Length != add2._matrixContent.Length))
@@ -424,11 +416,11 @@ namespace Mathos
         }
 
         /// <summary>
-        /// The not-comparsion operator
+        /// Check if two matrixes are not equal.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
+        /// <param name="add1">The first matrix.</param>
+        /// <param name="add2">The second matrix.</param>
+        /// <returns>True if the two matrixes are not equal.</returns>
         public static bool operator!=(Matrix add1, Matrix add2)
         {
             if (add2 != null && (add1 != null && add1._matrixContent.Length != add2._matrixContent.Length))
@@ -455,41 +447,35 @@ namespace Mathos
         }
 
         /// <summary>
-        /// The plus operator
+        /// Add two matrixes together.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="add1">The first matrix.</param>
+        /// <param name="add2">The second matrix,</param>
+        /// <returns>The two matrixes added together.</returns>
         public static Matrix operator+(Matrix add1, Matrix add2)
         {
             if (add1._matrixContent.Length != add2._matrixContent.Length)
                 throw new ArgumentException("Matrix passed in does not have the same order as matrix to be added to.");
             if (add1._matrixContent[0].Length != add2._matrixContent[0].Length)
                 throw new ArgumentException("Matrix passed in does not have the same order as matrix to be added to.");
-
-            var result = Operation(add1, add2, (x, y) => x + y);
-            return result;
             
+            return Operation(add1, add2, (x, y) => x + y);
         }
 
         /// <summary>
-        /// The minus operator
+        /// Minus two matrixes.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="add1">The first matrix.</param>
+        /// <param name="add2">The second matrix.</param>
+        /// <returns><paramref name="add2"/> subtracted from <paramref name="add1"/>.</returns>
         public static Matrix operator-(Matrix add1, Matrix add2)
         {
             if (add1._matrixContent.Length != add2._matrixContent.Length)
                 throw new ArgumentException("Matrix passed in does not have the same order as matrix to be added to.");
             if (add1._matrixContent[0].Length != add2._matrixContent[0].Length)
                 throw new ArgumentException("Matrix passed in does not have the same order as matrix to be added to.");
-
-            var result = Operation(add1, add2, (x, y) => x - y);
             
-            return result;
+            return Operation(add1, add2, (x, y) => x - y);
 
         }
        
@@ -520,89 +506,88 @@ namespace Mathos
         }
 
         /// <summary>
-        /// The plus operator
+        /// Add a matrix and an integer together.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
+        /// <param name="add1">The matrix.</param>
+        /// <param name="add2">The integer.</param>
+        /// <returns>The matrix and the integer added together.</returns>
         public static Matrix operator +(Matrix add1, int add2)
         {
             return Operation(add1, add2, (x, y) => x + y);
         }
 
         /// <summary>
-        /// The plus operator
+        /// Add a matrix and an integer together. 
         /// </summary>
-        /// <param name="add2"></param>
-        /// <param name="add1"></param>
-        /// <returns></returns>
+        /// <param name="add2">The integer.</param>
+        /// <param name="add1">The matrix.</param>
+        /// <returns>The matrix and the integer added together.</returns>
         public static Matrix operator +(int add2, Matrix add1)
         {
             return add1 + add2;
         }
 
         /// <summary>
-        /// The multiplication operator
+        /// Multiply a matrix by an integer.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
+        /// <param name="add1">The matrix.</param>
+        /// <param name="add2">The integer.</param>
+        /// <returns>The matrix and the integer multiplied together.</returns>
         public static Matrix operator *(Matrix add1, int add2)
         {
             return Operation(add1, add2, (x, y) => x * y);
         }
 
         /// <summary>
-        /// The multiplication operator
+        /// Multiply a matrix by an integer.
         /// </summary>
-        /// <param name="add2"></param>
-        /// <param name="add1"></param>
-        /// <returns></returns>
+        /// <param name="add2">The integer.</param>
+        /// <param name="add1">The matrix.</param>
+        /// <returns>The matrix and the integer multiplied together.</returns>
         public static Matrix operator *(int add2, Matrix add1)
         {
             return add1 * add2;
         }
 
         /// <summary>
-        /// The minus operator
+        /// Minus a matrix from an integer.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
+        /// <param name="add1">The matrix.</param>
+        /// <param name="add2">The integer.</param>
+        /// <returns>The integer subtracted from the matrix.</returns>
         public static Matrix operator -(Matrix add1, int add2)
         {
             return Operation(add1, add2, (x, y) => x - y);
         }
 
         /// <summary>
-        /// The minus operator
+        /// Minus an integer from a matrix.
         /// </summary>
-        /// <param name="add2"></param>
-        /// <param name="add1"></param>
-        /// <returns></returns>
+        /// <param name="add2">The integer.</param>
+        /// <param name="add1">The matrix.</param>
+        /// <returns>The integer subtracted from the matrix.</returns>
         public static Matrix operator -(int add2, Matrix add1)
         {
             return (add1 - add2) * -1;
         }
 
         /// <summary>
-        /// The division operator
+        /// Divide a matrix by an integer.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
+        /// <param name="add1">The matrix.</param>
+        /// <param name="add2">The integer.</param>
+        /// <returns>The matrix divided by the integer.</returns>
         public static Matrix operator /(Matrix add1, double add2)
         {
             return Operation(add1, add2, (x, y) => x / y);
         }
         
         /// <summary>
-        /// The multiplication operator
+        /// Multiply a matrix and an integer together.
         /// </summary>
-        /// <param name="add1"></param>
-        /// <param name="add2"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="add1">The matrix.</param>
+        /// <param name="add2">The integer.</param>
+        /// <returns>The matrix multiplied by the integer.</returns>
         public static Matrix operator *(Matrix add1, Matrix add2)
         {
             if (add1[0].Length != add2.Length)
@@ -617,11 +602,9 @@ namespace Mathos
                 for (var j = 0; j < add1.Length; j++)
                 {
                     double cell = 0;
-                    
+
                     for (var k = 0; k < add2.Length; k++)
-                    {
-                        cell += add1[i, k] * add2[k, j];
-                    }
+                        cell += add1[i, k]*add2[k, j];
 
                     result[i, j] = cell;
                 }
@@ -631,9 +614,9 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Gets the string version of the matrix.
+        /// Get matrix as a string.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The matrix as a string.</returns>
         public override string ToString()
         {
             var output = "";
@@ -660,10 +643,9 @@ namespace Mathos
         public static Matrix Eye(int n)
         {
             var result = new Matrix(n, n);
-            int j;
             
-            for ( j = 0; j < result._matrixContent.Length;j++ )
-                result[j, j] = 1;
+            for (var i = 0; i < result._matrixContent.Length; i++)
+                result[i, i] = 1;
 
             return result;
         }
@@ -677,10 +659,9 @@ namespace Mathos
         public static Matrix Eye(int m, int n)
         {
             var result = new Matrix(m, n);
-            int j;
             
-            for (j = 0; j < result._matrixContent.Length; j++)
-                if (j <n) result[j, j] = 1;
+            for (var i = 0; i < result._matrixContent.Length; i++)
+                if (i < n) result[i, i] = 1;
             
             return result;
         }
@@ -724,7 +705,7 @@ namespace Mathos
         /// 
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="InvalidOperationException">A square matrix is required to calculate determinant.</exception>
         public double Determinant()
         {
             //make sure current matrix is a square matrix
@@ -768,8 +749,7 @@ namespace Mathos
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="Exception">A square matrix is required to calculate the cofactor.</exception>
         public Matrix Cofactor()
         {
             if (Length != this[0].Length)
@@ -793,8 +773,7 @@ namespace Mathos
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="Exception">A square matrix is required to calculate the adjugate.</exception>
         public Matrix Adjugate()
         {
             if (Length != this[0].Length)
@@ -808,8 +787,11 @@ namespace Mathos
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="Exception"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="Exception">
+        /// A square matrix is required to calculate the inverted matrix.
+        /// 
+        /// This is not an invertible matrix because its determinant is 0.
+        /// </exception>
         public Matrix Inverse()
         {
             if (Length != this[0].Length)
@@ -890,7 +872,7 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Determins if "_matrixContent" is equal to "other"'s "_matrixContent"
+        /// Determines if <see cref="_matrixContent"/> is equal to <paramref name="other"/>'s _matrixContent.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -900,14 +882,16 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Checks whether the matrix is equal to the given object.
+        /// Checks if the matrix is equal to the given object.
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
             
             return obj.GetType() == GetType() && Equals((Matrix)obj);
         }

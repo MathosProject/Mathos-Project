@@ -10,16 +10,16 @@ namespace Mathos
     public static class EquationSolver
     {
         /// <summary>
-        /// Solves a quadratic equation, Ax^2+Bx+C, where a != 0
+        /// Solves a quadratic equation, Ax^2 + Bx + C, where a != 0
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="c"></param>
+        /// <param name="a">The first variable.</param>
+        /// <param name="b">The second variable.</param>
+        /// <param name="c">The third variable.</param>
         /// <returns></returns>
         [Obsolete]
         public static Complex[] QuadraticEquation(double a, double b, double c)
         {
-            //for the moment, only real solutions
+            // only real solutions for the moment
             var discriminant = Math.Pow(b, 2) - 4 * a * c;
 
             // x1 results wrong value.
@@ -39,7 +39,6 @@ namespace Mathos
         /// <param name="b"></param>
         /// <param name="c"></param>
         /// <returns></returns>
-        /// <exception cref="ArithmeticException"><paramref name="b" /> is equal to <see cref="F:System.Double.NaN" />. </exception>
         public static Complex[] QuadraticEquationEx(double a, double b, double c)
         {
             var discriminant = Math.Pow(b, 2) - 4 * a * c;
@@ -78,7 +77,7 @@ namespace Mathos
         /// <returns></returns>
         public static Vector SystemOfTwoEquations(double a, double b, double c, double d, double e, double f)
         {
-            //for the moment, only real numbers
+            // only real numbers for the moment
             var x = (e * d - f * b) / (a * d - b * c);
             var y = (a * f - e * c) / (a * d - b * c);
 
