@@ -1,5 +1,5 @@
 ﻿using System;
-using Mathos.Theory;
+using Mathos.Notation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest.Mathos_Main.Theory
@@ -28,8 +28,10 @@ namespace MathosTest.Mathos_Main.Theory
         {
             var a = new Set<int>(1, 2, 3, 4, 5);
             var b = new Set<int>(6, 7, 8, 9, 10);
+            
+            a.Add(b);
 
-            Console.WriteLine(a.Add(b).ToString());
+            Console.WriteLine(a.ToString());
         }
 
         [TestMethod]

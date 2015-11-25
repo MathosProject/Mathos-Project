@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using Mathos.Arithmetic;
+using Mathos.Notation;
 
 namespace Mathos
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Mathos.Exceptions;
+using Mathos.Notation;
 
 namespace Mathos.Arithmetic
 {

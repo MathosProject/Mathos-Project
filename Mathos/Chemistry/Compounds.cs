@@ -50,7 +50,13 @@ namespace Mathos.Chemistry
     /// </summary>
     public enum CompoundsType
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Reactants,
+        /// <summary>
+        /// 
+        /// </summary>
         Products
     }
 }
