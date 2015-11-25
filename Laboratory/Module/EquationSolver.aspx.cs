@@ -52,7 +52,7 @@ namespace Laboratory.Module
                 EquationErrorLabel.Text = "Error!";
             }
         }
-
+        
         protected void SolveQuadraticEquation_Click(object sender, EventArgs e)
         {
             if (TextBox7.Text.Trim() == "" || TextBox7.Text.Trim() == "0")
