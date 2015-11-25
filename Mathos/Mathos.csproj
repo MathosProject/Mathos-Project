@@ -76,7 +76,8 @@
     <Compile Include="Geometry\Shapes\Ellipse.cs" />
     <Compile Include="Geometry\Shapes\Ring.cs" />
     <Compile Include="Geometry\Shapes\Torus.cs" />
-    <Compile Include="Matrices.cs" />
+    <Compile Include="Notation\Vector.cs" />
+    <Compile Include="Notation\Matrix.cs" />
     <Compile Include="PreCalculus\Sequences.cs" />
     <Compile Include="SpecialFunctions\Antiderivatives.cs" />
     <Compile Include="SpecialFunctions\Bessel.cs" />
