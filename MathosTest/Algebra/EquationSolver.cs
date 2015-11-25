@@ -23,8 +23,8 @@ namespace MathosTest
 
         }
 
-        [TestMethod]
         [Obsolete]
+        [TestMethod]
         public void QuadraticEquationTest()
         {
             //equation 2x^2+3x-1

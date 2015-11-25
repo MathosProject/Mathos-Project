@@ -77,7 +77,7 @@ namespace MathosTest
         {
             List<BigInteger> listOfFactorials = new List<BigInteger>();
             using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(
-                "MathosTest.Mathos_Main.Test_Values.FactorialValues.txt"))
+                "MathosTest.TestValues.FactorialValues.txt"))
             {
                 using (StreamReader sr = new StreamReader(s))
                 {
