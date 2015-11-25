@@ -16,7 +16,6 @@ namespace Mathos.Calculus
         /// <param name="integrationAlgorithm">Specify the integration approximation algorithm. The accuracy depends on the algorithm as well.</param>
         /// <param name="numberOfIntervals">Set the number of intervals. The bigger value, the more accuare approximation. For Simpson's rule, this value should be even.</param>
         /// <returns></returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public static double Integrate(Func<double, double> function, double lowerLimit, double upperLimit, IntegrationAlgorithm integrationAlgorithm = IntegrationAlgorithm.SimpsonsRule, double numberOfIntervals = 100000) // 0.000001M
         {
             double sum = 0;

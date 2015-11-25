@@ -12,7 +12,7 @@ namespace Mathos.Arithmetic
         /// The Complex Number type makes it possible to store numbers in form of a + bi, where a,b are real numbers and i is sqrt(-1).
         /// The real part of the number is stored as a decimal.
         /// </summary>
-        [Obsolete]
+        [Obsolete("Use the builting Complex class instead.")]
         public struct ComplexNumber
         {
             private double _realPart;
@@ -116,7 +116,7 @@ namespace Mathos.Arithmetic
             /// 
             /// </summary>
             /// <param name="inRealPart"></param>
-            public ComplexNumber(Int64 inRealPart)
+            public ComplexNumber(long inRealPart)
             {
                 _realPart = inRealPart;
                 _imaginaryPart = 0;
@@ -149,7 +149,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="inRealPart"></param>
             /// <param name="inImaginaryPart"></param>
-            public ComplexNumber(Int32 inRealPart, Int32 inImaginaryPart)
+            public ComplexNumber(int inRealPart, int inImaginaryPart)
             {
                 _realPart = inRealPart;
                 _imaginaryPart = inImaginaryPart;

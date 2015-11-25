@@ -122,9 +122,6 @@ namespace Mathos.Converter
         /// <param name="value"></param>
         /// <param name="unit"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"><paramref name="value" /> is null.</exception>
-        /// <exception cref="FormatException"><paramref name="value" /> does not represent a number in a valid format. </exception>
-        /// <exception cref="OverflowException"><paramref name="value" /> represents a number that is less than <see cref="F:System.Double.MinValue" /> or greater than <see cref="F:System.Double.MaxValue" />. </exception>
         public static ConversionInfo From(this object value, Enum unit)
         {
             return From(unit, double.Parse(value.ToString()));
@@ -168,9 +165,6 @@ namespace Mathos.Converter
         /// <param name="conversionInfo"></param>
         /// <param name="unit"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="KeyNotFoundException"></exception>
         public static double To(this ConversionInfo conversionInfo, Enum unit)
         {
             if (conversionInfo.Unit.GetType() != unit.GetType())

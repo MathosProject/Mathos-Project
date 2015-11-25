@@ -8,6 +8,7 @@ namespace Mathos.Calculus
     public static class DifferentialCalculus
     {
         //add more documentation...
+
         /// <summary>
         /// Calculates the first derivative given a function and an x coordinate
         /// </summary>
@@ -15,7 +16,6 @@ namespace Mathos.Calculus
         /// <param name="xPoint">The x coordinate</param>
         /// <param name="h"></param>
         /// <returns>Returns the first derivative</returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public static double FirstDerivative(Func<double,double> function, double xPoint, double h = 1e-14)
         {
             //const double h = 0.0000000000001M;
@@ -32,7 +32,6 @@ namespace Mathos.Calculus
         /// <param name="withRespectTo">The index of the point in "points" variable that the derivative should be differenetiated with resepect to.</param>
         /// <param name="points">The input parameters of the multivariable function.</param>
         /// <returns>Returns the first derivative</returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public static decimal FirstDerivative(Func<decimal[], decimal> function, int withRespectTo ,  params decimal[] points)
         {
             const decimal h = 0.0000000000001M;
@@ -50,8 +49,6 @@ namespace Mathos.Calculus
         /// <param name="function">The function</param>
         /// <param name="xPoint">The x coordinate</param>
         /// <returns>Returns the second derivative</returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
-        /// <exception cref="OverflowException">The return value is less than <see cref="F:System.Decimal.MinValue" /> or greater than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal SecondDerivative(Func<decimal, decimal> function, decimal xPoint)
         {
             const decimal h = 0.0000000000001M;
@@ -66,8 +63,6 @@ namespace Mathos.Calculus
         /// <param name="withRespectTo">The index of the point in "points" variable that the derivative should be differenetiated with resepect to.</param>
         /// <param name="points">The input parameters of the multivariable function.</param>
         /// <returns>Returns the second derivative</returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
-        /// <exception cref="OverflowException">The return value is less than <see cref="F:System.Decimal.MinValue" /> or greater than <see cref="F:System.Decimal.MaxValue" />.</exception>
         public static decimal SecondDerivative(Func<decimal[], decimal> function, int withRespectTo , params decimal [] points)
         {
             const decimal h = 0.0000000000001M;

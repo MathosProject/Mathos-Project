@@ -84,7 +84,6 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="function">The custom function</param>
         /// <returns></returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public UncertainNumber CustomFunction(Func<decimal, decimal> function)
         {
             //allow usage of mathos parser + lambda functions (write article on how to integrate mathos parser
@@ -97,7 +96,6 @@ namespace Mathos.Statistics
         /// <param name="function">The custom function</param>
         /// <param name="points">The set of points</param>
         /// <returns></returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public static UncertainNumber CustomFunction(Func<decimal[],decimal> function , params UncertainNumber[] points )
         {
             //allow usage of mathos parser + lambda functions (write article on how to integrate mathos parser
@@ -139,7 +137,6 @@ namespace Mathos.Statistics
         /// </summary>
         /// <param name="numbers">The array with UncertainNumbers</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"><paramref name="numbers" /> is null.</exception>
         public static string ConvertArrayToTsvString(UncertainNumber[] numbers)
         {
             return numbers.Aggregate("", (current, t) => current + (t.Value + "\t" + t.Uncertainty + "\n"));
@@ -149,10 +146,6 @@ namespace Mathos.Statistics
         /// Formats values according to the precision of the uncertainty. The uncertainty is returned with one significant figure.
         /// </summary>
         /// <remarks>This method does not affect the current object but returns a new object with the new formating.</remarks>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="OverflowException"></exception>
         public static UncertainNumber[] AutoFormat(UncertainNumber[] array)
         {
             var output = new UncertainNumber[array.Length];
@@ -169,12 +162,6 @@ namespace Mathos.Statistics
         /// <param name="function">The custom function</param>
         /// <param name="tsv">The string that contains TSV data</param>
         /// <returns></returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
-        /// <exception cref="ArgumentNullException"><paramref name="tsv" /> is null.</exception>
-        /// <exception cref="ObjectDisposedException">The current reader is closed.</exception>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="OutOfMemoryException">There is insufficient memory to allocate a buffer for the returned string. </exception>
-        /// <exception cref="OverflowException"></exception>
         public static UncertainNumber[] CustomFunction(Func<decimal,decimal> function, string tsv)
         {
             return CustomFunction(x => function(x[0]), tsv);
@@ -186,12 +173,6 @@ namespace Mathos.Statistics
         /// <param name="function">The custom function</param>
         /// <param name="tsv">The string that contains TSV data</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"><paramref name="tsv" /> is null.</exception>
-        /// <exception cref="ObjectDisposedException">The current reader is closed.</exception>
-        /// <exception cref="OutOfMemoryException">There is insufficient memory to allocate a buffer for the returned string. </exception>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="OverflowException"></exception>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public static UncertainNumber[] CustomFunction(Func<decimal[],decimal> function, string tsv)
         {
             using (var reader = new System.IO.StringReader(tsv))
@@ -219,10 +200,6 @@ namespace Mathos.Statistics
         /// Formats the value according to the precision of the uncertainty. The uncertainty is returned with one significant figure.
         /// </summary>
         /// <remarks>This method does not affect the current object but returns a new object with the new formating.</remarks>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        /// <exception cref="OverflowException"></exception>
         public UncertainNumber AutoFormat()
         {
             var uncertainty = Uncertainty;// decimal.Ceiling(this.uncertainty);
@@ -264,6 +241,12 @@ namespace Mathos.Statistics
             return new UncertainNumber(value, uncertainty);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         private decimal PowD(decimal x, int y)
         {
             // from http://stackoverflow.com/a/12408927/1275924
@@ -462,6 +445,11 @@ namespace Mathos.Statistics
             return Value + " +/- " + Uncertainty;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private static int GetSignificantDigitCount(decimal value)
         {
             /* By Dan Tao at http://stackoverflow.com/q/3683718/1275924 */

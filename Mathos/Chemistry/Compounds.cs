@@ -40,7 +40,7 @@ namespace Mathos.Chemistry
                 recordedElements.Add(element);
             }
 
-            return recordedElements.Count();
+            return recordedElements.Count;
         }
 
     }

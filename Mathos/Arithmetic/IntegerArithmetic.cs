@@ -89,7 +89,6 @@ namespace Mathos.Arithmetic
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        /// <exception cref="OverflowException"><paramref name="n" /> is less than zero.</exception>
         public static double Pow(this int x, int n)
         {
             return n < 0 ? (Convert.ToDouble(x)).Pow(n) : x.Pow(Convert.ToUInt32(n));
@@ -124,7 +123,6 @@ namespace Mathos.Arithmetic
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        /// <exception cref="OverflowException"><paramref name="n" /> is less than zero.</exception>
         public static double Pow(this long x, int n)
         {
             return n < 0 ? (Convert.ToDouble(x)).Pow(n) : x.Pow(Convert.ToUInt32(n));

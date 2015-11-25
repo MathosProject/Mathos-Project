@@ -12,7 +12,6 @@ namespace Mathos.SpecialFunctions
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double Airy(double x)
         {
             throw new NotImplementedException();
@@ -25,7 +24,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="alpha"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double BesselJ(double x, double alpha)
         {
             throw new NotImplementedException();
@@ -37,7 +35,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double BesselJ(double x, int n)
         {
             throw new NotImplementedException();
@@ -50,7 +47,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="alpha"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double BesselY(double x, double alpha)
         {
             throw new NotImplementedException();
@@ -62,7 +58,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double BesselY(double x, int n)
         {
             throw new NotImplementedException();
@@ -75,7 +70,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="alpha"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double BesselI(double x, double alpha)
         {
             throw new NotImplementedException();
@@ -87,7 +81,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="alpha"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double BesselK(double x, double alpha)
         {
             throw new NotImplementedException();
@@ -100,7 +93,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="alpha"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double Hankel1(double x, double alpha)
         {
             throw new NotImplementedException();
@@ -112,7 +104,6 @@ namespace Mathos.SpecialFunctions
         /// <param name="x"></param>
         /// <param name="alpha"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static double Hankel2(double x, double alpha)
         {
             throw new NotImplementedException();

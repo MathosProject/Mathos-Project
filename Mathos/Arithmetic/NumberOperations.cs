@@ -68,7 +68,6 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            /// <exception cref="ArgumentNullException"><paramref name="num" /> is null.</exception>
             public static bool IsPrime(long num)
             {
                 if (Get.ListOfCommonPrimeNumbers.Contains((int)num)) // first of all, we check
@@ -111,7 +110,6 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="rule">You custom rule that the numbers should follow. (e.g. Check.IsPrime)</param>
             /// <returns></returns>
-            /// <exception cref="Exception">A delegate callback throws an exception.</exception>
             public static IEnumerable<long> CustomList(Func<long, bool> rule)
             {
                 return CustomList(0, long.MaxValue, rule);
@@ -123,7 +121,6 @@ namespace Mathos.Arithmetic
             /// <param name="to">The number to end with</param>
             /// <param name="rule">You custom rule that the numbers should follow. (e.g. Check.IsPrime)</param>
             /// <returns></returns>
-            /// <exception cref="Exception">A delegate callback throws an exception.</exception>
             public static IEnumerable<long> CustomList(long to, Func<long, bool> rule)
             {
                 return CustomList(0, to, rule);
@@ -136,7 +133,6 @@ namespace Mathos.Arithmetic
             /// <param name="to">The number to end with</param>
             /// <param name="rule">You custom rule that the numbers should follow</param>
             /// <returns></returns>
-            /// <exception cref="Exception">A delegate callback throws an exception.</exception>
             public static IEnumerable<long> CustomList(long from, long to, Func<long, bool> rule)
             {
                 //var numbers = Enumerable.Range(start, end - start).ToList();
@@ -264,8 +260,6 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="numbers">The numbers to sum the factorials.</param>
             /// <returns></returns>
-            /// <exception cref="ArgumentNullException"><paramref name="numbers" /> is null.</exception>
-            /// <exception cref="OverflowException">The sum is larger than <see cref="F:System.Int64.MaxValue" />.</exception>
             public static long Factorial(List<long> numbers)
             {
                 return numbers.Sum(num => Factorial(num));
@@ -329,7 +323,6 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="num"></param>
             /// <returns></returns>
-            /// <exception cref="ArgumentNullException"></exception>
             public static IEnumerable<long> Factors(long num)
             {
                 var max = (long)Math.Sqrt(num);

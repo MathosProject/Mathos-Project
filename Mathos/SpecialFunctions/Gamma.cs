@@ -41,11 +41,9 @@ namespace Mathos.SpecialFunctions
         static GammaRelated()
         {
             LogTable = new double[TableSize];
-            
+
             for (var i = 0; i < TableSize; i++)
-            {
                 LogTable[i] = LogOfGamma(i + 1D);
-            }
         }
 
         /// <summary>
@@ -57,8 +55,7 @@ namespace Mathos.SpecialFunctions
         {
             return Math.Exp(LogOfGamma(x));
         }
-
-        // 
+        
         /// <summary>
         /// Evaluates natural logarithm of gamma(x) by Lanczos approximation 
         /// </summary>
@@ -102,7 +99,6 @@ namespace Mathos.SpecialFunctions
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static double LogOfFactorial(int n)
         {
             if (n < 0)

@@ -11,7 +11,6 @@ namespace Mathos.Converter
         /// <summary>
         /// Static method that returns angle imputed as "degrees.minutesseconds" in to decimal degree
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static double AngleToDecimalAngle(double angle = 0.0000)
         {
             var degrees = Math.Truncate(angle);
@@ -26,9 +25,6 @@ namespace Mathos.Converter
         /// <summary>
         /// Static method that returns angle imputed as decimal degree in to degree ("degree.minutesseconds")
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="OverflowException"></exception>
         public static double DecimalAngleToAngle(double angle = 0.000000)
         {
             var degrees = Math.Truncate(angle);
@@ -58,7 +54,6 @@ namespace Mathos.Converter
         /// <summary>
         /// Static method that returns angle imputed as "degrees.minutesseconds" in to radians
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="angle"/> is out of range.</exception>
         public static double AngleToRadians(double angle = 0.0000)
         {
             angle = AngleToDecimalAngle(angle);
@@ -77,9 +72,6 @@ namespace Mathos.Converter
         /// <summary>
         /// Static method that returns angle imputed as radians in to decimal degrees
         /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="angle"/> is out of range.</exception>
-        /// <exception cref="FormatException"></exception>
-        /// <exception cref="OverflowException"></exception>
         public static double RadiansToAngle(double angle = 0.000000)
         {
             angle = angle * 180 / Math.PI;

@@ -10,14 +10,14 @@ namespace Mathos.Statistics
     {
         private readonly int _numDice;
         private readonly int[] _nRolledValue; //= new int[6];
-        private readonly int _seed = (int)(DateTime.Now.Ticks);
+        private readonly int _seed = (int)DateTime.Now.Ticks;
         
         private readonly Random _rnd;
 
         /// <summary>
         /// Constructor that takes "nDice" as the number of dice and goes upto 6 dice
         /// </summary>
-        /// <param name="nDice"></param>
+        /// <param name="nDice">The number of dice to roll.</param>
         public DiceSimulator(int nDice)
         {
             _numDice = nDice;
@@ -45,7 +45,7 @@ namespace Mathos.Statistics
         /// <summary>
         /// Rolls the dice "nDiceIndex" indicates which if more than one, if only 1, then no parameter is required
         /// </summary>
-        /// <param name="nDiceIndex"></param>
+        /// <param name="nDiceIndex">Rolls the dice at <paramref name="nDiceIndex"/>.</param>
         /// <returns></returns>
         public int Roll(int nDiceIndex)
         {
@@ -59,10 +59,11 @@ namespace Mathos.Statistics
 
             return _nRolledValue[nDiceIndex];
         }
+
         /// <summary>
         /// Rolls the "nDice" and sums them
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The sum of all of the dice.</returns>
         public int SumDiceRoll()
         {
             var nSum = 0;
@@ -76,7 +77,7 @@ namespace Mathos.Statistics
         /// <summary>
         /// Rolls the "nDice" and then finds the maximum
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The maximum from the rolled dice.</returns>
         public int MaxDiceRoll()
         {
             var nMax = 0;
@@ -91,7 +92,6 @@ namespace Mathos.Statistics
         /// Rolls the "nDice" and then subtracts them (using sequency ABS diff)
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="OverflowException"></exception>
         public int DiffDiceRoll()
         {
             var nSub = 0;
@@ -105,8 +105,7 @@ namespace Mathos.Statistics
         /// <summary>
         /// Implementation of an indexer to retrieve any rolled dice at any time
         /// </summary>
-        /// <param name="p"></param>
-        /// <exception cref="ArgumentException"></exception>
+        /// <param name="p">The index.</param>
         public int this[int p]
         {
             get

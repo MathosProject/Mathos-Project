@@ -35,7 +35,6 @@ namespace Mathos.Calculus
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static Complex Log(Complex number)
         {
             throw new NotImplementedException();
@@ -46,7 +45,6 @@ namespace Mathos.Calculus
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static Complex Exp(Complex number)
         {
             throw new NotImplementedException();

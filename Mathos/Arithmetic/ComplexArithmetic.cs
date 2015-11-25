@@ -32,7 +32,6 @@ namespace Mathos.Arithmetic
         /// <param name="n"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Complex RootOf(Complex z, int n, int index)
         {
             if (n < index)
@@ -66,7 +65,6 @@ namespace Mathos.Arithmetic
         /// <param name="z"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Complex[] Roots(this Complex z, int n)
         {
             return RootsOf(z, n);
@@ -78,7 +76,6 @@ namespace Mathos.Arithmetic
         /// <param name="n"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Complex Root(this Complex z, int n, int index)
         {
             return RootOf(z, n, index);
@@ -215,8 +212,6 @@ namespace Mathos.Arithmetic
         /// </summary>
         /// <param name="strcomplex"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
         public static Complex FromString(string strcomplex)
         {
             var factor = 1;
@@ -280,8 +275,6 @@ namespace Mathos.Arithmetic
         /// </summary>
         /// <param name="strcomplex"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
         public static Complex ToComplex(this string strcomplex)
         {
             return FromString(strcomplex);

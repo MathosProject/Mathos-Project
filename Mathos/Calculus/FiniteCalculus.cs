@@ -17,7 +17,6 @@ namespace Mathos.Calculus
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
-        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         public static double SumWithRule(Func<double,double> function,Func<double,bool> rule, int min, int max)
         {
             double result = 0;
@@ -36,7 +35,6 @@ namespace Mathos.Calculus
         /// </summary>
         /// <param name="coeff">The coefficients for the nth sum. You can obtain them with GetCoefficientsForNthSum.</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static string GetExpressionForNthSum(double[] coeff)
         {
             return GetExpressionForNthTerm(coeff);
@@ -67,7 +65,6 @@ namespace Mathos.Calculus
         /// <param name="variable">The variable we should you when expressing the nth term.</param>
         /// <param name="round">The number of digits we should round to in the fractional part of the number.</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static string GetExpressionForNthTerm(double[] coeff, char variable = 'x', int round = 10)
         {
             //double[] coeff = GetCoefficientsForNthTerm(sequence,index);
@@ -166,7 +163,6 @@ namespace Mathos.Calculus
         /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
         /// <param name="term">If term=-1, the next term in the sequence is going to be found. By default, you don't need to change this variable.</param>
         /// <returns></returns>
-        /// <exception cref="Exception">The sequence does not contain a recognized pattern.</exception>
         public static double GetNextTerm(double[] sequence, int term = -1)
         {
             int constantIndex;

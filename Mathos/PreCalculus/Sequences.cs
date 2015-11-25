@@ -62,7 +62,6 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <exception cref="ArgumentException"></exception>
         public GeometricProgression() : this(1, 1)
         {
         }
@@ -72,7 +71,6 @@ namespace Mathos.PreCalculus
         /// </summary>
         /// <param name="initialterm"></param>
         /// <param name="commonratio"></param>
-        /// <exception cref="ArgumentException"></exception>
         public GeometricProgression(double initialterm, double commonratio)
         {
             if (Math.Abs(initialterm) > 0 & Math.Abs(commonratio) > 0)
@@ -113,7 +111,6 @@ namespace Mathos.PreCalculus
         /// <summary>
         /// Gets Infinite Sum 
         /// </summary>
-        /// <exception cref="ArgumentException">Absolute value of Common Ratio must be less 1</exception>
         public double InfiniteSum()
         {
             if ((Math.Abs(CommonRatio)) < 1)
@@ -203,7 +200,6 @@ namespace Mathos.PreCalculus
             
             return Convert.ToInt32( Math.Round(n));
         }
-
 
         //Fibonacci code snippet: http://stackoverflow.com/questions/4357223/finding-the-sum-of-fibonacci-numbers
         private static int FibMatrix(int n, int i, int h, int j, int k)

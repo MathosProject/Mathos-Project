@@ -408,53 +408,171 @@
         /// </summary>
         KgfMeterMin
     }
-
-#pragma warning disable 1591
+    
     /// <summary>
     ///     Conversion between different numerical bases
     /// </summary>
     public enum Base : sbyte
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Base2 = 2,
+        /// <summary>
+        /// 
+        /// </summary>
         Binary = 2,
+        /// <summary>
+        /// 
+        /// </summary>
         Base3 = 3,
+        /// <summary>
+        /// 
+        /// </summary>
         Base4 = 4,
+        /// <summary>
+        /// 
+        /// </summary>
         Base5 = 5,
+        /// <summary>
+        /// 
+        /// </summary>
         Base6 = 6,
+        /// <summary>
+        /// 
+        /// </summary>
         Base7 = 7,
+        /// <summary>
+        /// 
+        /// </summary>
         Base8 = 8,
+        /// <summary>
+        /// 
+        /// </summary>
         Octal = 8,
+        /// <summary>
+        /// 
+        /// </summary>
         Base9 = 9,
+        /// <summary>
+        /// 
+        /// </summary>
         Base10 = 10,
+        /// <summary>
+        /// 
+        /// </summary>
         Decimal = 10,
+        /// <summary>
+        /// 
+        /// </summary>
         Base11 = 11,
+        /// <summary>
+        /// 
+        /// </summary>
         Base12 = 12,
+        /// <summary>
+        /// 
+        /// </summary>
         Duodecimal = 12,
+        /// <summary>
+        /// 
+        /// </summary>
         Base13 = 13,
+        /// <summary>
+        /// 
+        /// </summary>
         Base14 = 14,
+        /// <summary>
+        /// 
+        /// </summary>
         Base15 = 15,
+        /// <summary>
+        /// 
+        /// </summary>
         Base16 = 16,
+        /// <summary>
+        /// 
+        /// </summary>
         Hexadecimal = 16,
+        /// <summary>
+        /// 
+        /// </summary>
         Base17 = 17,
+        /// <summary>
+        /// 
+        /// </summary>
         Base18 = 18,
+        /// <summary>
+        /// 
+        /// </summary>
         Base19 = 19,
+        /// <summary>
+        /// 
+        /// </summary>
         Base20 = 20,
+        /// <summary>
+        /// 
+        /// </summary>
         Base21 = 21,
+        /// <summary>
+        /// 
+        /// </summary>
         Base22 = 22,
+        /// <summary>
+        /// 
+        /// </summary>
         Base23 = 23,
+        /// <summary>
+        /// 
+        /// </summary>
         Base24 = 24,
+        /// <summary>
+        /// 
+        /// </summary>
         Base25 = 25,
+        /// <summary>
+        /// 
+        /// </summary>
         Base26 = 26,
+        /// <summary>
+        /// 
+        /// </summary>
         Base27 = 27,
+        /// <summary>
+        /// 
+        /// </summary>
         Base28 = 28,
+        /// <summary>
+        /// 
+        /// </summary>
         Base29 = 29,
+        /// <summary>
+        /// 
+        /// </summary>
         Base30 = 30,
+        /// <summary>
+        /// 
+        /// </summary>
         Base31 = 31,
+        /// <summary>
+        /// 
+        /// </summary>
         Base32 = 32,
+        /// <summary>
+        /// 
+        /// </summary>
         Base33 = 33,
+        /// <summary>
+        /// 
+        /// </summary>
         Base34 = 34,
+        /// <summary>
+        /// 
+        /// </summary>
         Base35 = 35,
+        /// <summary>
+        /// 
+        /// </summary>
         Base36 = 36
     }
-#pragma warning restore 1591
 }
