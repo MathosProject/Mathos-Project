@@ -1,273 +1,111 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Media;
-using System.Xml;
-using ICSharpCode.AvalonEdit.Highlighting;
-using ICSharpCode.AvalonEdit.Highlighting.Xshd;
-using IronRuby;
-using MahApps.Metro;
-using MahApps.Metro.Controls.Dialogs;
-using Microsoft.Scripting;
-using Microsoft.Scripting.Hosting;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using Microsoft.Win32;
+using RubyInt.Editor;
 using RubyInt.Windows;
-using Xceed.Wpf.AvalonDock.Themes;
-using Application = System.Windows.Application;
-using MessageBox = System.Windows.MessageBox;
 
 namespace RubyInt
 {
     public partial class MainWindow
     {
-        public EventHandler CodeChangedEvent;
-        
-        public ScriptScope Scope;
-
-        private ScriptEngine _engine;
-
-        private readonly MemoryStream _ms = new MemoryStream();
-        private readonly MemoryStream _er = new MemoryStream();
-        
-        private int _lastBit = 1;
-
         public MainWindow()
         {
             InitializeComponent();
-            
-            try
-            {
-                Properties.Settings.Default.Reload();
-                var style = Properties.Settings.Default.ColorStyle;
-
-                if (style == "")
-                {
-                    style =
-                        Properties.Settings.Default.ColorStyle =
-                            File.ReadAllText(Settings.DataDirectory + "style.txt").Trim().ToLower();
-                }
-
-                if (!File.Exists(style))
-                {
-                    MessageBox.Show("Could not find current style: " + style, "Style Missing", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-
-                    style = Settings.StyleDirectory + "RubyLight.xshd";
-                }
-
-                var ext = Path.GetFileNameWithoutExtension(style);
-                var isDark = (ext != null) && ext.ToLower().Contains("dark");
-
-                ThemeManager.ChangeAppStyle(Application.Current,
-                    (isDark) ? ThemeManager.Accents.ToArray()[0] : ThemeManager.Accents.ToArray()[2],
-                    (isDark) ? ThemeManager.AppThemes.ToArray()[1] : ThemeManager.AppThemes.ToArray()[0]);
-
-                DockingManager.Theme = new MetroTheme();
-                DockingManager.Background = (isDark)
-                    ? new SolidColorBrush(Color.FromRgb(28, 31, 38))
-                    : new SolidColorBrush(Color.FromRgb(255, 255, 255));
-
-                var reader = XmlReader.Create(style);
-
-                Settings.EditorHighlighting = HighlightingLoader.Load(reader, HighlightingManager.Instance);
-                Settings.EditorForeground = (isDark)
-                    ? new SolidColorBrush(Color.FromRgb(255, 255, 255))
-                    : new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            }
-            catch(Exception e)
-            {
-                DoError("Startup Error", "An error occured while initializing styles: " + e.Message);
-            }
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                _engine = Ruby.CreateEngine();
-                Scope = Ruby.CreateRuntime().CreateScope();
-
-                Scope.SetVariable("pi", Math.PI);
-                Scope.SetVariable("e", Math.E);
-                Scope.SetVariable("_", new Extension());
-
-                var source = _engine.CreateScriptSourceFromString("require 'RubyInt.exe'\nrequire 'Mathos.dll'\nrequire '" + Settings.DataDirectory + "Std.rb'", SourceCodeKind.Statements);
-
-                source.Execute(Scope);
-            }
-            catch (Exception ee)
-            {
-                DoError("Startup Error", "An error occured while initializing Ruby: " + ee.Message);
-            }
-            
-            Settings.AddEditorToPane(EditorPane, new EditorTab { MainWindow = this });
+            Settings.Initialize();
+            NewFileClick(sender, e);
         }
 
-        private async void DoError(string title, string msg)
+        private void ButtonContextClick(object sender, RoutedEventArgs e)
         {
-            await this.ShowMessageAsync(title, title + ": " + msg);
-        }
+            var button = sender as Button;
 
-        public void Compile()
-        {
-            Results.Document.Blocks.Clear();
-            _engine.Runtime.IO.SetOutput(_ms, Encoding.Unicode);
-            _engine.Runtime.IO.SetErrorOutput(_er, Encoding.Unicode);
-
-            try
-            {
-                var source = _engine.CreateScriptSourceFromString(Settings.GetCurrentEditor(EditorPane).TextEditor.Text, SourceCodeKind.Statements);
-
-                source.Execute(Scope);
-            }
-            catch(Exception e)
-            {
-                Results.Document.Blocks.Add(new Paragraph(new Run("[Error]: " + e.Message)
-                {
-                    Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0))
-                }));
-            }
-
-            var content = Settings.ReadFromStream(_ms, _lastBit - 1);
-
-            _lastBit = Convert.ToInt32(_ms.Length) + 1;
-            
-            Results.Document.Blocks.Add(new Paragraph(new Run(content)));
-        }
-
-        private void Debug_Click(object sender, RoutedEventArgs e)
-        {
-            Compile();
-        }
-
-        private void New_Executed(object sender, RoutedEventArgs e)
-        {
-            Settings.AddEditorToPane(EditorPane, new EditorTab { MainWindow = this });
-        }
-
-        private void Save_Executed(object sender, RoutedEventArgs e)
-        {
-            if (EditorPane.ChildrenCount == 0)
+            if (button == null)
                 return;
 
-            var current = Settings.GetCurrentEditor(EditorPane);
-            var tab = EditorPane.SelectedContent;
-
-            if(current.FirstSave)
-            {
-                var saveFile = new SaveFileDialog
-                {
-                    Filter = Properties.Resources.RubyFileFilter,
-                    CheckPathExists = true
-                };
-
-                if (saveFile.ShowDialog() != System.Windows.Forms.DialogResult.OK || saveFile.FileName.Length <= 0)
-                    return;
-
-                current.FirstSave = false;
-                current.Saved = true;
-                current.Filepath = saveFile.FileName;
-
-                tab.Title = Path.GetFileNameWithoutExtension(saveFile.FileName);
-
-                File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
-
-                var oldEditor = Settings.GetCurrentEditor(EditorPane);
-
-                if (EditorPane.SelectedContent.Title == "Untitled" && !oldEditor.Saved)
-                    EditorPane.RemoveChildAt(EditorPane.SelectedContentIndex);
-            }
-            else if(current.Filepath != "")
-                File.WriteAllText(current.Filepath, current.TextEditor.Text);
+            button.ContextMenu.IsEnabled = true;
+            button.ContextMenu.PlacementTarget = button;
+            button.ContextMenu.Placement = PlacementMode.Bottom;
+            button.ContextMenu.IsOpen = true;
         }
 
-        private void SaveAs_Executed(object sender, RoutedEventArgs e)
+        #region File
+
+        private void NewFileClick(object sender, RoutedEventArgs e)
         {
-            if (EditorPane.ChildrenCount == 0)
-                return;
+            EditorPane.Children.Add(new EditorDocument());
+        }
 
-            var current = Settings.GetCurrentEditor(EditorPane);
-            var tab = EditorPane.SelectedContent;
-
-            var saveFile = new SaveFileDialog
+        private void OpenFileClick(object sender, RoutedEventArgs e)
+        {
+            var openDialog = new OpenFileDialog
             {
-                Filter = Properties.Resources.RubyFileFilter,
-                CheckPathExists = true
+                Filter = "Ruby File (*.rb)|*.rb|Any File (*.*)|*.*",
+                CheckFileExists = true,
+                RestoreDirectory = true
             };
 
-            if (saveFile.ShowDialog() != System.Windows.Forms.DialogResult.OK || saveFile.FileName.Length <= 0)
+            if (openDialog.ShowDialog() == true && openDialog.FileName.Trim().Length > 0)
+                EditorPane.Children.Add(new EditorDocument(openDialog.FileName));
+        }
+
+        private void SaveFileClick(object sender, RoutedEventArgs e)
+        {
+            var editor = EditorPane.SelectedContent as EditorDocument;
+
+            if (editor == null)
                 return;
 
-            current.FirstSave = false;
-            current.Saved = true;
-            current.Filepath = saveFile.FileName;
-
-            tab.Title = Path.GetFileNameWithoutExtension(saveFile.FileName);
-            
-            File.WriteAllText(saveFile.FileName, current.TextEditor.Text);
+            editor.Save();
         }
 
-        private void Open_Executed(object sender, RoutedEventArgs e)
+        private void SaveFileAsClick(object sender, RoutedEventArgs e)
         {
-            var newEditor = new EditorTab();
+            var editor = EditorPane.SelectedContent as EditorDocument;
 
-            var openFile = new OpenFileDialog
-            {
-                Filter = Properties.Resources.RubyFileFilter,
-                CheckFileExists = true
-            };
+            if (editor == null)
+                return;
             
-            if (openFile.ShowDialog() != System.Windows.Forms.DialogResult.OK || openFile.FileName.Length <= 0)
+            editor.SaveAs();
+        }
+
+        private void QuitClick(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        #endregion
+
+        private void RunClick(object sender, RoutedEventArgs e)
+        {
+            var editor = EditorPane.SelectedContent as EditorDocument;
+
+            if (editor == null)
                 return;
 
-            newEditor.FirstSave = false;
-            newEditor.Saved = true;
-            newEditor.Filepath = openFile.FileName;
-            newEditor.MainWindow = this;
-            newEditor.TextEditor.Text = File.ReadAllText(openFile.FileName);
-
-            Settings.AddEditorToPane(EditorPane, newEditor, Path.GetFileNameWithoutExtension(openFile.FileName));
-
-            var oldEditor = Settings.GetCurrentEditor(EditorPane);
-
-            if(EditorPane.SelectedContent != null && EditorPane.SelectedContent.Title == "Untitled" && !oldEditor.Saved)
-                EditorPane.RemoveChildAt(EditorPane.SelectedContentIndex);
+            Results.Text = editor.Run();
         }
 
-        private void Style_Click(object sender, RoutedEventArgs e)
+        #region Help
+        
+        private void DocumentationClick(object sender, RoutedEventArgs e)
         {
-            new StyleChangeWindow().Show();
+            new DocumentationWindow().Show();
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        private void AboutClick(object sender, RoutedEventArgs e)
         {
-            new SettingsWindow().Show();
+            MessageBox.Show(@"Mathos Project was launched Jun 21, 2012, and is currently under active development. The project is based on contributions by users world wide, and is therefore entirely free to use unlimited amount of times, without any restrictions. You can also contribute in any ways!
+
+We are currently taking a part in the Microsoft BizSpark programme, and we would like to extend a very special thanks to Microsoft BizSpark program for providing us with development tools, and other benefits of the programme! You can find out more about Microsoft BizSpark at http://bizspark.com/!",
+                "About", MessageBoxButton.OK);
         }
 
-        private async void About_Executed(object sender, RoutedEventArgs e)
-        {
-            await this.ShowMessageAsync("About",
-@"Mathos Project was launched Jun 21, 2012, and is currently under active development. The project is based on contributions by users world wide, and is therefore entirely free to use unlimited amount of times, without any restrictions. You can also contribute in any ways!
-
-We are currently taking a part in the Microsoft BizSpark programme, and we would like to extend a very special thanks to Microsoft BizSpark program for providing us with development tools, and other benefits of the programme! You can find out more about Microsoft BizSpark at http://bizspark.com/!", MessageDialogStyle.Affirmative, new MetroDialogSettings
-            {
-                AnimateShow = true,
-                AnimateHide = true,
-                ColorScheme = MetroDialogColorScheme.Accented
-            });
-        }
-
-        private void Help_Executed(object sender, RoutedEventArgs e)
-        {
-            new HelpWindow {MainWindow = this}.Show();
-        }
-
-        private void Repl_OnClick(object sender, RoutedEventArgs e)
-        {
-            new ReplWindow().Show();
-        }
+        #endregion
     }
 }

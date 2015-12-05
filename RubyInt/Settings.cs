@@ -1,52 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Text;
-using System.Windows.Media;
-using ICSharpCode.AvalonEdit.Highlighting;
-using Xceed.Wpf.AvalonDock.Layout;
+using IronRuby;
+using Microsoft.Scripting.Hosting;
+using ScintillaNET;
 
 namespace RubyInt
 {
-    public class Settings
+    public static class Settings
     {
-        public static SolidColorBrush EditorForeground;
-        public static IHighlightingDefinition EditorHighlighting;
+        public static readonly string HelpDirectory = Environment.CurrentDirectory + "/Help/";
 
-        public static readonly string DataDirectory = Environment.CurrentDirectory + "/Data/";
-        public static readonly string StyleDirectory = Environment.CurrentDirectory + "/Styles/";
+        public static readonly ScriptEngine RubyTemplate = Ruby.CreateEngine();
+        public static readonly ScriptScope ScopeTemplate = RubyTemplate.CreateScope();
 
-        public static readonly List<CompletionData> StaticCompletionList = new List<CompletionData>
+        [CLSCompliant(false)] public static readonly Scintilla ScintillaTemplate = new Scintilla
         {
-            new CompletionData("fsb", "Convert a fraction represent in Stern-Brocot\nnumber system to a normal fraction.\nNote that this method is case sensetive.\nOnly L's and R's are allowed."),
-            new CompletionData("new", "Creates a new instance of an object"),
-            new CompletionData("save", "Save a variable to disk.\nNeeds one parameter, name."),
-            new CompletionData("tsb", "Convert a fraction string (i.e. 3/7)\nto a Stern-Brocot number system.\nThe output will be expressed in terms of L's and R's.")
+            Lexer = Lexer.Ruby,
+            Styles =
+            {
+                [Style.Default] =
+                {
+                    Font = "Consolas",
+                    Size = 12
+                },
+                [Style.Ruby.CommentLine] = { ForeColor = Color.DimGray },
+                [Style.Ruby.String] = { ForeColor = Color.FromArgb(71, 140, 00) },
+                [Style.Ruby.Character] = { ForeColor = Color.FromArgb(71, 140, 00) },
+                [Style.Ruby.Word] = { ForeColor = Color.FromArgb(89, 59, 168), Bold = true },
+                [Style.Ruby.Identifier] = { ForeColor = Color.FromArgb(42, 71, 174) },
+                [Style.Ruby.ClassName] = { ForeColor = Color.FromArgb(42, 71, 174) },
+                [Style.Ruby.ModuleName] = { ForeColor = Color.FromArgb(42, 71, 174) },
+                [Style.Ruby.Number] = { ForeColor = Color.FromArgb(245, 87, 31)}
+            }
         };
 
-        public static void AddEditorToPane(LayoutDocumentPane control, EditorTab editor, string title = "Untitled")
+        public static void Initialize()
         {
-            control.Children.Add(new LayoutDocument
-            {
-                Title = title,
-                Content = editor
-            });
+            var std = Environment.CurrentDirectory + "/Std.rb";
+            
+            ScopeTemplate.Engine.Runtime.LoadAssembly(Assembly.LoadFile(Environment.CurrentDirectory + "/Mathos.dll"));
+            ScopeTemplate.SetVariable("_", new Extension());
+
+            if (File.Exists(std))
+                RubyTemplate.ExecuteFile(std);
+
+            ScintillaTemplate.SetKeywords(0, "include begin end alias and break case class def defined? do else elsif ensure false for if in module next nil not or redo rescue retry return self super then true undef unless until when while yield __encoding__ __end__ __file__ __line__");
         }
 
-        public static EditorTab GetCurrentEditor(LayoutDocumentPane control)
+        public static string ReadFromStream(MemoryStream stream, int start = 0)
         {
-            return control.SelectedContent.Content as EditorTab;
-        }
-
-        public static string ReadFromStream(Stream ms, int start = 0)
-        {
-            var length = (int)ms.Length;
+            var length = (int) stream.Length;
             var bytes = new byte[length];
 
-            ms.Seek(start, SeekOrigin.Begin);
-            ms.Read(bytes, start, (int)ms.Length - start);
+            stream.Seek(start, SeekOrigin.Begin);
+            stream.Read(bytes, start, length);
 
-            return Encoding.GetEncoding("utf-8").GetString(bytes, start, (int)ms.Length - start);
+            return Encoding.UTF8.GetString(bytes, start, length - start);
         }
     }
 }
