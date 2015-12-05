@@ -61,6 +61,7 @@
     <Compile Include="Calculus\CalculusTest.cs" />
     <Compile Include="Calculus\FiniteCalculusTest.cs" />
     <Compile Include="Chemistry\BasicChemistry.cs" />
+    <Compile Include="Geometry\Trigonometry.cs" />
     <Compile Include="PreCalculus\PreCalculus.cs" />
     <Compile Include="SpecialFunctions\ElementaryTests.cs" />
     <Compile Include="SpecialFunctions\GammaTests.cs" />
