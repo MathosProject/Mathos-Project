@@ -63,6 +63,7 @@
     <Compile Include="Calculus\Elementary.Double.cs" />
     <Compile Include="Calculus\FiniteCalculus.cs" />
     <Compile Include="Calculus\IntegralCalculus.cs" />
+    <Compile Include="Chemistry\ChemistryConstants.cs" />
     <Compile Include="Chemistry\Compound.cs" />
     <Compile Include="Chemistry\Compounds.cs" />
     <Compile Include="Chemistry\Element.cs" />

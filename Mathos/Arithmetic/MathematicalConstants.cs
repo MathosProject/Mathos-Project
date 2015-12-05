@@ -1,9 +1,8 @@
 ﻿namespace Mathos.Arithmetic
 {
-    // these constants definitions are inspired by GSL
-    // some of these values may be replaced by better values
     /// <summary>
-    /// 
+    /// These constants definitions are inspired by GSL.
+    /// Some of these values may be replaced by better values.
     /// </summary>
     public static class MathematicalConstants
     {
