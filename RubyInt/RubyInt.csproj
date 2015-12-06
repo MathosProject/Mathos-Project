@@ -32,7 +32,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>384c2b83</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -61,28 +62,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IronRuby, Version=1.1.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IronRuby.1.1.3\Lib\IronRuby.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\lib\IronRuby.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="IronRuby.Libraries, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\IronRuby.Libraries.dll</HintPath>
+    <Reference Include="IronRuby.Libraries, Version=1.1.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronRuby.1.1.3\lib\IronRuby.Libraries.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="IronRuby.Libraries.Yaml, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\IronRuby.Libraries.Yaml.dll</HintPath>
+    <Reference Include="IronRuby.Libraries.Yaml, Version=1.1.3.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronRuby.1.1.3\lib\IronRuby.Libraries.Yaml.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="MathParser, Version=1.0.10.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MathosParser.1.0.10.1\lib\MathParser.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Dynamic.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\lib\Microsoft.Dynamic.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\IronRuby.1.1.3\Lib\Microsoft.Scripting.dll</HintPath>
+      <HintPath>..\packages\IronRuby.1.1.3\lib\Microsoft.Scripting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -96,15 +97,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dependencies\Microsoft.Scripting.ExtensionAttribute.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions">
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronRuby.1.1.3\lib\Microsoft.Scripting.Metadata.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="ScintillaNET, Version=3.5.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -113,16 +108,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.Runtime">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -222,14 +208,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dependencies\IronRuby.dll" />
-    <Content Include="Dependencies\IronRuby.Libraries.dll" />
-    <Content Include="Dependencies\IronRuby.Libraries.Yaml.dll" />
-    <Content Include="Dependencies\Microsoft.Dynamic.dll" />
-    <Content Include="Dependencies\Microsoft.Scripting.Core.dll" />
-    <Content Include="Dependencies\Microsoft.Scripting.Debugging.dll" />
-    <Content Include="Dependencies\Microsoft.Scripting.dll" />
-    <Content Include="Dependencies\Microsoft.Scripting.ExtensionAttribute.dll" />
     <Content Include="Dependencies\ScintillaNET.dll" />
     <Content Include="Help\list.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

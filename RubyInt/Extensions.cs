@@ -75,7 +75,7 @@ namespace RubyInt
             fileName = "Saves/" + fileName;
 
             var sr = new StreamReader(fileName);
-            var returnObject = MutableString.CreateMutable(sr.ReadToEnd(), RubyEncoding.Default);
+            var returnObject = MutableString.CreateMutable(sr.ReadToEnd(), RubyEncoding.UTF8);
             
             sr.Close();
 
