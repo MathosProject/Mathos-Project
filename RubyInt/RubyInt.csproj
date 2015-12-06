@@ -270,6 +270,9 @@
     <Content Include="Help\integrating2.mcli.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Help\Extensions.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Help\Stern-Brocot system.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
