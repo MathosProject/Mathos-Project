@@ -100,7 +100,7 @@ namespace RubyInt
 
         private void AboutClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(@"Mathos Project was launched Jun 21, 2012, and is currently under active development. The project is based on contributions by users world wide, and is therefore entirely free to use unlimited amount of times, without any restrictions. You can also contribute in any ways!
+            MessageBox.Show(@"Mathos Project was launched June 21, 2012, and is currently under active development. The project is based on contributions by users worldwide, and is therefore entirely free to use an unlimited amount of times, without any restrictions. You can also contribute in any way!
 
 We are currently taking a part in the Microsoft BizSpark programme, and we would like to extend a very special thanks to Microsoft BizSpark program for providing us with development tools, and other benefits of the programme! You can find out more about Microsoft BizSpark at http://bizspark.com/!",
                 "About", MessageBoxButton.OK);
