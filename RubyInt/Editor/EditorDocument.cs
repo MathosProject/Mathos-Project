@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Windows.Forms.Integration;
 using Microsoft.Scripting.Hosting;
 using Microsoft.Win32;
@@ -25,7 +24,6 @@ namespace RubyInt.Editor
 
         private readonly ScriptEngine _ruby;
         private readonly ScriptScope _scope;
-        private readonly MemoryStream _output;
 
         public EditorDocument(string input = "")
         {
@@ -43,8 +41,6 @@ namespace RubyInt.Editor
 
             _ruby = Settings.RubyTemplate;
             _scope = Settings.ScopeTemplate;
-            _output = new MemoryStream();
-            _ruby.Runtime.IO.SetOutput(_output, Encoding.UTF8);
 
             var editor = Settings.ScintillaTemplate;
             
@@ -61,10 +57,10 @@ namespace RubyInt.Editor
         {
             try
             {
-                _output.SetLength(0);
+                Settings.OutputStream.SetLength(0);
                 _ruby.Execute(Editor.Text, _scope);
 
-                return Settings.ReadFromStream(_output);
+                return Settings.ReadFromStream(Settings.OutputStream);
             }
             catch (Exception e)
             {

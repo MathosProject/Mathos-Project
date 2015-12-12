@@ -11,6 +11,9 @@ namespace RubyInt
 {
     public static class Settings
     {
+        public static readonly MemoryStream OutputStream = new MemoryStream();
+
+        public static readonly string StdFile = Environment.CurrentDirectory + "/Std.rb";
         public static readonly string HelpDirectory = Environment.CurrentDirectory + "/Help/";
 
         public static readonly ScriptEngine RubyTemplate = Ruby.CreateEngine();
@@ -39,13 +42,14 @@ namespace RubyInt
 
         public static void Initialize()
         {
-            var std = Environment.CurrentDirectory + "/Std.rb";
-            
             ScopeTemplate.Engine.Runtime.LoadAssembly(Assembly.LoadFile(Environment.CurrentDirectory + "/Mathos.dll"));
-            ScopeTemplate.SetVariable("_", new Extension());
+            ScopeTemplate.Engine.Runtime.LoadAssembly(Assembly.GetExecutingAssembly());
 
-            if (File.Exists(std))
-                RubyTemplate.ExecuteFile(std);
+            RubyTemplate.Runtime.IO.SetOutput(OutputStream, Encoding.UTF8);
+            RubyTemplate.Runtime.IO.SetErrorOutput(OutputStream, Encoding.UTF8);
+
+            if (File.Exists(StdFile))
+                RubyTemplate.ExecuteFile(StdFile);
 
             ScintillaTemplate.SetKeywords(0, "include begin end alias and break case class def defined? do else elsif ensure false for if in module next nil not or redo rescue retry return self super then true undef unless until when while yield __encoding__ __end__ __file__ __line__");
         }
