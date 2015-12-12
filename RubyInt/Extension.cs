@@ -76,23 +76,23 @@ namespace RubyInt
 
             var sr = new StreamReader(fileName);
             var returnObject = MutableString.CreateMutable(sr.ReadToEnd(), RubyEncoding.UTF8);
-            
+
             sr.Close();
 
             return returnObject;
         }
 
         // for testing purposes:
-        public double Time (Action action, int iterations = 1000)
+        public double Time(Action action, int iterations = 1000)
         {
             return BenchmarkUtil.Benchmark(action, iterations);
         }
 
-        public string ToSternBrocot(object fraction, bool continious =false, int b = 50)
+        public string ToSternBrocot(object fraction, bool continious = false, int b = 50)
         {
-            if (fraction.GetType() == typeof (MutableString) &&
-                ((MutableString) fraction).ConvertToString().Contains("/"))
-                return new Fraction(((MutableString) fraction).ConvertToString()).ToSternBrocotSystem();
+            if (fraction.GetType() == typeof(MutableString) &&
+                ((MutableString)fraction).ConvertToString().Contains("/"))
+                return new Fraction(((MutableString)fraction).ConvertToString()).ToSternBrocotSystem();
 
             return Fraction.ToSternBrocotSystem(Convert.ToDecimal(fraction), continious, b);
         }
@@ -101,10 +101,10 @@ namespace RubyInt
         {
             var fract = new Fraction();
 
-            if (fraction.GetType() == typeof (MutableString) &&
-                (((MutableString) fraction).ConvertToString().ToUpper().Contains("L") ||
-                 ((MutableString) fraction).ConvertToString().ToUpper().Contains("R")))
-                fract = Fraction.FromSternBrocotSystem(((MutableString) fraction).ConvertToString());
+            if (fraction.GetType() == typeof(MutableString) &&
+                (((MutableString)fraction).ConvertToString().ToUpper().Contains("L") ||
+                 ((MutableString)fraction).ConvertToString().ToUpper().Contains("R")))
+                fract = Fraction.FromSternBrocotSystem(((MutableString)fraction).ConvertToString());
 
             return fract.ToString();
         }
