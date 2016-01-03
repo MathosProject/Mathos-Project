@@ -74,10 +74,10 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
             /// <returns></returns>
             public static ulong[,] VisualRepresentation(Coordinate dimension, Coordinate[] coordinates)
             {
-                var system = new ulong[dimension.Y.ToInt64 (), dimension.X.ToInt64()];
+                var system = new ulong[dimension.Y.ToLong (), dimension.X.ToLong()];
 
                 foreach (var t in coordinates)
-                    system[t.Y.ToInt64(), t.X.ToInt64()] = 1;
+                    system[t.Y.ToLong(), t.X.ToLong()] = 1;
 
                 return system;
             }
