@@ -51,7 +51,7 @@
     <Compile Include="Arithmetic\ComplexNumberType.cs" />
     <Compile Include="Arithmetic\DecimalArithmetic.cs" />
     <Compile Include="Arithmetic\DoubleArithmetic.cs" />
-    <Compile Include="Arithmetic\FractionType.cs" />
+    <Compile Include="Arithmetic\Fraction.cs" />
     <Compile Include="Arithmetic\IntegerArithmetic.cs" />
     <Compile Include="Arithmetic\MathematicalConstants.cs" />
     <Compile Include="Arithmetic\NumberOperations.cs" />

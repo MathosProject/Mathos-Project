@@ -34,6 +34,7 @@ namespace Mathos.Notation
         public void Add(double number)
         {
             Array.Resize(ref _vectorContent, _vectorContent.Length+1);
+
             _vectorContent[_vectorContent.Length-1] = number;
         }
 
