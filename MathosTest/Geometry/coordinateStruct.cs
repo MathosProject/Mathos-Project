@@ -5,11 +5,12 @@ using Mathos.Geometry.TwoDimensional;
 using Mathos.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MathosTest
+namespace MathosTest.Geometry
 {
     [TestClass]
-    public class coordinateStruct
+    public class CoordinateStruct
     {
+        /*
         [TestMethod]
         public void CoordinateBasic()
         {
@@ -26,7 +27,9 @@ namespace MathosTest
             decimal distance = Calculate.Distance(coord1, coord2);
 
         }
+        */
 
+        /*
         [TestMethod]
         public void SlopeMidPointCalculation()
         {
@@ -43,39 +46,44 @@ namespace MathosTest
             Debug.WriteLine(new Coordinate());
             //Mathos.Arithmetics.Numbers.Convert.BaseType.base10
         }
+        */
 
         [TestMethod]
         public void TestingExtensionMethods()
         {
-            int a = 3;
+            const int a = 3;
+
             Assert.IsTrue(a.IsPositive());
             Assert.IsFalse(a.IsNegative());
 
-            int b = 6;
-            Assert.IsTrue(b.IsDivisible(3));
+            const int b = 6;
 
+            Assert.IsTrue(b.IsDivisible(3));
         }
 
+        /*
         [TestMethod]
         public void TestVisualRepresentation()
         {   
             Debug.WriteLine("The coordinate system");
 
             // declaring a collection of coordinates
-            Coordinate[] coords = new Coordinate[] { new Coordinate(2, 3), new Coordinate(3, 4), 
-                                                     new Coordinate(0, 0), new Coordinate(0, 10),
-                                                     new Coordinate(10, 0), new Coordinate(10, 10), };
+            var coords = new[]
+            {
+                new Coordinate(2, 3), new Coordinate(3, 4),
+                new Coordinate(0, 0), new Coordinate(0, 10),
+                new Coordinate(10, 0), new Coordinate(10, 10),
+            };
 
             // converting the coolection of coordinates to UInt64 (ulong) array
-            UInt64[,] system = Calculate.VisualRepresentation(new Coordinate(11, 11), coords);
+            var system = Calculate.VisualRepresentation(new Coordinate(11, 11), coords);
 
             // looping through the array
-            for (int i = 0; i < 11; i++)
+            for (var i = 0; i < 11; i++)
             {
-                for (int j = 0; j < 11; j++)
-                {
-                    Debug.Write(system[i,j]);   
-                }
+                for (var j = 0; j < 11; j++)
+                    Debug.Write(system[i, j]);
+
                 Debug.WriteLine("");
             }
 
@@ -92,6 +100,6 @@ namespace MathosTest
             //increase  to <= not < from 0 10 inclusive
 
         }
-
+        */
     }
 }

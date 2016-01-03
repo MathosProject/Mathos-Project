@@ -1,22 +1,21 @@
-﻿using System;
+﻿using Mathos.Arithmetic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mathos.Arithmetic;
-using System.Diagnostics;
 
-namespace MathosTest.Mathos_Main.Arithmetic
+namespace MathosTest.Arithmetic
 {
     [TestClass]
     public class SingleArthimeticTest
     {
-        float epsilon = 0.01f;
+        private const float Epsilon = 0.01f;
+
         [TestMethod]
         public void TestSqrt()
         {
-            float number = MathematicalConstants.Single.PI;
+            const float number = MathematicalConstants.Single.PI;
 
-            float root = SingleArithmetic.Sqrt(number);
+            var root = SingleArithmetic.Sqrt(number);
 
-            Assert.IsTrue(number.ApproximatelyEquals(root * root, epsilon));
+            Assert.IsTrue(number.ApproximatelyEquals(root * root, Epsilon));
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
 using Mathos.Statistics;
+using MathosTest.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest.Uncertainty
@@ -13,28 +12,27 @@ namespace MathosTest.Uncertainty
         [TestMethod]
         public void CustomFunctionOneVar()
         {
-            UncertainNumber x = new UncertainNumber(5, 2);
-            x= x.CustomFunction(d => d * d);
+            var x = new UncertainNumber(5, 2);
 
-            Assert.AreEqual((int)x.Value, 25);
+            x = x.CustomFunction(d => d*d);
+
+            Assert.AreEqual((int) x.Value, 25);
 
             // NOTE: 20.0000000000002 is too accurate, should be simplified to just 15
-            Assert.AreEqual(x.Uncertainty, (decimal)20.0000000000002);
+            Assert.AreEqual(x.Uncertainty, (decimal) 20.0000000000002);
         }
 
         [TestMethod]
         public void CustomFunctionMultipleVar()
         {
-            UncertainNumber x = new UncertainNumber(5, 2);
-            UncertainNumber y = new UncertainNumber(5,1);
-
-            UncertainNumber num =   UncertainNumber.CustomFunction(d => d[0] * d[1], x,y);
-
-
-            Assert.AreEqual((int)num.Value, 25);
+            var x = new UncertainNumber(5, 2);
+            var y = new UncertainNumber(5, 1);
+            var num = UncertainNumber.CustomFunction(d => d[0]*d[1], x, y);
+            
+            Assert.AreEqual((int) num.Value, 25);
 
             // NOTE: 15.0000000000001 is too accurate, should be simplified to just 15
-            Assert.AreEqual(num.Uncertainty, (decimal)15.0000000000001);
+            Assert.AreEqual(num.Uncertainty, (decimal) 15.0000000000001);
         }
 
         [TestMethod]
@@ -53,15 +51,16 @@ namespace MathosTest.Uncertainty
             */
         }
 
+        /*
         [TestMethod]
         public void FromTSVTest()
         {
             //should be possible to put build in funtions like pow, exp, etc into the custom function.
-            string rawData = MathosTest.Properties.Resources.String1;
+            var rawData = Resources.String1;
 
-            UncertainNumber[] hh = UncertainNumber.CustomFunction(d => d[0] * d[0], rawData);
+            var hh = UncertainNumber.CustomFunction(d => d[0]*d[0], rawData);
         }
-
+        */
 
         [TestMethod]
         public void SignificanteFiguresTest()
@@ -117,19 +116,19 @@ namespace MathosTest.Uncertainty
         // Left to Right Binary Exponentiation
         public static decimal Pow(decimal x, uint y)
         {
-            decimal A = 1m;
-            System.Collections.BitArray e = new System.Collections.BitArray(BitConverter.GetBytes(y));
-            int t = e.Count;
+            var a = 1m;
+            var e = new BitArray(BitConverter.GetBytes(y));
+            var t = e.Count;
 
-            for (int i = t - 1; i >= 0; --i)
+            for (var i = t - 1; i >= 0; --i)
             {
-                A *= A;
-                if (e[i] == true)
-                {
-                    A *= x;
-                }
+                a *= a;
+
+                if (e[i])
+                    a *= x;
             }
-            return A;
+
+            return a;
         }
     }
 }

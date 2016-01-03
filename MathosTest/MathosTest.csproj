@@ -68,12 +68,12 @@
     <Compile Include="SpecialFunctions\Antiderivatives.cs" />
     <Compile Include="Statistics and DiceSim\DiceSimulatorTest.cs" />
     <Compile Include="Arithmetic\DiscreteMathematics.cs" />
-    <Compile Include="Geometry\coordinateStruct.cs" />
+    <Compile Include="Geometry\CoordinateStruct.cs" />
     <Compile Include="Algebra\EquationSolver.cs" />
     <Compile Include="Finance.cs" />
     <Compile Include="Statistics and DiceSim\StatisticalDistributions.cs" />
     <Compile Include="Statistics and DiceSim\LinearModels.cs" />
-    <Compile Include="syntaxTest.cs" />
+    <Compile Include="SyntaxTest.cs" />
     <Compile Include="Geometry\Geometry.cs" />
     <Compile Include="Converter\ConverterTest.cs" />
     <Compile Include="Theory\SetTest.cs" />

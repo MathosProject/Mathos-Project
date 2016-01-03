@@ -190,7 +190,7 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public double ToDouble()
             {
-                return ((double)Numerator / _denominator);
+                return (double) Numerator/_denominator;
             }
 
             /// <summary>

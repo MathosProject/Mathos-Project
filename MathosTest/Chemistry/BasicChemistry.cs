@@ -2,7 +2,7 @@
 using Mathos.Chemistry;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MathosTest.Mathos_Main.Chemistry
+namespace MathosTest.Chemistry
 {
     [TestClass]
     public class BasicChemistry

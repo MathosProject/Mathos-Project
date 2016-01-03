@@ -2,7 +2,7 @@
 using Mathos.Notation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MathosTest.Mathos_Main.Theory
+namespace MathosTest.Theory
 {
     [TestClass]
     public class SetTest
@@ -12,15 +12,15 @@ namespace MathosTest.Mathos_Main.Theory
         {
             var set = new Set<int>(2, 4, 6, 8, 10);
 
-            Console.WriteLine(set.ToString());
+            Assert.AreEqual("{2,4,6,8,10}", set.ToString());
 
             set.Add(1, 3, 5, 7, 9);
-
-            Console.WriteLine(set.ToString());
+            
+            Assert.AreEqual("{2,4,6,8,10,1,3,5,7,9}", set.ToString());
 
             set.Remove(9);
-
-            Console.WriteLine(set.ToString());
+            
+            Assert.AreEqual("{2,4,6,8,10,1,3,5,7}", set.ToString());
         }
 
         [TestMethod]
@@ -30,8 +30,8 @@ namespace MathosTest.Mathos_Main.Theory
             var b = new Set<int>(6, 7, 8, 9, 10);
             
             a.Add(b);
-
-            Console.WriteLine(a.ToString());
+            
+            Assert.AreEqual("{1,2,3,4,5,6,7,8,9,10}", a.ToString());
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace MathosTest.Mathos_Main.Theory
             var a = new Set<int>(1, 2, 3);
             var b = new Set<int>(2, 3, 4);
 
-            Console.WriteLine(a.Union(b));
+            Assert.AreEqual("{1,2,3,4}", a.Union(b).ToString());
         }
 
         [TestMethod]
@@ -48,8 +48,8 @@ namespace MathosTest.Mathos_Main.Theory
         {
             var a = new Set<int>(1, 2, 3);
             var b = new Set<int>(2, 3, 4);
-
-            Console.WriteLine(a.Intersection(b));
+            
+            Assert.AreEqual("{2,3}", a.Intersection(b).ToString());
         }
 
         [TestMethod]
@@ -58,8 +58,8 @@ namespace MathosTest.Mathos_Main.Theory
             var a = new Set<int>(1, 2, 3);
             var b = new Set<int>(2, 3, 4);
 
-            Console.WriteLine(a.Difference(b));
-            Console.WriteLine(b.Difference(a));
+            Assert.AreEqual("{1}", a.Difference(b).ToString());
+            Assert.AreEqual("{4}", b.Difference(a).ToString());
         }
 
         [TestMethod]
@@ -78,21 +78,11 @@ namespace MathosTest.Mathos_Main.Theory
             var b = new Set<int>(1, 2, 3);
             var c = new Set<int>(1, 2, 3, 4);
 
-            Console.WriteLine(a + @" ⊆ " + b + @" = " + a.IsSubset(b));
-            Console.WriteLine(a + @" ⊆ " + c + @" = " + a.IsSubset(c));
+            Assert.IsTrue(a.IsSubset(b));
+            Assert.IsTrue(a.IsSubset(c));
 
-            Console.WriteLine(a + @" ⊂ " + b + @" = " + a.IsProperSubset(b));
-            Console.WriteLine(a + @" ⊂ " + c + @" = " + a.IsProperSubset(c));
-        }
-
-        [TestMethod]
-        public void TechnicalTesting()
-        {
-            var set = new Set<int>(1, 2, 3, 4);
-
-            Console.WriteLine(set.ToString());
-            Console.WriteLine(set.GetHashCode());
-            Console.WriteLine(set.Equals(new Set<int>(1, 2, 3, 4)));
+            Assert.IsFalse(a.IsProperSubset(b));
+            Assert.IsTrue(a.IsProperSubset(c));
         }
     }
 }

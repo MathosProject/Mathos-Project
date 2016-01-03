@@ -30,7 +30,6 @@ namespace MathosTest
         public void NetPresentValue()
         { 
             var cashFlow = new List<decimal> {200000, 300000, 200000};
-
             var netPresentValue = Finance.NetPresentValue(500000, cashFlow, 10);
 
             Assert.AreEqual(80015.02M, netPresentValue);

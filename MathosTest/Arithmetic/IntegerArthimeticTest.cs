@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Mathos.Arithmetic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mathos.Arithmetic;
-using System.Diagnostics;
 
-namespace MathosTest.Mathos_Main.Arithmetic
+namespace MathosTest.Arithmetic
 {
     [TestClass]
     public class IntegerArthimeticTest
@@ -12,10 +10,10 @@ namespace MathosTest.Mathos_Main.Arithmetic
         public void TestSqrt()
         {
             Assert.AreEqual(9, IntegerArithmetic.Sqrt(81));
-
             Assert.AreEqual(9, IntegerArithmetic.Sqrt(99));
         }
 
+        // TODO: Make faster
         //[TestMethod]
         //public void TestIfSqrtIsFasterThanMathSqrt()
         //{
@@ -31,6 +29,5 @@ namespace MathosTest.Mathos_Main.Arithmetic
 
         //    Assert.IsTrue(avgMath > avgSqrt);
         //}
-        // It does not seem to be actually faster :(
     }
 }

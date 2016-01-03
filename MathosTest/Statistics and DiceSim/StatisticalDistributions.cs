@@ -1,7 +1,7 @@
 ﻿using Mathos.Statistics.Statistical_Distributions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MathosTest.Mathos_Main
+namespace MathosTest.Statistics_and_DiceSim
 {
     [TestClass]
     public class StatisticalDistributions

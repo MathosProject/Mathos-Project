@@ -3,106 +3,106 @@ using Mathos;
 using Mathos.Arithmetic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MathosTest.Mathos_Main.Arithmetic
+namespace MathosTest.Arithmetic
 {
     [TestClass]
     public class ComplexArithmeticTest
     {
-        double epsilon = 1e-7;
+        private const double Epsilon = 1e-7;
 
         [TestMethod]
         public void TestRootsOf()
-
         {
-            Complex[] rootsOf4 = { 2.0, -2.0 };
-            Complex[] rootsOfMinus4 = { 2.0 * Complex.ImaginaryOne, 
-                                          -2.0 * Complex.ImaginaryOne };
+            var rootsOf4 = new Complex[] {2.0, -2.0};
+            var rootsOfMinus4 = new[]
+            {
+                2.0*Complex.ImaginaryOne,
+                -2.0*Complex.ImaginaryOne
+            };
 
-            Complex z = Complex.FromPolarCoordinates(16.0, 
-                MathematicalConstants.PIOverFour);
-            Complex[] rootsOfz = {
-                                         new Complex(1.961570561,0.3901806440),
-                                         new Complex(-0.3901806440,1.961570561),
-                                         new Complex (-1.961570561,0.3901806440),
-                                         new Complex(-0.3901806440,-1.961570561)
-                                     };
+            var z = Complex.FromPolarCoordinates(16.0, MathematicalConstants.PIOverFour);
+            var rootsOfz = new[]
+            {
+                new Complex(1.961570561, 0.3901806440),
+                new Complex(-0.3901806440, 1.961570561),
+                new Complex(-1.961570561, 0.3901806440),
+                new Complex(-0.3901806440, -1.961570561)
+            };
 
-            Complex[] aRootsOf4 = new Complex(4.0,0).Roots(2);
-            Complex[] aRootsOfMinus4 = new Complex(-4.0, 0).Roots(2);
-            Complex[] aRootsOfz = z.Roots(4);
-
+            var aRootsOf4 = new Complex(4.0,0).Roots(2);
+            var aRootsOfMinus4 = new Complex(-4.0, 0).Roots(2);
+            var aRootsOfz = z.Roots(4);
 
             Assert.AreEqual(rootsOf4.Length, aRootsOf4.Length);
-            for (int i = 0; i < rootsOf4.Length; i++)
-            {
-                bool assert = rootsOf4[i].ApproximatelyEquals(aRootsOf4[i], epsilon);
-                Assert.IsTrue(assert);
-            }
+
+            for (var i = 0; i < rootsOf4.Length; i++)
+                Assert.IsTrue(rootsOf4[i].ApproximatelyEquals(aRootsOf4[i], Epsilon));
 
             Assert.AreEqual(rootsOfMinus4.Length, aRootsOfMinus4.Length);
-            for (int i = 0; i < rootsOfMinus4.Length; i++)
-            {
-                Assert.IsTrue(rootsOfMinus4[i].ApproximatelyEquals(aRootsOfMinus4[i], epsilon));
-            }
+
+            for (var i = 0; i < rootsOfMinus4.Length; i++)
+                Assert.IsTrue(rootsOfMinus4[i].ApproximatelyEquals(aRootsOfMinus4[i], Epsilon));
 
             Assert.AreEqual(rootsOfz.Length, aRootsOfz.Length);
-            for (int i = 0; i < rootsOfz.Length; i++)
-            {
-                Assert.IsTrue(rootsOfz[i].ApproximatelyEquals(aRootsOfz[i], epsilon));
-            }
+
+            for (var i = 0; i < rootsOfz.Length; i++)
+                Assert.IsTrue(rootsOfz[i].ApproximatelyEquals(aRootsOfz[i], Epsilon));
         }
 
         [TestMethod]
         public void TestSqrt()
         {
-            Complex z = new Complex(1.961570561, 0.3901806440);
-            Complex w = ComplexArithmetic.Sqrt(z);
-            Assert.IsTrue(z.ApproximatelyEquals(w * w, epsilon));
+            var z = new Complex(1.961570561, 0.3901806440);
+            var w = ComplexArithmetic.Sqrt(z);
+
+            Assert.IsTrue(z.ApproximatelyEquals(w * w, Epsilon));
 
             z = new Complex(-1.961570561, 0.3901806440);
             w = ComplexArithmetic.Sqrt(z);
-            Assert.IsTrue(z.ApproximatelyEquals(w * w, epsilon));
+
+            Assert.IsTrue(z.ApproximatelyEquals(w * w, Epsilon));
 
             z = new Complex(-1.961570561, -0.3901806440);
             w = ComplexArithmetic.Sqrt(z);
-            Assert.IsTrue(z.ApproximatelyEquals(w * w, epsilon));
+
+            Assert.IsTrue(z.ApproximatelyEquals(w * w, Epsilon));
 
             z = new Complex(1.961570561, -0.3901806440);
             w = ComplexArithmetic.Sqrt(z);
-            Assert.IsTrue(z.ApproximatelyEquals(w * w, epsilon));
+
+            Assert.IsTrue(z.ApproximatelyEquals(w * w, Epsilon));
         }
 
         [TestMethod]
         public void TestIfMulIsEqualToComplexOperator()
         {
-            Complex z1 = new Complex(1.6859, 0.3902);
-            Complex z2 = new Complex(3.51896, -0.458);
+            var z1 = new Complex(1.6859, 0.3902);
+            var z2 = new Complex(3.51896, -0.458);
 
-            Complex w1 = z1 * z2;
-            Complex w2 = ComplexArithmetic.Multiply(z1, z2);
+            var w1 = z1 * z2;
+            var w2 = ComplexArithmetic.Multiply(z1, z2);
 
-            Assert.IsTrue(w1.ApproximatelyEquals(w2, epsilon));
+            Assert.IsTrue(w1.ApproximatelyEquals(w2, Epsilon));
         }
 
         [TestMethod]
         public void ComparePowIntWithPow()
         {
-            Complex z1 = new Complex(1.6859, 0.3902);
-            Complex actual = z1.Pow(10);
-            Complex expected = z1 * z1 * z1 * z1 * z1 * z1 * z1 * z1 * z1 * z1;
+            var z1 = new Complex(1.6859, 0.3902);
+            var actual = z1.Pow(10);
+            var expected = z1 * z1 * z1 * z1 * z1 * z1 * z1 * z1 * z1 * z1;
 
-            Assert.IsTrue(expected.ApproximatelyEquals(actual, epsilon));
+            Assert.IsTrue(expected.ApproximatelyEquals(actual, Epsilon));
         }
 
         [TestMethod]
         public void TestIfPowIntInFasterThanPow()
         {
-            int iter = 250000;
-            Complex z = new Complex(1.6859, 0.3902);
-            double averageIntTime = BenchmarkUtil.Benchmark(
-                () => { Complex w = ComplexArithmetic.PowInt(z, 10); }, iter);
-            double averageCpTime = BenchmarkUtil.Benchmark(
-                () => { Complex w = Complex.Pow(z, 10); }, iter);
+            const int iter = 250000;
+
+            var z = new Complex(1.6859, 0.3902);
+            var averageIntTime = BenchmarkUtil.Benchmark(() => { ComplexArithmetic.PowInt(z, 10); }, iter);
+            var averageCpTime = BenchmarkUtil.Benchmark(() => { Complex.Pow(z, 10); }, iter);
 
             Assert.IsTrue(averageIntTime < averageCpTime);
         }

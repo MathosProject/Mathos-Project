@@ -1,9 +1,10 @@
 ﻿using System.Globalization;
+using Mathos.Arithmetic.Numbers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Mathos.Syntax;
 
-namespace MathosTest.Mathos_Main
+namespace MathosTest
 {
     [TestClass]
     public class SyntaxTest
@@ -11,33 +12,26 @@ namespace MathosTest.Mathos_Main
         [TestMethod]
         public void TestSyntax()
         {
-            /* 
-             * Mathos.Syntax is a collection of extenssion methods
-             * for the common value types in .NET Framework.
-             */
-
             const int myNumber = 29;
 
-            var myNumberIsPrime = myNumber.IsPrime(); // true
-            var myNumberIsOdd = myNumber.IsEven(); // false
-            var myNumberIsPositive = myNumber.IsPositive(); // true
-
+            Assert.IsTrue(myNumber.IsPrime());
+            Assert.IsFalse(myNumber.IsEven());
+            Assert.IsTrue(myNumber.IsPositive());
+            
             const long mySecondNumber = 32;
             const long myThirdNumber = 9;
 
-            var areCoprimes = mySecondNumber.IsCoprime(myThirdNumber); // true
+            Assert.IsTrue(mySecondNumber.IsCoprime(myThirdNumber));
         }
 
         [TestMethod]
         public void TestUsualWay()
         {
-            /* Using "Numbers" directly */
+            Assert.IsTrue(Check.IsPrime(29));
+            Assert.AreEqual(2, Convert.ToPositive(-2));
+            Assert.AreEqual(4, Get.Gdc(20, 4));
 
-            var myNumberIsPrime = Mathos.Arithmetic.Numbers.Check.IsPrime(29);
-            var positiveNumber = Mathos.Arithmetic.Numbers.Convert.ToPositive(-2);
-            var gdc = Mathos.Arithmetic.Numbers.Get.Gdc(20, 4);
-
-            foreach (var factor in Mathos.Arithmetic.Numbers.Get.Factors(81))
+            foreach (var factor in Get.Factors(81))
                 System.Diagnostics.Debug.WriteLine("Factor: " + factor.ToString(CultureInfo.InvariantCulture));
         }
     }

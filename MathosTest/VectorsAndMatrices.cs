@@ -9,16 +9,18 @@ namespace MathosTest
     public class VectorsAndMatrices
     {
         [TestMethod]
-        public void MatrixToString()
+        public void TestToString()
         {
             var matrix = new Matrix(2, 2);
             
             matrix[0] = new Vector(1, 2);
             matrix[1] = new Vector(3, 4);
             
-            var result = matrix.ToString();
+            Assert.AreEqual("1 2\r\n3 4", matrix.ToString());
+
             var vector = new Vector(1, 2, 3, 4);
-            var result2 = vector.ToString();
+
+            Assert.AreEqual("1 2 3 4", vector.ToString());
         }
 
         [TestMethod]
@@ -28,19 +30,20 @@ namespace MathosTest
             var vecB = new Vector(3, 4, 5, 6, 7);
             var result = vecA + vecB;
 
-            Assert.IsTrue(result == new Vector(4, 6, 8, 10, 12));
+            Assert.AreEqual(result, new Vector(4, 6, 8, 10, 12));
         }
 
         [TestMethod]
         public void VectorComparison()
         {
-            Vector vecA = new Vector(1, 2, 3, 4, 5);
-            Vector vecB = new Vector(1, 2, 3, 4, 5);
+            var vecA = new Vector(1, 2, 3, 4, 5);
+            var vecB = new Vector(1, 2, 3, 4, 5);
 
-            Assert.IsTrue(vecA == vecB);
+            Assert.AreEqual(vecA, vecB);
 
-            Vector vecC = new Vector(1, 2, 3, 4, 5, 6);
-            Assert.IsTrue(vecA != vecC);
+            var vecC = new Vector(1, 2, 3, 4, 5, 6);
+
+            Assert.AreNotEqual(vecA, vecC);
         }
 
         //....

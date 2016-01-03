@@ -1,7 +1,7 @@
 ﻿using Mathos.PreCalculus;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MathosTest
+namespace MathosTest.PreCalculus
 {
     [TestClass]
     public class PreCalculus
@@ -9,15 +9,19 @@ namespace MathosTest
         [TestMethod]
         public void CalculateSum()
         {
-            int s = Fibonacci.Sum(3, 5);
+            var s = Fibonacci.Sum(3, 5);
+            
+            Assert.AreEqual(10, s);
         }
 
         [TestMethod]
         public void ArithmeticProgression()
         {
-            ArithmeticProgression ap = new ArithmeticProgression();
-            ap.CommonDifference = 4;
-            ap.InitialTerm = 2;
+            var ap = new ArithmeticProgression
+            {
+                CommonDifference = 4,
+                InitialTerm = 2
+            };
 
             Assert.AreEqual(ap.NTerm(5), 18);
         }
@@ -25,11 +29,12 @@ namespace MathosTest
         [TestMethod]
         public void GeometricProgression()
         {
-            GeometricProgression gp = new GeometricProgression();
-
-            gp.CommonRatio = 3;
-            gp.InitialTerm = 2;
-
+            var gp = new GeometricProgression
+            {
+                CommonRatio = 3,
+                InitialTerm = 2
+            };
+            
             Assert.AreEqual(gp.NTerm(5), 486);
         }            
     }
