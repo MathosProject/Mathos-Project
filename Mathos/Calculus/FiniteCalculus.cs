@@ -43,13 +43,13 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        ///     Finds the coefficients of the closed form of the sum and returns them in a double array. The first item in the
-        ///     array is of the highest power. The last term in the array is the constant term.
+        /// Finds the coefficients of the closed form of the sum and returns them in a double array. The first item in the
+        /// array is of the highest power. The last term in the array is the constant term.
         /// </summary>
         /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
         /// <param name="degree">
-        ///     The degree value returned here is the number of times we have to take the differnce of this
-        ///     sequence (using GetDifference) to get the difference to be zero.
+        /// The degree value returned here is the number of times we have to take the differnce of this
+        /// sequence (using GetDifference) to get the difference to be zero.
         /// </param>
         /// <returns></returns>
         public static double[] GetCoefficientsForNthSum(double[] sequence, int degree)
@@ -65,7 +65,7 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        ///     Finds an expression, given coefficients of the nth term, in terms of any variable.
+        /// Finds an expression, given coefficients of the nth term, in terms of any variable.
         /// </summary>
         /// <param name="coeff">The coefficients for the nth term. You can obtain them with GetCoefficientsForNthTerm.</param>
         /// <param name="variable">The variable we should you when expressing the nth term.</param>
