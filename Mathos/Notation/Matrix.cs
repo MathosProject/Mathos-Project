@@ -3,11 +3,6 @@ using System.Linq;
 
 namespace Mathos.Notation
 {
-    /*
-     * Matrix class needs functions such as those defined at
-     * http://www.mathworks.se/help/techdoc/ref/f16-5872.html#f16-9856
-     * 
-     */
     /// <summary>
     /// Implementation of matrixes.
     /// </summary>
