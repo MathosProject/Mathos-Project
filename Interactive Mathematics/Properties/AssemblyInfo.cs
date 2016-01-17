@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -12,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Artem Los")]
 [assembly: AssemblyProduct("Interactive Mathematics")]
-[assembly: AssemblyCopyright("Copyright © 2012 Artem Los")]
+[assembly: AssemblyCopyright("Copyright © 2012-2016 Mathos Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

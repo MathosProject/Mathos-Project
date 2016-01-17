@@ -7,7 +7,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mathos Project")]
 [assembly: AssemblyProduct("Mathos Core Library Interpreter (RubyInt)")]
-[assembly: AssemblyCopyright("Copyright © 2014-2015 Mathos Project")]
+[assembly: AssemblyCopyright("Copyright © 2014-2016 Mathos Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Общие сведения об этой сборке предоставляются следующим набором 
@@ -10,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Artem Los")]
 [assembly: AssemblyProduct("MathosTest")]
-[assembly: AssemblyCopyright("Copyright © 2012 Artem Los")]
+[assembly: AssemblyCopyright("Copyright © 2012-2016 Mathos Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
