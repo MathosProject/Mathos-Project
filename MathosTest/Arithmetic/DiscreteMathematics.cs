@@ -1,11 +1,20 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Numerics;
 using System.Reflection;
-using Mathos.Arithmetic.Numbers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+using Mathos.Arithmetic.Numbers;
+
+#if NUNIT
+using TestClass = NUnit.Framework.TestFixtureAttribute;
+using TestMethod = NUnit.Framework.TestAttribute;
+using Assert = NUnit.Framework.Assert;
+using CollectionAssert = NUnit.Framework.CollectionAssert;
+#else
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace MathosTest.Arithmetic
 {

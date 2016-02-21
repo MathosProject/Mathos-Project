@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Mathos.Arithmetic.Numbers;
 using Mathos.SpecialFunctions;
+
+#if NUNIT
+using TestClass = NUnit.Framework.TestFixtureAttribute;
+using TestMethod = NUnit.Framework.TestAttribute;
+using Assert = NUnit.Framework.Assert;
+#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#endif
 
 namespace MathosTest.Mathos_Main.SpecialFunctions
 {
@@ -49,11 +56,18 @@ namespace MathosTest.Mathos_Main.SpecialFunctions
                 )
                 );
         }
+
         [TestMethod]
+        #if !NUNIT
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        #endif
         public void Test_Invalid_Values()
         {
-            GammaRelated.LogOfFactorial(-1);
+            #if NUNIT
+                Assert.Throws<ArgumentOutOfRangeException>(() => GammaRelated.LogOfFactorial(-1));
+            #else
+                GammaRelated.LogOfFactorial(-1);
+            #endif
         }
 
         [TestMethod]
