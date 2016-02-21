@@ -1,12 +1,6 @@
-﻿using Mathos.SpecialFunctions;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-#if NUNIT
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using Assert = NUnit.Framework.Assert;
-#else
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-#endif
+using Mathos.SpecialFunctions;
 
 namespace MathosTest.SpecialFunctions
 {

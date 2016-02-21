@@ -1,8 +1,0 @@
-language: csharp
-solution: Mathos.sln
-install:
-  - nuget restore Mathos.sln
-  - nuget install NUnit.Runners -Version 3.0.1 -OutputDirectory NUnitRunner
-script:
-  - xbuild /p:Configuration=ReleaseNUnit Mathos.sln
-  - mono ./NUnitRunner/NUnit.Console.3.0.1/tools/nunit3-console.exe ./MathosTest/bin/ReleaseNUnit/MathosTest.dll

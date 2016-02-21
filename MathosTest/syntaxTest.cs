@@ -1,15 +1,8 @@
 ﻿using System.Globalization;
 using Mathos.Arithmetic.Numbers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Mathos.Syntax;
-
-#if NUNIT
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using Assert = NUnit.Framework.Assert;
-#else
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-#endif
 
 namespace MathosTest
 {

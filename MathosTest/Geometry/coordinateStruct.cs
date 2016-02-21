@@ -1,12 +1,9 @@
-﻿using Mathos.Syntax;
-
-#if NUNIT
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using Assert = NUnit.Framework.Assert;
-#else
+﻿using System;
+using System.Diagnostics;
+using Mathos.Arithmetic.Fractions;
+using Mathos.Geometry.TwoDimensional;
+using Mathos.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-#endif
 
 namespace MathosTest.Geometry
 {

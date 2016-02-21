@@ -1,14 +1,6 @@
 ﻿using System.Collections.Generic;
-
 using Mathos.Statistics;
-
-#if NUNIT
-using TestClass = NUnit.Framework.TestFixtureAttribute;
-using TestMethod = NUnit.Framework.TestAttribute;
-using Assert = NUnit.Framework.Assert;
-#else
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-#endif
 
 namespace MathosTest.Statistics_and_DiceSim
 {
