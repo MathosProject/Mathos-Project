@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/MathosProject/Mathos-Project.svg?branch=master)](https://travis-ci.org/MathosProject/Mathos-Project)
-
 # Mathos Project
 ## About
 Mathos is a collection of tools for any kinds of mathematical calculations. It allows you to work with shapes, finance, unit conversions, and more!
