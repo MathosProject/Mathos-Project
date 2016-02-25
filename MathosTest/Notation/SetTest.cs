@@ -1,8 +1,10 @@
 ﻿using System;
+
 using Mathos.Notation;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MathosTest.Theory
+namespace MathosTest.Notation
 {
     [TestClass]
     public class SetTest

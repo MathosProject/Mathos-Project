@@ -1,9 +1,10 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Mathos.Notation;
 
-namespace MathosTest
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace MathosTest.Notation
 {
     [TestClass]
     public class VectorsAndMatrices
