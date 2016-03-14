@@ -60,7 +60,6 @@
     <Compile Include="Arithmetic\DecimalArithmetic.cs" />
     <Compile Include="Calculus\CalculusTest.cs" />
     <Compile Include="Calculus\FiniteCalculusTest.cs" />
-    <Compile Include="Chemistry\BasicChemistry.cs" />
     <Compile Include="Geometry\Trigonometry.cs" />
     <Compile Include="PreCalculus\PreCalculus.cs" />
     <Compile Include="SpecialFunctions\ElementaryTests.cs" />
@@ -77,7 +76,7 @@
     <Compile Include="Geometry\Geometry.cs" />
     <Compile Include="Converter\ConverterTest.cs" />
     <Compile Include="Notation\SetTest.cs" />
-    <Compile Include="Uncertainty\Uncertainty.cs" />
+    <Compile Include="Statistics\Uncertainty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arithmetic\FractionTest.cs" />
     <Compile Include="Statistics and DiceSim\Statistics.cs" />

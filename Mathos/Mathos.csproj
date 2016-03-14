@@ -63,12 +63,6 @@
     <Compile Include="Calculus\Elementary.Double.cs" />
     <Compile Include="Calculus\FiniteCalculus.cs" />
     <Compile Include="Calculus\IntegralCalculus.cs" />
-    <Compile Include="Chemistry\ChemistryConstants.cs" />
-    <Compile Include="Chemistry\Compound.cs" />
-    <Compile Include="Chemistry\Compounds.cs" />
-    <Compile Include="Chemistry\Element.cs" />
-    <Compile Include="Chemistry\Elements.cs" />
-    <Compile Include="Chemistry\EquationBalancer.cs" />
     <Compile Include="Converter\AngleConverter.cs" />
     <Compile Include="Converter\ConversionObjects.cs" />
     <Compile Include="Converter\Converter.cs" />
@@ -79,7 +73,9 @@
     <Compile Include="Geometry\Shapes\Torus.cs" />
     <Compile Include="Notation\Vector.cs" />
     <Compile Include="Notation\Matrix.cs" />
-    <Compile Include="PreCalculus\Sequences.cs" />
+    <Compile Include="PreCalculus\ArithmeticSequence.cs" />
+    <Compile Include="PreCalculus\GeometricSequence.cs" />
+    <Compile Include="PreCalculus\Fibonacci.cs" />
     <Compile Include="SpecialFunctions\Antiderivatives.cs" />
     <Compile Include="SpecialFunctions\Bessel.cs" />
     <Compile Include="SpecialFunctions\Elliptic.cs" />

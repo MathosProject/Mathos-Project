@@ -17,12 +17,12 @@ namespace Mathos.Statistics
         public enum UncertaintyType
         {
             /// <summary>
-            /// 
+            /// Absolute uncertainty.
             /// </summary>
             AbsoluteUncertainty,
-            
+
             /// <summary>
-            /// 
+            /// Relative uncertainty.
             /// </summary>
             RelativeUncertainty
         }
@@ -52,10 +52,7 @@ namespace Mathos.Statistics
         public UncertainNumber(decimal value, decimal uncertainty)
         {
             Value = value;
-            Uncertainty = uncertainty;
-
-            if (Uncertainty < 0)
-                Uncertainty = Uncertainty*-1;
+            Uncertainty = (uncertainty < 0) ? uncertainty * -1 : uncertainty;
         }
         
         /// <summary>

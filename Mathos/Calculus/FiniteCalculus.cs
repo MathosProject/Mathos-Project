@@ -6,19 +6,18 @@ using Mathos.Notation;
 namespace Mathos.Calculus
 {
     /// <summary>
-    /// This class contains methods for calculus with finite differences. Most of the methods assume that the sequence of
-    /// numbers is some sort of polynomial.
+    /// This class provides methods for finite calculus.
     /// </summary>
     public static class FiniteCalculus
     {
         /// <summary>
-        /// This method will evaluate a sum that contains a true-false statement - the Iverson notation.
+        /// Evaluate a sum that contains a true-false statement - Iverson notation.
         /// </summary>
-        /// <param name="function"></param>
-        /// <param name="rule"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
+        /// <param name="function">The function.</param>
+        /// <param name="rule">The rule.</param>
+        /// <param name="min">The minimum.</param>
+        /// <param name="max">The maximum.</param>
+        /// <returns>The evaluated sum.</returns>
         public static double SumWithRule(Func<double, double> function, Func<double, bool> rule, int min, int max)
         {
             double result = 0;
@@ -33,25 +32,26 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        ///     Finds an expression, given coefficients of the nth sum, in terms of any variable.
+        /// Finds an expression, given <paramref name="coefficients"/> of the n-th sum, in terms of any variable.
         /// </summary>
-        /// <param name="coeff">The coefficients for the nth sum. You can obtain them with GetCoefficientsForNthSum.</param>
-        /// <returns></returns>
-        public static string GetExpressionForNthSum(double[] coeff)
+        /// <param name="coefficients">The coefficients for the n-th sum.</param>
+        /// <remarks>You can obtain <paramref name="coefficients"/> with GetCoefficientsForNthSum.</remarks>
+        /// <returns>The expression given <paramref name="coefficients"/>.</returns>
+        public static string GetExpressionForNthSum(double[] coefficients)
         {
-            return GetExpressionForNthTerm(coeff);
+            return GetExpressionForNthTerm(coefficients);
         }
 
         /// <summary>
-        /// Finds the coefficients of the closed form of the sum and returns them in a double array. The first item in the
-        /// array is of the highest power. The last term in the array is the constant term.
+        /// Finds the coefficients of the closed form of the sum, and returns them in an array.
+        /// The first item in the <paramref name="sequence"/> is of the highest power. The last term is the constant term.
         /// </summary>
-        /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
+        /// <param name="sequence">The passed.</param>
         /// <param name="degree">
         /// The degree value returned here is the number of times we have to take the differnce of this
         /// sequence (using GetDifference) to get the difference to be zero.
         /// </param>
-        /// <returns></returns>
+        /// <returns>The coefficients for the n-th sum.</returns>
         public static double[] GetCoefficientsForNthSum(double[] sequence, int degree)
         {
             var partialSums = new double[sequence.Length];
@@ -65,42 +65,43 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        /// Finds an expression, given coefficients of the nth term, in terms of any variable.
+        /// Finds an expression, given <paramref name="coefficients"/> of the n-th term, in terms of any variable.
         /// </summary>
-        /// <param name="coeff">The coefficients for the nth term. You can obtain them with GetCoefficientsForNthTerm.</param>
-        /// <param name="variable">The variable we should you when expressing the nth term.</param>
+        /// <param name="coefficients">The coefficients for the n-th term.</param>
+        /// <param name="variable">The variable we should use when expressing the n-th term.</param>
         /// <param name="round">The number of digits we should round to in the fractional part of the number.</param>
-        /// <returns></returns>
-        public static string GetExpressionForNthTerm(double[] coeff, char variable = 'x', int round = 10)
+        /// <remarks>You can obtain <paramref name="coefficients"/> with GetCoefficientsForNthSum.</remarks>
+        /// <returns>The expression for the n-th term.</returns>
+        public static string GetExpressionForNthTerm(double[] coefficients, char variable = 'x', int round = 10)
         {
             var expr = "";
 
-            for (var i = 0; i < coeff.Length; i++)
+            for (var i = 0; i < coefficients.Length; i++)
             {
-                coeff[i] = Math.Round(coeff[i], round);
+                coefficients[i] = Math.Round(coefficients[i], round);
 
-                if (Math.Abs(coeff[i]) > 0 && i < coeff.Length - 1)
+                if (Math.Abs(coefficients[i]) > 0 && i < coefficients.Length - 1)
                 {
-                    if (Math.Abs(coeff[i] - 1) > 1 || Math.Abs(coeff[i] - 1) < 1)
-                        expr += (coeff[i]).ToString(CultureInfo.InvariantCulture) + variable;
+                    if (Math.Abs(coefficients[i] - 1) > 1 || Math.Abs(coefficients[i] - 1) < 1)
+                        expr += (coefficients[i]).ToString(CultureInfo.InvariantCulture) + variable;
                     else
                         expr += variable;
 
-                    if (i < coeff.Length - 2)
-                        expr += "^" + (coeff.Length - i - 1);
+                    if (i < coefficients.Length - 2)
+                        expr += "^" + (coefficients.Length - i - 1);
                 }
                 else
                 {
-                    if (Math.Abs(coeff[i]) > 0)
-                        expr += (coeff[i]).ToString(CultureInfo.InvariantCulture);
+                    if (Math.Abs(coefficients[i]) > 0)
+                        expr += (coefficients[i]).ToString(CultureInfo.InvariantCulture);
                 }
 
-                if (i >= coeff.Length - 1)
+                if (i >= coefficients.Length - 1)
                     continue;
 
-                coeff[i + 1] = Math.Round(coeff[i + 1], round);
+                coefficients[i + 1] = Math.Round(coefficients[i + 1], round);
 
-                if (coeff[i + 1] > 0)
+                if (coefficients[i + 1] > 0)
                     expr += "+";
             }
 
@@ -108,15 +109,15 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        /// Finds the coefficients of the nth term and returns them in a double array. The first item in the array is of the
-        /// highest power. The last term in the array is the constant term.
+        /// Finds the coefficients of the n-th term, and returns them in an array.
+        /// The first item in the array is of the highest power. The last term in the array is the constant term.
         /// </summary>
-        /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
+        /// <param name="sequence">The sequence.</param>
         /// <param name="degree">
         /// The degree value returned here is the number of times we have to take the differnce of this
         /// sequence (using GetDifference) to get the difference to be zero.
         /// </param>
-        /// <returns></returns>
+        /// <returns>The coefficients for the n-th term.</returns>
         public static double[] GetCoefficientsForNthTerm(double[] sequence, int degree)
         {
             var mat = new Matrix(degree, degree + 1);
@@ -138,19 +139,20 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        /// Finds the difference between terms in a sequence. By chaging the degree, we can take difference of the differences.
+        /// Finds the difference between terms in a <paramref name="sequence"/>.
+        /// By changing the degree, we can take difference from the differences.
         /// </summary>
-        /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
+        /// <param name="sequence">The sequence.</param>
         /// <param name="term">
-        /// The index of the first term where the diff. should be taken. NB: As the degree increases, the
-        /// smaller can the term be
+        /// The index of the first term where the difference should be taken.
         /// </param>
         /// <param name="degree">
         /// The type of difference, i.e. if degree=1, the first difference is taken and if degree=2, the
         /// difference of the first difference is taken.
         /// </param>
+        /// <remarks>As the <paramref name="degree"/> increases, the smaller can the term be</remarks>
         /// <example>If the sequence is {1,2,3,4,...}, term=0, degree=1, we get 1. By changning degree=2, we get 0.</example>
-        /// <returns>The difference between the terms in the sequence, depending on the degree.</returns>
+        /// <returns>The difference between the terms in a <paramref name="sequence"/>, depending on the <paramref name="degree"/>.</returns>
         public static double GetDifference(double[] sequence, int term, int degree)
         {
             // the pascal's triangle should be optimized. we only need half of the values
@@ -170,13 +172,14 @@ namespace Mathos.Calculus
 
 
         /// <summary>
-        /// Finds the next term in the sequence, given that a pattern exist.
+        /// Finds the next term in the <paramref name="sequence"/>, given that a pattern exists.
         /// </summary>
-        /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
-        /// <param name="term">
-        /// If term=-1, the next term in the sequence is going to be found. By default, you don't need to change
-        /// this variable.
-        /// </param>
+        /// <param name="sequence">The sequence.</param>
+        /// <param name="term">The term.</param>
+        /// <remarks>
+        /// If term=-1, the next term in the sequence is going to be found.
+        /// By default, you don't need to change this variable.</remarks>
+        /// <exception cref="Exception">The sequence does not contain a recognized pattern.</exception>
         /// <returns></returns>
         public static double GetNextTerm(double[] sequence, int term = -1)
         {
@@ -211,11 +214,10 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        /// Checks whether the given sequence contains a pattern. For a pattern to exist, given the terms in the sequence, we
-        /// should be able to reach a difference of zero for all possible values of degree. Degree is dependent on the number
-        /// of terms we have.
+        /// Checks whether the given <paramref name="sequence"/> for a pattern. For a pattern to exist, given the terms in the sequence, we
+        /// should be able to reach a difference of zero for all possible values of <paramref name="dergee"/>.
         /// </summary>
-        /// <param name="sequence">The sequence of doubles passed in as a double array.</param>
+        /// <param name="sequence">The sequence.</param>
         /// <param name="degree">
         /// The degree value returned here is the number of times we have to take the differnce of this
         /// sequence (using GetDifference) to get the difference to be zero.
@@ -224,6 +226,7 @@ namespace Mathos.Calculus
         /// By default, we only check if we can get any kind of difference (of different degrees) to be
         /// zero for the smallest term. If this option is true, all terms are going to be checked to follow the pattern.
         /// </param>
+        /// <remarks>Degree is dependent on the number of terms.</remarks>
         /// <returns></returns>
         public static bool HasPattern(double[] sequence, out int degree, bool checkAllTerms = false)
         {

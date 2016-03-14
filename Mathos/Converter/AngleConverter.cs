@@ -4,13 +4,15 @@ using System.Globalization;
 namespace Mathos.Converter
 {
     /// <summary>
-    /// 
+    /// This class provides methods for converting angles.
     /// </summary>
-    public class AngleConversionM
+    public class AngleConverter
     {
         /// <summary>
-        /// Static method that returns angle imputed as "degrees.minutesseconds" in to decimal degree
+        /// Imputes <paramref name="angle"/> ("degrees.minutesseconds") into decimal degrees.
         /// </summary>
+        /// <param name="angle">The angle to convert.</param>
+        /// <returns><paramref name="angle"/> imputed into decimal degrees.</returns>
         public static double AngleToDecimalAngle(double angle = 0.0000)
         {
             var degrees = Math.Truncate(angle);
@@ -23,8 +25,10 @@ namespace Mathos.Converter
         }
 
         /// <summary>
-        /// Static method that returns angle imputed as decimal degree in to degree ("degree.minutesseconds")
+        /// Imputes <paramref name="angle"/> (decimal degrees) into degrees ("degree.minutesseconds").
         /// </summary>
+        /// <param name="angle">The angle to convert.</param>
+        /// <returns><paramref name="angle"/> imputed into dergrees.</returns>
         public static double DecimalAngleToAngle(double angle = 0.000000)
         {
             var degrees = Math.Truncate(angle);
@@ -52,8 +56,10 @@ namespace Mathos.Converter
         }
 
         /// <summary>
-        /// Static method that returns angle imputed as "degrees.minutesseconds" in to radians
+        /// Converts an <paramref name="angle"/> ("degrees.minutesseconds") in to radians
         /// </summary>
+        /// <param name="angle">The angle to convert.</param>
+        /// <returns><paramref name="angle"/> converted to radians.</returns>
         public static double AngleToRadians(double angle = 0.0000)
         {
             angle = AngleToDecimalAngle(angle);
@@ -62,23 +68,22 @@ namespace Mathos.Converter
         }
 
         /// <summary>
-        /// Static method that returns angle imputed as radians in to decimal degrees
+        /// Converts <paramref name="radians"/> into decimal degrees.
         /// </summary>
-        public static double RadiansToDecimalAngle(double angle = 0.000000)
+        public static double RadiansToDecimalAngle(double radians = 0.000000)
         {
-            return angle * 180 / Math.PI;
+            return radians * 180 / Math.PI;
         }
 
         /// <summary>
-        /// Static method that returns angle imputed as radians in to decimal degrees
+        /// Converts <paramref name="radians"/> into an angle.
         /// </summary>
-        public static double RadiansToAngle(double angle = 0.000000)
+        public static double RadiansToAngle(double radians = 0.000000)
         {
-            angle = angle * 180 / Math.PI;
-            angle = DecimalAngleToAngle(angle);
+            radians = radians * 180 / Math.PI;
+            radians = DecimalAngleToAngle(radians);
 
-            return angle;
+            return radians;
         }
-
     }
 }

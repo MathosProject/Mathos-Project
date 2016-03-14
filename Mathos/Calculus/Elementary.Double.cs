@@ -4,8 +4,12 @@ using Mathos.Arithmetic;
 
 namespace Mathos.Calculus
 {
-    // Missing functions in Math class
-    // functions of real variable
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    /// Missing functions from Math class.
+    /// </remarks>
     public static partial class Elementary
     {      
         // check : http://www.johndcook.com/csharp_log_one_plus_x.html

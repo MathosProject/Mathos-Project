@@ -3,36 +3,30 @@
 namespace Mathos.Calculus
 {
     /// <summary>
-    /// This class provides you with tools for calculations of rates of changes.
+    /// This class provides methods for differential calculus.
     /// </summary>
     public static class DifferentialCalculus
     {
-        //add more documentation...
-
         /// <summary>
-        /// Calculates the first derivative given a function and an x coordinate
+        /// Calculates the first derivative given a single-variable <paramref name="function"/> and an <paramref name="xPoint"/>.
         /// </summary>
-        /// <param name="function">The function</param>
-        /// <param name="xPoint">The x coordinate</param>
+        /// <param name="function">The function.</param>
+        /// <param name="xPoint">The x coordinate.</param>
         /// <param name="h"></param>
-        /// <returns>Returns the first derivative</returns>
+        /// <returns>Returns the first derivative given a single-variable <paramref name="function"/> and an <paramref name="xPoint"/>.</returns>
         public static double FirstDerivative(Func<double,double> function, double xPoint, double h = 1e-14)
         {
-            //const double h = 0.0000000000001M;
-
-            return (function(xPoint + h) - function(xPoint -h)) / (2*h);
-
-            //use parser to parse string expressions
+            return (function(xPoint + h) - function(xPoint - h))/(2*h);
         }
 
         /// <summary>
-        /// Calculates the first derivative given a multivariable function and a specific set of variables (input parameters).
+        /// Calculates the first derivative given a multi-variable <paramref name="function"/>, index <paramref name="withRespectTo"/>, and a set of <paramref name="points"/>.
         /// </summary>
-        /// <param name="function">The function</param>
-        /// <param name="withRespectTo">The index of the point in "points" variable that the derivative should be differenetiated with resepect to.</param>
-        /// <param name="points">The input parameters of the multivariable function.</param>
-        /// <returns>Returns the first derivative</returns>
-        public static decimal FirstDerivative(Func<decimal[], decimal> function, int withRespectTo ,  params decimal[] points)
+        /// <param name="function">The function.</param>
+        /// <param name="withRespectTo">The index of the point in <paramref name="points"/> that the derivative should be differenetiated with resepect to.</param>
+        /// <param name="points">The input parameters for the multi-variable function.</param>
+        /// <returns>Returns the first derivative given a multi-variable <paramref name="function"/>, <paramref name="withRespectTo"/>, and a set of <paramref name="points"/>.</returns>
+        public static decimal FirstDerivative(Func<decimal[], decimal> function, int withRespectTo, params decimal[] points)
         {
             const decimal h = 0.0000000000001M;
 
@@ -44,39 +38,39 @@ namespace Mathos.Calculus
         }
 
         /// <summary>
-        /// Calculates the second derivative given a function and an x coordinate
+        /// Calculates the second derivative given a single-variable <paramref name="function"/> and an <paramref name="xPoint"/>.
         /// </summary>
-        /// <param name="function">The function</param>
-        /// <param name="xPoint">The x coordinate</param>
-        /// <returns>Returns the second derivative</returns>
+        /// <param name="function">The function.</param>
+        /// <param name="xPoint">The x coordinate.</param>
+        /// <returns>Returns the second derivative given a single-variable <paramref name="function"/> and an <paramref name="xPoint"/>.</returns>
         public static decimal SecondDerivative(Func<decimal, decimal> function, decimal xPoint)
         {
             const decimal h = 0.0000000000001M;
 
-            return (function(xPoint +h) - 2*function(xPoint) + function(xPoint-h) )/(decimal.Multiply(h,h));
+            return (function(xPoint + h) - 2*function(xPoint) + function(xPoint - h))/(decimal.Multiply(h, h));
         }
 
         /// <summary>
-        /// Calculates the second derivative given a multivariable function and a specific set of variables (input parameters).
+        /// Calculates the second derivative given a multi-variable <paramref name="function"/>, index <paramref name="withRespectTo"/>, and a set of <paramref name="points"/>.
         /// </summary>
         /// <param name="function">The function</param>
-        /// <param name="withRespectTo">The index of the point in "points" variable that the derivative should be differenetiated with resepect to.</param>
-        /// <param name="points">The input parameters of the multivariable function.</param>
-        /// <returns>Returns the second derivative</returns>
-        public static decimal SecondDerivative(Func<decimal[], decimal> function, int withRespectTo , params decimal [] points)
+        /// <param name="withRespectTo">The index of the point in <paramref name="points"/> that the derivative should be differenetiated with resepect to.</param>
+        /// <param name="points">The input parameters for the multi-variable function.</param>
+        /// <returns>Returns the second derivative given a multi-variable <paramref name="function"/>, index <paramref name="withRespectTo"/>, and a set of <paramref name="points"/>.</returns>
+        public static decimal SecondDerivative(Func<decimal[], decimal> function, int withRespectTo, params decimal[] points)
         {
             const decimal h = 0.0000000000001M;
 
             var xPoint = points[withRespectTo];
             var value1 = function(points);
 
-            points [withRespectTo] = xPoint-h;
-            
+            points[withRespectTo] = xPoint - h;
+
             var value2 = function(points);
 
             points[withRespectTo] = xPoint + h;
 
-            return (function(points) - 2 * value1 + value2) / (decimal.Multiply(h, h));
+            return (function(points) - 2*value1 + value2)/(decimal.Multiply(h, h));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Mathos.PreCalculus;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest.PreCalculus
@@ -15,27 +16,35 @@ namespace MathosTest.PreCalculus
         }
 
         [TestMethod]
-        public void ArithmeticProgression()
+        public void ArithmeticSequence()
         {
-            var ap = new ArithmeticProgression
+            var a = new ArithmeticSequence
             {
-                CommonDifference = 4,
-                InitialTerm = 2
+                InitialTerm = 2,
+                CommonDifference = 4
             };
 
-            Assert.AreEqual(ap.NTerm(5), 18);
+            Assert.AreEqual(18, a.NTerm(5));
         }
 
         [TestMethod]
-        public void GeometricProgression()
+        public void GeometricSequence()
         {
-            var gp = new GeometricProgression
+            var g1 = new GeometricSequence
             {
-                CommonRatio = 3,
-                InitialTerm = 2
+                InitialTerm = 2,
+                CommonRatio = 3
             };
             
-            Assert.AreEqual(gp.NTerm(5), 486);
+            Assert.AreEqual(486, g1.NTerm(5));
+
+            var g2 = new GeometricSequence
+            {
+                InitialTerm = 2,
+                CommonRatio = 0.5
+            };
+
+            Assert.AreEqual(4, g2.InfiniteSum());
         }            
     }
 }
