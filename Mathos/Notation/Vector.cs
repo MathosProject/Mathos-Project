@@ -74,7 +74,7 @@ namespace Mathos.Notation
             for (var i = 0; i < _vectorContent.Length; i++)
             {
                 output.Append(_vectorContent[i].ToString(System.Globalization.CultureInfo.InvariantCulture));
-                output.Append((i < _vectorContent.Length - 1) ? " " : "");
+                output.Append(i < _vectorContent.Length - 1 ? " " : "");
             }
             
             return output.ToString();
@@ -92,7 +92,7 @@ namespace Mathos.Notation
 
             var vector = (Vector)obj;
             
-            return (this == vector);
+            return this == vector;
         }
 
         /// <summary>

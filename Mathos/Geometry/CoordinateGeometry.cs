@@ -173,7 +173,7 @@ namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.Coordina
                 
                 var coordinate = (Coordinate)obj;
                 
-                return (this == coordinate);
+                return this == coordinate;
             }
 
             /// <summary>

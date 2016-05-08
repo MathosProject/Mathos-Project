@@ -76,7 +76,7 @@ namespace Mathos.PreCalculus
         public int Index(int f)
         {
             var phi = GoldenRatio;
-            var n = Math.Log((f*Math.Sqrt(5) + 0.5), phi);
+            var n = Math.Log(f*Math.Sqrt(5) + 0.5, phi);
 
             return Convert.ToInt32(Math.Round(n));
         }

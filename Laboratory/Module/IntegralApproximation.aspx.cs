@@ -158,7 +158,7 @@ namespace Laboratory.Module
         {
             decimal sum = 0;
             var parser = new MathParser();
-            var sizeOfInterval = ((upperLimit - lowerLimit)/numberOfIntervals);
+            var sizeOfInterval = (upperLimit - lowerLimit)/numberOfIntervals;
 
             for (var i = 0; i < numberOfIntervals; i++)
             {
@@ -178,7 +178,7 @@ namespace Laboratory.Module
             decimal numberOfIntervals = 100000)
         {
             var parser = new MathParser();
-            var sizeOfInterval = ((upperLimit - lowerLimit)/numberOfIntervals);
+            var sizeOfInterval = (upperLimit - lowerLimit)/numberOfIntervals;
 
             parser.LocalVariables["x"] = lowerLimit;
             var sum = parser.ProgrammaticallyParse(expression);
@@ -204,7 +204,7 @@ namespace Laboratory.Module
             decimal numberOfIntervals = 100000)
         {
             var parser = new MathParser();
-            var sizeOfInterval = ((upperLimit - lowerLimit)/numberOfIntervals);
+            var sizeOfInterval = (upperLimit - lowerLimit)/numberOfIntervals;
 
             parser.LocalVariables["x"] = lowerLimit;
 

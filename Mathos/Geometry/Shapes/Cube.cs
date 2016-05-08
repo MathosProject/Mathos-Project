@@ -3,14 +3,14 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Cube shape
+    /// A cube.
     /// </summary>
     public class Cube : IShape3D
     {
         private readonly Square _squareBase;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Cube()
         {
@@ -18,25 +18,25 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Constructor with a specified Square, "squareBase", to base the Cube off of
+        /// Constructor with a specified <paramref name="squareBase"/>.
         /// </summary>
-        /// <param name="squareBase"></param>
+        /// <param name="squareBase">The square base.</param>
         public Cube(Square squareBase)
         {
             _squareBase = squareBase;
         }
 
         /// <summary>
-        /// Constructor with a double, "length", to make the Cube equal to
+        /// Constructor with a <paramref name="length"/>.
         /// </summary>
-        /// <param name="length"></param>
+        /// <param name="length">The length.</param>
         public Cube(double length)
         {
             _squareBase = new Square(length);
         }
 
         /// <summary>
-        /// Gets or sets the length of a side
+        /// Gets or sets the length of a side.
         /// </summary>
         public double Length
         {
@@ -45,7 +45,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the volume of the cube
+        /// Gets the volume of the cube.
         /// </summary>
         public double Volume
         {
@@ -53,7 +53,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the surface area of the cube
+        /// Gets the surface area of the cube.
         /// </summary>
         public double SurfaceArea
         {
@@ -111,8 +111,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
-                   Math.Abs(a._squareBase.Length - b._squareBase.Length) < 1;
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._squareBase.Length - b._squareBase.Length) < 1));
         }
 
         /// <summary>
@@ -123,7 +122,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(Cube a, Cube b)
         {
-            return (a != null && b != null) && Math.Abs(a._squareBase.Length - b._squareBase.Length) > 0;
+            return (a != null) && (b != null) && (Math.Abs(a._squareBase.Length - b._squareBase.Length) > 0);
         }
 
         #endregion

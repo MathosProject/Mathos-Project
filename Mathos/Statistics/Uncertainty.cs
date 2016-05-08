@@ -136,7 +136,7 @@ namespace Mathos.Statistics
         /// <returns></returns>
         public static string ConvertArrayToTsvString(UncertainNumber[] numbers)
         {
-            return numbers.Aggregate("", (current, t) => current + (t.Value + "\t" + t.Uncertainty + "\n"));
+            return numbers.Aggregate("", (current, t) => current + (t.Value + "\t" + t.Uncertainty) + "\n");
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Mathos.Statistics
                     {
                         var num = 1 / PowD(10, uncertainty.ToString(CultureInfo.InvariantCulture).Length - 2) * 0.1M; // important that y is an uint.
                         
-                        uncertainty = decimal.Ceiling(uncertainty * num) / (num);
+                        uncertainty = decimal.Ceiling(uncertainty * num) / num;
                     }
                 }
 

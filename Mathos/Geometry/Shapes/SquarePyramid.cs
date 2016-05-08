@@ -3,7 +3,7 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Square pyramid shape
+    /// A square pyramid.
     /// </summary>
     public class SquarePyramid : IShape3D
     {
@@ -87,7 +87,7 @@ namespace Mathos.Geometry.Shapes
         {
             var other = obj as SquarePyramid;
 
-            return other != null && (_squareBase == other._squareBase && Math.Abs(_height - other._height) < 1);
+            return other != null && _squareBase == other._squareBase && Math.Abs(_height - other._height) < 1;
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(SquarePyramid other)
         {
-            return other != null && (_squareBase == other._squareBase && Math.Abs(_height - other._height) < 1);
+            return other != null && _squareBase == other._squareBase && Math.Abs(_height - other._height) < 1;
         }
 
         /// <summary>
@@ -119,8 +119,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
-                   (a._squareBase == b._squareBase && Math.Abs(a._height - b._height) < 1);
+            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) && a._squareBase == b._squareBase && Math.Abs(a._height - b._height) < 1;
         }
 
         /// <summary>
@@ -131,7 +130,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(SquarePyramid a, SquarePyramid b)
         {
-            return ((a != null && b != null) && a._squareBase != b._squareBase) || ((a != null && b != null) && Math.Abs(a._height - b._height) > 0);
+            return (a != null && b != null && a._squareBase != b._squareBase) || (a != null && b != null && Math.Abs(a._height - b._height) > 0);
         }
 
         #endregion

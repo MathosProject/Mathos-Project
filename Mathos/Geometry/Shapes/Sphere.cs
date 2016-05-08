@@ -3,30 +3,30 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Sphere shape
+    /// A sphere.
     /// </summary>
     public class Sphere : IShape3D
     {
         private double _radius;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Sphere() : this(0)
         {
         }
 
         /// <summary>
-        /// Constructor with a double, "radius", to base this sphere off of
+        /// Constructor with a <paramref name="radius"/>.
         /// </summary>
-        /// <param name="radius"></param>
+        /// <param name="radius">The radius.</param>
         public Sphere(double radius)
         {
             _radius = radius < 0 ? 0 : radius;
         }
 
         /// <summary>
-        /// Gets or sets the radius of the sphere
+        /// Gets or sets the radius of the sphere.
         /// </summary>
         public double Radius
         {
@@ -35,7 +35,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the volume of the sphere
+        /// Gets the volume of the sphere.
         /// </summary>
         public double Volume
         {
@@ -43,7 +43,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the circumference of the sphere
+        /// Gets the circumference of the sphere.
         /// </summary>
         public double SurfaceArea
         {
@@ -61,7 +61,7 @@ namespace Mathos.Geometry.Shapes
         {
             var other = obj as Sphere;
 
-            return other != null && Math.Abs(_radius - other._radius) < 1;
+            return (other != null) && (Math.Abs(_radius - other._radius) < 1);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(Sphere other)
         {
-            return other != null && Math.Abs(_radius - other._radius) < 1;
+            return (other != null) && (Math.Abs(_radius - other._radius) < 1);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _radius.GetHashCode();
+            return Radius.GetHashCode();
         }
 
         /// <summary>
@@ -93,8 +93,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) ||
-                   ((object) a != null) && ((object) b != null) && Math.Abs(a._radius - b._radius) < 1;
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._radius - b._radius) < 1));
         }
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(Sphere a, Sphere b)
         {
-            return ((a != null && b != null) && Math.Abs(a._radius - b._radius) > 0);
+            return (a != null) && (b != null) && (Math.Abs(a._radius - b._radius) > 0);
         }
 
         #endregion

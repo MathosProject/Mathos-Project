@@ -94,10 +94,10 @@ namespace Mathos.Statistics
                 return 0;
 
             if (0 != listLength%2)
-                return listSorted[((listLength + 1)/2) - 1];
+                return listSorted[(listLength + 1)/2 - 1];
             
-            var leftMedian = listSorted[(listLength / 2) - 1]; //subtracting 1 accomdates 0-based index
-            var rightMedian = listSorted[(listLength / 2)];
+            var leftMedian = listSorted[listLength / 2 - 1]; //subtracting 1 accomdates 0-based index
+            var rightMedian = listSorted[listLength / 2];
                 
             return (leftMedian + rightMedian) / 2;
         }
@@ -170,7 +170,7 @@ namespace Mathos.Statistics
                 double listCount = list.Count;
                 var listOfSquares = list.Select(d => Math.Pow((double) d, 2)).ToList();
 
-                return (decimal)Math.Sqrt((1 / listCount) * listOfSquares.Sum());
+                return (decimal)Math.Sqrt(1 / listCount * listOfSquares.Sum());
             }
             catch
             {
@@ -497,8 +497,8 @@ namespace Mathos.Statistics
                 sXy += x[i] * y[i];
             }
 
-            var tmpLeft = ((decimal) 1/n);
-            var tmpRight = ((decimal) 1/n);
+            var tmpLeft = (decimal) 1/n;
+            var tmpRight = (decimal) 1/n;
             var b = (n * sXy - sX * sY) / (n * sXx - sX * sX);
             var a = tmpLeft * sY - b * tmpRight * sX;
 

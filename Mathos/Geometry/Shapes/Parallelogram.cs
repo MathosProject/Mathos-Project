@@ -73,7 +73,7 @@ namespace Mathos.Geometry.Shapes
         {
             var other = obj as Parallelogram;
 
-            return (other != null) && ((Math.Abs(_length - other._length) < 1) && (Math.Abs(_height - other._height) < 1));
+            return (other != null) && (Math.Abs(_length - other._length) < 1) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>

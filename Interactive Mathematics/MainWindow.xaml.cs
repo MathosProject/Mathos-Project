@@ -27,9 +27,9 @@ namespace Interactive_Mathematics
             _parser.OperatorList.Add("and");
             _parser.OperatorList.Add("or");
 
-            _parser.OperatorAction.Add("isnot", (x, y) => (x != y) ? 1 : 0);
-            _parser.OperatorAction.Add("and", (x, y) => (x == 1 && y == 1) ? 1 : 0);
-            _parser.OperatorAction.Add("or", (x, y) => (x == 1 || y == 1) ? 1 : 0);
+            _parser.OperatorAction.Add("isnot", (x, y) => x != y ? 1 : 0);
+            _parser.OperatorAction.Add("and", (x, y) => x == 1 && y == 1 ? 1 : 0);
+            _parser.OperatorAction.Add("or", (x, y) => x == 1 || y == 1 ? 1 : 0);
 
             _parser.LocalFunctions.Add("IsPrime", x =>
             {

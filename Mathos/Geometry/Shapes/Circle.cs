@@ -3,30 +3,30 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Circle shape
+    /// A circle.
     /// </summary>
     public class Circle : IShape2D
     {
         private double _radius;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Circle() : this(0)
         {
         }
 
         /// <summary>
-        /// Constructor with a double, "radius", to set custom initialization
+        /// Constructor with a <paramref name="radius"/>.
         /// </summary>
-        /// <param name="radius"></param>
+        /// <param name="radius">The radius.</param>
         public Circle(double radius)
         {
             _radius = radius < 0 ? 0 : radius;
         }
 
         /// <summary>
-        /// Gets or sets the radius of the circle
+        /// Gets or sets the radius of the circle.
         /// </summary>
         public double Radius
         {
@@ -35,7 +35,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the Diameter of the circle
+        /// Gets or sets the Diameter of the circle.
         /// </summary>
         public double Diameter
         {
@@ -44,7 +44,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the area of the circle
+        /// Gets the area of the circle.
         /// </summary>
         public double Area
         {
@@ -52,7 +52,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the circumference of the circle
+        /// Gets the circumference of the circle.
         /// </summary>
         public double Circumference
         {
@@ -60,7 +60,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the perimeter of the circle
+        /// Gets the perimeter of the circle.
         /// </summary>
         public double Perimeter
         {
@@ -81,17 +81,18 @@ namespace Mathos.Geometry.Shapes
 
             var other = obj as Circle;
 
-            return other != null && Math.Abs(_radius - other._radius) < 1; // What this returns might not be acturate, update this if needed
+            // What this returns might not be accurate, update this if needed.
+            return (other != null) && (Math.Abs(_radius - other._radius) < 1);
         }
 
         /// <summary>
-        /// Checks to see if "_radius" is equal to "other"'s "_radius"
+        /// Checks to see if the radius is equal to <paramref name="other"/>'s radius.
         /// </summary>
-        /// <param name="other"></param>
+        /// <param name="other">The other circle.</param>
         /// <returns></returns>
         public bool Equals(Circle other)
         {
-            return other != null && Math.Abs(_radius - other._radius) < 1;
+            return (other != null) && (Math.Abs(_radius - other._radius) < 1);
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _radius.GetHashCode();
+            return Radius.GetHashCode();
         }
 
         /// <summary>
@@ -113,8 +114,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) ||
-                   ((object) a != null) && ((object) b != null) && Math.Abs(a._radius - b._radius) < 1;
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._radius - b._radius) < 1));
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(Circle a, Circle b)
         {
-            return (a != null && b != null) && Math.Abs(a._radius - b._radius) > 0;
+            return (a != null) && (b != null) && (Math.Abs(a._radius - b._radius) > 0);
         }
 
         #endregion

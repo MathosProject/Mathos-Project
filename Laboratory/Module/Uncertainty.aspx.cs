@@ -58,7 +58,7 @@ namespace Laboratory.Module
                 return 1;
             if (exp == 1)
                 return x;
-            if ((exp - decimal.Floor(exp)) != 0)
+            if (exp - decimal.Floor(exp) != 0)
             {
                 //for (int i = 0; i < 19; i++)
                 //{

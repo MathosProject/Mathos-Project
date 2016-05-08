@@ -444,8 +444,8 @@ namespace Mathos.Arithmetic
             {
                 var result = new ComplexNumber
                 {
-                    _realPart = (c1.RealPart * c2._realPart) - (c2._imaginaryPart * c1._imaginaryPart),
-                    _imaginaryPart = (c1._imaginaryPart * c2._realPart) + (c1._realPart * c2._imaginaryPart)
+                    _realPart = c1.RealPart * c2._realPart - c2._imaginaryPart * c1._imaginaryPart,
+                    _imaginaryPart = c1._imaginaryPart * c2._realPart + c1._realPart * c2._imaginaryPart
                 };
 
                 return result;
@@ -539,8 +539,8 @@ namespace Mathos.Arithmetic
             /// <returns></returns>
             public static double AbsSquared(ComplexNumber number)
             {
-                return (number.RealPart * number.RealPart) + 
-                    (number.ImaginaryPart * number.ImaginaryPart);
+                return number.RealPart * number.RealPart + 
+                    number.ImaginaryPart * number.ImaginaryPart;
             }
 
             /// <summary>

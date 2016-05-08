@@ -83,7 +83,7 @@ namespace Mathos.Calculus
                 if (Math.Abs(coefficients[i]) > 0 && i < coefficients.Length - 1)
                 {
                     if (Math.Abs(coefficients[i] - 1) > 1 || Math.Abs(coefficients[i] - 1) < 1)
-                        expr += (coefficients[i]).ToString(CultureInfo.InvariantCulture) + variable;
+                        expr += coefficients[i].ToString(CultureInfo.InvariantCulture) + variable;
                     else
                         expr += variable;
 
@@ -93,7 +93,7 @@ namespace Mathos.Calculus
                 else
                 {
                     if (Math.Abs(coefficients[i]) > 0)
-                        expr += (coefficients[i]).ToString(CultureInfo.InvariantCulture);
+                        expr += coefficients[i].ToString(CultureInfo.InvariantCulture);
                 }
 
                 if (i >= coefficients.Length - 1)
@@ -260,7 +260,7 @@ namespace Mathos.Calculus
         
         private static double Pascal(int x, int y)
         {
-            return (x + 1) == 1 || (y + 1) == 1 || (x == y) ? 1 : Pascal(x - 1, y - 1) + Pascal(x - 1, y);
+            return x + 1 == 1 || y + 1 == 1 || (x == y) ? 1 : Pascal(x - 1, y - 1) + Pascal(x - 1, y);
         }
     }
 }

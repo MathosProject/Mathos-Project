@@ -74,14 +74,14 @@ namespace Mathos.Arithmetic
                     return true;                                     // if the prime is already
                                                                      // in the list
 
-                if ((num % 2) == 0) //even numbers>2 are not prime (2 is included in the common prime numbers)
+                if (num % 2 == 0) //even numbers>2 are not prime (2 is included in the common prime numbers)
                     return false; 
 
                 var sqrtNum = (long)Math.Sqrt(num); // optimizing so that we do not 
                                                     // need to calculate the sqrt on each iteration
                 for (long i = 2; i <= sqrtNum; i++)
                 {
-                    if ((num%i) == 0)
+                    if (num%i == 0)
                         return false; // not a prime
                 }
 
@@ -234,14 +234,14 @@ namespace Mathos.Arithmetic
                 
                 BigInteger fact = 1;
 
-                if ((n%2) == 0)
+                if (n%2 == 0)
                     start = 1;
 
                 for (BigInteger i = start; i < n; i = i + 2)
                 {
                     var j = i * (i + 1);
   
-                    while ((j % 2) == 0)
+                    while (j % 2 == 0)
                     {
                         numTwo++;
                         j >>= 1;
@@ -329,7 +329,7 @@ namespace Mathos.Arithmetic
                 
                 for (long i = 2; i <= max; i++)
                 {
-                    if ((num%i) != 0)
+                    if (num%i != 0)
                         continue;
                     
                     if (Check.IsPrime(i))
@@ -371,7 +371,7 @@ namespace Mathos.Arithmetic
                 long tmp = x;
 
                 while (--n > 0)
-                    tmp = tmp * tmp * (((power <<= 1) < 0) ? x : 1);
+                    tmp = tmp * tmp * ((power <<= 1) < 0 ? x : 1);
 
                 return tmp;
             }

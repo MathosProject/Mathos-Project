@@ -235,7 +235,7 @@ namespace Mathos.Arithmetic
             var min = Math.Min(xAbs, yAbs);
             var max = Math.Max(xAbs, yAbs);
 
-            return (max * (1.0 - min / max)) < epsilon;
+            return max * (1.0 - min / max) < epsilon;
         }
 
         /// <summary>

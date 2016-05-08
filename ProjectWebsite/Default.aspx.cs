@@ -354,9 +354,9 @@ namespace ProjectWebsite
             parser.OperatorList.Add("or");
       
 
-            parser.OperatorAction.Add("isnot", (x, y) => (x != y) ? 1 : 0);
-            parser.OperatorAction.Add("and", (x, y) => (x == 1 && y == 1) ? 1 : 0);
-            parser.OperatorAction.Add("or", (x, y) => (x == 1 || y == 1) ? 1 : 0);
+            parser.OperatorAction.Add("isnot", (x, y) => x != y ? 1 : 0);
+            parser.OperatorAction.Add("and", (x, y) => x == 1 && y == 1 ? 1 : 0);
+            parser.OperatorAction.Add("or", (x, y) => x == 1 || y == 1 ? 1 : 0);
             parser.OperatorAction.Add("$", (x, y) =>
             {
                 if (x%1 != 0 || y%1 != 0)

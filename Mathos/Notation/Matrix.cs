@@ -104,9 +104,9 @@ namespace Mathos.Notation
         /// <returns>True if the two matrixes are equal.</returns>
         public static bool operator==(Matrix add1, Matrix add2)
         {
-            if (add1 != null && (add2 != null && add1._matrixContent.Length != add2._matrixContent.Length))
+            if (add1 != null && add2 != null && add1._matrixContent.Length != add2._matrixContent.Length)
                 throw new ArgumentException("Matrix passed in does not have the same order as matrix to be added to.");
-            if (add2 != null && (add1 != null && add1._matrixContent[0].Length != add2._matrixContent[0].Length))
+            if (add2 != null && add1 != null && add1._matrixContent[0].Length != add2._matrixContent[0].Length)
                 throw new ArgumentException("Matrix passed in does not have the same order as matrix to be added to.");
 
             return !(add2 != null) || !add2._matrixContent.Where((t, i) => add1 != null && add1._matrixContent[i] != t).Any();
@@ -120,12 +120,12 @@ namespace Mathos.Notation
         /// <returns>True if the two matrixes are not equal.</returns>
         public static bool operator!=(Matrix add1, Matrix add2)
         {
-            if (add2 != null && (add1 != null && add1._matrixContent.Length != add2._matrixContent.Length))
+            if (add2 != null && add1 != null && add1._matrixContent.Length != add2._matrixContent.Length)
                 return false;
-            if (add2 != null && (add1 != null && add1._matrixContent[0].Length != add2._matrixContent[0].Length))
+            if (add2 != null && add1 != null && add1._matrixContent[0].Length != add2._matrixContent[0].Length)
                 return false;
             
-            var b = (add1 == add2);
+            var b = add1 == add2;
             
             return !b;
         }
@@ -421,7 +421,7 @@ namespace Mathos.Notation
                 {
                     var x = new Matrix(this, 0, i);
 
-                    detNum += (this[0][i]) * x.Determinant() * (int)Math.Pow(-1, i);
+                    detNum += this[0][i] * x.Determinant() * (int)Math.Pow(-1, i);
                 }
             }
 
@@ -599,7 +599,7 @@ namespace Mathos.Notation
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return (_matrixContent != null ? _matrixContent.GetHashCode() : 0);
+            return _matrixContent != null ? _matrixContent.GetHashCode() : 0;
         }
     }
 }

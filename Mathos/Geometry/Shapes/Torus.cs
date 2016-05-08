@@ -3,33 +3,33 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Torus shape
+    /// A torus.
     /// </summary>
     public class Torus : IShape3D
     {
-        private double _distance; //distance from the center of the tube to the centre of the torus
-        private double _tuberadius; // radius of the tube
+        private double _distance;
+        private double _tubeRadius;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Torus() : this(0, 0)
         {
         }
 
         /// <summary>
-        /// Constructor with two doubles, "distance" and "tuberadius", to base this torus off of
+        /// Constructor with a <paramref name="distance"/> and <paramref name="tubeRadius"/>.
         /// </summary>
-        /// <param name="distance"></param>
-        /// <param name="tuberadius"></param>
-        public Torus(double distance, double tuberadius)
+        /// <param name="distance">The distance.</param>
+        /// <param name="tubeRadius">The tube radius.</param>
+        public Torus(double distance, double tubeRadius)
         {
             _distance = distance < 0 ? 0 : distance;
-            _tuberadius = tuberadius < 0 ? 0 : tuberadius;
+            _tubeRadius = tubeRadius < 0 ? 0 : tubeRadius;
         }
 
         /// <summary>
-        /// Gets or sets the radius of the tube and distance
+        /// Gets or sets the radius of the tube and distance.
         /// </summary>
         public double Distance
         {
@@ -38,28 +38,28 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the tube radius
+        /// Gets or sets the tube radius.
         /// </summary>
         public double TubeRadius
         {
-            get { return _tuberadius; }
-            set { _tuberadius = value < 0 ? 0 : value; }
+            get { return _tubeRadius; }
+            set { _tubeRadius = value < 0 ? 0 : value; }
         }
         
         /// <summary>
-        /// Gets the area of the circle
+        /// Gets the area of the circle.
         /// </summary>
         public double SurfaceArea
         {
-            get { return 4* _distance * _tuberadius * Math.Pow(Math.PI,2); }
+            get { return 4* _distance * _tubeRadius * Math.Pow(Math.PI,2); }
         }
 
         /// <summary>
-        /// Gets the circumference of the circle
+        /// Gets the circumference of the circle.
         /// </summary>
         public double Volume
         {
-            get { return 2 * _distance * Math.Pow( Math.PI * _tuberadius ,2); }
+            get { return 2 * _distance * Math.Pow( Math.PI * _tubeRadius ,2); }
         }
     }
 }

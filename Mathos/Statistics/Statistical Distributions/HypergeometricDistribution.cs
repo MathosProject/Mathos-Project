@@ -24,7 +24,7 @@ namespace Mathos.Statistics.Statistical_Distributions
                 numberOfDraws - numberOfSuccesses);
             double nCn = StatisticalProcedures.NumberOfCombinations(populationSize, numberOfDraws);
 
-            return (decimal) ((mCk*nmCnk)/nCn);
+            return (decimal) (mCk*nmCnk/nCn);
         }
 
         /// <summary>

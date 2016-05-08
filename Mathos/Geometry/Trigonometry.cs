@@ -9,8 +9,6 @@ namespace Mathos.Geometry
     ///       |  \
     ///      B----- C
     ///       SideB
-    /// 
-    /// Note: Right angles should be used.
     /// </summary>
     public static class Trigonometry
     {

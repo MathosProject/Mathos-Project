@@ -19,7 +19,7 @@ namespace Mathos.Finance
         /// <returns>Future value</returns>
         public static decimal FutureValue(decimal presentValue, decimal rateOfReturn, int numberOfPeriods, bool round = true)
         {
-            var futureValue = presentValue * DecimalPower((1 + rateOfReturn / 100), numberOfPeriods);
+            var futureValue = presentValue * DecimalPower(1 + rateOfReturn / 100, numberOfPeriods);
             
             return round ? Math.Round(futureValue, 2) : futureValue;
         }
@@ -34,7 +34,7 @@ namespace Mathos.Finance
         /// <returns>Present value</returns>
         public static decimal PresentValue(decimal futureValue, decimal rateOfReturn, int numberOfPeriods, bool round = true)
         {
-            var presentValue = futureValue / DecimalPower((1 + rateOfReturn / 100), numberOfPeriods);
+            var presentValue = futureValue / DecimalPower(1 + rateOfReturn / 100, numberOfPeriods);
             
             return round ? Math.Round(presentValue, 2) : presentValue;
         }
@@ -64,7 +64,7 @@ namespace Mathos.Finance
         /// <returns>Present value of annuity</returns>
         public static decimal PresentValueOfAnnuity(decimal periodicPayment, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
-            var presentValueOfAnnuity = periodicPayment * ((1 - DecimalPower((1 + ratePerPeriod / 100), numberOfPeriods * -1)) / (ratePerPeriod / 100));
+            var presentValueOfAnnuity = periodicPayment * ((1 - DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods * -1)) / (ratePerPeriod / 100));
 
             return round ? Math.Round(presentValueOfAnnuity, 2) : presentValueOfAnnuity;
         }
@@ -79,7 +79,7 @@ namespace Mathos.Finance
         /// <returns>Future value of annuity</returns>
         public static decimal FutureValueOfAnnuity(decimal periodicPayment, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
-            var futureValueOfAnnuity = periodicPayment * ((DecimalPower((1 + ratePerPeriod / 100), numberOfPeriods) - 1) / (ratePerPeriod / 100));
+            var futureValueOfAnnuity = periodicPayment * ((DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods) - 1) / (ratePerPeriod / 100));
 
             return round ? Math.Round(futureValueOfAnnuity, 2) : futureValueOfAnnuity;
         }
@@ -94,7 +94,7 @@ namespace Mathos.Finance
         /// <returns></returns>
         public static decimal AnnuityPaymentPresentValue(decimal presentValue, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
-            var annuityPayment = (presentValue * ratePerPeriod / 100) / (1 - DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods * -1));
+            var annuityPayment = presentValue * ratePerPeriod / 100 / (1 - DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods * -1));
 
             return round ? Math.Round(annuityPayment, 2) : annuityPayment;
         }
@@ -109,7 +109,7 @@ namespace Mathos.Finance
         /// <returns></returns>
         public static decimal AnnuityPaymentFutureValue(decimal futureValue, decimal ratePerPeriod, int numberOfPeriods, bool round = true)
         {
-            var annuityPayment = (futureValue * ratePerPeriod / 100) / (DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods) - 1);
+            var annuityPayment = futureValue * ratePerPeriod / 100 / (DecimalPower(1 + ratePerPeriod / 100, numberOfPeriods) - 1);
 
             return round ? Math.Round(annuityPayment, 2) : annuityPayment;
         }

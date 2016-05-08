@@ -44,7 +44,7 @@ namespace Mathos.Calculus
             {
                 case IntegrationAlgorithm.RectangleMethod:
                 {
-                    var sizeOfInterval = ((upperLimit - lowerLimit)/numberOfIntervals);
+                    var sizeOfInterval = (upperLimit - lowerLimit)/numberOfIntervals;
 
                     for (var i = 0; i < numberOfIntervals; i++)
                         sum += function(lowerLimit + sizeOfInterval*i)*sizeOfInterval;
@@ -53,7 +53,7 @@ namespace Mathos.Calculus
                 }
                 case IntegrationAlgorithm.TrapezoidalRule:
                 {
-                    var sizeOfInterval = ((upperLimit - lowerLimit)/numberOfIntervals);
+                    var sizeOfInterval = (upperLimit - lowerLimit)/numberOfIntervals;
 
                     sum = function(lowerLimit) + function(upperLimit);
 
@@ -64,7 +64,7 @@ namespace Mathos.Calculus
                 }
                 case IntegrationAlgorithm.SimpsonsRule:
                 {
-                    var sizeOfInterval = ((upperLimit - lowerLimit)/numberOfIntervals);
+                    var sizeOfInterval = (upperLimit - lowerLimit)/numberOfIntervals;
 
                     sum = function(lowerLimit);
 

@@ -91,7 +91,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static double Pow(this int x, int n)
         {
-            return n < 0 ? (Convert.ToDouble(x)).Pow(n) : x.Pow(Convert.ToUInt32(n));
+            return n < 0 ? Convert.ToDouble(x).Pow(n) : x.Pow(Convert.ToUInt32(n));
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static double Pow(this long x, int n)
         {
-            return n < 0 ? (Convert.ToDouble(x)).Pow(n) : x.Pow(Convert.ToUInt32(n));
+            return n < 0 ? Convert.ToDouble(x).Pow(n) : x.Pow(Convert.ToUInt32(n));
         }
     }
 }

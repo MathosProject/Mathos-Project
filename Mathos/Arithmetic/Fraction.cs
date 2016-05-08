@@ -134,7 +134,7 @@ namespace Mathos.Arithmetic
             /// <param name="obj">Another object to compare to. </param><filterpriority>2</filterpriority>
             public override bool Equals(object obj)
             {
-                return obj != null && obj.GetType() == GetType() && this == ((Fraction) obj);
+                return obj != null && obj.GetType() == GetType() && this == (Fraction) obj;
             }
 
             /// <summary>
@@ -382,7 +382,7 @@ namespace Mathos.Arithmetic
                 fractA = fractA.Simplify(); // simplifying, e.g. if a is 4/2, and b 2/1, return true
                 fractB = fractB.Simplify();
 
-                return ((fractA.Numerator == fractB.Numerator) && (fractA.Denominator == fractB.Denominator));
+                return (fractA.Numerator == fractB.Numerator) && (fractA.Denominator == fractB.Denominator);
             }
 
             /// <summary>

@@ -3,25 +3,26 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Right circular cone shape
+    /// A right circular cone.
     /// </summary>
     public class RightCircularCone : IShape3D
     {
-        private readonly Circle _circleBase;
         private double _height;
 
+        private readonly Circle _circleBase;
+
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public RightCircularCone() : this(new Circle(), 0)
         {
         }
 
         /// <summary>
-        /// Constructor with a Circle, "circleBase", and a double, "height", to base this cone off of
+        /// Constructor with a <paramref name="circleBase"/> and <paramref name="height"/>.
         /// </summary>
-        /// <param name="circleBase"></param>
-        /// <param name="height"></param>
+        /// <param name="circleBase">The circle base.</param>
+        /// <param name="height">The height.</param>
         public RightCircularCone(Circle circleBase, double height)
         {
             _circleBase = circleBase;
@@ -29,10 +30,10 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Constructor with two doubles, "radius" and "height", to base this cone off of
+        /// Constructor with a <paramref name="radius"/> and <paramref name="height."/>
         /// </summary>
-        /// <param name="radius"></param>
-        /// <param name="height"></param>
+        /// <param name="radius">The radius.</param>
+        /// <param name="height">The height.</param>
         public RightCircularCone(double radius, double height)
         {
             _circleBase = new Circle(radius);
@@ -40,7 +41,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the radius of the right circular cone
+        /// Gets or sets the radius of the right circular cone.
         /// </summary>
         public double Radius
         {
@@ -49,7 +50,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the Diameter of the right circular cone
+        /// Gets or sets the diameter of the right circular cone.
         /// </summary>
         public double Diameter
         {
@@ -58,7 +59,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the height of the right circular cone
+        /// Gets or sets the height of the right circular cone.
         /// </summary>
         public double Height
         {
@@ -67,7 +68,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the area of the right circular cone
+        /// Gets the area of the right circular cone.
         /// </summary>
         public double Volume
         {
@@ -75,7 +76,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the surface area of the right circular cone
+        /// Gets the surface area of the right circular cone.
         /// </summary>
         public double SurfaceArea
         {
@@ -93,7 +94,7 @@ namespace Mathos.Geometry.Shapes
         {
             var other = obj as RightCircularCone;
 
-            return other != null && (_circleBase == other._circleBase && Math.Abs(_height - other._height) < 1);
+            return (other != null) && (_circleBase == other._circleBase) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(RightCircularCone other)
         {
-            return other != null && (_circleBase == other._circleBase && Math.Abs(_height - other._height) < 1);
+            return (other != null) && (_circleBase == other._circleBase) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _circleBase.GetHashCode() ^ _height.GetHashCode();
+            return _circleBase.GetHashCode() ^ Height.GetHashCode();
         }
 
         /// <summary>
@@ -125,8 +126,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
-                   (a._circleBase == b._circleBase && Math.Abs(a._height - b._height) < 1);
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (a._circleBase == b._circleBase) && (Math.Abs(a._height - b._height) < 1));
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(RightCircularCone a, RightCircularCone b)
         {
-            return ((a != null && b != null) && a._circleBase != b._circleBase) || ((a != null && b != null) && Math.Abs(a._height - b._height) > 0);
+            return ((a != null) && (b != null) && (a._circleBase != b._circleBase)) || ((a != null) && (b != null) && (Math.Abs(a._height - b._height) > 0));
         }
 
         #endregion

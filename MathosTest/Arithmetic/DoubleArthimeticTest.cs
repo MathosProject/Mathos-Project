@@ -166,11 +166,11 @@ namespace MathosTest.Arithmetic
         [TestMethod]
         public void TestCompareTo()
         {
-            Assert.AreEqual((2.0).CompareTo(1.0, 0.5), 1);
+            Assert.AreEqual(2.0.CompareTo(1.0, 0.5), 1);
             
             Assert.AreEqual((-2.0).CompareTo(1.0, 0.001), -1);
             
-            Assert.AreEqual((1.0).CompareTo(1.2, 0.4), -1);
+            Assert.AreEqual(1.0.CompareTo(1.2, 0.4), -1);
         }
 
         private static void NaivePower(double x, int n)

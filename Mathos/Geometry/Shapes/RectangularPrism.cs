@@ -3,25 +3,26 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Rectangular prism shape
+    /// A rectangular prism.
     /// </summary>
     public class RectangularPrism : IShape3D
     {
-        private readonly Rectangle _rectangleBase;
         private double _height;
 
+        private readonly Rectangle _rectangleBase;
+
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public RectangularPrism() : this(new Rectangle(), 0)
         {
         }
 
         /// <summary>
-        /// Constructor with a Rectangle, "rectangleBase", and a double, "height", to base this prism on
+        /// Constructor with a <paramref name="rectangleBase"/> and a <paramref name="height"/>.
         /// </summary>
-        /// <param name="rectangleBase"></param>
-        /// <param name="height"></param>
+        /// <param name="rectangleBase">The base.</param>
+        /// <param name="height">The height.</param>
         public RectangularPrism(Rectangle rectangleBase, double height)
         {
             _rectangleBase = rectangleBase;
@@ -29,11 +30,11 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Constructor with a "length", "width", and "height" to base this prism on
+        /// Constructor with a <paramref name="length"/>, <paramref name="width"/>, and <paramref name="height"/>.
         /// </summary>
-        /// <param name="length"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
+        /// <param name="length">The length.</param>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
         public RectangularPrism(double length, double width, double height)
         {
             _rectangleBase = new Rectangle(length, width);
@@ -41,7 +42,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the length of the rectangular prism
+        /// Gets or sets the length of the rectangular prism.
         /// </summary>
         public double Length
         {
@@ -50,7 +51,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the width of the rectangular prism
+        /// Gets or sets the width of the rectangular prism.
         /// </summary>
         public double Width
         {
@@ -59,7 +60,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the height of the rectangular prism
+        /// Gets or sets the height of the rectangular prism.
         /// </summary>
         public double Height
         {
@@ -68,7 +69,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the volume of the rectangular prism
+        /// Gets the volume of the rectangular prism.
         /// </summary>
         public double Volume
         {
@@ -76,14 +77,11 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the surface area of the rectangular prism
+        /// Gets the surface area of the rectangular prism.
         /// </summary>
         public double SurfaceArea
         {
-            get 
-            {
-                return 2 * (_rectangleBase.Length * _rectangleBase.Width + _rectangleBase.Width * _height + _rectangleBase.Length * _height); 
-            }
+            get { return 2*(_rectangleBase.Length*_rectangleBase.Width + _rectangleBase.Width*_height + _rectangleBase.Length*_height); }
         }
 
         #region Override Equals
@@ -97,7 +95,7 @@ namespace Mathos.Geometry.Shapes
         {
             var other = obj as RectangularPrism;
 
-            return other != null && (_rectangleBase == other._rectangleBase && Math.Abs(_height - other._height) < 1);
+            return (other != null) && (_rectangleBase == other._rectangleBase) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -107,7 +105,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(RectangularPrism other)
         {
-            return other != null && (_rectangleBase == other._rectangleBase && Math.Abs(_height - other._height) < 1);
+            return (other != null) && (_rectangleBase == other._rectangleBase) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -116,7 +114,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _rectangleBase.GetHashCode() ^ _height.GetHashCode();
+            return _rectangleBase.GetHashCode() ^ Height.GetHashCode();
         }
 
         /// <summary>
@@ -129,8 +127,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
-                   (a._rectangleBase == b._rectangleBase && Math.Abs(a._height - b._height) < 1);
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (a._rectangleBase == b._rectangleBase) && (Math.Abs(a._height - b._height) < 1));
         }
 
         /// <summary>
@@ -141,7 +138,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(RectangularPrism a, RectangularPrism b)
         {
-            return ((a != null && b != null) && a._rectangleBase != b._rectangleBase) || ((a != null && b != null) && Math.Abs(a._height - b._height) > 0);
+            return ((a != null) && (b != null) && (a._rectangleBase != b._rectangleBase)) || ((a != null) && (b != null) && (Math.Abs(a._height - b._height) > 0));
         }
         
         #endregion

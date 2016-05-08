@@ -280,7 +280,7 @@ namespace Mathos.Notation
         /// </returns>
         public override string ToString()
         {
-            var str = Elements.Aggregate("{", (current, element) => current + (element.ToString() + ","));
+            var str = Elements.Aggregate("{", (current, element) => current + element.ToString() + ",");
 
             if (str.EndsWith(","))
                 str = str.Substring(0, str.Length - 1);

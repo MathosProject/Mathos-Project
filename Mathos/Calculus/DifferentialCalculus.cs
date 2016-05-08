@@ -47,7 +47,7 @@ namespace Mathos.Calculus
         {
             const decimal h = 0.0000000000001M;
 
-            return (function(xPoint + h) - 2*function(xPoint) + function(xPoint - h))/(decimal.Multiply(h, h));
+            return (function(xPoint + h) - 2*function(xPoint) + function(xPoint - h))/decimal.Multiply(h, h);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Mathos.Calculus
 
             points[withRespectTo] = xPoint + h;
 
-            return (function(points) - 2*value1 + value2)/(decimal.Multiply(h, h));
+            return (function(points) - 2*value1 + value2)/decimal.Multiply(h, h);
         }
     }
 }

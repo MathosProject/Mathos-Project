@@ -3,30 +3,30 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Square shape
+    /// A square.
     /// </summary>
     public class Square : IShape2D
     {
         private double _length;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Square() : this(0)
         {
         }
 
         /// <summary>
-        /// Constructor with a double, "length", to base this square off of.
+        /// Constructor with a <paramref name="length"/>.
         /// </summary>
-        /// <param name="length"></param>
+        /// <param name="length">The length.</param>
         public Square(double length)
         {
             _length = length < 0 ? 0 : length;
         }
 
         /// <summary>
-        /// Gets or sets the length of the square
+        /// Gets or sets the length of the square.
         /// </summary>
         public double Length
         {
@@ -35,7 +35,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the area of the square
+        /// Gets the area of the square.
         /// </summary>
         public double Area
         {
@@ -43,7 +43,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the perimeter of the square
+        /// Gets the perimeter of the square.
         /// </summary>
         public double Perimeter
         {
@@ -51,7 +51,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the diagonal of the square
+        /// Gets the diagonal of the square.
         /// </summary>
         public double Diagonal
         {
@@ -69,7 +69,7 @@ namespace Mathos.Geometry.Shapes
         {
             var other = obj as Square;
 
-            return other != null && Math.Abs(_length - other._length) < 1;
+            return (other != null) && (Math.Abs(_length - other._length) < 1);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(Square other)
         {
-            return other != null && Math.Abs(_length - other._length) < 1;
+            return (other != null) && (Math.Abs(_length - other._length) < 1);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _length.GetHashCode();
+            return Length.GetHashCode();
         }
 
         /// <summary>
@@ -101,8 +101,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) ||
-                   ((object) a != null) && ((object) b != null) && Math.Abs(a._length - b._length) < 1;
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._length - b._length) < 1));
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(Square a, Square b)
         {
-            return ((a != null && b != null) && Math.Abs(a._length - b._length) > 0);
+            return (a != null) && (b != null) && (Math.Abs(a._length - b._length) > 0);
         }
 
         #endregion

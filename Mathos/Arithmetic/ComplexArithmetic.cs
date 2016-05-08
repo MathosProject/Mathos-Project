@@ -242,7 +242,7 @@ namespace Mathos.Arithmetic
             if ((outStr.Length == 1) && !isImaginaryPart || outStr.Length > 2)
                 double.TryParse(outStr[0], out realPart);
             if (isImaginaryPart)
-                double.TryParse(outStr[(outStr.Length == 1) ? 0 : 1], out imaginaryPart);
+                double.TryParse(outStr[outStr.Length == 1 ? 0 : 1], out imaginaryPart);
 
             imaginaryPart *= factor;
 

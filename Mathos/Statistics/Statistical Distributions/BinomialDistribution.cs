@@ -69,7 +69,7 @@ namespace Mathos.Statistics.Statistical_Distributions
         /// <returns></returns>
         public static decimal Variance(long numberOfTrials, double probabilityOfSuccess)
         {
-            return (Mean(numberOfTrials, probabilityOfSuccess) * (decimal)(1 - probabilityOfSuccess));
+            return Mean(numberOfTrials, probabilityOfSuccess) * (decimal)(1 - probabilityOfSuccess);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Mathos.Statistics.Statistical_Distributions
         /// <returns></returns>
         public static decimal Skewness(long numberOfTrials, double probabilityOfSuccess)
         {
-            return (decimal)((1 - (2 * probabilityOfSuccess)) / Math.Sqrt((double)Variance(numberOfTrials, probabilityOfSuccess)));
+            return (decimal)((1 - 2 * probabilityOfSuccess) / Math.Sqrt((double)Variance(numberOfTrials, probabilityOfSuccess)));
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Mathos.Statistics.Statistical_Distributions
         {
             var variance = Variance(numberOfTrials, probabilityOfSuccess);
             
-            return ((1 - (6 * variance / numberOfTrials)) / variance);
+            return (1 - 6 * variance / numberOfTrials) / variance;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Mathos.Statistics.Statistical_Distributions
         /// <returns></returns>
         public static decimal MomentGeneratingFunction(long numberOfTrials, double probabilityOfSuccess, double variableT)
         {
-            return (decimal)Math.Pow((1 - probabilityOfSuccess * (1 - Math.Pow(Math.E, variableT))), numberOfTrials);
+            return (decimal)Math.Pow(1 - probabilityOfSuccess * (1 - Math.Pow(Math.E, variableT)), numberOfTrials);
         }
     }
 }

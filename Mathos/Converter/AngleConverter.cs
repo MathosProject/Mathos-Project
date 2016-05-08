@@ -18,7 +18,7 @@ namespace Mathos.Converter
             var degrees = Math.Truncate(angle);
             var minutes = Math.Truncate((angle - degrees) * 100);
             var decimalMinutes = minutes / 60;
-            var seconds = Math.Round((((angle * 100) - Math.Truncate(angle * 100)) * 100), 0);
+            var seconds = Math.Round((angle * 100 - Math.Truncate(angle * 100)) * 100, 0);
             var decimalSeconds = seconds / 3600;
             
             return degrees + decimalMinutes + decimalSeconds;
@@ -34,17 +34,17 @@ namespace Mathos.Converter
             var degrees = Math.Truncate(angle);
             var decimalMinutesAndSeconds = angle - degrees;
             var minutes = Math.Truncate(decimalMinutesAndSeconds * 60);
-            var seconds = Math.Round((((decimalMinutesAndSeconds * 60) - minutes) * 60), 0);
+            var seconds = Math.Round((decimalMinutesAndSeconds * 60 - minutes) * 60, 0);
             var stringDegrees = Convert.ToString(degrees, CultureInfo.InvariantCulture);
             var stringMinutes = Convert.ToString(minutes, CultureInfo.InvariantCulture);
             var stringSeconds = Convert.ToString(seconds, CultureInfo.InvariantCulture);
 
             if (Convert.ToDouble(minutes) < 0)
-                stringMinutes = Convert.ToString(Convert.ToDouble(stringMinutes)*(-1), CultureInfo.InvariantCulture);
+                stringMinutes = Convert.ToString(Convert.ToDouble(stringMinutes)*-1, CultureInfo.InvariantCulture);
             if (Convert.ToDouble(minutes) < 10 && Convert.ToDouble(minutes) >= 0) //if minutes are less than then then before value of minutes add zero
                 stringMinutes = "0" + stringMinutes;
             if (Convert.ToDouble(stringSeconds) < 0)
-                stringSeconds = Convert.ToString(Convert.ToDouble(stringSeconds)*(-1), CultureInfo.InvariantCulture);
+                stringSeconds = Convert.ToString(Convert.ToDouble(stringSeconds)*-1, CultureInfo.InvariantCulture);
             if (Convert.ToDouble(stringSeconds) < 10 && Convert.ToDouble(stringSeconds) >= 0) //if seconds are less than then then before value of seconds add zero
                 stringSeconds = "0" + stringSeconds;
 
@@ -64,7 +64,7 @@ namespace Mathos.Converter
         {
             angle = AngleToDecimalAngle(angle);
 
-            return ((angle * Math.PI / 180));
+            return angle * Math.PI / 180;
         }
 
         /// <summary>

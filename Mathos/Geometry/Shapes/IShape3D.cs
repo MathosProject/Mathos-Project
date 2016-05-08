@@ -1,17 +1,17 @@
 ﻿namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// A 3D shape
+    /// Represents a three-dimensional shape.
     /// </summary>
     public interface IShape3D
     {
         /// <summary>
-        /// Volume of the shape
+        /// Volume of the shape.
         /// </summary>
         double Volume { get; }
 
         /// <summary>
-        /// Surface area of the shape
+        /// Surface area of the shape.
         /// </summary>
         double SurfaceArea { get; }
     }
