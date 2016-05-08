@@ -1,6 +1,4 @@
-﻿using System;
-
-using Mathos.Notation;
+﻿using Mathos.Notation;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -29,11 +27,11 @@ namespace MathosTest.Notation
         public void AddSets()
         {
             var a = new Set<int>(1, 2, 3, 4, 5);
-            var b = new Set<int>(6, 7, 8, 9, 10);
+            var b = new Set<int>(1, 2, 3, 4, 6);
             
             a.Add(b);
             
-            Assert.AreEqual("{1,2,3,4,5,6,7,8,9,10}", a.ToString());
+            Assert.AreEqual(new Set<int>(1, 2, 3, 4, 5, 6), a);
         }
 
         [TestMethod]
@@ -68,9 +66,9 @@ namespace MathosTest.Notation
         public void SymmetricTest()
         {
             var a = new Set<int>(1, 2, 3);
-            var b = new Set<int>(2, 3, 4);
-
-            Console.WriteLine(a.Symmetric(b));
+            var b = new Set<int>(3, 4);
+            
+            Assert.AreEqual("{1,2,4}", a.Symmetric(b).ToString());
         }
 
         [TestMethod]

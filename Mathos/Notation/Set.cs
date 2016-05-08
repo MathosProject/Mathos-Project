@@ -6,10 +6,7 @@ using System.Linq;
 namespace Mathos.Notation
 {
     /// <summary>
-    /// Implementation of sets (i.e. A = {1, 2, 3, ...}).
-    /// 
-    /// - Needs cartesian product.
-    /// - Needs power set.
+    /// Implementation of sets ({1, 2, 3, ...}).
     /// </summary>
     public class Set<T> : IEnumerable
     {
@@ -36,16 +33,23 @@ namespace Mathos.Notation
         }
 
         /// <summary>
-        /// Constructor that creates a set from a list of elements.
+        /// Constructor that creates a set from an array of elements.
         /// </summary>
         /// <param name="elements">The set's elements.</param>
-        public Set(params T[] elements) : this()
+        public Set(params T[] elements)
         {
-            foreach(var element in elements)
-                Elements.Add(element);
+            Elements = new HashSet<T>(elements);
         }
 
-        
+        /// <summary>
+        /// Constructor that creates a set from an enumerable object.
+        /// </summary>
+        /// <param name="elements">The set's elements.</param>
+        public Set(IEnumerable<T> elements)
+        {
+            Elements = new HashSet<T>(elements);
+        }
+
         /// <summary>
         /// Add an element.
         /// </summary>
@@ -61,7 +65,7 @@ namespace Mathos.Notation
         /// <param name="elements">The elements to add.</param>
         public void Add(params T[] elements)
         {
-            foreach(var element in elements)
+            foreach (var element in elements)
                 Elements.Add(element);
         }
 
@@ -88,7 +92,7 @@ namespace Mathos.Notation
         /// Remove elements that <paramref name="match"/> the given predicate.
         /// </summary>
         /// <param name="match">The conditions for removal.</param>
-        public void RemoveMatch(Predicate<T> match)
+        public void Remove(Predicate<T> match)
         {
             Elements.RemoveWhere(match);
         }
@@ -100,12 +104,7 @@ namespace Mathos.Notation
         /// <returns>this ∪ <paramref name="set"/>.</returns>
         public Set<T> Union(Set<T> set)
         {
-            var ret = new Set<T>();
-
-            foreach (var element in Elements.Concat(set.Elements).Where(item => !ret.Elements.Contains(item)))
-                ret.Add(element);
-
-            return ret;
+            return new Set<T>(Elements.Union(set.Elements));
         }
 
         /// <summary>
@@ -115,16 +114,11 @@ namespace Mathos.Notation
         /// <returns>this ∩ <paramref name="set"/>.</returns>
         public Set<T> Intersection(Set<T> set)
         {
-            var ret = new Set<T>();
-
-            foreach (var element in Elements.Where(element => set.Elements.Contains(element)))
-                ret.Add(element);
-
-            return ret;
+            return new Set<T>(Elements.Intersect(set.Elements));
         }
 
         /// <summary>
-        /// Get the difference between this and another set, <paramref name="set"/>.
+        /// Get the difference of this and another set, <paramref name="set"/>.
         /// </summary>
         /// <param name="set">The second set.</param>
         /// <returns>this \ <paramref name="set"/>.</returns>
@@ -139,22 +133,19 @@ namespace Mathos.Notation
         }
 
         /// <summary>
-        /// Get the symmetric difference between this and another set, <paramref name="set"/>.
+        /// Get the symmetric difference of this and another set, <paramref name="set"/>.
         /// </summary>
         /// <param name="set">The second set.</param>
         /// <returns>this △ <paramref name="set"/>; this ⊖ <paramref name="set"/>.</returns>
         public Set<T> Symmetric(Set<T> set)
         {
-            var union = Union(set);
-            var inter = Intersection(set);
-
-            return union.Difference(inter);
+            return Difference(this, set).Union(set.Difference(this));
         }
 
         /// <summary>
-        /// Check if this is a subset of <paramref name="set"/>
+        /// Check if this is a subset of <paramref name="set"/>.
         /// </summary>
-        /// <param name="set">The superset to check under.</param>
+        /// <param name="set">The subset.</param>
         /// <returns>this ⊆ <paramref name="set"/>.</returns>
         public bool IsSubset(Set<T> set)
         {
@@ -164,12 +155,82 @@ namespace Mathos.Notation
         /// <summary>
         /// Check if this is a proper subset of <paramref name="set"/>.
         /// </summary>
-        /// <param name="set">The second set.</param>
+        /// <param name="set">The proper subset.</param>
         /// <returns>this ⊂ <paramref name="set"/>.</returns>
         public bool IsProperSubset(Set<T> set)
         {
             return Elements.IsProperSubsetOf(set.Elements);
         }
+
+        #region Static Methods
+
+        /// <summary>
+        /// Get the union of <paramref name="a"/> and <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The first set.</param>
+        /// <param name="b">The second set.</param>
+        /// <returns><paramref name="a"/> ∪ <paramref name="b"/>.</returns>
+        public static Set<T> Union(Set<T> a, Set<T> b)
+        {
+            return a.Union(b);
+        }
+
+        /// <summary>
+        /// Get the intersection of <paramref name="a"/> and <paramref name="b"/>.
+        /// </summary>
+        /// <paramref name="a">The first set.</paramref>
+        /// <paramref name="b">The second set.</paramref>
+        /// <returns><paramref name="a"/> ∩ <paramref name="b"/>.</returns>
+        public static Set<T> Intersection(Set<T> a, Set<T> b)
+        {
+            return a.Intersection(b);
+        }
+
+        /// <summary>
+        /// Get the difference of <paramref name="a"/> and <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The first set.</param>
+        /// <param name="b">The second set.</param>
+        /// <returns><paramref name="a"/> \ <paramref name="b"/>.</returns>
+        public static Set<T> Difference(Set<T> a, Set<T> b)
+        {
+            return a.Difference(b);
+        }
+
+        /// <summary>
+        /// Get the symmetric difference of <paramref name="a"/> and <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The first set.</param>
+        /// <param name="b">The second set.</param>
+        /// <returns><paramref name="a"/> △ <paramref name="b"/>.</returns>
+        public static Set<T> Symmetric(Set<T> a, Set<T> b)
+        {
+            return a.Symmetric(b);
+        }
+
+        /// <summary>
+        /// Check if <paramref name="a"/> is a subset of <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The subset.</param>
+        /// <param name="b">The superset.</param>
+        /// <returns><paramref name="a"/> ⊆ <paramref name="b"/>.</returns>
+        public static bool IsSubset(Set<T> a, Set<T> b)
+        {
+            return a.IsSubset(b);
+        }
+
+        /// <summary>
+        /// Check if <paramref name="a"/> is a proper subset of <paramref name="b"/>.
+        /// </summary>
+        /// <param name="a">The proper subset.</param>
+        /// <param name="b">The superset.</param>
+        /// <returns><paramref name="a"/> ⊂ <paramref name="b"/>.</returns>
+        public static bool IsProperSubset(Set<T> a, Set<T> b)
+        {
+            return a.IsProperSubset(b);
+        }
+
+        #endregion
 
         /// <summary>
         /// The enumerator of the set.
@@ -192,7 +253,6 @@ namespace Mathos.Notation
         /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
         /// </returns>
         /// <param name="obj">The object to compare with the current object. </param>
-        /// <filterpriority>2</filterpriority>
         public override bool Equals(object obj)
         {
             if (!(obj is Set<T>))
@@ -207,19 +267,17 @@ namespace Mathos.Notation
         /// <returns>
         /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
-        /// <filterpriority>2</filterpriority>
         public override int GetHashCode()
         {
             return Elements != null ? Elements.GetHashCode() : 0;
         }
-
+        
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>
         /// A string that represents the current object.
         /// </returns>
-        /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
             var str = Elements.Aggregate("{", (current, element) => current + (element.ToString() + ","));
