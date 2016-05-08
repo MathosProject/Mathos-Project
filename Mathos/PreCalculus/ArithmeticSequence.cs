@@ -6,7 +6,7 @@ namespace Mathos.PreCalculus
     public class ArithmeticSequence
     {
         /// <summary>
-        /// Initializes a sequence with both an initial term and common difference of 0.
+        /// Initializes a sequence with both an initial term and a common difference of 0.
         /// </summary>
         public ArithmeticSequence() : this(0, 0)
         {
@@ -50,7 +50,7 @@ namespace Mathos.PreCalculus
         /// <returns>The sum of <paramref name="n"/> terms.</returns>
         public double Sum(int n)
         {
-            var tmpLeft = ((double) n/2);
+            var tmpLeft = (double) n/2;
 
             return tmpLeft * (2 * InitialTerm + (n - 1) * CommonDifference);
         }
