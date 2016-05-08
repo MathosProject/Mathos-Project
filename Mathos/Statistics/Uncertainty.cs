@@ -6,8 +6,8 @@ using System.Linq;
 namespace Mathos.Statistics
 {
     /// <summary>
-    /// A public class that stores a value and its uncertainty. This class allows you to perform operations between other objects of the same type.
-    /// Some functions in this class are static.
+    /// A class that stores a value and its uncertainty.
+    /// This class allows you to perform operations between other objects of the same type.
     /// </summary>
     public class UncertainNumber
     {
@@ -52,7 +52,7 @@ namespace Mathos.Statistics
         public UncertainNumber(decimal value, decimal uncertainty)
         {
             Value = value;
-            Uncertainty = (uncertainty < 0) ? uncertainty * -1 : uncertainty;
+            Uncertainty = uncertainty < 0 ? uncertainty * -1 : uncertainty;
         }
         
         /// <summary>
@@ -71,7 +71,7 @@ namespace Mathos.Statistics
                     break;
                 case UncertaintyType.RelativeUncertainty:
                     Value = value;
-                    Uncertainty = (uncertainty / 100) * value;
+                    Uncertainty = uncertainty / 100 * value;
                     break;
             }
         }
@@ -244,7 +244,7 @@ namespace Mathos.Statistics
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        private decimal PowD(decimal x, int y)
+        private static decimal PowD(decimal x, int y)
         {
             // from http://stackoverflow.com/a/12408927/1275924
 
@@ -384,7 +384,7 @@ namespace Mathos.Statistics
         /// <returns></returns>
         public static bool operator ==(UncertainNumber n1, UncertainNumber n2)
         {
-            return n2 != null && (n1 != null && Math.Abs(n1.Value - n2.Value) <= n1.Uncertainty + n2.Uncertainty);
+            return (n2 != null) && (n1 != null) && (Math.Abs(n1.Value - n2.Value) <= n1.Uncertainty + n2.Uncertainty);
         }
 
         /// <summary>
@@ -395,7 +395,7 @@ namespace Mathos.Statistics
         /// <returns></returns>
         public static bool operator ==(UncertainNumber n1, decimal n2)
         {
-            return n1 != null && Math.Abs(n1.Value - n2) <= n1.Uncertainty;
+            return (n1 != null) && (Math.Abs(n1.Value - n2) <= n1.Uncertainty);
         }
 
         /// <summary>
@@ -406,7 +406,7 @@ namespace Mathos.Statistics
         /// <returns></returns>
         public static bool operator !=(UncertainNumber n1, UncertainNumber n2)
         {
-            return !(n2 != null) || (!(n1 != null) || Math.Abs(n1.Value - n2.Value) > n1.Uncertainty + n2.Uncertainty);
+            return !(n2 != null) || !(n1 != null) || (Math.Abs(n1.Value - n2.Value) > n1.Uncertainty + n2.Uncertainty);
         }
 
         /// <summary>
@@ -417,7 +417,7 @@ namespace Mathos.Statistics
         /// <returns></returns>
         public static bool operator !=(UncertainNumber n1, decimal n2)
         {
-            return !(n1 != null) || Math.Abs(n1.Value - n2) > n1.Uncertainty;
+            return !(n1 != null) || (Math.Abs(n1.Value - n2) > n1.Uncertainty);
         }
 
         /// <summary>
@@ -430,7 +430,7 @@ namespace Mathos.Statistics
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             
-            return obj.GetType() == GetType() && Equals((UncertainNumber) obj);
+            return (obj.GetType() == GetType()) && Equals((UncertainNumber) obj);
         }
 
         /// <summary>
@@ -452,7 +452,7 @@ namespace Mathos.Statistics
             /* By Dan Tao at http://stackoverflow.com/q/3683718/1275924 */
             var bits = decimal.GetBits(value);
 
-            if (value >= 1M || value <= -1M)
+            if ((value >= 1M) || (value <= -1M))
             {
                 var highPart = bits[2];
                 var middlePart = bits[1];
@@ -482,7 +482,7 @@ namespace Mathos.Statistics
         /// <returns></returns>
         protected bool Equals(UncertainNumber other)
         {
-            return Value == other.Value && Uncertainty == other.Uncertainty;
+            return (Value == other.Value) && (Uncertainty == other.Uncertainty);
         }
 
         /// <summary>

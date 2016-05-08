@@ -9,34 +9,35 @@ namespace Mathos.SpecialFunctions
     {
         // constants used in Lanczos approximation
         // Source : http://my.fit.edu/~gabdo/gamma.txt
-        static readonly double[] Lanczos15 = {
+        private static readonly double[] Lanczos15 =
+        {
             0.99999999999999709182,
             57.156235665862923517,
-           -59.597960355475491248,
+            -59.597960355475491248,
             14.136097974741747174,
-           -0.49191381609762019978,
+            -0.49191381609762019978,
             .33994649984811888699e-4,
             .46523628927048575665e-4,
-           -.98374475304879564677e-4,
+            -.98374475304879564677e-4,
             .15808870322491248884e-3,
-           -.21026444172410488319e-3,
+            -.21026444172410488319e-3,
             .21743961811521264320e-3,
-           -.16431810653676389022e-3,
+            -.16431810653676389022e-3,
             .84418223983852743293e-4,
-           -.26190838401581408670e-4,
+            -.26190838401581408670e-4,
             .36899182659531622704e-5
         };
 
-        const int LanczosCount = 15;
-        const int TableSize = 2000;
+        private const int LanczosCount = 15;
+        private const int TableSize = 2000;
 
-        static readonly double[] LogTable;
-        
-        const double Gam = 607D / 128D;
+        private static readonly double[] LogTable;
+
+        private const double Gam = 607D / 128D;
+
         // we don't want to recalculate this on each call
-
-        static readonly double LogPi = Math.Log(Math.PI);
-        static readonly double Log2Pi = Math.Log(Math.PI * 2D);
+        private static readonly double LogPi = Math.Log(Math.PI);
+        private static readonly double Log2Pi = Math.Log(Math.PI * 2D);
 
         static GammaRelated()
         {
@@ -47,9 +48,9 @@ namespace Mathos.SpecialFunctions
         }
 
         /// <summary>
-        /// Evaluates gamma(x) by Lanczos approximation, the is more risk of overflow than LogOfGamma
+        /// Evaluates gamma(x) by Lanczos approximation, the is has more risk of overflow than LogOfGamma.
         /// </summary>
-        /// <param name="x">>A non-negative general real number or a non-integer negative number</param>
+        /// <param name="x">A non-negative general real number or a non-integer negative number.</param>
         /// <returns>gamma(x)</returns>
         public static double Gamma(double x)
         {
@@ -57,10 +58,10 @@ namespace Mathos.SpecialFunctions
         }
         
         /// <summary>
-        /// Evaluates natural logarithm of gamma(x) by Lanczos approximation 
+        /// Evaluates natural logarithm of gamma(x) by Lanczos approximation.
         /// </summary>
-        /// <param name="x">A non-negative general real number or a non-integer negative number</param>
-        /// <returns>logarithm of gamma(x)</returns>
+        /// <param name="x">A non-negative general real number or a non-integer negative number.</param>
+        /// <returns>log(gamma(x))</returns>
         public static double LogOfGamma(double x)
         {
             if (x < 0.5)
@@ -70,17 +71,13 @@ namespace Mathos.SpecialFunctions
             var z = x - 1D;
 
             for (var i = LanczosCount - 1; i > 0; i--)
-            {
-                sum += Lanczos15[i] / (z + i);
-            }
+                sum += Lanczos15[i]/(z + i);
 
             sum += Lanczos15[0];
 
             var b = z + Gam + 0.5D;
 
-            return 0.5D * Log2Pi +
-                Math.Log(sum) +
-                (z + 0.5D) * Math.Log(b) - b;
+            return 0.5d*Log2Pi + Math.Log(sum) + (z + 0.5d)*Math.Log(b) - b;
         }
 
         /// <summary>
@@ -102,8 +99,8 @@ namespace Mathos.SpecialFunctions
         public static double LogOfFactorial(int n)
         {
             if (n < 0)
-                throw new ArgumentOutOfRangeException("The argument must be non-negative");
-            if (n == 0 || n == 1)
+                throw new ArgumentOutOfRangeException(nameof(n), "The argument must be non-negative.");
+            if ((n == 0) || (n == 1))
                 return 0;
             
             return n < TableSize ? LogTable[n] : LogOfGamma(n + 1D);

@@ -1,17 +1,17 @@
 ﻿namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// A 2D shape
+    /// Represents a two-dimensional shape.
     /// </summary>
     public interface IShape2D
     {
         /// <summary>
-        /// Area of the shape
+        /// Area of the shape.
         /// </summary>
         double Area { get; }
 
         /// <summary>
-        /// Perimeter of the shape
+        /// Perimeter of the shape.
         /// </summary>
         double Perimeter { get; }
     }

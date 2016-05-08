@@ -3,7 +3,7 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Rectangle shape
+    /// A rectangular shape.
     /// </summary>
     public class Rectangle : IShape2D
     {
@@ -11,17 +11,17 @@ namespace Mathos.Geometry.Shapes
         private double _width;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Rectangle() : this(0, 0)
         {
         }
 
         /// <summary>
-        /// Constructor with a length and width
+        /// Constructor with a <paramref name="length"/> and <paramref name="width"/>.
         /// </summary>
-        /// <param name="length"></param>
-        /// <param name="width"></param>
+        /// <param name="length">The length.</param>
+        /// <param name="width">The width.</param>
         public Rectangle(double length, double width)
         {
             _length = length < 0 ? 0 : length;
@@ -29,7 +29,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the length of the rectangle
+        /// Gets or sets the length of the rectangle.
         /// </summary>
         public double Length
         {
@@ -38,7 +38,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the width of the rectangle
+        /// Gets or sets the width of the rectangle.
         /// </summary>
         public double Width
         {
@@ -47,7 +47,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the area of the rectangle
+        /// Gets the area of the rectangle.
         /// </summary>
         public double Area
         {
@@ -55,7 +55,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the perimeter of the rectangle
+        /// Gets the perimeter of the rectangle.
         /// </summary>
         public double Perimeter
         {
@@ -63,7 +63,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the diagonal of the rectangle
+        /// Gets the diagonal of the rectangle.
         /// </summary>
         public double Diagonal
         {
@@ -75,23 +75,23 @@ namespace Mathos.Geometry.Shapes
         /// <summary>
         /// Checks whether the rectangle is equal to the given object.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">Object to check.</param>
+        /// <returns>True if the object and rectangle are equal.</returns>
         public override bool Equals(object obj)
         {
             var other = obj as Rectangle;
 
-            return other != null && (Math.Abs(_length - other._length) < 1 && Math.Abs(_width - other._width) < 1);
+            return (other != null) && (Math.Abs(_length - other._length) < 1) && (Math.Abs(_width - other._width) < 1);
         }
 
         /// <summary>
-        /// 
+        /// Checks whether the rectangle is equal to another.
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other">Rectangle to check.</param>
+        /// <returns>True if both rectangles are equal.</returns>
         public bool Equals(Rectangle other)
         {
-            return other != null && (Math.Abs(_length - other._length) < 1 && Math.Abs(_width - other._width) < 1);
+            return (other != null) && (Math.Abs(_length - other._length) < 1) && (Math.Abs(_width - other._width) < 1);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _length.GetHashCode() ^ _width.GetHashCode();
+            return Length.GetHashCode() ^ Width.GetHashCode();
         }
 
         /// <summary>
@@ -113,8 +113,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
-                   (Math.Abs(a._length - b._length) < 1 && Math.Abs(a._width - b._width) < 1);
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._length - b._length) < 1) && (Math.Abs(a._width - b._width) < 1));
         }
 
         /// <summary>
@@ -125,7 +124,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(Rectangle a, Rectangle b)
         {
-            return ((a != null && b != null) && Math.Abs(a._length - b._length) > 0) || ((a != null && b != null) && Math.Abs(a._width - b._width) > 0);
+            return ((a != null) && (b != null) && (Math.Abs(a._length - b._length) > 0)) || ((a != null) && (b != null) && (Math.Abs(a._width - b._width) > 0));
         }
 
         #endregion

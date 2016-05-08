@@ -3,67 +3,67 @@
 namespace Mathos.Geometry.Shapes
 {  
     /// <summary>
-    /// Elliptical shape
+    /// An elliptical shape.
     /// </summary>
     public class Ellipse : IShape2D
     {
-        private double _majoraxis;
-        private double _minoraxis;
+        private double _majorAxis;
+        private double _minorAxis;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Ellipse() : this(0, 0)
         {
         }
 
         /// <summary>
-        /// Constructor with a "majoraxis" and a "minoraxis"
+        /// Constructor with a <paramref name="majorAxis"/> and <paramref name="minorAxis"/>.
         /// </summary>
-        /// <param name="majoraxis"></param>
-        /// <param name="minoraxis"></param>
-        public Ellipse(double majoraxis, double minoraxis)
+        /// <param name="majorAxis">The major axis.</param>
+        /// <param name="minorAxis">The minor axis.</param>
+        public Ellipse(double majorAxis, double minorAxis)
         {
-            _majoraxis = majoraxis < 0 ? 0 : majoraxis;
-            _minoraxis = minoraxis < 0 ? 0 : minoraxis;
+            _majorAxis = majorAxis < 0 ? 0 : majorAxis;
+            _minorAxis = minorAxis < 0 ? 0 : minorAxis;
         }
 
         /// <summary>
-        /// Gets or sets the "_majoraxis"
+        /// Gets or sets the major axis.
         /// </summary>
         public double MajorAxis
         {
-            get { return _majoraxis; }
-            set { _majoraxis = value < 0 ? 0 : value; }
+            get { return _majorAxis; }
+            set { _majorAxis = value < 0 ? 0 : value; }
         }
 
         /// <summary>
-        /// Gets or sets the "_minoraxis"
+        /// Gets or sets the minor axis.
         /// </summary>
         public double MinorAxis
         {
-            get { return _minoraxis; }
-            set { _minoraxis = value < 0 ? 0 : value; }
+            get { return _minorAxis; }
+            set { _minorAxis = value < 0 ? 0 : value; }
         }
 
         /// <summary>
-        /// Gets the "_majoraxis"'s semi axis
+        /// Gets the major axis's semi-axis.
         /// </summary>
         public double MajorSemiAxis
         {
-            get { return _majoraxis / 2; }
+            get { return _majorAxis / 2; }
         }
 
         /// <summary>
-        /// Gets the "_minoraxis"'s semi axis
+        /// Gets the minor axis's semi-axis.
         /// </summary>
         public double MinorSemiAxis
         {
-            get { return _minoraxis / 2; }
+            get { return _minorAxis / 2; }
         }
 
         /// <summary>
-        /// Gets the area of the ellipse
+        /// Gets the area of the ellipse.
         /// </summary>
         public double Area
         {                  
@@ -71,8 +71,9 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Circumference - Ramanujan's approach
+        /// Gets the circumference of the ellipse.
         /// </summary>
+        /// <remarks>Uses Ramanujan's approach.</remarks>
         public double Perimeter
         {
             get { return Math.PI*(3*(MajorSemiAxis + MinorSemiAxis) -
@@ -81,21 +82,21 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// 
+        /// Gets the eccentricity of the ellipse.
         /// </summary>
-        /// <returns></returns>
-        public double Eccentricity()
+        /// <returns>The eccentricity of the ellipse</returns>
+        public double Eccentricity
         {
-            return Math.Sqrt(1 - Math.Pow(MinorSemiAxis/MajorSemiAxis,2));
+            get { return Math.Sqrt(1 - Math.Pow(MinorSemiAxis/MajorSemiAxis, 2)); }
         }
 
         /// <summary>
-        /// 
+        /// Gets the focus of the ellipse.
         /// </summary>
-        /// <returns></returns>
-        public double Focus()
+        /// <returns>The focus of the ellipse.</returns>
+        public double Focus
         {
-            return Math.Sqrt(Math.Pow(MajorSemiAxis,2) - Math.Pow(MinorSemiAxis,2));
+            get { return Math.Sqrt(Math.Pow(MajorSemiAxis, 2) - Math.Pow(MinorSemiAxis, 2)); }
         }
     }
 }

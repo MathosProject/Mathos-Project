@@ -3,7 +3,7 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Parallelogram shape
+    /// A parallelogram.
     /// </summary>
     public class Parallelogram : IShape2D
     {
@@ -11,17 +11,17 @@ namespace Mathos.Geometry.Shapes
         private double _height;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Parallelogram() : this(0, 0)
         {
         }
 
         /// <summary>
-        /// Constructor with a "length" and "height"
+        /// Constructor with a <paramref name="length"/> and <paramref name="height"/>.
         /// </summary>
-        /// <param name="length"></param>
-        /// <param name="height"></param>
+        /// <param name="length">The length.</param>
+        /// <param name="height">The height.</param>
         public Parallelogram(double length, double height)
         {
             _length = length < 0 ? 0 : length;
@@ -29,7 +29,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the length of the parallelogram
+        /// Gets or sets the length of the parallelogram.
         /// </summary>
         public double Length
         {
@@ -38,7 +38,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the height of the parallelogram
+        /// Gets or sets the height of the parallelogram.
         /// </summary>
         public double Height
         {
@@ -47,7 +47,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the area of the parallelogram
+        /// Gets the area of the parallelogram.
         /// </summary>
         public double Area
         {
@@ -55,7 +55,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the perimeter of the parallelogram
+        /// Gets the perimeter of the parallelogram.
         /// </summary>
         public double Perimeter
         {
@@ -67,23 +67,23 @@ namespace Mathos.Geometry.Shapes
         /// <summary>
         /// Checks whether the parallelogram is equal to the given object.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The object to check.</param>
+        /// <returns>True if both the object and parallelogram are equal.</returns>
         public override bool Equals(object obj)
         {
             var other = obj as Parallelogram;
 
-            return other != null && (Math.Abs(_length - other._length) < 1 && Math.Abs(_height - other._height) < 1);
+            return (other != null) && ((Math.Abs(_length - other._length) < 1) && (Math.Abs(_height - other._height) < 1));
         }
 
         /// <summary>
-        /// 
+        /// Checks whether the parallelogram is equal to another.
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other">The parallelogram to check.</param>
+        /// <returns>True if both parallelograms are equal.</returns>
         public bool Equals(Parallelogram other)
         {
-            return other != null && (Math.Abs(_length - other._length) < 1 && Math.Abs(_height - other._height) < 1);
+            return (other != null) && (Math.Abs(_length - other._length) < 1) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _length.GetHashCode() ^ _height.GetHashCode();
+            return Length.GetHashCode() ^ Height.GetHashCode();
         }
 
         /// <summary>
@@ -105,8 +105,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
-                   (Math.Abs(a._length - b._length) < 1 && Math.Abs(a._height - b._height) < 1);
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._length - b._length) < 1) && (Math.Abs(a._height - b._height) < 1));
         }
 
         /// <summary>
@@ -117,7 +116,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(Parallelogram a, Parallelogram b)
         {
-            return ((a != null && b != null) && Math.Abs(a._length - b._length) > 0) || ((a != null && b != null) && Math.Abs(a._height - b._height) > 0);
+            return ((a != null) && (b != null) && (Math.Abs(a._length - b._length) > 0)) || ((a != null) && (b != null) && (Math.Abs(a._height - b._height) > 0));
         }
 
         #endregion

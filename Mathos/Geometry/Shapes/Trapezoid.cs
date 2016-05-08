@@ -14,7 +14,7 @@ namespace Mathos.Geometry.Shapes
         private double _legTwo;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Trapezoid() : this(0, 0, 0, 0)
         {
@@ -22,7 +22,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Constructor with three doubles, "baseOne" "baseTwo" and "height", to base this trapezoid off of
+        /// Constructor with <paramref name="baseOne"/>, <paramref name="baseTwo"/>, and <paramref name="height"/>.
         /// </summary>
         /// <param name="baseOne"></param>
         /// <param name="baseTwo"></param>
@@ -35,7 +35,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Constructor with four doubles, "baseOne" "baseTwo" "legOne" and "legTwo", to base this trapezoid off of
+        /// Constructor with <paramref name="baseOne"/>, <paramref name="baseTwo"/>, <paramref name="legOne"/>, and <paramref name="legTwo"/>.
         /// </summary>
         /// <param name="baseOne"></param>
         /// <param name="baseTwo"></param>
@@ -50,7 +50,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the first base of the trapezoid
+        /// Gets or sets the first base of the trapezoid.
         /// </summary>
         public double BaseOne
         {
@@ -59,7 +59,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the second base of the trapezoid
+        /// Gets or sets the second base of the trapezoid.
         /// </summary>
         public double BaseTwo
         {
@@ -68,7 +68,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the height of the trapezoid
+        /// Gets or sets the height of the trapezoid.
         /// </summary>
         public double Height
         {
@@ -77,7 +77,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the length of the first leg
+        /// Gets or sets the length of the first leg.
         /// </summary>
         public double LegOne
         {
@@ -86,7 +86,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets or sets the length of the first leg
+        /// Gets or sets the length of the first leg.
         /// </summary>
         public double LegTwo
         {
@@ -95,7 +95,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the area of the trapezoid
+        /// Gets the area of the trapezoid.
         /// </summary>
         public double Area
         {
@@ -103,7 +103,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Gets the perimeter of the trapezoid
+        /// Gets the perimeter of the trapezoid.
         /// </summary>
         public double Perimeter
         {
@@ -115,27 +115,23 @@ namespace Mathos.Geometry.Shapes
         /// <summary>
         /// Checks whether the trapezoid is equal to the given object.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">The object to check.</param>
+        /// <returns>True if the object and trapezoid are equal.</returns>
         public override bool Equals(object obj)
         {
             var other = obj as Trapezoid;
 
-            return other != null &&
-                   (Math.Abs(_baseOne - other._baseOne) < 1 && Math.Abs(_baseTwo - other._baseTwo) < 1 &&
-                    Math.Abs(_height - other._height) < 1);
+            return (other != null) && (Math.Abs(_baseOne - other._baseOne) < 1) && (Math.Abs(_baseTwo - other._baseTwo) < 1) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
-        /// 
+        /// Checks whether the trapezoid is equal to another.
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
+        /// <param name="other">Trapezoid to check.</param>
+        /// <returns>True if both trapezoids are equal.</returns>
         public bool Equals(Trapezoid other)
         {
-            return other != null &&
-                   (Math.Abs(_baseOne - other._baseOne) < 1 && Math.Abs(_baseTwo - other._baseTwo) < 1 &&
-                    Math.Abs(_height - other._height) < 1);
+            return (other != null) && (Math.Abs(_baseOne - other._baseOne) < 1) && (Math.Abs(_baseTwo - other._baseTwo) < 1) && (Math.Abs(_height - other._height) < 1);
         }
 
         /// <summary>
@@ -144,7 +140,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return _baseOne.GetHashCode() ^ _baseTwo.GetHashCode() ^ _height.GetHashCode();
+            return BaseOne.GetHashCode() ^ BaseTwo.GetHashCode() ^ Height.GetHashCode();
         }
 
         /// <summary>
@@ -157,9 +153,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || ((object) a != null) && ((object) b != null) &&
-                   (Math.Abs(a._baseOne - b._baseOne) < 1 && Math.Abs(a._baseTwo - b._baseTwo) < 1 &&
-                    Math.Abs(a._height - b._height) < 1);
+            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._baseOne - b._baseOne) < 1) && (Math.Abs(a._baseTwo - b._baseTwo) < 1) && (Math.Abs(a._height - b._height) < 1));
         }
 
         /// <summary>
@@ -170,10 +164,11 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(Trapezoid a, Trapezoid b)
         {
-            return ((a != null && b != null) && Math.Abs(a._baseOne - b._baseOne) > 0) ||
-                   ((a != null && b != null) && Math.Abs(a._baseTwo - b._baseTwo) > 0) ||
-                   ((a != null && b != null) && Math.Abs(a._height - b._height) > 0);
+            return ((a != null) && (b != null) && (Math.Abs(a._baseOne - b._baseOne) > 0)) ||
+                   ((a != null) && (b != null) && (Math.Abs(a._baseTwo - b._baseTwo) > 0)) ||
+                   ((a != null) && (b != null) && (Math.Abs(a._height - b._height) > 0));
         }
+
         #endregion
     }
 }

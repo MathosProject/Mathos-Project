@@ -8,23 +8,22 @@ namespace Mathos.Arithmetic
     public static class DecimalArithmetic
     {
         /// <summary>
-        /// Calculates the natural logarithm of a given x value
+        /// Calculates the natural logarithm of <paramref name="x"/> with a given accuracy, <paramref name="degreeOfTaylorPolynomial"/>.
         /// </summary>
-        /// <param name="x">The x value</param>
-        /// <param name="degreeOfTaylorPolynomial">The degree of accuracy</param>
-        /// <returns></returns>
+        /// <param name="x">The x value.</param>
+        /// <param name="degreeOfTaylorPolynomial">The degree of accuracy.</param>
+        /// <returns>The natural logarithm of <paramref name="x"/>.</returns>
         public static decimal Ln(decimal x, int degreeOfTaylorPolynomial = 1000)
         {
             decimal val = 0;
 
-            if (x < 1 || (-x) < 1 && x <0)
+            if ((x < 1) || ((-x < 1) && (x <0)))
             {
                 for (var i = 1; i < degreeOfTaylorPolynomial; i++)
                 {
                     decimal vec = i % 2 == 1 ? 1 : -1;
 
                     vec *= Pow(x - 1, i) / i;
-
                     val += vec;
                 }
             }
@@ -38,11 +37,11 @@ namespace Mathos.Arithmetic
         }
 
         /// <summary>
-        /// 
+        /// Raises <paramref name="x"/> to a given power, <paramref name="exp"/>.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="exp"></param>
-        /// <returns></returns>
+        /// <returns><paramref name="x"/> raised to the power of <paramref name="exp"/>.</returns>
         public static decimal Pow(decimal x, int exp)
         {
             switch (exp)

@@ -3,85 +3,85 @@
 namespace Mathos.Geometry.Shapes
 {
     /// <summary>
-    /// Ring shape
+    /// A ring shape.
     /// </summary>
     public class Ring : IShape2D
     {
-        private double _bigradius;
-        private double _smallradius;
+        private double _bigRadius;
+        private double _smallRadius;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
         public Ring() : this(0, 0)
         {
         }
 
         /// <summary>
-        /// Constructor with two doubles, "bigradius" and "smallradius", to base this ring off of
+        /// Constructor with <paramref name="bigRadius"/> and <paramref name="smallRadius"/>.
         /// </summary>
-        /// <param name="bigradius"></param>
-        /// <param name="smallradius"></param>
-        public Ring(double bigradius, double smallradius)
+        /// <param name="bigRadius">The big radius.</param>
+        /// <param name="smallRadius">The small radius.</param>
+        public Ring(double bigRadius, double smallRadius)
         {
-            _bigradius = bigradius < 0 ? 0 : bigradius;
-            _smallradius = smallradius < 0 ? 0 : smallradius;
+            _bigRadius = bigRadius < 0 ? 0 : bigRadius;
+            _smallRadius = smallRadius < 0 ? 0 : smallRadius;
         }
 
         /// <summary>
-        /// Gets or sets the "_bigradius" of the ring
+        /// Gets or sets the big radius.
         /// </summary>
         public double BigRadius
         {
-            get { return _bigradius; }
-            set { _bigradius = value < 0 ? 0 : value; }
+            get { return _bigRadius; }
+            set { _bigRadius = value < 0 ? 0 : value; }
         }
 
         /// <summary>
-        /// Gets or sets the "_smallradius" of the ring
+        /// Gets or sets the small radius.
         /// </summary>
         public double SmallRadius
         {
-            get { return _smallradius; }
-            set { _smallradius = value < 0 ? 0 : value; }
+            get { return _smallRadius; }
+            set { _smallRadius = value < 0 ? 0 : value; }
         }
 
         /// <summary>
-        /// Gets or sets the "_bigradius" of the ring
+        /// Gets or sets the big diameter.
         /// </summary>
         public double BigDiameter
         {
-            get { return _bigradius * 2; }
-            set { _bigradius = value < 0 ? 0 : value / 2; }
+            get { return _bigRadius * 2; }
+            set { _bigRadius = value < 0 ? 0 : value / 2; }
         }
 
         /// <summary>
-        /// Gets or sets the "_smallradius" of the ring
+        /// Gets or sets the small diameter.
         /// </summary>
         public double SmallDiameter
         {
-            get { return _smallradius * 2; }
-            set { _smallradius = value < 0 ? 0 : value / 2; }
+            get { return _smallRadius * 2; }
+            set { _smallRadius = value < 0 ? 0 : value / 2; }
         }
 
         /// <summary>
-        /// Gets the area of the ring
+        /// Gets the area of the ring.
         /// </summary>
         public double Area
         {
-            get { return (_bigradius * _bigradius -_smallradius * _smallradius ) * Math.PI; }
+            get { return (_bigRadius * _bigRadius -_smallRadius * _smallRadius ) * Math.PI; }
         }
 
         /// <summary>
-        /// Gets the circumference of the ring
+        /// Gets the circumference of the ring.
         /// </summary>
         public double Circumference
         {
-            get { return 2 * Math.PI * (_bigradius + _smallradius); }
+            get { return 2 * Math.PI * (_bigRadius + _smallRadius); }
         }
 
         /// <summary>
-        /// Gets the perimeter of the ring
+        /// Gets the perimeter of the ring.
         /// </summary>
         public double Perimeter
         {

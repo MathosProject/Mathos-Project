@@ -17,7 +17,7 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
-        /// Constructor with a double, "length", to base this square off of
+        /// Constructor with a double, "length", to base this square off of.
         /// </summary>
         /// <param name="length"></param>
         public Square(double length)
