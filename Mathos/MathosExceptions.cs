@@ -9,32 +9,32 @@ namespace Mathos
         /// Occurs when assigning the denominator value to zero.
         /// </summary>
         [Serializable]
-        public class DenominatorNullException : Exception
+        public class DenominatorZeroException : Exception
         {
             /// <summary>
             /// Default constructor.
             /// </summary>
-            public DenominatorNullException() { }
+            public DenominatorZeroException() { }
 
             /// <summary>
             /// Constructor that takes a <paramref name="message"/>.
             /// </summary>
             /// <param name="message">The exception message.</param>
-            public DenominatorNullException(string message) : base(message) { }
+            public DenominatorZeroException(string message) : base(message) { }
             
             /// <summary>
             /// Constructor that takes a <paramref name="message"/> with a specified exception, <paramref name="inner"/>.
             /// </summary>
             /// <param name="message">The exception message.</param>
             /// <param name="inner">The inner exception.</param>
-            public DenominatorNullException(string message, Exception inner) : base(message, inner) { }
+            public DenominatorZeroException(string message, Exception inner) : base(message, inner) { }
 
             /// <summary>
             /// A protected constructor that takes serialization <paramref name="info"/> alongside a streaming <paramref name="context"/>.
             /// </summary>
             /// <param name="info">The serialization info.</param>
             /// <param name="context">The context of the stream.</param>
-            protected DenominatorNullException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+            protected DenominatorZeroException(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
 
         /// <summary>

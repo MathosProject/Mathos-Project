@@ -57,7 +57,7 @@
     <Compile Include="Arithmetic\Numbers\Get.cs" />
     <Compile Include="Arithmetic\Numbers\Check.cs" />
     <Compile Include="Arithmetic\ComplexArithmetic.cs" />
-    <Compile Include="Arithmetic\ComplexNumberType.cs" />
+    <Compile Include="Arithmetic\ComplexNumber.cs" />
     <Compile Include="Arithmetic\DecimalArithmetic.cs" />
     <Compile Include="Arithmetic\DoubleArithmetic.cs" />
     <Compile Include="Arithmetic\Fraction.cs" />

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Globalization;
+using Convert = System.Convert;
+
 using Mathos.Arithmetic.Numbers;
 using Mathos.Exceptions;
 using Mathos.Notation;
-using Convert = System.Convert;
 
 namespace Mathos.Arithmetic
 {
@@ -11,17 +12,19 @@ namespace Mathos.Arithmetic
     {
         /// <summary>
         /// The Fraction type makes it possible to store numbers in form of p/q, where p,q are integers.
-        /// The integer is stored as Int64 (long).
         /// </summary>
+        /// <remarks>
+        /// The the numerator and denominator are both Int64 (long).
+        /// </remarks>
         public struct Fraction : IRational
         {
             /// <summary>
-            /// Gets or sets the "_numerator"
+            /// Gets or sets the numerator.
             /// </summary>
             public long Numerator { get; set; }
 
             /// <summary>
-            /// Gets or sets the "_denominator"
+            /// Gets or sets the denominator.
             /// </summary>
             public long Denominator
             {
@@ -30,7 +33,7 @@ namespace Mathos.Arithmetic
                 {
                     if (value != 0)
                     {
-                        if (_denominator < 0) // read more at void fractionChecker
+                        if (_denominator < 0)
                         {
                             _denominator = value * -1;
                             Numerator = Numerator * -1;
@@ -41,11 +44,11 @@ namespace Mathos.Arithmetic
                         }
                     }
                     else
-                        throw new DenominatorNullException();
+                        throw new DenominatorZeroException();
                 }
             }
 
-            private long _denominator; // the hidden y coordinate
+            private long _denominator;
             
             /// <summary>
             /// Create a fraction from another.
