@@ -156,16 +156,6 @@ namespace Mathos.Arithmetic
             }
 
             /// <summary>
-            /// Returns the hash code for this instance.
-            /// </summary>
-            /// <returns>The hashcode of the fraction.</returns>
-            /// <filterpriority>2</filterpriority>
-            public override int GetHashCode()
-            {
-                return Numerator.GetHashCode() ^ Denominator.GetHashCode();
-            }
-
-            /// <summary>
             /// Convert the fraction into a decimal.
             /// </summary>
             /// <returns>The fraction converted into a decimal.</returns>
