@@ -47,6 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algebra.cs" />
+    <Compile Include="Arithmetic\Numbers\IImaginary.cs" />
+    <Compile Include="Arithmetic\Numbers\IRealNumber.cs" />
+    <Compile Include="Arithmetic\Numbers\IIRationalNumber.cs" />
+    <Compile Include="Arithmetic\Numbers\IRationalNumber.cs" />
+    <Compile Include="Arithmetic\Numbers\IInteger.cs" />
+    <Compile Include="Arithmetic\Numbers\INaturalNumber.cs" />
+    <Compile Include="Arithmetic\Numbers\Convert.cs" />
+    <Compile Include="Arithmetic\Numbers\Get.cs" />
+    <Compile Include="Arithmetic\Numbers\Check.cs" />
     <Compile Include="Arithmetic\ComplexArithmetic.cs" />
     <Compile Include="Arithmetic\ComplexNumberType.cs" />
     <Compile Include="Arithmetic\DecimalArithmetic.cs" />
@@ -54,7 +63,7 @@
     <Compile Include="Arithmetic\Fraction.cs" />
     <Compile Include="Arithmetic\IntegerArithmetic.cs" />
     <Compile Include="Arithmetic\MathematicalConstants.cs" />
-    <Compile Include="Arithmetic\NumberOperations.cs" />
+    <Compile Include="Arithmetic\Numbers\IComplex.cs" />
     <Compile Include="Arithmetic\PhysicalConstants.cs" />
     <Compile Include="Arithmetic\SingleArithmetic.cs" />
     <Compile Include="BenchmarkUtil.cs" />
