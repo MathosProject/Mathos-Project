@@ -11,7 +11,7 @@ namespace Mathos.Arithmetic
         /// The Fraction type makes it possible to store numbers in form of p/q, where p,q are integers.
         /// The integer is stored as Int64 (long).
         /// </summary>
-        public struct Fraction : Numbers.IRationalNumber
+        public struct Fraction : Numbers.IRational
         {
             /// <summary>
             /// Gets or sets the "_numerator"

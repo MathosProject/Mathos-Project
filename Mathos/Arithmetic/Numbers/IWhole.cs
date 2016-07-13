@@ -1,9 +1,9 @@
 ﻿namespace Mathos.Arithmetic.Numbers
 {
     /// <summary>
-    /// 
+    /// Represents a whole number.
     /// </summary>
-    public interface IRationalNumber : IInteger
+    public interface IWhole : IInteger
     {
     }
 }

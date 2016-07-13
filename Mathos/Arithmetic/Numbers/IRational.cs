@@ -1,9 +1,9 @@
 ﻿namespace Mathos.Arithmetic.Numbers
 {
     /// <summary>
-    /// 
+    /// Represents a rational number.
     /// </summary>
-    public interface IIRationalNumber
+    public interface IRational : IReal
     {
     }
 }

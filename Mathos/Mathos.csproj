@@ -48,9 +48,9 @@
   <ItemGroup>
     <Compile Include="Algebra.cs" />
     <Compile Include="Arithmetic\Numbers\IImaginary.cs" />
-    <Compile Include="Arithmetic\Numbers\IRealNumber.cs" />
-    <Compile Include="Arithmetic\Numbers\IIRationalNumber.cs" />
-    <Compile Include="Arithmetic\Numbers\IRationalNumber.cs" />
+    <Compile Include="Arithmetic\Numbers\IReal.cs" />
+    <Compile Include="Arithmetic\Numbers\IIrrational.cs" />
+    <Compile Include="Arithmetic\Numbers\IRational.cs" />
     <Compile Include="Arithmetic\Numbers\IInteger.cs" />
     <Compile Include="Arithmetic\Numbers\INaturalNumber.cs" />
     <Compile Include="Arithmetic\Numbers\Convert.cs" />

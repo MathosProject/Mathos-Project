@@ -1,9 +1,9 @@
 ﻿namespace Mathos.Arithmetic.Numbers
 {
     /// <summary>
-    /// Represents an imaginary number.
+    /// Represents an irrational number.
     /// </summary>
-    public interface IImaginary : IComplex
+    public interface IIrrational : IReal
     {
     }
 }

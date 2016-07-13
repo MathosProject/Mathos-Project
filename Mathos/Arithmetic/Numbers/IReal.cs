@@ -1,9 +1,9 @@
 namespace Mathos.Arithmetic.Numbers
 {
     /// <summary>
-    /// 
+    /// Represents a real number.
     /// </summary>
-    public interface INaturalNumber
+    public interface IReal : IComplex
     {
     }
 }
