@@ -84,7 +84,7 @@ namespace Mathos.Calculus
                 return 0.0;
             }
             
-            var ex = Math.Ceiling(Math.Log(Math.Abs(x)) / MathematicalConstants.LnOfTwo);
+            var ex = Math.Ceiling(Math.Log(Math.Abs(x)) / Constants.LnOfTwo);
             var ei = Convert.ToInt32(ex);
 
             var f = TimesTwoTo(x, -ei);

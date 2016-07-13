@@ -52,7 +52,7 @@
     <Compile Include="Arithmetic\Numbers\IIrrational.cs" />
     <Compile Include="Arithmetic\Numbers\IRational.cs" />
     <Compile Include="Arithmetic\Numbers\IInteger.cs" />
-    <Compile Include="Arithmetic\Numbers\INaturalNumber.cs" />
+    <Compile Include="Arithmetic\Numbers\INatural.cs" />
     <Compile Include="Arithmetic\Numbers\Convert.cs" />
     <Compile Include="Arithmetic\Numbers\Get.cs" />
     <Compile Include="Arithmetic\Numbers\Check.cs" />
@@ -62,8 +62,9 @@
     <Compile Include="Arithmetic\DoubleArithmetic.cs" />
     <Compile Include="Arithmetic\Fraction.cs" />
     <Compile Include="Arithmetic\IntegerArithmetic.cs" />
-    <Compile Include="Arithmetic\MathematicalConstants.cs" />
+    <Compile Include="Arithmetic\Constants.cs" />
     <Compile Include="Arithmetic\Numbers\IComplex.cs" />
+    <Compile Include="Arithmetic\Numbers\IWhole.cs" />
     <Compile Include="Arithmetic\PhysicalConstants.cs" />
     <Compile Include="Arithmetic\SingleArithmetic.cs" />
     <Compile Include="BenchmarkUtil.cs" />

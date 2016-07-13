@@ -16,7 +16,7 @@ namespace Mathos.SpecialFunctions
         /// <returns></returns>
         public static double Erf(double x)
         {
-            return MathematicalConstants.TwoOverSqrtOfPI * IntegralCalculus.Integrate(t => Math.Pow(Math.E, -(t * t)), 0, x);
+            return Constants.TwoOverSqrtOfPI * IntegralCalculus.Integrate(t => Math.Pow(Math.E, -(t * t)), 0, x);
         }
 
         /// <summary>

@@ -74,8 +74,8 @@ namespace MathosTest.Arithmetic
             Assert.AreEqual(pi18, pi17*Math.PI, 1e-6, "on pi^18=p^17/pi, delta = {0}", Math.Abs(pi18 - pi17*Math.PI));
             Assert.AreEqual(1.0/16.0, oneHalfTo4, 0, "on 0.5^4=1/16, delta = {0}", Math.Abs(1.0/16.0 - oneHalfTo4));
             Assert.AreEqual(218.0, Math.Log(e218), 0, "on ln(e^218)=218, delta = {0}", Math.Abs(218.0 - Math.Log(e218)));
-            Assert.AreEqual(1.0/MathematicalConstants.PISquared, piToMinus2, 1e-16, "on 1/(pi^2), delta = {0}",
-                   Math.Abs(1.0/MathematicalConstants.PISquared - piToMinus2));
+            Assert.AreEqual(1.0/Constants.PISquared, piToMinus2, 1e-16, "on 1/(pi^2), delta = {0}",
+                   Math.Abs(1.0/Constants.PISquared - piToMinus2));
         }
 
         [TestMethod]
@@ -91,7 +91,7 @@ namespace MathosTest.Arithmetic
             var piSquaredMath = Math.Pow(Math.PI, 2.0);
 
             const double oneHalfTo4 = 1.0/16.0;
-            const double piSquared = MathematicalConstants.PISquared;
+            const double piSquared = Constants.PISquared;
 
             double[] powIntErrors =
             {

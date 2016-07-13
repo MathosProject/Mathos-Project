@@ -20,7 +20,7 @@ namespace MathosTest.Arithmetic
                 -2.0*Complex.ImaginaryOne
             };
 
-            var z = Complex.FromPolarCoordinates(16.0, MathematicalConstants.PIOverFour);
+            var z = Complex.FromPolarCoordinates(16.0, Constants.PIOverFour);
             var rootsOfz = new[]
             {
                 new Complex(1.961570561, 0.3901806440),

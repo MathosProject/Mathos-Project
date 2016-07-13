@@ -11,7 +11,7 @@ namespace MathosTest.Arithmetic
         [TestMethod]
         public void TestSqrt()
         {
-            const float number = MathematicalConstants.Single.PI;
+            const float number = Constants.Single.PI;
 
             var root = SingleArithmetic.Sqrt(number);
 
