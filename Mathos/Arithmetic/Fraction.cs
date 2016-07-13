@@ -16,7 +16,8 @@ namespace Mathos.Arithmetic
         /// <remarks>
         /// The the numerator and denominator are both Int64 (long).
         /// </remarks>
-        public struct Fraction : IRational
+        [Serializable]
+        public class Fraction : IRational
         {
             /// <summary>
             /// Gets or sets the numerator.
@@ -49,12 +50,21 @@ namespace Mathos.Arithmetic
             }
 
             private long _denominator;
-            
+
+            /// <summary>
+            /// Create a fraction equal to one (1/1).
+            /// </summary>
+            public Fraction()
+            {
+                Numerator = 1;
+                Denominator = 1;
+            }
+
             /// <summary>
             /// Create a fraction from another.
             /// </summary>
             /// <param name="f">The other fraction.</param>
-            public Fraction(Fraction f) : this()
+            public Fraction(Fraction f)
             {
                 Numerator = f.Numerator;
                 Denominator = f.Denominator;
@@ -64,7 +74,7 @@ namespace Mathos.Arithmetic
             /// Create a fraction with a numerator.
             /// </summary>
             /// <param name="numerator">The numerator.</param>
-            public Fraction(long numerator) : this(numerator, 1) // our constructor
+            public Fraction(long numerator) : this(numerator, 1)
             {
             }
 
@@ -76,19 +86,22 @@ namespace Mathos.Arithmetic
             public Fraction(long numerator, long denominator)
             {
                 Numerator = numerator;
-                _denominator = denominator;
+                Denominator = denominator;
 
                 FractionChecker();
             }
 
             /// <summary>
-            /// Create a fraction from dividing two others.
+            /// Create a fraction from the result of dividing two others.
             /// </summary>
             /// <param name="fractA">The first fraction.</param>
             /// <param name="fractB">The second fraction.</param>
             public Fraction(Fraction fractA, Fraction fractB)
             {
-                this = fractA / fractB;
+                var tmp = fractA / fractB;
+
+                Numerator = tmp.Numerator;
+                Denominator = tmp.Denominator;
 
                 FractionChecker();
             }
