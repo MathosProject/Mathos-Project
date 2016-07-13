@@ -43,7 +43,7 @@ namespace Mathos.Arithmetic
         /// <returns></returns>
         public static long Sqr(this int x)
         {
-            return x <= MathematicalConstants.MaxIntSqrt ? x*x : Math.BigMul(x, x);
+            return x <= Constants.MaxIntSqrt ? x*x : Math.BigMul(x, x);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Mathos.Arithmetic
         /// <exception cref="OverflowException"></exception>
         public static long Sqr(this long x)
         {
-            if (x <= MathematicalConstants.MaxLongSqrt)
+            if (x <= Constants.MaxLongSqrt)
                 return x * x;
             
             throw new OverflowException();
