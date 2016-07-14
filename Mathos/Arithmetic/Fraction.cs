@@ -17,7 +17,7 @@ namespace Mathos.Arithmetic
         /// The the numerator and denominator are both Int64 (long).
         /// </remarks>
         [Serializable]
-        public class Fraction : IRational
+        public class Fraction : IRational, IEquatable<Fraction>
         {
             /// <summary>
             /// Gets or sets the numerator.
@@ -146,13 +146,35 @@ namespace Mathos.Arithmetic
             }
 
             /// <summary>
-            /// Indicates whether this instance and a specified object are equal.
+            /// Gets the hashcode of this instance.
             /// </summary>
-            /// <returns>Whether <paramref name="obj"/> is equal to the fraction.</returns>
-            /// <param name="obj">Another object to compare to. </param><filterpriority>2</filterpriority>
+            /// <returns></returns>
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    return (_denominator.GetHashCode() * 397) ^ Numerator.GetHashCode();
+                }
+            }
+
+            /// <summary>
+            /// Indicates whether this instance and a given object are equal.
+            /// </summary>
+            /// <returns>Whether <paramref name="obj"/> is equal to the current fraction.</returns>
+            /// <param name="obj">Another object to compare to. </param>
             public override bool Equals(object obj)
             {
                 return obj != null && obj.GetType() == GetType() && this == (Fraction) obj;
+            }
+
+            /// <summary>
+            /// Indicates whether this instance and a given fraction are equal.
+            /// </summary>
+            /// <returns>Whether <paramref name="other"/> is equal to the current fraction.</returns>
+            /// <param name="other">Another object to compare to. </param>
+            public bool Equals(Fraction other)
+            {
+                return other != null && (Numerator == other.Numerator) && (Denominator == other.Denominator);
             }
 
             /// <summary>
@@ -161,7 +183,7 @@ namespace Mathos.Arithmetic
             /// <returns>The fraction converted into a decimal.</returns>
             public decimal ToDecimal()
             {
-                return (decimal)Numerator / _denominator;
+                return (decimal) Numerator/_denominator;
             }
 
             /// <summary>
@@ -170,7 +192,7 @@ namespace Mathos.Arithmetic
             /// <returns>The fraction converted into a long.</returns>
             public long ToLong()
             {
-                return Numerator / _denominator;
+                return Numerator/_denominator;
             }
 
             /// <summary>
@@ -180,6 +202,15 @@ namespace Mathos.Arithmetic
             public double ToDouble()
             {
                 return (double) Numerator/_denominator;
+            }
+
+            /// <summary>
+            /// Convert the fraction into a float.
+            /// </summary>
+            /// <returns>The fraction converted into a float.</returns>
+            public float ToFloat()
+            {
+                return (float) Numerator/_denominator;
             }
 
             /// <summary>
@@ -350,18 +381,27 @@ namespace Mathos.Arithmetic
             /// <returns>The simplified form of the fraction.</returns>
             public Fraction Simplify()
             {
-                var gdc = Numbers.Get.Gdc(Numbers.Convert.ToPositive(Numerator),
-                    Numbers.Convert.ToPositive(_denominator));
+                var gdc = Get.Gdc(Numbers.Convert.ToPositive(Numerator), Numbers.Convert.ToPositive(_denominator));
 
                 return new Fraction(Numerator/gdc, _denominator/gdc);
             }
 
             /// <summary>
-            /// Find the inverse
+            /// Gets the inverse of this instance.
             /// </summary>
             /// <example>2/3 -> 3/2</example>
-            /// <returns>The inverse of the fraction.</returns>
+            /// <returns>The inverse of this fraction.</returns>
             public Fraction Inverse()
+            {
+                return new Fraction(Denominator, Numerator);
+            }
+
+            /// <summary>
+            /// Gets the reciprocal of this instance.
+            /// </summary>
+            /// <example>2/3 -> 3/2</example>
+            /// <returns>The reciprocal of this fraction.</returns>
+            public Fraction Reciprocal()
             {
                 return new Fraction(Denominator, Numerator);
             }
@@ -387,7 +427,10 @@ namespace Mathos.Arithmetic
             /// <returns>Whether <paramref name="fractA"/> is equal to <paramref name="fractB"/>.</returns>
             public static bool operator ==(Fraction fractA, Fraction fractB)
             {
-                fractA = fractA.Simplify(); // simplifying, e.g. if a is 4/2, and b 2/1, return true
+                if (fractA == null || fractB == null)
+                    return fractA == null && fractB == null;
+
+                fractA = fractA.Simplify();
                 fractB = fractB.Simplify();
 
                 return (fractA.Numerator == fractB.Numerator) && (fractA.Denominator == fractB.Denominator);
@@ -467,35 +510,34 @@ namespace Mathos.Arithmetic
             /// <returns><paramref name="fractA"/> added to <paramref name="fractB"/>.</returns>
             public static Fraction operator +(Fraction fractA, Fraction fractB)
             {
-                fractA = fractA.Simplify(); // simplifying
+                fractA = fractA.Simplify();
                 fractB = fractB.Simplify();
 
                 if (fractA.Denominator == fractB.Denominator)
                 {
-                    var fraction = new Fraction //creating a new fraction
+                    var fraction = new Fraction
                     {
-                        Numerator = fractA.Numerator + fractB.Numerator, // adding the nominators
-                        Denominator = fractA.Denominator // assigning the denominator
+                        Numerator = fractA.Numerator + fractB.Numerator,
+                        Denominator = fractA.Denominator
                     };
 
-                    return fraction.Simplify(); // a simplified version of the fraction
+                    return fraction.Simplify();
                 }
 
-                var gdc = Numbers.Get.Gdc(fractA.Denominator, fractB.Denominator);
+                var gdc = Get.Gdc(fractA.Denominator, fractB.Denominator);
                 
                 if (gdc == 1)
                 {
-                    // if the denominators are coprimes, i.e. no factors in common
                     var fraction = new Fraction
                     {
                         Numerator = fractA.Numerator * fractB.Denominator + fractB.Numerator * fractA.Denominator,
                         Denominator = fractA.Denominator * fractB.Denominator
                     };
 
-                    return fraction.Simplify(); // a simplified version of the fraction
+                    return fraction.Simplify();
                 }
 
-                if (fractA.Denominator > fractB.Denominator) //fractA.Denominator will be the new denominator
+                if (fractA.Denominator > fractB.Denominator)
                 {
                     var fraction = new Fraction
                     {
@@ -505,7 +547,7 @@ namespace Mathos.Arithmetic
 
                     return fraction.Simplify();
                 }
-                else //fractB.Denominator will be the new denominator
+                else
                 {
                     var fraction = new Fraction
                     {
@@ -525,34 +567,33 @@ namespace Mathos.Arithmetic
             /// <returns><paramref name="fractB"/> substracted from <paramref name="fractA"/>.</returns>
             public static Fraction operator -(Fraction fractA, Fraction fractB)
             {
-                //addition
-                fractA = fractA.Simplify(); // simplifying
+                fractA = fractA.Simplify();
                 fractB = fractB.Simplify();
                 
                 if (fractA.Denominator == fractB.Denominator)
                 {
-                    var fraction = new Fraction  //creating a new fraction
+                    var fraction = new Fraction
                     {
-                        Numerator = fractA.Numerator - fractB.Numerator, // subtracting the nominators
-                        Denominator = fractA.Denominator // assigning the denominator
+                        Numerator = fractA.Numerator - fractB.Numerator,
+                        Denominator = fractA.Denominator
                     };
-                    return fraction.Simplify(); // a simplified version of the fraction
+                    return fraction.Simplify();
                 }
 
-                var gdc = Numbers.Get.Gdc(fractA.Denominator, fractB.Denominator);
+                var gdc = Get.Gdc(fractA.Denominator, fractB.Denominator);
+
                 if (gdc == 1)
                 {
-                    // if the denominators are coprimes, i.e. no factors in common
                     var fraction = new Fraction
                     {
                         Numerator = fractA.Numerator * fractB.Denominator - fractB.Numerator * fractA.Denominator,
                         Denominator = fractA.Denominator * fractB.Denominator
                     };
 
-                    return fraction.Simplify(); // a simplified version of the fraction
+                    return fraction.Simplify();
                 }
                 
-                if (fractA.Denominator > fractB.Denominator) //fractA.Denominator will be the new denominator
+                if (fractA.Denominator > fractB.Denominator)
                 {
                     var fraction = new Fraction
                     {
@@ -562,7 +603,7 @@ namespace Mathos.Arithmetic
 
                     return fraction.Simplify();
                 }
-                else //fractB.Denominator will be the new denominator
+                else
                 {
                     var fraction = new Fraction
                     {
@@ -582,7 +623,7 @@ namespace Mathos.Arithmetic
             /// <returns><paramref name="fractA"/> multiplied by <paramref name="fractB"/>.</returns>
             public static Fraction operator *(Fraction fractA, Fraction fractB)
             {
-                fractA = fractA.Simplify(); // simplifying
+                fractA = fractA.Simplify();
                 fractB = fractB.Simplify();
 
                 return new Fraction(fractA.Numerator * fractB.Numerator,
@@ -597,7 +638,7 @@ namespace Mathos.Arithmetic
             /// <returns><paramref name="fractA"/> divided by <paramref name="fractB"/>.</returns>
             public static Fraction operator /(Fraction fractA, Fraction fractB)
             {
-                fractA = fractA.Simplify(); // simplifying
+                fractA = fractA.Simplify();
                 fractB = fractB.Simplify();
 
                 return new Fraction(fractA.Numerator * fractB.Denominator,
@@ -613,12 +654,11 @@ namespace Mathos.Arithmetic
             {
                 Fraction fraction;
 
-                if (value.Contains("/")) //checking if the separator exists
+                if (value.Contains("/"))
                 {
-                    // if it is a string input
                     try
                     {
-                        value = value.Trim(' '); // trim away unnessesary stuff
+                        value = value.Trim(' ');
                         
                         fraction = new Fraction
                         {
@@ -634,7 +674,7 @@ namespace Mathos.Arithmetic
                     }
                 }
                 
-                value = value.Trim(' '); // trim away unnessesary stuff
+                value = value.Trim(' ');
 
                 fraction = new Fraction
                 {
@@ -660,7 +700,7 @@ namespace Mathos.Arithmetic
             /// </summary>
             /// <param name="fraction">The fraction to convert into a double.</param>
             /// <returns>Returns <paramref name="fraction"/> converted into a double.</returns>
-            public static implicit operator decimal(Fraction fraction)
+            public static explicit operator decimal(Fraction fraction)
             {
                 return (decimal)fraction.Numerator / fraction.Denominator;
             }
