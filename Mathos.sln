@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{468952AD-0A67-4762-9C09-BADF7E32F729}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
 		Mathos.vsmdi = Mathos.vsmdi
+		README.md = README.md
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
@@ -20,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laboratory", "Laboratory\Laboratory.csproj", "{DE1841BF-ECF3-4117-9168-51C238860830}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubyInt", "RubyInt\RubyInt.csproj", "{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathInterpreter", "MathInterpreter\MathInterpreter.csproj", "{719CE27C-7AB4-4001-9DE4-099ABAF77C75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +111,22 @@ Global
 		{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}.Release|Win32.ActiveCfg = Release|Any CPU
 		{FC5D64B3-CB72-49F1-A66A-FACCC6879C25}.Release|x86.ActiveCfg = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|Win32.Build.0 = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Debug|x86.Build.0 = Debug|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|Win32.ActiveCfg = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|Win32.Build.0 = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|x86.ActiveCfg = Release|Any CPU
+		{719CE27C-7AB4-4001-9DE4-099ABAF77C75}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

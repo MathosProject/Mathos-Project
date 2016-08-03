@@ -1,0 +1,51 @@
+﻿<metro:MetroWindow x:Class="MathInterpreter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:mint="clr-namespace:MathInterpreter"
+        Title="Math Interpreter" Width="640" Height="480" Loaded="MainWindow_OnLoaded" Closed="MainWindow_OnClosed">
+    <metro:MetroWindow.RightWindowCommands>
+        <metro:WindowCommands>
+            <Button Content="Settings" Click="Settings_OnClick" />
+        </metro:WindowCommands>
+    </metro:MetroWindow.RightWindowCommands>
+    <Window.CommandBindings>
+        <CommandBinding Command="New" Executed="NewFile_OnClick" />
+        <CommandBinding Command="Open" Executed="OpenFile_OnClick" />
+        <CommandBinding Command="Save" Executed="SaveFile_OnClick" />
+        <CommandBinding Command="SaveAs" Executed="SaveFileAs_OnClick" />
+        <CommandBinding Command="Close" Executed="CloseTab_OnClick" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="W" Modifiers="Control" Command="Close" />
+    </Window.InputBindings>
+    <Grid>
+        <Menu HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New File" Click="NewFile_OnClick" />
+                <MenuItem Header="Open File" Click="OpenFile_OnClick" />
+                <Separator/>
+                <MenuItem Header="Save File" Click="SaveFile_OnClick" />
+                <MenuItem Header="Save File As" Click="SaveFileAs_OnClick" />
+                <Separator/>
+                <MenuItem Header="Close Tab" Click="CloseTab_OnClick" />
+                <Separator/>
+                <MenuItem Header="Quit" Click="Quit_OnClick" />
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Results Window" Click="ResultsWindow_OnClick"/>
+            </MenuItem>
+            <MenuItem Header="Run" Click="Run_OnClick"/>
+        </Menu>
+        <dragablz:TabablzControl x:Name="TabControl"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="Stretch"
+                                 Margin="0,30,0,0"
+                                 ShowDefaultCloseButton="True"
+                                 ItemContainerStyle="{StaticResource TrapezoidDragableTabItemStyle}"
+                                 AdjacentHeaderItemOffset="-10">
+            <mint:MathTab />
+        </dragablz:TabablzControl>
+    </Grid>
+</metro:MetroWindow>
