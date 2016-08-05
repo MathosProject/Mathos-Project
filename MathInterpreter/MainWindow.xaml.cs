@@ -26,6 +26,7 @@ namespace MathInterpreter
         private void NewFile_OnClick(object sender, RoutedEventArgs e)
         {
             TabControl.Items.Add(new MathTab());
+            SelectNewTab();
         }
 
         private void OpenFile_OnClick(object sender, RoutedEventArgs e)
@@ -36,6 +37,7 @@ namespace MathInterpreter
                 return;
 
             TabControl.Items.Add(tab);
+            SelectNewTab();
         }
 
         private void SaveFile_OnClick(object sender, RoutedEventArgs e)
@@ -76,6 +78,11 @@ namespace MathInterpreter
         private void Settings_OnClick(object sender, RoutedEventArgs e)
         {
             SettingsWindow.Open();
+        }
+
+        private void SelectNewTab()
+        {
+            TabControl.SelectedIndex = TabControl.Items.Count - 1;
         }
     }
 }
