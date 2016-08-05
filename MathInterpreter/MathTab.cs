@@ -15,11 +15,13 @@ namespace MathInterpreter
     public class MathTab : TabItem
     {
         private string _filePath;
+
+        private bool _saved = true;
         private bool _savedBefore;
 
         private readonly MathParser _parser = new MathParser();
         private readonly TextEditor _editor = new TextEditor();
-
+        
         public MathTab() : this("Untitled")
         {
         }
@@ -30,6 +32,7 @@ namespace MathInterpreter
             Content = _editor;
 
             _editor.FontSize = Properties.Settings.Default.EditorFontSize;
+            _editor.TextChanged += (sender, args) => AddSaveHeader();
         }
 
         public void Run()
@@ -68,6 +71,7 @@ namespace MathInterpreter
                 return;
             }
 
+            RemoveSaveHeader();
             File.WriteAllText(_filePath, _editor.Text);
         }
 
@@ -83,9 +87,30 @@ namespace MathInterpreter
             _savedBefore = true;
             _filePath = saveFile.FileName;
 
+            RemoveSaveHeader();
             File.WriteAllText(_filePath, _editor.Text);
         }
-        
+
+        public void AddSaveHeader()
+        {
+            if (!_saved)
+                return;
+
+            _saved = false;
+            Header += "*";
+        }
+
+        public void RemoveSaveHeader()
+        {
+            if (_saved)
+                return;
+
+            _saved = true;
+
+            var header = Header.ToString();
+            Header = header.Substring(0, header.Length - 1);
+        }
+
         public static MathTab Open()
         {
             var openFile = new OpenFileDialog {Filter = "Mathos Parser File (*.mpf)|*.mpf|Any File (*.*)|*.*", CheckFileExists = true};
@@ -96,6 +121,7 @@ namespace MathInterpreter
             var tab = new MathTab(Path.GetFileName(openFile.FileName)) {_savedBefore = true, _filePath = openFile.FileName};
 
             tab._editor.Text = File.ReadAllText(openFile.FileName);
+            tab.RemoveSaveHeader();
 
             return tab;
         }
