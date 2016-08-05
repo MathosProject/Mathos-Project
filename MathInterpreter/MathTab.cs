@@ -93,7 +93,7 @@ namespace MathInterpreter
             if (openFile.ShowDialog() != true)
                 return null;
 
-            var tab = new MathTab(Path.GetFileName(openFile.FileName)) {_filePath = openFile.FileName};
+            var tab = new MathTab(Path.GetFileName(openFile.FileName)) {_savedBefore = true, _filePath = openFile.FileName};
 
             tab._editor.Text = File.ReadAllText(openFile.FileName);
 
