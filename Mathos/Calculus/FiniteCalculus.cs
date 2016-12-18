@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using Mathos.Arithmetic.Numbers;
-using Mathos.Notation;
 
 namespace Mathos.Calculus
 {

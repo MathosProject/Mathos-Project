@@ -1,7 +1,8 @@
 ﻿using System;
+
 using Mathos;
 using Mathos.Arithmetic;
-using Mathos.Notation;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest.Algebra

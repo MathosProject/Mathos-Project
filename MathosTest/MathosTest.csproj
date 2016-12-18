@@ -75,7 +75,7 @@
     <Compile Include="SyntaxTest.cs" />
     <Compile Include="Geometry\Geometry.cs" />
     <Compile Include="Converter\ConverterTest.cs" />
-    <Compile Include="Notation\SetTest.cs" />
+    <Compile Include="SetTest.cs" />
     <Compile Include="Statistics\Uncertainty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arithmetic\FractionTest.cs" />
@@ -85,7 +85,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Notation\VectorsAndMatrices.cs" />
+    <Compile Include="MatrixTest.cs" />
+    <Compile Include="VectorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mathos\Mathos.csproj">

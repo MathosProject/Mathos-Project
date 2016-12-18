@@ -81,8 +81,8 @@
     <Compile Include="Geometry\Shapes\Ellipse.cs" />
     <Compile Include="Geometry\Shapes\Ring.cs" />
     <Compile Include="Geometry\Shapes\Torus.cs" />
-    <Compile Include="Notation\Vector.cs" />
-    <Compile Include="Notation\Matrix.cs" />
+    <Compile Include="Vector.cs" />
+    <Compile Include="Matrix.cs" />
     <Compile Include="PreCalculus\ArithmeticSequence.cs" />
     <Compile Include="PreCalculus\GeometricSequence.cs" />
     <Compile Include="PreCalculus\Fibonacci.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="Statistics\Statistics.cs" />
     <Compile Include="Statistics\Uncertainty.cs" />
     <Compile Include="Syntax.cs" />
-    <Compile Include="Notation\Set.cs" />
+    <Compile Include="Set.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.txt" />

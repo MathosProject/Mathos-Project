@@ -4,14 +4,13 @@ using Convert = System.Convert;
 
 using Mathos.Arithmetic.Numbers;
 using Mathos.Exceptions;
-using Mathos.Notation;
 
 namespace Mathos.Arithmetic
 {
     namespace Fractions
     {
         /// <summary>
-        /// The Fraction type makes it possible to store numbers in form of p/q, where p,q are integers.
+        /// The Fraction type makes it possible to store numbers in form of p/q, where p and q are integers.
         /// </summary>
         /// <remarks>
         /// The the numerator and denominator are both Int64 (long).
