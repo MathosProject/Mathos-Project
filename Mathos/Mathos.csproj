@@ -67,7 +67,6 @@
     <Compile Include="Arithmetic\Numbers\IWhole.cs" />
     <Compile Include="Arithmetic\PhysicalConstants.cs" />
     <Compile Include="Arithmetic\SingleArithmetic.cs" />
-    <Compile Include="BenchmarkUtil.cs" />
     <Compile Include="Calculus\DifferentialCalculus.cs" />
     <Compile Include="Calculus\Elementary.Complex.cs" />
     <Compile Include="Calculus\Elementary.Double.cs" />

@@ -58,6 +58,7 @@
     <Compile Include="Arithmetic\IntegerArthimeticTest.cs" />
     <Compile Include="Arithmetic\SingleArthimeticTest.cs" />
     <Compile Include="Arithmetic\DecimalArithmetic.cs" />
+    <Compile Include="BenchmarkUtil.cs" />
     <Compile Include="Calculus\CalculusTest.cs" />
     <Compile Include="Calculus\FiniteCalculusTest.cs" />
     <Compile Include="Geometry\Trigonometry.cs" />
