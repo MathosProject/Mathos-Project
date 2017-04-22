@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MathInterpreter")]
-[assembly: AssemblyCopyright("Copyright © Mathos Project 2016")]
+[assembly: AssemblyCopyright("Copyright © 2017 Mathos Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

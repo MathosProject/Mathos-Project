@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Artem Los")]
 [assembly: AssemblyProduct("MathosTest")]
-[assembly: AssemblyCopyright("Copyright © 2012-2016 Mathos Project")]
+[assembly: AssemblyCopyright("Copyright © 2012-2017 Mathos Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
