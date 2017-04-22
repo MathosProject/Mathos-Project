@@ -214,7 +214,7 @@ namespace Mathos.Calculus
 
         /// <summary>
         /// Checks whether the given <paramref name="sequence"/> for a pattern. For a pattern to exist, given the terms in the sequence, we
-        /// should be able to reach a difference of zero for all possible values of <paramref name="dergee"/>.
+        /// should be able to reach a difference of zero for all possible values of <paramref name="degree"/>.
         /// </summary>
         /// <param name="sequence">The sequence.</param>
         /// <param name="degree">
