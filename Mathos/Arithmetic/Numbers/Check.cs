@@ -46,7 +46,7 @@ namespace Mathos.Arithmetic.Numbers
         /// <returns></returns>
         public static bool IsEven(long num)
         {
-            return Get.Mod(num, 2) == 0;
+            return (num & 1) == 0;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mathos.Arithmetic.Numbers
         /// <returns></returns>
         public static bool IsOdd(long num)
         {
-            return Get.Mod(num, 2) == 1;
+            return (num & 1) == 1;
         }
 
         /// <summary>
