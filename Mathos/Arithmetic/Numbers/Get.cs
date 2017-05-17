@@ -185,12 +185,12 @@ namespace Mathos.Arithmetic.Numbers
             251, 257, 263, 269, 271 };
 
         /// <summary>
-        /// Caclulates the Greatest common divisor
+        /// Caclulates the greatest common divisor.
         /// </summary>
         /// <param name="numA">The first number</param>
         /// <param name="numB">The second number</param>
         /// <returns></returns>
-        public static long Gdc(long numA, long numB)
+        public static long Gcd(long numA, long numB)
         {
             while (numB > 0)
             {
@@ -210,7 +210,7 @@ namespace Mathos.Arithmetic.Numbers
         /// <returns></returns>
         public static long Lcm(long numA, long numB)
         {
-            return Convert.ToPositive(numA * numB) / Gdc(numA, numB);
+            return Convert.ToPositive(numA * numB) / Gcd(numA, numB);
         }
 
         /// <summary>

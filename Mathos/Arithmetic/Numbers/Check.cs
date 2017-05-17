@@ -91,7 +91,7 @@ namespace Mathos.Arithmetic.Numbers
         /// <returns></returns>
         public static bool IsCoprime(long numA, long numB)
         {
-            return Get.Gdc(numA, numB) == 1;
+            return Get.Gcd(numA, numB) == 1;
         }
     }
 }

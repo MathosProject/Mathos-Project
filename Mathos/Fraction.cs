@@ -383,7 +383,7 @@ namespace Mathos
         /// <returns>The simplified form of the fraction.</returns>
         public Fraction Simplify()
         {
-            var gdc = Get.Gdc(Arithmetic.Numbers.Convert.ToPositive(Numerator),
+            var gdc = Get.Gcd(Arithmetic.Numbers.Convert.ToPositive(Numerator),
                 Arithmetic.Numbers.Convert.ToPositive(_denominator));
 
             return new Fraction(Numerator / gdc, _denominator / gdc);
@@ -527,7 +527,7 @@ namespace Mathos
                 return fraction.Simplify();
             }
 
-            var gdc = Get.Gdc(fractA.Denominator, fractB.Denominator);
+            var gdc = Get.Gcd(fractA.Denominator, fractB.Denominator);
 
             if (gdc == 1)
             {
@@ -583,7 +583,7 @@ namespace Mathos
                 return fraction.Simplify();
             }
 
-            var gdc = Get.Gdc(fractA.Denominator, fractB.Denominator);
+            var gdc = Get.Gcd(fractA.Denominator, fractB.Denominator);
 
             if (gdc == 1)
             {

@@ -29,7 +29,7 @@ namespace MathosTest
         {
             Assert.IsTrue(Check.IsPrime(29));
             Assert.AreEqual(2, Convert.ToPositive(-2));
-            Assert.AreEqual(4, Get.Gdc(20, 4));
+            Assert.AreEqual(4, Get.Gcd(20, 4));
 
             foreach (var factor in Get.Factors(81))
                 System.Diagnostics.Debug.WriteLine("Factor: " + factor.ToString(CultureInfo.InvariantCulture));

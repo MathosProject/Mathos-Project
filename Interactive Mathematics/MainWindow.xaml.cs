@@ -75,7 +75,7 @@ namespace Interactive_Mathematics
             {
                 if (x[0] % 1 == 0) // check if it's an integer
                 {
-                    return Get.Gdc((long)x[0], (long)x[1]);
+                    return Get.Gcd((long)x[0], (long)x[1]);
                 }
                 
                 throw new ArgumentException("The input is not an integer");
@@ -95,7 +95,7 @@ namespace Interactive_Mathematics
             {
                 if (x[0] % 1 == 0) // check if it's an integer
                 {
-                    return Get.Gdc((long)x[0], (long)x[1]);
+                    return Get.Gcd((long)x[0], (long)x[1]);
                 }
                 
                 throw new ArgumentException("The input is not an integer");
