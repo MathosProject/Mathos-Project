@@ -167,13 +167,14 @@ namespace Mathos.Arithmetic.Numbers
         /// <returns></returns>
         public static long Factorial(List<long> numbers)
         {
-            return numbers.Sum(num => Factorial((long) num));
+            return numbers.Sum(num => Factorial(num));
         }
 
         /// <summary>
         /// Contains a list of common prime numbers, http://oeis.org/A000040.
         /// </summary>
-        public static int[] ListOfCommonPrimeNumbers = { 2, 3, 5, 7, 11, 13, 17, 19, 
+        public static int[] ListOfCommonPrimeNumbers = {
+            2, 3, 5, 7, 11, 13, 17, 19, 
             23, 29, 31, 37, 41, 43, 47, 
             53, 59, 61, 67, 71, 73, 79, 
             83, 89, 97, 101, 103, 107, 
@@ -182,7 +183,8 @@ namespace Mathos.Arithmetic.Numbers
             167, 173, 179, 181, 191, 
             193, 197, 199, 211, 223, 
             227, 229, 233, 239, 241, 
-            251, 257, 263, 269, 271 };
+            251, 257, 263, 269, 271
+        };
 
         /// <summary>
         /// Caclulates the greatest common divisor.
@@ -202,6 +204,7 @@ namespace Mathos.Arithmetic.Numbers
 
             return numA;
         }
+
         /// <summary>
         /// Caclulates least common multiple.
         /// </summary>
