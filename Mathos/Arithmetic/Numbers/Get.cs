@@ -189,7 +189,7 @@ namespace Mathos.Arithmetic.Numbers
         /// </summary>
         /// <param name="numA">The first number</param>
         /// <param name="numB">The second number</param>
-        /// <returns></returns>
+        /// <returns>The greatest common divisor of <paramref name="numA"/> and <paramref name="numB"/>.</returns>
         public static long Gcd(long numA, long numB)
         {
             while (numB > 0)
@@ -203,22 +203,22 @@ namespace Mathos.Arithmetic.Numbers
             return numA;
         }
         /// <summary>
-        /// Caclulates Least common multiple
+        /// Caclulates least common multiple.
         /// </summary>
         /// <param name="numA">The first number</param>
         /// <param name="numB">The second number</param>
-        /// <returns></returns>
+        /// <returns>The least common multiple of <paramref name="numA"/> and <paramref name="numB"/>.</returns>
         public static long Lcm(long numA, long numB)
         {
             return Convert.ToPositive(numA * numB) / Gcd(numA, numB);
         }
 
         /// <summary>
-        /// Calculates modulo
+        /// Calculates the modulos of <paramref name="numA"/> and <paramref name="numB"/>.
         /// </summary>
         /// <param name="numA">The first number</param>
         /// <param name="numB">The second number</param>
-        /// <returns></returns>
+        /// <returns>The modulos of <paramref name="numA"/> and <paramref name="numB"/>.</returns>
         public static long Mod(long numA, long numB)
         {
             return numA - numB * (numA / numB);
