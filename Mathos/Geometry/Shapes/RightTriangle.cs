@@ -9,14 +9,7 @@ namespace Mathos.Geometry.Shapes
     {
         private double _length;
         private double _height;
-
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public RightTriangle() : this(0, 0)
-        {
-        }
-
+        
         /// <summary>
         /// Constructor with a <paramref name="length"/> and <paramref name="height"/>.
         /// </summary>
@@ -26,6 +19,9 @@ namespace Mathos.Geometry.Shapes
         {
             _length = length < 0 ? 0 : length;
             _height = height < 0 ? 0 : height;
+
+            if(_length > 0 && _height > 0)
+                Hypotenuse = Pythagorean.FindHypotenuse(_length, _height);
         }
 
         /// <summary>
@@ -47,20 +43,19 @@ namespace Mathos.Geometry.Shapes
         }
 
         /// <summary>
+        /// Gets the hypotenuse of the triangle.
+        /// </summary>
+        public double Hypotenuse { get; }
+
+        /// <summary>
         /// Gets the area of the triangle.
         /// </summary>
-        public double Area
-        {
-            get { return _length * _height / 2; }
-        }
+        public double Area => _length * _height / 2;
 
         /// <summary>
         /// Returns the perimeter of the triangle.
         /// </summary>
-        public double Perimeter
-        {
-            get { return _length + _height + Pythagorean.FindHypotenuse(_length, _height); }
-        }
+        public double Perimeter => _length + _height + Pythagorean.FindHypotenuse(_length, _height);
 
         #region Override Equals
 
@@ -73,7 +68,7 @@ namespace Mathos.Geometry.Shapes
         {
             var other = obj as RightTriangle;
 
-            return (other != null) && (Math.Abs(_length - other._length) < 1) && (Math.Abs(_height - other._height) < 1);
+            return other != null && Math.Abs(_length - other._length) < 1 && Math.Abs(_height - other._height) < 1;
         }
 
         /// <summary>
@@ -83,7 +78,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public bool Equals(RightTriangle other)
         {
-            return (other != null) && (Math.Abs(_length - other._length) < 1) && (Math.Abs(_height - other._height) < 1);
+            return other != null && Math.Abs(_length - other._length) < 1 && Math.Abs(_height - other._height) < 1;
         }
 
         /// <summary>
@@ -105,7 +100,7 @@ namespace Mathos.Geometry.Shapes
         {
             // If both are null, or both are same instance, return true.
             // If one is null, but not both, return false.
-            return ReferenceEquals(a, b) || (((object) a != null) && ((object) b != null) && (Math.Abs(a._length - b._length) < 1) && (Math.Abs(a._height - b._height) < 1));
+            return ReferenceEquals(a, b) || (object) a != null && (object) b != null && Math.Abs(a._length - b._length) < 1 && Math.Abs(a._height - b._height) < 1;
         }
 
         /// <summary>
@@ -116,7 +111,7 @@ namespace Mathos.Geometry.Shapes
         /// <returns></returns>
         public static bool operator !=(RightTriangle a, RightTriangle b)
         {
-            return ((a != null) && (b != null) && (Math.Abs(a._length - b._length) > 0)) || ((a != null) && (b != null) && (Math.Abs(a._length - b._length) > 0));
+            return a != null && b != null && Math.Abs(a._length - b._length) > 0 || a != null && b != null && Math.Abs(a._length - b._length) > 0;
         }
 
         #endregion
