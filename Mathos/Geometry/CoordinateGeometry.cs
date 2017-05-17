@@ -1,5 +1,4 @@
 ﻿using System;
-using Mathos.Arithmetic.Fractions;
 using Mathos.Exceptions;
 
 namespace Mathos.Geometry // add these namespaces up to Mathos.Geometry.CoordinateGeomotry

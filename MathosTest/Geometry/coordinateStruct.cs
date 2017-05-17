@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using Mathos.Arithmetic.Fractions;
 using Mathos.Geometry.TwoDimensional;
 using Mathos.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

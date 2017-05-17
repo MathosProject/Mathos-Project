@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Mathos.Arithmetic.Fractions;
+using Mathos;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MathosTest.Arithmetic

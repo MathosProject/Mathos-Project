@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using Mathos.Arithmetic.Fractions;
 using Mathos.Parser;
 
 using Mathos.Calculus;

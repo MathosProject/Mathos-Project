@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Numerics;
-using Mathos.Arithmetic.Fractions;
 using Mathos.Calculus;
 
 namespace Mathos.Arithmetic
