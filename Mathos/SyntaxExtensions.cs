@@ -221,7 +221,7 @@ namespace Mathos.Syntax
 
         #endregion
 
-        #region Prime Checking
+        #region IsPrime
 
         /// <summary>
         /// Check if <paramref name="num"/> is a prime number.
