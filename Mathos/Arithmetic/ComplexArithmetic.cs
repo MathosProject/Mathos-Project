@@ -14,7 +14,6 @@ namespace Mathos.Arithmetic
         /// <param name="z"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static Complex[] RootsOf(Complex z, int n)
         {
             var roots = new Complex[n];
@@ -26,12 +25,12 @@ namespace Mathos.Arithmetic
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="z"></param>
         /// <param name="n"></param>
         /// <param name="index"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException" />
         public static Complex RootOf(Complex z, int n, int index)
         {
             if (n < index)
