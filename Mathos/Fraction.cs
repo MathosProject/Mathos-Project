@@ -2,79 +2,88 @@
 using System.Globalization;
 using Convert = System.Convert;
 
-using Mathos.Arithmetic.Numbers;
 using Mathos.Exceptions;
+using Mathos.Arithmetic.Numbers;
 
 namespace Mathos
 {
     /// <summary>
-    /// The fraction type makes it possible to store numbers in form of p/q, where p and q are integers.
+    /// Represents a fraction (a/b).
     /// </summary>
     [Serializable]
-    public class Fraction : IRational, IEquatable<Fraction>
+    public class Fraction : IRational, IEquatable<Fraction>, IFormattable
     {
         /// <summary>
         /// Gets or sets the numerator.
         /// </summary>
+        /// <value>
+        /// Represents the fraction's numerator.
+        /// </value>
         public long Numerator { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the denominator.
         /// </summary>
+        /// <value>
+        /// Represents the fraction's denominator.
+        /// </value>
+        /// <exception cref="DenominatorZeroException" accessor="set">Thrown when trying to set the denominator to zero.</exception>
         public long Denominator
         {
-            get { return _denominator; }
+            get => _denominator;
             set
             {
-                if (value != 0)
+                if (value == 0)
+                    throw new DenominatorZeroException();
+
+                if (_denominator < 0)
                 {
-                    if (_denominator < 0)
-                    {
-                        _denominator = value * -1;
-                        Numerator = Numerator * -1;
-                    }
-                    else
-                        _denominator = value;
+                    _denominator = value * -1;
+                    Numerator *= -1;
                 }
                 else
-                    throw new DenominatorZeroException();
+                    _denominator = value;
             }
         }
 
         private long _denominator;
 
         /// <summary>
-        /// Create a fraction equal to one (1/1).
+        /// Create a fraction with a value of one (1/1).
         /// </summary>
         public Fraction()
         {
             Numerator = 1;
-            Denominator = 1;
+            _denominator = 1;
         }
 
         /// <summary>
-        /// Create a fraction from another.
+        /// Create a fraction by copying values from another <paramref name="fraction"/>.
         /// </summary>
-        /// <param name="f">The other fraction.</param>
-        public Fraction(Fraction f)
+        /// <param name="fraction">The fraction to copy from.</param>
+        /// <exception cref="DenominatorZeroException">Thrown when trying to set the denominator to zero.</exception>
+        public Fraction(Fraction fraction)
         {
-            Numerator = f.Numerator;
-            Denominator = f.Denominator;
+            Numerator = fraction.Numerator;
+            Denominator = fraction.Denominator;
         }
 
         /// <summary>
-        /// Create a fraction with a numerator, defaulting the denominator to 1.
+        /// Create a fraction with a given <paramref name="numerator"/> and a denominator of 1.
         /// </summary>
         /// <param name="numerator">The numerator.</param>
-        public Fraction(long numerator) : this(numerator, 1)
+        public Fraction(long numerator)
         {
+            Numerator = numerator;
+            _denominator = 1;
         }
 
         /// <summary>
-        /// Create a fraction with a numerator and denominator.
+        /// Create a fraction with a given <paramref name="numerator"/> and <paramref name="denominator"/>.
         /// </summary>
         /// <param name="numerator">The numerator.</param>
         /// <param name="denominator">The denominator.</param>
+        /// <exception cref="DenominatorZeroException">Thrown when trying to set the denominator to zero.</exception>
         public Fraction(long numerator, long denominator)
         {
             Numerator = numerator;
@@ -84,10 +93,14 @@ namespace Mathos
         }
 
         /// <summary>
-        /// Create a fraction from the result of dividing two others.
+        /// Create a fraction from the result of dividing two other fractions.
         /// </summary>
+        /// <remarks>
+        /// The order of division is <paramref name="fractA"/> / <paramref name="fractB"/>.
+        /// </remarks>
         /// <param name="fractA">The first fraction.</param>
         /// <param name="fractB">The second fraction.</param>
+        /// <exception cref="DenominatorZeroException">Thrown when trying to set the denominator to zero.</exception>
         public Fraction(Fraction fractA, Fraction fractB)
         {
             var tmp = fractA / fractB;
@@ -101,36 +114,50 @@ namespace Mathos
         /// <summary>
         /// Create a fraction from a string.
         /// </summary>
-        /// <param name="fractionInStringForm">The string to use.</param>
-        public Fraction(string fractionInStringForm)
+        /// <remarks>
+        /// This works with values in the form of "a/b" and "a",
+        /// where a and b are <see cref="long"/> values.
+        /// </remarks>
+        /// <param name="stringForm">The string to use.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="stringForm"/> is null.</exception>
+        /// <exception cref="InvalidFractionFormatException">
+        /// <paramref name="stringForm"/> does not contain a denominator after the "/",
+        /// or either the numerator or denominator is not a <see cref="long"/> value.
+        /// </exception>
+        public Fraction(string stringForm)
         {
-            if (fractionInStringForm.Contains("/")) //checking if the separator exists
+            stringForm = stringForm?.Trim() ?? throw new ArgumentNullException(nameof(stringForm));
+
+            var index = stringForm.IndexOf('/');
+
+            if (index != -1)
             {
-                try
-                {
-                    fractionInStringForm = fractionInStringForm.Trim(' '); // trim away unnessesary stuff
-                    Numerator = Convert.ToInt64(fractionInStringForm.Substring(0, fractionInStringForm.IndexOf('/')));
-                    _denominator =
-                        Convert.ToInt64(fractionInStringForm.Substring(fractionInStringForm.IndexOf('/') + 1));
-                }
-                catch (Exception e)
-                {
-                    throw new InvalidFractionFormatException("See the inner exception for details.", e);
-                }
+                if(index + 1 > stringForm.Length)
+                    throw new InvalidFractionFormatException("The provided fraction does not contain a denominator after the \"/\".");
+                if(!long.TryParse(stringForm.Substring(0, index), out long numerator))
+                    throw new InvalidFractionFormatException("The provided numerator was not a long value.");
+                if (!long.TryParse(stringForm.Substring(index + 1), out long denominator))
+                    throw new InvalidFractionFormatException("The provided denominator was not a long value.");
+
+                Numerator = numerator;
+                _denominator = denominator;
             }
             else
             {
-                Numerator = Convert.ToInt64(fractionInStringForm.Trim());
+                if (!long.TryParse(stringForm, out long numerator))
+                    throw new InvalidFractionFormatException("The provided value was not a long value.");
+
+                Numerator = numerator;
                 _denominator = 1;
             }
 
             FractionChecker();
         }
-
+        
         /// <summary>
-        /// Returns the fully qualified type name of this instance.
+        /// Converts this fraction to its string equivalent.
         /// </summary>
-        /// <returns>The string version of the fraction.</returns>
+        /// <returns>The string version of this fraction.</returns>
         public override string ToString()
         {
             return _denominator == 1
@@ -139,15 +166,59 @@ namespace Mathos
         }
 
         /// <summary>
+        /// Converts this fraction to its string equivalent,
+        /// formatting the <see cref="Numerator"/> and <see cref="Denominator"/> using
+        /// the provided <paramref name="format"/>.
+        /// </summary>
+        /// <param name="format">A standard format string.</param>
+        /// <exception cref="FormatException"><paramref name="format" /> is invalid or not supported.</exception>
+        /// <returns>The formatted string version of this fraction.</returns>
+        /// <seealso cref="long.ToString(string)"/>
+        public string ToString(string format)
+        {
+            return _denominator == 1
+                ? Numerator.ToString(format)
+                : Numerator.ToString(format) + "/" + _denominator.ToString(format);
+        }
+
+        /// <summary>
+        /// Converts this fraction to its string equivalent,
+        /// formatting the <see cref="Numerator"/> and <see cref="Denominator"/> using
+        /// the provided <paramref name="formatProvider"/>.
+        /// </summary>
+        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+        /// <returns>The formatted string version of this fraction.</returns>
+        public string ToString(IFormatProvider formatProvider)
+        {
+            return _denominator == 1
+                ? Numerator.ToString(formatProvider)
+                : Numerator.ToString(formatProvider) + "/" + _denominator.ToString(formatProvider);
+        }
+
+        /// <summary>
+        /// Converts this fraction to its string equivalent,
+        /// formatting the <see cref="Numerator"/> and <see cref="Denominator"/> using
+        /// the provided <paramref name="format"/> and <paramref name="formatProvider"/>.
+        /// </summary>
+        /// <param name="format">A standard format string.</param>
+        /// <param name="formatProvider">An object that supplies culture-specific formatting information.</param>
+        /// <exception cref="FormatException"><paramref name="format" /> is invalid or not supported.</exception>
+        /// <returns>The formatted string version of this fraction.</returns>
+        /// <seealso cref="long.ToString(string,IFormatProvider)"/>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return _denominator == 1
+                ? Numerator.ToString(format, formatProvider)
+                : Numerator.ToString(format, formatProvider) + "/" + _denominator.ToString(format, formatProvider);
+        }
+
+        /// <summary>
         /// Gets the hashcode of this instance.
         /// </summary>
         /// <returns></returns>
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return (_denominator.GetHashCode() * 397) ^ Numerator.GetHashCode();
-            }
+            return unchecked (_denominator.GetHashCode() * 397) ^ Numerator.GetHashCode();
         }
 
         /// <summary>
@@ -392,7 +463,9 @@ namespace Mathos
         /// <summary>
         /// Gets the inverse of this instance.
         /// </summary>
+        /// <remarks>This is the same as <see cref="Reciprocal"/>.</remarks>
         /// <example>2/3 -> 3/2</example>
+        /// <exception cref="DenominatorZeroException">Thrown when <see cref="Numerator"/> is zero.</exception>
         /// <returns>The inverse of this fraction.</returns>
         public Fraction Inverse()
         {
@@ -402,7 +475,9 @@ namespace Mathos
         /// <summary>
         /// Gets the reciprocal of this instance.
         /// </summary>
+        /// <remarks>This is the same as <see cref="Inverse"/>.</remarks>
         /// <example>2/3 -> 3/2</example>
+        /// <exception cref="DenominatorZeroException">Thrown when <see cref="Numerator"/> is zero.</exception>
         /// <returns>The reciprocal of this fraction.</returns>
         public Fraction Reciprocal()
         {
