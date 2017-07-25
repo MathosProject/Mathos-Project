@@ -8,104 +8,124 @@ namespace Mathos.Statistics
     /// </summary>
     public class DiceSimulator
     {
+        /// <summary>
+        /// The values of the dice after being rolled.
+        /// </summary>
+        /// <seealso cref="Roll"/>
+        /// <seealso cref="SumDiceRoll"/>
+        /// <seealso cref="MaxDiceRoll"/>
+        /// <seealso cref="DiffDiceRoll"/>
+        public readonly int[] RolledValues;
+
+        private readonly int _seed;
         private readonly int _numDice;
-        private readonly int[] _nRolledValue; //= new int[6];
-        private readonly int _seed = (int)DateTime.Now.Ticks;
         
         private readonly Random _rnd;
 
         /// <summary>
-        /// Constructor that takes "nDice" as the number of dice and goes upto 6 dice
+        /// Constructor that takes <paramref name="nDice"/> as the number of dice to roll.
         /// </summary>
         /// <param name="nDice">The number of dice to roll.</param>
         public DiceSimulator(int nDice)
+            : this(nDice, (int) DateTime.Now.Ticks)
         {
+        }
+
+        /// <summary>
+        /// Constructor that takes <paramref name="nDice"/> as the number of dice to roll and a given <paramref name="seed"/>.
+        /// </summary>
+        /// <param name="nDice">The number of dice to roll.</param>
+        /// <param name="seed">The seed to use when simulating rolls.</param>
+        public DiceSimulator(int nDice, int seed)
+        {
+            _seed = seed;
             _numDice = nDice;
-            _nRolledValue = new int[_numDice];          //permits to create an arbitrary number of dices
-            _rnd = new Random(_seed);
+            RolledValues = new int[_numDice];
+
+            _rnd = new Random(seed);
 
             for (var i = 0; i < _numDice; i++)
                 Roll(i);
         }
 
         /// <summary>
-        /// Convert the dice simulation into a string.
+        /// Rolls the die at index <paramref name="nDieIndex"/>.
         /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            var dceInfo = new StringBuilder();
-
-            for (var i = 0; i < _numDice; i++)
-                dceInfo.Append(" Dice " + i + ":" + _nRolledValue[i]);
-
-            return dceInfo.ToString();
-        }
-
-        /// <summary>
-        /// Rolls the dice "nDiceIndex" indicates which if more than one, if only 1, then no parameter is required
-        /// </summary>
-        /// <param name="nDiceIndex">Rolls the dice at <paramref name="nDiceIndex"/>.</param>
-        /// <returns></returns>
-        public int Roll(int nDiceIndex)
+        /// <param name="nDieIndex">The index of the die to roll.</param>
+        /// <returns>The rolled value (1-6).</returns>
+        public int Roll(int nDieIndex)
         {
             System.Diagnostics.Trace.TraceInformation("  Seedval: " + _seed);
+            
+            Math.DivRem(_rnd.Next(), 6, out int nResult);
 
-            int nResult;
+            RolledValues[nDieIndex] = nResult + 1;
 
-            Math.DivRem(_rnd.Next(), 6, out nResult);
-
-            _nRolledValue[nDiceIndex] = nResult + 1;
-
-            return _nRolledValue[nDiceIndex];
+            return RolledValues[nDieIndex];
         }
 
         /// <summary>
-        /// Rolls the "nDice" and sums them
+        /// Rolls all the dice and returns the sum of their values.
         /// </summary>
-        /// <returns>The sum of all of the dice.</returns>
+        /// <returns>The sum of all dice after rolls.</returns>
         public int SumDiceRoll()
         {
             var nSum = 0;
 
             for (var i = 0; i < _numDice; i++)
-                nSum += _nRolledValue[i];
+                nSum += RolledValues[i];
 
             return nSum;
         }
 
         /// <summary>
-        /// Rolls the "nDice" and then finds the maximum
+        /// Rolls all the dice and returns the maximum.
         /// </summary>
-        /// <returns>The maximum from the rolled dice.</returns>
+        /// <returns>The maximum of the rolled dice.</returns>
         public int MaxDiceRoll()
         {
             var nMax = 0;
 
             for (var i = 0; i < _numDice; i++)
-                nMax = Math.Max(nMax, _nRolledValue[i]);
+                nMax = Math.Max(nMax, RolledValues[i]);
 
             return nMax;
         }
 
         /// <summary>
-        /// Rolls the "nDice" and then subtracts them (using sequency ABS diff)
+        /// Rolls all the dice and subtracts them using sequency ABS diff.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The value of the rolled dice after being subtracted.</returns>
         public int DiffDiceRoll()
         {
             var nSub = 0;
 
             for (var i = 0; i < _numDice; i++)
-                nSub = Math.Abs(nSub - _nRolledValue[i]);
+                nSub = Math.Abs(nSub - RolledValues[i]);
 
             return nSub;
         }
 
         /// <summary>
-        /// Implementation of an indexer to retrieve any rolled dice at any time
+        /// Convert the dice simulation into a string.
         /// </summary>
-        /// <param name="p">The index.</param>
+        /// <returns>The string version of the dice simulation.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">There are too many dice; the resulting string would be larger than <see cref="P:System.Text.StringBuilder.MaxCapacity" />.</exception>
+        public override string ToString()
+        {
+            var dceInfo = new StringBuilder();
+
+            for (var i = 0; i < _numDice; i++)
+                dceInfo.AppendLine(" Dice " + i + ":" + RolledValues[i]);
+
+            return dceInfo.ToString();
+        }
+
+        /// <summary>
+        /// Gets the die at index <paramref name="p"/>.
+        /// </summary>
+        /// <param name="p">The index to get from.</param>
+        /// <exception cref="ArgumentException" accessor="get"><paramref name="p"/> is greater than the number of dice.</exception>
         public int this[int p]
         {
             get
@@ -113,7 +133,7 @@ namespace Mathos.Statistics
                 if (p > _numDice)
                     throw new ArgumentException("This does not represent a valid dice index");
 
-                return _nRolledValue[p];
+                return RolledValues[p];
             }
         }
     }
