@@ -12,7 +12,7 @@
         /// <returns></returns>
         public static long ToPositive(long num)
         {
-            return Check.IsNegative(num) ? num*-1 : num;
+            return num < 0 ? num*-1 : num;
         }
 
         /// <summary>
@@ -22,7 +22,7 @@
         /// <returns></returns>
         public static long ToNegative(long num)
         {
-            return Check.IsPositive(num) ? num*-1 : num;
+            return num > 0 ? num*-1 : num;
         }
     }
 }

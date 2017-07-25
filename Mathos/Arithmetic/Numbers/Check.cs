@@ -4,15 +4,15 @@ using System.Linq;
 namespace Mathos.Arithmetic.Numbers
 {
     /// <summary>
-    /// 
+    /// Helpful checks for numbers.
     /// </summary>
     public class Check
     {
         /// <summary>
-        /// 
+        /// Check if <paramref name="num"/> is positive.
         /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
+        /// <param name="num">The number to check.</param>
+        /// <returns>True if <paramref name="num"/> is positive; false otherwise.</returns>
         public static bool IsPositive(long num)
         {
             return num > 0;
@@ -56,6 +56,9 @@ namespace Mathos.Arithmetic.Numbers
         /// <returns></returns>
         public static bool IsOdd(long num)
         {
+            if (num < 0)
+                return num % 2 != 0;
+
             return (num & 1) == 1;
         }
 
