@@ -47,6 +47,7 @@ namespace MathosTest.Geometry
             Assert.IsFalse(error, "We should have thrown errors above");
         }
 
+        /*
         [TestMethod]
         public void FindNonHypotenuse()
         {
@@ -96,6 +97,7 @@ namespace MathosTest.Geometry
 
             Assert.IsFalse(error, "We should have thrown errors above");
         }
+        */
     }
 
     [TestClass]
