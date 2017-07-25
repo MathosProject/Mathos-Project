@@ -52,17 +52,7 @@ namespace Mathos.Syntax
         #endregion
 
         #region IsNegative
-
-        /// <summary>
-        /// Check if <paramref name="num"/> is negative.
-        /// </summary>
-        /// <param name="num">The number to check.</param>
-        /// <returns>True if <paramref name="num"/> is negative; false otherwise.</returns>
-        public static bool IsNegative(this byte num)
-        {
-            return num < 0;
-        }
-
+        
         /// <summary>
         /// Check if <paramref name="num"/> is negative.
         /// </summary>
