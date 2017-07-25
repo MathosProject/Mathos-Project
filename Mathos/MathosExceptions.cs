@@ -34,6 +34,8 @@ namespace Mathos
             /// </summary>
             /// <param name="info">The serialization info.</param>
             /// <param name="context">The context of the stream.</param>
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null.</exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0).</exception>
             protected DenominatorZeroException(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
 
@@ -66,6 +68,8 @@ namespace Mathos
             /// </summary>
             /// <param name="info">The serialization info.</param>
             /// <param name="context">The context of the stream.</param>
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null.</exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0).</exception>
             protected InvalidCoordinateFormat(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
 
@@ -98,6 +102,8 @@ namespace Mathos
             /// </summary>
             /// <param name="info">The serialization info.</param>
             /// <param name="context">The context of the stream.</param>
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null.</exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0).</exception>
             protected InvalidFractionFormatException(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
 
@@ -130,6 +136,8 @@ namespace Mathos
             /// </summary>
             /// <param name="info">The serialization info.</param>
             /// <param name="context">The context of the stream.</param>
+            /// <exception cref="ArgumentNullException">The <paramref name="info" /> parameter is null.</exception>
+            /// <exception cref="SerializationException">The class name is null or <see cref="P:System.Exception.HResult" /> is zero (0).</exception>
             protected InvalidTriangleException(SerializationInfo info, StreamingContext context) : base(info, context) { }
         }
     }
