@@ -39,11 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algebra.cs" />
@@ -116,7 +111,7 @@
     <Compile Include="Statistics\Statistical Distributions\PoissonDistribution.cs" />
     <Compile Include="Statistics\Statistics.cs" />
     <Compile Include="Statistics\Uncertainty.cs" />
-    <Compile Include="Syntax.cs" />
+    <Compile Include="SyntaxExtensions.cs" />
     <Compile Include="Set.cs" />
   </ItemGroup>
   <ItemGroup>
