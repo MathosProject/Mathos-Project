@@ -1,2 +1,0 @@
-# integrate 3x^2 from 0 to 2
-puts int(lambda {|x| 3 * x ** 2}, 0, 2)

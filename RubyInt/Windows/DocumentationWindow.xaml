@@ -1,9 +1,0 @@
-﻿<Window x:Class="RubyInt.Windows.DocumentationWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Mathos Ruby Interpreter - Documentation" Width="640" Height="480" Loaded="DocumentationWindow_OnLoaded">
-    <Grid>
-        <ListBox x:Name="DocList" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="150" SelectionMode="Single" SelectionChanged="DocList_OnSelectionChanged"/>
-        <WebBrowser x:Name="DocBrowser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="150,0,0,0"/>
-    </Grid>
-</Window>

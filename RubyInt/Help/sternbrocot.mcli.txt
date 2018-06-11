@@ -1,2 +1,0 @@
-# should return LLRR
-puts tsb("3/7")

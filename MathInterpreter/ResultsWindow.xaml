@@ -1,9 +1,0 @@
-﻿<metro:MetroWindow x:Class="MathInterpreter.ResultsWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Results" Width="500" Height="200" Closed="ResultsWindow_OnClosed">
-    <Grid>
-        <TextBlock x:Name="Results" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
-    </Grid>
-</metro:MetroWindow>
